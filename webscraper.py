@@ -1,13 +1,12 @@
 import argparse
 import os
 from config import HEADERS, BE_JSY_URL
-import requests
+from selenium import webdriver
 from bs4 import BeautifulSoup
 import urllib.parse
 from datetime import date
 from tqdm import tqdm
 import json
-import signal
 
 def scrape_be(url, headers, max_articles, data_dir):
     current_date = date.today().strftime('%Y-%m-%d')
@@ -20,17 +19,27 @@ def scrape_be(url, headers, max_articles, data_dir):
     save_path = os.path.join(data_dir, current_date, 'raw_articles.jsonl')
     os.makedirs(os.path.dirname(save_path), exist_ok=True)
 
+    # If the file already exists, delete it
+    if os.path.exists(save_path):
+        os.remove(save_path)
+
+    # Set up the browser in headless mode
+    options = webdriver.ChromeOptions()
+    options.add_argument('-headless')
+
+    # Create a new instance of the Firefox driver
+    driver = webdriver.Chrome(options=options)
+
     while pbar.n < max_articles:
         # Make a request to the website
         try:
-            response = requests.get(url=url, headers=headers)
-            response.raise_for_status()
-        except requests.HTTPError as err:
-            print(f"HTTP error occurred: {err}")
+            driver.get(url)
+        except Exception as err:
+            print(f"Error occurred: {err}")
             break
 
         # Parse the whole HTML page using BeautifulSoup
-        soup = BeautifulSoup(response.text, 'html.parser')
+        soup = BeautifulSoup(driver.page_source, 'html.parser')
 
         # Find all news boxes
         news_boxes = soup.find_all('div', class_='img-thumb')
@@ -48,11 +57,14 @@ def scrape_be(url, headers, max_articles, data_dir):
                 absolute_link = urllib.parse.urljoin(base_url, relative_link)
 
                 # Make a new request for each news article page
-                article_response = requests.get(absolute_link, headers=headers)
-                article_response.raise_for_status()
+                try:
+                    driver.get(absolute_link)
+                except Exception as err:
+                    print(f"Error occurred: {err}")
+                    continue
 
                 # Parse the article page
-                article_soup = BeautifulSoup(article_response.text, 'html.parser')
+                article_soup = BeautifulSoup(driver.page_source, 'html.parser')
 
                 # Extract and print the main text
                 paragraphs = article_soup.select('div.content p')
@@ -76,6 +88,8 @@ def scrape_be(url, headers, max_articles, data_dir):
 
     # Close progress bar
     pbar.close()
+    # Close the browser
+    driver.quit()
 
 
 if __name__ == "__main__":
@@ -91,3 +105,4 @@ if __name__ == "__main__":
               headers=HEADERS,
               max_articles=max_articles,
               data_dir='./data/')
+
