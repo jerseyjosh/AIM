@@ -1,5 +1,5 @@
 import os
-from config import BE_JSY_URL, HEADERS
+from config import HEADERS, BE_JSY_URL
 import requests
 from bs4 import BeautifulSoup
 import urllib.parse
