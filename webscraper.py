@@ -13,15 +13,19 @@ def scrape_be(url, headers, max_articles):
     articles = {}
     current_date = date.today().strftime('%Y-%m-%d')
     max_articles = float('inf') if max_articles == 'all' else int(max_articles)
-    
+
     # get base url
     base_url = urllib.parse.urljoin(url, '/')
 
     pbar = tqdm(total=max_articles, desc="Articles scraped")
     while len(articles) < max_articles:
         # Make a request to the website
-        response = requests.get(url=url, headers=headers)
-        response.raise_for_status()  # Ensure we got a successful response
+        try:
+            response = requests.get(url=url, headers=headers)
+            response.raise_for_status()
+        except requests.HTTPError as err:
+            print(f"HTTP error occurred: {err}")
+            break
 
         # Parse the whole HTML page using BeautifulSoup
         soup = BeautifulSoup(response.text, 'html.parser')
