@@ -4,13 +4,12 @@ from config import HEADERS, BE_JSY_URL
 import requests
 from bs4 import BeautifulSoup
 import urllib.parse
-from utils import save_articles
 from datetime import date
 from tqdm import tqdm
+import json
+import signal
 
-
-def scrape_be(url, headers, max_articles):
-    articles = {}
+def scrape_be(url, headers, max_articles, data_dir):
     current_date = date.today().strftime('%Y-%m-%d')
     max_articles = float('inf') if max_articles == 'all' else int(max_articles)
 
@@ -18,7 +17,10 @@ def scrape_be(url, headers, max_articles):
     base_url = urllib.parse.urljoin(url, '/')
 
     pbar = tqdm(total=max_articles, desc="Articles scraped")
-    while len(articles) < max_articles:
+    save_path = os.path.join(data_dir, current_date, 'raw_articles.jsonl')
+    os.makedirs(os.path.dirname(save_path), exist_ok=True)
+
+    while pbar.n < max_articles:
         # Make a request to the website
         try:
             response = requests.get(url=url, headers=headers)
@@ -54,13 +56,19 @@ def scrape_be(url, headers, max_articles):
 
                 # Extract and print the main text
                 paragraphs = article_soup.select('div.content p')
-                articles[paragraphs[0].text] = '\n'.join([p.text for p in paragraphs[1:]])
+                if paragraphs:
+                    article = {paragraphs[0].text: '\n'.join([p.text for p in paragraphs[1:]])}
+
+                    # Write the article directly to the file as a JSON object
+                    with open(save_path, 'a') as f:
+                        json.dump(article, f)
+                        f.write('\n')  # Write each JSON object on a new line
 
                 # Update progress bar
-                pbar.update(len(articles) - pbar.n)
+                pbar.update(1)
 
         # If there's a next button, change the URL to the URL of the next page
-        if next_button and len(articles) < max_articles:
+        if next_button and pbar.n < max_articles:
             next_link = next_button.get('href')
             url = urllib.parse.urljoin(base_url, next_link)
         else:
@@ -69,10 +77,9 @@ def scrape_be(url, headers, max_articles):
     # Close progress bar
     pbar.close()
 
-    return articles, current_date
-
 
 if __name__ == "__main__":
+
     parser = argparse.ArgumentParser(description='Scrape articles from a website.')
     parser.add_argument('-n', '--max-articles', default=100, help='Maximum number of articles to scrape (default: 100). '
                                                                   'Use "all" to scrape until there are no more articles.')
@@ -80,10 +87,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
     max_articles = args.max_articles
 
-    DATA_DIR = os.path.join(os.getcwd(), 'data')
-    articles, current_date = scrape_be(url=BE_JSY_URL,
-                                       headers=HEADERS,
-                                       max_articles=max_articles)
-
-    save_path = os.path.join(DATA_DIR, current_date, 'raw_articles.json')
-    save_articles(articles=articles, path=save_path)
+    scrape_be(url=BE_JSY_URL,
+              headers=HEADERS,
+              max_articles=max_articles,
+              data_dir='./data/')
