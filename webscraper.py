@@ -13,7 +13,7 @@ def scrape_be(url, headers, max_articles):
     articles = {}
     current_date = date.today().strftime('%Y-%m-%d')
     max_articles = float('inf') if max_articles == 'all' else int(max_articles)
-
+    
     # get base url
     base_url = urllib.parse.urljoin(url, '/')
 
