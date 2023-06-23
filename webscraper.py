@@ -67,9 +67,10 @@ def scrape_be(url, headers, max_articles, data_dir):
                 article_soup = BeautifulSoup(driver.page_source, 'html.parser')
 
                 # Extract and print the main text
+                headline = article_soup.select('h1')
                 paragraphs = article_soup.select('div.content p')
                 if paragraphs:
-                    article = {paragraphs[0].text: '\n'.join([p.text for p in paragraphs[1:]])}
+                    article = {headline.text: '\n'.join([p.text for p in paragraphs])}
 
                     # Write the article directly to the file as a JSON object
                     with open(save_path, 'a') as f:
