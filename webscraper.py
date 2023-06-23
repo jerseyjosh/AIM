@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 import urllib.parse
 from datetime import date
 from tqdm import tqdm
+import pdb
 import json
 
 def scrape_be(url, headers, max_articles, data_dir):
@@ -42,7 +43,7 @@ def scrape_be(url, headers, max_articles, data_dir):
         soup = BeautifulSoup(driver.page_source, 'html.parser')
 
         # Find all news boxes
-        news_boxes = soup.find_all('div', class_='img-thumb')
+        news_boxes = soup.find_all('div', {'class': 'img-thumb'})
         next_button = soup.find('span', {'class': 'ccm-page-right'}).find('a')  # Find the next button
 
         # Extract the link of each news box
@@ -67,10 +68,12 @@ def scrape_be(url, headers, max_articles, data_dir):
                 article_soup = BeautifulSoup(driver.page_source, 'html.parser')
 
                 # Extract and print the main text
-                headline = article_soup.select('h1')
-                paragraphs = article_soup.select('div.content p')
+                headline = article_soup.find('title').text.split('|')[0]
+                paragraphs = article_soup.find('div', {'class': 'span8 content'}).find_all('p')
+                #pdb.set_trace()
+
                 if paragraphs:
-                    article = {headline.text: '\n'.join([p.text for p in paragraphs])}
+                    article = {headline: '\n'.join([p.text for p in paragraphs])}
 
                     # Write the article directly to the file as a JSON object
                     with open(save_path, 'a') as f:
