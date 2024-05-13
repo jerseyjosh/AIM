@@ -15,6 +15,7 @@ class Script:
             self, 
             speaker: str,
             elevenlabs_api_key: str,
+            openai_api_key: str = None,
             news_stories: Optional[List[NewsStory]] = None,
             weather: Optional[WeatherReport] = None,
         ):
@@ -25,7 +26,7 @@ class Script:
         self.weather_scraper = WeatherScraper()
         self.news_scraper = NewsScraper()
         self.elevenlabs = ElevenLabs(api_key=elevenlabs_api_key)
-        self.translator = Translator()
+        self.translator = Translator(openai_key=openai_api_key) if openai_api_key else None
         self.voice_id = self._get_voice_id()
 
     def _get_voice_id(self):
@@ -41,7 +42,7 @@ class Script:
     def get_news(self):
         self.news_stories: List[NewsStory] = self.news_scraper.get()
 
-    def make_text(self):
+    def make_text(self, translate_to: str = None):
         # get news stories if not set
         if not self.news_stories:
             self.get_news()
@@ -49,16 +50,24 @@ class Script:
         if not self.weather:
             self.get_weather()
         intro = f"Bailiwick Radio News, I'm {self.speaker}."
-        body = " ".join([str(n)for n in self.news_stories])
+        body = " "
+        for i,story in enumerate(self.news_stories):
+            body += story.text
+            if i<len(self.news_stories)-1:
+                body += "In other news: "
         read_more = f"To find out more about this, and other stories, visit bailiwick express dot com."
         weather = f"Now the weather for today: {self.weather}."
         outro = "Bailiwick, radio, news."
-        self.text = intro + body + read_more + weather + outro
+        text = intro + body + read_more + weather + outro
+        if translate_to is not None:
+            assert translate_to.lower() in Translator.LANGUAGES, f"Invalid language: {translate_to}, choose from {Translator.LANGUAGES}"
+            text = self.translator.translate(text, translate_to)
+        self.text = text
 
     def generate_audio(self, text):
         return self.elevenlabs.generate(
             text=text,
-            voice_id=self.voice_id,
+            voice=self.voice_id,
             model='eleven_multilingual_v2'
         )
 
@@ -66,7 +75,8 @@ class Script:
         if not self.text:
             raise ValueError("Text not generated yet. Run make_text() first.")
         if not output:
-            output = f"{self.speaker}_news.mp3"
+            name = '_'.join(self.speaker.split(' '))
+            output = f"{name}_news.mp3"
         audio = self.generate_audio(self.text)
         save(audio, output)
 
