@@ -44,7 +44,9 @@ class Script:
         self.weather: WeatherReport = self.weather_scraper.get()
 
     def get_news(self):
-        self.news_stories: List[NewsStory] = self.news_scraper.get()
+        # self.news_stories['jsy']: List[NewsStory] 
+        # self.news_stories['gsy']: List[NewsStory]
+        self.news_stories: dict = self.news_scraper.get()
 
     def make_text(self, translate_to: str = "english"):
         if translate_to != "english":
@@ -57,16 +59,21 @@ class Script:
         if not self.weather:
             self.get_weather()
         intro = f"Bailiwick Radio News, I'm {self.speaker}."
-        body = " "
-        for i,story in enumerate(self.news_stories):
+        body = "In jersey, "
+        for i,story in enumerate(self.news_stories['jsy']):
             body += story.text
-            if i<len(self.news_stories)-1:
-                body += "In other news: "
+            if i<len(self.news_stories['jsy'])-1:
+                body += "Meanwhile, "
+        body += 'In guernsey, '
+        for i,story in enumerate(self.news_stories['gsy']):
+            body += story.text
+            if i<len(self.news_stories['gsy'])-1:
+                body += "Finally, "
         read_more = f"To find out more about this, and other stories, visit bailiwick express dot com."
         weather = f"Now the weather for today: {self.weather}."
-        outro = "Bailiwick, radio, news."
+        outro = "Bailiwick radio news."
         text = intro + body + read_more + weather + outro
-        if translate_to is not None:
+        if translate_to != "english":
             assert translate_to.lower() in Translator.LANGUAGES, f"Invalid language: {translate_to}, choose from {Translator.LANGUAGES}"
             text = self.translator.translate(text, translate_to)
         self.text = text

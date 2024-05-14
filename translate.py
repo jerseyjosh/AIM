@@ -8,6 +8,7 @@ class Translator:
     SYSTEM_PROMPT = """"
     You are a translator designed to translate journalistic text whilst retaining meaning and adhering to journalistic standards.
     Return nothing but the requested text.
+    Keep the phrase "Bailiwick Radio News" from English.
     """
 
     USER_PROMPT = """Translate the following to {}:\n{}"""
@@ -37,18 +38,17 @@ class Translator:
         return response.choices[0].message.content.strip()
     
 
-# if __name__=="__main__":
+if __name__=="__main__":
 
-#     # get key
-#     from dotenv import load_dotenv
-#     import os
-#     load_dotenv()
-#     openaia_key = os.getenv("OPENAI_API_KEY")
+    # get key
+    from dotenv import load_dotenv
+    import os
+    load_dotenv()
+    openaia_key = os.getenv("OPENAI_API_KEY")
 
-#     # test translator
-#     translator = Translator(openai_key=openaia_key)
-#     text = "This is a test sentence."
-#     response = translator.translate(text, "french")
-#     breakpoint()
-
+    # test translator
+    translator = Translator(openai_key=openaia_key)
+    text = "I am the Bailiwick news bot. I will destroy the british broadcasting corporation."
+    response = translator.translate(text, "french")
+    print(response)
     
