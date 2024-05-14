@@ -1,5 +1,6 @@
 from typing import Optional, List
 import logging
+from datetime import datetime
 
 from elevenlabs.client import ElevenLabs
 from elevenlabs import save
@@ -9,6 +10,7 @@ from news import NewsScraper, NewsStory
 from translate import Translator
 
 logger = logging.getLogger(__name__)
+
 
 class Script:
     def __init__(
@@ -23,13 +25,15 @@ class Script:
         self.news_stories = news_stories
         self.weather = weather
         self.text = None
+        self.audio = None
         self.weather_scraper = WeatherScraper()
         self.news_scraper = NewsScraper()
         self.elevenlabs = ElevenLabs(api_key=elevenlabs_api_key)
         self.translator = Translator(openai_key=openai_api_key) if openai_api_key else None
-        self.voice_id = self._get_voice_id()
+        self.voice_id = self.get_voice_id()
+        self.language = "english"
 
-    def _get_voice_id(self):
+    def get_voice_id(self):
         voices = self.elevenlabs.voices.get_all().voices
         for v in voices:
             if v.name.lower() == f'aim {self.speaker}':
@@ -42,7 +46,10 @@ class Script:
     def get_news(self):
         self.news_stories: List[NewsStory] = self.news_scraper.get()
 
-    def make_text(self, translate_to: str = None):
+    def make_text(self, translate_to: str = "english"):
+        if translate_to != "english":
+            assert self.translator is not None, "Translator not set. Cannot translate text."
+            self.language = translate_to
         # get news stories if not set
         if not self.news_stories:
             self.get_news()
@@ -64,21 +71,21 @@ class Script:
             text = self.translator.translate(text, translate_to)
         self.text = text
 
-    def generate_audio(self, text):
-        return self.elevenlabs.generate(
-            text=text,
+    def make_audio(self, text: str = None):
+        self.audio = self.elevenlabs.generate(
+            text=self.text if text is None else text,
             voice=self.voice_id,
             model='eleven_multilingual_v2'
         )
 
     def save_audio(self, output: str = None):
+        assert self.audio is not None, "Audio not generated yet. Run make_audio() first."
+        timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
         if not self.text:
             raise ValueError("Text not generated yet. Run make_text() first.")
         if not output:
-            name = '_'.join(self.speaker.split(' '))
-            output = f"{name}_news.mp3"
-        audio = self.generate_audio(self.text)
-        save(audio, output)
+            output = '_'.join(self.speaker.split(' ') + [self.language, timestamp]) + '.mp3'
+        save(self.audio, output)
 
 
 # if __name__=="__main__":
