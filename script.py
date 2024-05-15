@@ -1,13 +1,14 @@
 from typing import Optional, List
 import logging
 from datetime import datetime
+import re
 
 from elevenlabs.client import ElevenLabs
 from elevenlabs import save
 
 from weather import WeatherScraper, WeatherReport
 from news import NewsScraper, NewsStory
-from translate import Translator
+from llm import LLM
 
 logger = logging.getLogger(__name__)
 
@@ -29,7 +30,7 @@ class Script:
         self.weather_scraper = WeatherScraper()
         self.news_scraper = NewsScraper()
         self.elevenlabs = ElevenLabs(api_key=elevenlabs_api_key)
-        self.translator = Translator(openai_key=openai_api_key) if openai_api_key else None
+        self.llm = LLM(openai_api_key=openai_api_key) if openai_api_key else None
         self.voice_id = self.get_voice_id()
         self.language = "english"
 
@@ -44,43 +45,47 @@ class Script:
         self.weather: WeatherReport = self.weather_scraper.get()
 
     def get_news(self):
-        # self.news_stories['jsy']: List[NewsStory] 
-        # self.news_stories['gsy']: List[NewsStory]
-        self.news_stories: dict = self.news_scraper.get()
+        self.news_stories: List[NewsStory] = self.news_scraper.get()
 
-    def make_text(self, translate_to: str = "english"):
-        if translate_to != "english":
-            assert self.translator is not None, "Translator not set. Cannot translate text."
-            self.language = translate_to
+    def make_text(self, language: str = "english", model: str = "gpt-4o"):
+
+        # validate language
+        assert language in LLM.LANGUAGES, "Invalid language. Choose from: " + ', '.join(LLM.LANGUAGES)
+
         # get news stories if not set
         if not self.news_stories:
             self.get_news()
+            jsy_stories = [s for s in self.news_stories if s.region == 'jsy']
+            gsy_stories = [s for s in self.news_stories if s.region == 'gsy']
+
         # get weather report if not set
         if not self.weather:
             self.get_weather()
-        intro = f"Bailiwick Radio News, I'm {self.speaker}."
+
+        # make script
+        intro = f"Bailiwick Radio News, I'm {self.speaker}. "
         body = "In jersey, "
-        for i,story in enumerate(self.news_stories['jsy']):
+        for i, story in enumerate(jsy_stories):
             body += story.text
-            if i<len(self.news_stories['jsy'])-1:
+            if i<len(jsy_stories)-1:
                 body += "Meanwhile, "
         body += 'In guernsey, '
-        for i,story in enumerate(self.news_stories['gsy']):
+        for i, story in enumerate(gsy_stories):
             body += story.text
-            if i<len(self.news_stories['gsy'])-1:
+            if i<len(gsy_stories)-1:
                 body += "Finally, "
         read_more = f"To find out more about this, and other stories, visit bailiwick express dot com."
-        weather = f"Now the weather for today: {self.weather}."
+        weather = f"Now the weather for today: {self.weather}.."
         outro = "Bailiwick radio news."
         text = intro + body + read_more + weather + outro
-        if translate_to != "english":
-            assert translate_to.lower() in Translator.LANGUAGES, f"Invalid language: {translate_to}, choose from {Translator.LANGUAGES}"
-            text = self.translator.translate(text, translate_to)
-        self.text = text
 
-    def make_audio(self, text: str = None):
+        # process text
+        self.text = self.llm.process(text, language, model)
+
+    def make_audio(self):
+        assert self.text is not None, "Text not generated yet. Run make_text() first."
         self.audio = self.elevenlabs.generate(
-            text=self.text if text is None else text,
+            text=self.text,
             voice=self.voice_id,
             model='eleven_multilingual_v2'
         )
@@ -96,8 +101,18 @@ class Script:
 
 
 # if __name__=="__main__":
-#     load_dotenv()
-#     api_key = os.getenv("ELEVENLABS_API_KEY")
-#     client = ElevenLabs(api_key=api_key)
-#     breakpoint()
+#     from dotenv import load_dotenv
+#     import os
+#     import argparse
 
+#     # load dotenv
+#     load_dotenv()
+
+#     script = Script(
+#         speaker="christie bailey",
+#         elevenlabs_api_key=os.getenv("ELEVENLABS_API_KEY"),
+#         openai_api_key=os.getenv("OPENAI_API_KEY"),
+#     )
+
+#     script.make_text()
+#     breakpoint()

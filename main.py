@@ -30,6 +30,6 @@ if __name__=="__main__":
         openai_api_key=os.getenv("OPENAI_API_KEY"),
     )
 
-    script.make_text(translate_to=args.language)
+    script.make_text(language=args.language)
     script.make_audio()
     script.save_audio()
