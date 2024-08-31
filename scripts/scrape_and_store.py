@@ -17,7 +17,7 @@ async def scrape_articles(region: Literal['jsy', 'gsy'], num_pages: int):
         urls = await scraper.get_all_story_urls(region, num_pages)
         logger.debug(f"Fetched {len(urls)} URLs from region '{region}' and {num_pages} pages.")
         soups = await scraper.fetch_all(urls)
-        news_stories = [scraper.extract_news_story(soup) for soup in soups if soup]
+        news_stories = [scraper.extract_news_story(url, soup) for url, soup in zip(urls, soups) if soup]
         logger.info(f"Extracted {len(news_stories)} news stories.")
         await scraper.close_session()
         return news_stories
@@ -29,7 +29,7 @@ def main():
     parser = ArgumentParser()
     parser.add_argument("--region", type=str, default="jsy", help="Region to scrape news from (jsy or gsy)")
     parser.add_argument("--pages", type=int, default=1, help="Number of pages to scrape")
-    parser.add_argument("--log", type=str, default="INFO", help="Logging level")
+    parser.add_argument("--log", type=str, default="DEBUG", help="Logging level")
     args = parser.parse_args()
 
     # Set logging level

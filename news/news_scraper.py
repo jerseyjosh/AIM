@@ -1,9 +1,10 @@
+from abc import ABC, abstractmethod
+from typing import Union
+
 import logging
 import asyncio
 import re
-from abc import ABC, abstractmethod
-import asyncio
-from typing import Union
+from tenacity import retry, stop_after_attempt, wait_random_exponential
 
 import aiohttp
 from urllib.parse import urljoin
@@ -20,18 +21,30 @@ class BaseScraper(ABC):
     def __init__(self, requests_per_period: int = 100, period_seconds: int = 1):
         self.session = aiohttp.ClientSession()
         self.limiter = aiolimiter.AsyncLimiter(max_rate = requests_per_period, time_period = period_seconds)
+        logger.debug("Scraper initialised with limits: requests_per_period = {requests_per_period}, period_seconds = {period_seconds}")
 
+    @retry(stop=stop_after_attempt(10), wait=wait_random_exponential(multiplier=1, max=60))
     async def fetch(self, url) -> BeautifulSoup:
         """
         Scrape a url and return the BeautifulSoup object.
         """
-        async with self.limiter:
-            async with self.session.get(url) as response:
-                response.raise_for_status()
-                html = await response.text()
-                return BeautifulSoup(html, "html.parser")
+        try:
+            if self.limiter:
+                async with self.limiter:
+                    async with self.session.get(url) as response:
+                        response.raise_for_status()
+                        html = await response.text()
+                        return BeautifulSoup(html, "html.parser")
+            else:
+                async with self.session.get(url) as response:
+                    response.raise_for_status()
+                    html = await response.text()
+                    return BeautifulSoup(html, "html.parser")
+        except Exception as e:
+            logger.exception(f"Error fetching url {url}: {e}")
+            return None
             
-    async def fetch_all(self, urls: list[str]) -> list[BeautifulSoup]:
+    async def fetch_all(self, urls: Union[str, list[str]]) -> list[BeautifulSoup]:
         """
         Scrape a list of urls and return a list of BeautifulSoup objects.
         """
@@ -39,10 +52,12 @@ class BaseScraper(ABC):
             return await self.fetch(urls)
         logger.debug(f"Fetching {len(urls)} urls, {str(urls)[:100]}...")
         responses = await tqdm_asyncio.gather(*[self.fetch(url) for url in urls])
-        logger.debug(f"Fetched {len(responses)} urls")
+        # Filter out None or exceptions from the responses
+        valid_responses = [response for response in responses if isinstance(response, BeautifulSoup)]
+        logger.debug(f"Fetched {len(valid_responses)} valid responses out of {len(urls)}")
         return responses
             
-    async def close_session(self):
+    async def close_session(self) -> None:
         """
         Close the aiohttp session.
         """
@@ -58,14 +73,13 @@ class BaseScraper(ABC):
 
 
 class BEScraper(BaseScraper):
-
     """
     Bailiwick Express News Scraper
     """
 
     REGIONS = ["jsy", "gsy"]
     BASE_URL = "https://www.bailiwickexpress.com/"
-    BYLINE_REGEX = re.compile(r"by[- ]?line", re.IGNORECASE)
+    BYLINE_REGEX = re.compile(r"by[- ]?line", re.IGNORECASE) #TODO: does not catch all bylines
 
     def __init__(self):
         super().__init__()
@@ -82,7 +96,7 @@ class BEScraper(BaseScraper):
         """
         return [self.get_page_url(region, page) for page in range(1, num_pages + 1)]
 
-    def extract_news_story(self, soup: BeautifulSoup) -> NewsStory:
+    def extract_news_story(self, url: str, soup: BeautifulSoup) -> NewsStory:
         """
         Extract the news story from the BeautifulSoup object.
         """
@@ -100,10 +114,10 @@ class BEScraper(BaseScraper):
             else:
                 author = ""
             date = soup.find("h4", class_="visible-phone").get_text()
-            return NewsStory(headline=headline, text=joined_text, date=date, author=author)
+            return NewsStory(headline=headline, text=joined_text, date=date, author=author, url=url)
         except Exception as e:
             logger.exception(e)
-            return NewsStory(headline="", text="", date="", author="")
+            return NewsStory(headline="", text="", date="", author="", url=url)
     
     def get_story_urls(self, soup: BeautifulSoup) -> list[str]:
         """
@@ -123,16 +137,25 @@ class BEScraper(BaseScraper):
         return [url for sublist in story_urls for url in sublist]
     
 
-# if __name__ == "__main__":
+class JEPScraper(BaseScraper):
+    """
+    Jersey Evening Post News Scraper
+    """
+    def __init__(self):
+        raise NotImplementedError
+    
+
+if __name__ == "__main__":
    
-#     logging.basicConfig(level=logging.DEBUG)
+    logging.basicConfig(level=logging.DEBUG)
 
-#     async def main():
-#         scraper = BEScraper()
-#         urls = await scraper.get_all_story_urls("jsy", 10)
-#         soups = await scraper.fetch_all(urls)
-#         news_stories = [scraper.extract_news_story(soup) for soup in soups if soup]
-#         breakpoint()
+    async def main():
+        scraper = BEScraper()
+        urls = await scraper.get_all_story_urls("jsy", 10)
+        soups = await scraper.fetch_all(urls)
+        breakpoint()
+        news_stories = [scraper.extract_news_story(url, soup) for url, soup in zip(urls, soups) if soup]
+        breakpoint()
 
-#     asyncio.run(main())
+    asyncio.run(main())
 

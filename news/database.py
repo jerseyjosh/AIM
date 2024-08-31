@@ -16,9 +16,11 @@ def create_news_database(db_name: str):
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS news_stories (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                text TEXT NOT NULL,
+                headline TEXT,
+                text TEXT,
                 date TEXT,
-                author TEXT
+                author TEXT,
+                url TEXT
             )
         ''')
         conn.commit()
@@ -36,12 +38,11 @@ def insert_news_stories(db_name: str, stories: List[NewsStory]):
         conn = sqlite3.connect(db_name)
         cursor = conn.cursor()
         # Prepare data to insert
-        data = [(story.text, story.date, story.author) for story in stories if story]
-        
+        data = [(story.headline, story.date, story.author, story.text, story.url) for story in stories if isinstance(story, NewsStory)]
         # Insert data
         cursor.executemany('''
-            INSERT INTO news_stories (text, date, author)
-            VALUES (?, ?, ?)
+            INSERT INTO news_stories (headline, date, author, text, url)
+            VALUES (?, ?, ?, ?, ?)
         ''', data)
         conn.commit()
         logger.info(f"Inserted {len(data)} news stories into '{db_name}'.")
