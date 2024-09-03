@@ -1,7 +1,7 @@
 import asyncio
 import os
-from dotenv import load_dotenv, find_dotenv
-load_dotenv(find_dotenv())
+# from dotenv import load_dotenv, find_dotenv
+# load_dotenv(find_dotenv())
 
 import streamlit as st
 
@@ -9,6 +9,7 @@ from aim.radio.daily_news import DailyNews
 from aim.radio.voice import VoiceGenerator
 
 VALID_SPEAKERS = ["aim_christie", "aim_jodie", "aim_fiona"]
+ELEVENLABS_API_KEY = st.secrets["ELEVENLABS_API_KEY"]
 
 # Function to generate the script
 def generate_script(speaker: str):
@@ -48,7 +49,7 @@ script_text = st.text_area("Script Editor", value=st.session_state.get('script',
 if st.button("Generate Podcast"):
     if script_text:
         # Call your function to generate the podcast, passing the current script text
-        voice_generator = VoiceGenerator(os.getenv("ELEVENLABS_API_KEY"))
+        voice_generator = VoiceGenerator(ELEVENLABS_API_KEY)
         with st.spinner("Generating Podcast..."):
             audio = voice_generator.generate(script_text, speaker_selection)
         with st.spinner("Preparing file for download..."):
