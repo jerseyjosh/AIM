@@ -8,24 +8,7 @@ from news.database import create_news_database, insert_news_stories
 
 logger = logging.getLogger(__name__)
 
-async def scrape_articles(region: Literal['jsy', 'gsy'], num_pages: int):
-    """
-    Scrape articles from the specified region and number of pages.
-    """
-    try:
-        scraper = BEScraper()
-        urls = await scraper.get_all_story_urls(region, num_pages)
-        logger.debug(f"Fetched {len(urls)} URLs from region '{region}' and {num_pages} pages.")
-        soups = await scraper.fetch_all(urls)
-        news_stories = [scraper.extract_news_story(url, soup) for url, soup in zip(urls, soups) if soup]
-        logger.info(f"Extracted {len(news_stories)} news stories.")
-        await scraper.close_session()
-        return news_stories
-    except Exception as e:
-        logger.error(f"An error occurred during scraping: {e}")
-        return []
-
-def main():
+async def main():
     parser = ArgumentParser()
     parser.add_argument("--region", type=str, default="jsy", help="Region to scrape news from (jsy or gsy)")
     parser.add_argument("--pages", type=int, default=1, help="Number of pages to scrape")
@@ -36,7 +19,9 @@ def main():
     logging.basicConfig(level=args.log)
 
     # Scrape and store news articles
-    news_stories = asyncio.run(scrape_articles(args.region, args.pages))
+    scraper = BEScraper()
+    news_stories = await scraper.get_all_stories_from_n_pages(args.region, args.pages)
+    await scraper.close_session()
 
     # Create the database and insert the scraped news stories
     db_name = "./news.db"
@@ -46,4 +31,4 @@ def main():
     logger.info('Scraping and storing process completed.')
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())

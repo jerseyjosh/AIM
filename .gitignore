@@ -5,3 +5,4 @@ venv/
 samples/
 .db
 .ipynb
+.egg-info/
