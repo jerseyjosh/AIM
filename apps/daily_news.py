@@ -1,18 +1,27 @@
 import asyncio
 import os
+import logging
 
 import streamlit as st
 
 from aim.radio.daily_news import DailyNews
 from aim.radio.voice import VoiceGenerator
 
+logger = logging.getLogger(__name__)
+
 # Load Secrets
 try:
-    ELEVENLABS_API_KEY = st.secrets["ELEVENLABS_API_KEY"]
+    try:
+        ELEVENLABS_API_KEY = st.secrets["ELEVENLABS_API_KEY"]
+        logger.debug("Secrets loaded from Streamlit Secrets")
+    except Exception as e:
+        from dotenv import load_dotenv, find_dotenv
+        load_dotenv(find_dotenv())
+        ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")
+        logger.debug("Secrets loaded from .env file")
 except Exception as e:
-    from dotenv import load_dotenv, find_dotenv
-    load_dotenv(find_dotenv())
-    ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")
+    logger.error("Failed to load secrets")
+    logger.error(e)
 
 VALID_SPEAKERS = ['aim_christie', 'aim_jodie', 'aim_fiona']
 
