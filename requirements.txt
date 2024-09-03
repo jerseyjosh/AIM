@@ -1,4 +1,4 @@
--e git+ssh://git@github.com/jerseyjosh/DailyNews.git@d5bb08d2d32fcb03767b45c8c21873efd601e435#egg=aim_tools
+-e .
 aiofiles==24.1.0
 aiohappyeyeballs==2.4.0
 aiohttp==3.10.5
