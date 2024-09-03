@@ -61,7 +61,7 @@ class BaseScraper(ABC):
         logger.debug(f"Fetched {len(valid_responses)} valid responses out of {len(urls)}")
         return responses
             
-    async def close_session(self) -> None:
+    async def close(self) -> None:
         """
         Close the aiohttp session.
         """

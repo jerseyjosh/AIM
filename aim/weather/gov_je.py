@@ -2,6 +2,7 @@ import logging
 import re
 
 from bs4 import BeautifulSoup
+from bs4.element import Tag
 from selenium_driverless import webdriver
 
 logger = logging.getLogger(__name__)
@@ -15,19 +16,42 @@ class GovJeWeather:
         self.options.add_argument('--headless')
         self.driver = webdriver.Chrome(options=self.options)
 
+    async def close(self):
+        """
+        Close the driver session.
+        """
+        await self.driver.close()
+
     async def get(self):
         """
         Get the weather for St Helier.
         """
         async with self.driver as driver:
             await driver.get(self.BASE_URL)
-            await driver.sleep(2)
+            await driver.sleep(1)
             html = await driver.page_source
             return self.parse_weather_response(html)
         
+    def replace_force(self, report: str):
+        """
+        Replace capital F followed by number with "Force {n}".
+        """
+        return re.sub(r'F(\d)', r'Force \1', report)
+        
     def parse_weather_response(self, html):
         soup = BeautifulSoup(html, 'html.parser')
-        report = soup.find('p', class_='description').text
-        # replace capital F followed by number with "Force {n}"
-        report = re.sub(r'F(\d)', r'Force \1', report)
-        return report
+        reports: list[Tag] = soup.find_all('p', class_='description')
+        if len(reports) == 1: # only night
+            output = reports[0].text
+        if len(reports) == 2: # afternoon and night.
+            output = reports[0].text + " Tonight, " + reports[1].text
+        if len(reports) == 3: # morning, afternoon and night.
+            output = reports[0].text + " This afternoon, " + reports[1].text + ". Tonight, " + reports[2].text
+        return self.replace_force(output)
+    
+# if __name__=="__main__":
+#     async def main():
+#         weather = GovJeWeather()
+#         report = await weather.get()
+#     import asyncio
+#     asyncio.run(main())

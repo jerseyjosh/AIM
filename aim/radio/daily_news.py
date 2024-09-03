@@ -5,31 +5,36 @@ from aim.news.models import NewsStory
 
 from aim.weather.gov_je import GovJeWeather
 
-from aim.radio.voice import ElevenLabs
+from aim.radio.voice import VoiceGenerator
 
 class DailyNews:
 
     NUM_SENTENCES_PER_STORY = 1
     NUM_STORIES_PER_REGION = 2
     ELEVENLABS_TO_NAME = {
-        "AIM_christie": "Christie Bailey",
-        "AIM_jodie": "Jodie Yettram",
-        "AIM_fiona": "Fiona Potigny",
+        "aim_christie": "Christie Bailey",
+        "aim_jodie": "Jodie Yettram",
+        "aim_fiona": "Fiona Potigny",
     }
 
-    def __init__(self, elevenlabs_name: str):
-        self.elevenlabs_name = elevenlabs_name
+    def __init__(self, speaker: str):
+        self.speaker = speaker
         self.be_scraper = BEScraper()
         self.weather_scraper = GovJeWeather()
-        self.voice = ElevenLabs(elevenlabs_name)
+
+    async def close(self):
+        await asyncio.gather(
+            self.be_scraper.close(),
+            self.weather_scraper.close(),
+        )
 
     async def get_all_data(self):
         await asyncio.gather(
-            self.get_news_stories(self.NUM_STORIES_PER_REGION),
+            self.get_news_stories(),
             self.get_weather()
         )
 
-    async def get_news_stories(self, n_stories: int) -> list[NewsStory]:
+    async def get_news_stories(self) -> list[NewsStory]:
         jsy_stories, gsy_stories = await asyncio.gather(
             self.be_scraper.get_all_stories_from_n_pages("jsy", 1),
             self.be_scraper.get_all_stories_from_n_pages("gsy", 1)
@@ -44,7 +49,9 @@ class DailyNews:
         self.weather = weather
         
     def make_script(self) -> str:
-        script = f"Bailwick Radio News, I'm {self.ELEVENLABS_TO_NAME[self.elevenlabs_name]}. Here are today's top stories. "
+        # intro
+        script = f"Bailiwick Radio News, I'm {self.ELEVENLABS_TO_NAME[self.speaker]}. Here are today's top stories.\n\n"
+        # stories
         for i,story in enumerate(self.stories):
             if i == 1:
                 script += "In other news, "
@@ -53,21 +60,24 @@ class DailyNews:
             if i == 3:
                 script += "Also in Guernsey, "
             first_sentences = '. '.join(story.text.split(".")[:self.NUM_SENTENCES_PER_STORY])
-            script += f"{first_sentences}. "
-        script += f"Now for the weather. {self.weather} "
-        self.script = script
-        self.script += "Bailiwick... Radio... News. "
+            script += f"{first_sentences}.\n\n"
+        # strapline
+        script += "For more on all these stories, visit Bailiwick Express dot com.\n\n"
+        # weather
+        script += f"Now for the weather. {self.weather}\n\n"
+        # outro
+        script += "You're up to date with Bailiwick Radio News."
+        return script
         
-if __name__ == "__main__":
+# if __name__ == "__main__":
 
-    from pprint import pprint
+#     from pprint import pprint
 
-    async def main():
-        daily_news = DailyNews("AIM_christie")
-        await daily_news.get_all_data()
-        daily_news.make_script()
-        pprint(daily_news.script)
-        breakpoint()
+#     async def main():
+#         daily_news = DailyNews("AIM_christie")
+#         await daily_news.get_all_data()
+#         script = daily_news.make_script()
+#         pprint(script)
 
-    asyncio.run(main())
+#     asyncio.run(main())
         
