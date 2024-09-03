@@ -15,6 +15,7 @@ aim/transcribe/auto_article.py
 aim_tools.egg-info/PKG-INFO
 aim_tools.egg-info/SOURCES.txt
 aim_tools.egg-info/dependency_links.txt
+aim_tools.egg-info/requires.txt
 aim_tools.egg-info/top_level.txt
 apps/__init__.py
 apps/daily_news.py

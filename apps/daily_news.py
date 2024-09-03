@@ -1,24 +1,26 @@
 import asyncio
 import os
-# from dotenv import load_dotenv, find_dotenv
-# load_dotenv(find_dotenv())
 
 import streamlit as st
 
 from aim.radio.daily_news import DailyNews
 from aim.radio.voice import VoiceGenerator
 
-VALID_SPEAKERS = ["aim_christie", "aim_jodie", "aim_fiona"]
-ELEVENLABS_API_KEY = st.secrets["ELEVENLABS_API_KEY"]
+# Load Secrets
+try:
+    ELEVENLABS_API_KEY = st.secrets["ELEVENLABS_API_KEY"]
+except:
+    from dotenv import load_dotenv, find_dotenv
+    load_dotenv(find_dotenv())
+    ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")
+
+VALID_SPEAKERS = ['aim_christie', 'aim_jodie', 'aim_fiona']
 
 # Function to generate the script
 def generate_script(speaker: str):
     async def _generate_script(speaker: str):
-        daily_news = DailyNews(speaker)
-        # Update the VALID_SPEAKERS list with the available speakers
-        global VALID_SPEAKERS
-        VALID_SPEAKERS = daily_news.ELEVENLABS_TO_NAME.keys()
         # gather data and make script
+        daily_news = DailyNews(speaker)
         await daily_news.get_all_data()
         script = daily_news.make_script()
         await daily_news.close()

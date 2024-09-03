@@ -9,7 +9,6 @@ from tenacity import retry, wait_random_exponential, stop_never, stop_after_atte
 from contextlib import nullcontext
 
 import aiohttp
-from aiohttp_client_cache import CachedSession, SQLiteBackend
 from urllib.parse import urljoin
 import aiolimiter
 from bs4 import BeautifulSoup
@@ -19,8 +18,6 @@ from tqdm import tqdm
 from aim.news.models import NewsStory
 
 logger = logging.getLogger(__name__)
-logging.getLogger("aiosqlite").setLevel(logging.WARNING)
-logging.getLogger("aiohttp_client_cache").setLevel(logging.WARNING)
 
 class BaseScraper(ABC):
 
