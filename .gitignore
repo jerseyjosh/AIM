@@ -1,8 +1,8 @@
 venv/
-.env
+*.env
 *.mp3
 *.mp4
 samples/
-.db
-.ipynb
-.egg-info/
+*.db
+*.ipynb
+*.egg-info/
