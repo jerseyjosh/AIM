@@ -9,7 +9,7 @@ from aim.radio.voice import VoiceGenerator
 # Load Secrets
 try:
     ELEVENLABS_API_KEY = st.secrets["ELEVENLABS_API_KEY"]
-except:
+except Exception as e:
     from dotenv import load_dotenv, find_dotenv
     load_dotenv(find_dotenv())
     ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")
