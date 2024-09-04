@@ -41,12 +41,13 @@ class GovJeWeather:
     def parse_weather_response(self, html):
         soup = BeautifulSoup(html, 'html.parser')
         reports: list[Tag] = soup.find_all('p', class_='description')
+        output = ""
         if len(reports) == 1: # only night
-            output = reports[0].text
+            output += reports[0].text
         elif len(reports) == 2: # afternoon and night.
-            output = reports[0].text + " Tonight, " + reports[1].text
+            output += reports[0].text + " Tonight, " + reports[1].text
         elif len(reports) == 3: # morning, afternoon and night.
-            output = reports[0].text + " This afternoon, " + reports[1].text + ". Tonight, " + reports[2].text
+            output += reports[0].text + " This afternoon, " + reports[1].text + ". Tonight, " + reports[2].text
         else:
             logger.error(f"Unexpected number of reports: {len(reports)}")
             logger.error(reports)
