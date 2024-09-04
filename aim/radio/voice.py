@@ -10,7 +10,7 @@ class VoiceGenerator:
         voices = self.client.voices.get_all().voices
         return [v for v in voices if v.name.lower().startswith('aim')]
     
-    def generate(self, text: str, voice: str, model: str = 'eleven_multilingual_v2'):
+    def generate(self, text: str, voice: str, model: str = 'eleven_turbo_v2_5'):
         return self.client.generate(text=text, voice=voice, model=model)
     
 
