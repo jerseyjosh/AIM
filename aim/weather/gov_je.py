@@ -41,17 +41,21 @@ class GovJeWeather:
     def parse_weather_response(self, html):
         soup = BeautifulSoup(html, 'html.parser')
         reports: list[Tag] = soup.find_all('p', class_='description')
+        breakpoint()
         if len(reports) == 1: # only night
             output = reports[0].text
-        if len(reports) == 2: # afternoon and night.
+        elif len(reports) == 2: # afternoon and night.
             output = reports[0].text + " Tonight, " + reports[1].text
-        if len(reports) == 3: # morning, afternoon and night.
+        elif len(reports) == 3: # morning, afternoon and night.
             output = reports[0].text + " This afternoon, " + reports[1].text + ". Tonight, " + reports[2].text
+        else:
+            logger.error(f"Unexpected number of reports: {len(reports)}")
+            logger.error(reports)
         return self.replace_force(output)
     
-# if __name__=="__main__":
-#     async def main():
-#         weather = GovJeWeather()
-#         report = await weather.get()
-#     import asyncio
-#     asyncio.run(main())
+if __name__=="__main__":
+    async def main():
+        weather = GovJeWeather()
+        report = await weather.get()
+    import asyncio
+    asyncio.run(main())
