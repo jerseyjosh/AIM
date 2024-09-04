@@ -28,7 +28,7 @@ class GovJeWeather:
         """
         async with self.driver as driver:
             await driver.get(self.BASE_URL)
-            await driver.sleep(1)
+            await driver.sleep(5)
             html = await driver.page_source
             return self.parse_weather_response(html)
         
