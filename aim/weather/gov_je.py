@@ -41,7 +41,6 @@ class GovJeWeather:
     def parse_weather_response(self, html):
         soup = BeautifulSoup(html, 'html.parser')
         reports: list[Tag] = soup.find_all('p', class_='description')
-        breakpoint()
         if len(reports) == 1: # only night
             output = reports[0].text
         elif len(reports) == 2: # afternoon and night.
