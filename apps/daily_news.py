@@ -1,8 +1,6 @@
 import asyncio
 import os
 import logging
-import yaml
-from yaml import SafeLoader
 
 import streamlit as st
 
