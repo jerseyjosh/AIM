@@ -31,7 +31,7 @@ def generate_script(speaker: str):
         # gather data and make script
         daily_news = DailyNews(speaker)
         await daily_news.get_all_data()
-        script = daily_news.make_script()
+        script = daily_news.make_script() # TODO: speaker should be passed here instead of init
         await daily_news.close()
         return script
     return asyncio.run(_generate_script(speaker))
