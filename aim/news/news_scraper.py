@@ -44,7 +44,7 @@ class BaseScraper(ABC):
                 response.raise_for_status()
                 html = await response.text()
                 return html
- 
+
     async def fetch_all(self, urls: Union[str, list[str]]) -> list[BeautifulSoup]:
         """
         Scrape a list of urls and return a list of BeautifulSoup objects.
@@ -124,6 +124,14 @@ class BEScraper(BaseScraper):
         except Exception as e:
             logger.error(e)
             return NewsStory(headline="", text="", date="", author="", url=url)
+        
+    def get_news_story_from_url(self, url: str) -> NewsStory:
+        """
+        Get a news story from a given url.
+        """
+        html = asyncio.run(self.fetch(url))
+        soup = self.soupify(html)
+        return self.extract_news_story(url, soup)
     
     def get_story_urls(self, region: str, soup: BeautifulSoup, n_stories: Optional[int] = None) -> list[str]:
         """

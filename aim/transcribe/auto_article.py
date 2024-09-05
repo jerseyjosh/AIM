@@ -1,5 +1,5 @@
 import os
-import apps as st
+import frontend as st
 from dotenv import load_dotenv, find_dotenv
 import assemblyai as aai
 import openai
