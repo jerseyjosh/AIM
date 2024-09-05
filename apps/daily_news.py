@@ -1,6 +1,7 @@
 import asyncio
 import os
 import logging
+from datetime import datetime
 
 import streamlit as st
 
@@ -79,17 +80,24 @@ else:
     # Editable text box populated with the generated script
     script_text = st.text_area("Script Editor", value=st.session_state.get('script', ''), height=300)
 
+    # initialize voice generator
+    voice_generator = VoiceGenerator(ELEVENLABS_API_KEY)
+    # Show remaining credits
+    user = voice_generator.client.user.get()
+    used_characters_pct = f'{user.subscription.character_count / user.subscription.character_limit:.2%}'
+    reset_date_int = user.subscription.next_character_count_reset_unix
+    reset_date_strftime = datetime.fromtimestamp(reset_date_int).strftime('%Y-%m-%d %H:%M:%S')
+    st.info(f"AI Speech Used Characters: {user.subscription.character_count:,}/{user.subscription.character_limit:,} ({used_characters_pct}), usage resets {reset_date_strftime}")
+
     # "Generate Podcast" button
     if st.button("Generate Podcast"):
         if script_text:
-            # Call your function to generate the podcast, passing the current script text
-            voice_generator = VoiceGenerator(ELEVENLABS_API_KEY)
+            # Call function to generate the podcast, passing the current script text
             with st.spinner("Generating Podcast..."):
                 audio = voice_generator.generate(script_text, speaker_selection)
             with st.spinner("Preparing file for download..."):
                 output = b"".join(audio)
             # Provide download link for the generated MP3 file
             st.audio(output, format="audio/mpeg")
-            #st.download_button("Download", output, file_name=f"{speaker_selection}_news.mp3", mime="audio/mp3")
         else:
             st.warning("Please generate and edit the script before generating the podcast.")

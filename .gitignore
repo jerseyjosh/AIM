@@ -6,3 +6,4 @@ samples/
 *.db
 *.ipynb
 *.egg-info/
+*.DS_Store

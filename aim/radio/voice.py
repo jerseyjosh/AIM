@@ -14,13 +14,12 @@ class VoiceGenerator:
         return self.client.generate(text=text, voice=voice, model=model)
     
 
-# if __name__=="__main__":
+if __name__=="__main__":
 
-#     import asyncio
-#     import os
-#     from dotenv import load_dotenv, find_dotenv
-#     load_dotenv(find_dotenv())
+    import asyncio
+    import os
+    from dotenv import load_dotenv, find_dotenv
+    load_dotenv(find_dotenv())
 
-#     elevenlabs = VoiceGenerator(os.getenv("ELEVENLABS_API_KEY"))
-#     audio = elevenlabs.generate("Hello, world!", "aim_christie")
-#     breakpoint()
+    elabs = VoiceGenerator(os.getenv("ELEVENLABS_API_KEY"))
+    breakpoint()

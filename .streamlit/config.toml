@@ -4,3 +4,6 @@ backgroundColor = "#FFFFFF"  # White background for a clean look
 secondaryBackgroundColor = "#F0F2F6"  # Light gray for secondary background areas
 textColor = "#262730"  # Dark text color for readability
 font = "sans serif"  # Choose from "sans serif", "serif", or "monospace"
+
+[logger]
+level = "debug"
