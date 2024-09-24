@@ -30,7 +30,7 @@ def get_article(client: OpenAI, model: str = FINETUNE_MODEL):
             {"role": "system", "content": SYSTEM_PROMPT},
             {"role": "user", "content": USER_PROMPT},
         ],
-        model="gpt-4o-mini"
+        model=FINETUNE_MODEL
     )
     return response.choices[0].message.content
 
