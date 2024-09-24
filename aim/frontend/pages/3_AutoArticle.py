@@ -50,14 +50,14 @@ if st.session_state['logged_in'] is False:
 else:
 
     def generate_article(article_notes: str, n_words: int) -> str:
-        client = OpenAI(api_key=os.getenv('OPENAI_KEY'))
+        client = OpenAI(api_key=OPENAI_KEY)
         user_prompt = f'write a {n_words} word news article on the following notes: {article_notes}'
         response = client.chat.completions.create(
             messages=[
                 {"role": "system", "content": SYSTEM_PROMPT},
                 {"role": "user", "content": user_prompt},
             ],
-            model="gpt-4o-mini"
+            model=FINETUNE_MODEL
         )
         return response.choices[0].message.content
     
