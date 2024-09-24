@@ -12,6 +12,7 @@ logger = logging.getLogger(__name__)
 
 # Set valid speakers
 VALID_SPEAKERS = ['aim_christie', 'aim_jodie', 'aim_fiona']
+TITLE = "Daily News Podcast"
 
 # Load Secrets
 try:
@@ -37,7 +38,7 @@ if "logged_in" not in st.session_state:
 
 # Login form
 if st.session_state['logged_in'] is False:
-    st.title("Daily News Podcast")
+    st.title(TITLE)
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
     if st.button("Login"):
