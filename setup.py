@@ -14,5 +14,6 @@ setup(
         'aiolimiter',
         'tqdm',
         'python-dotenv',
+        'openai',
     ],
 )

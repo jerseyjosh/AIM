@@ -6,11 +6,11 @@ from openai import OpenAI
 
 logger = logging.getLogger(__name__)
 
-TITLE = "AutoArticle"
-SYSTEM_PROMPT = "You are a professional journalist that creates news articles based on a set of bullet pointed notes. Do not include information you are not given. Return unicode formatted articles in the format <headline>...</headline><text>...</text>."
-FINETUNE_MODEL = "ft:gpt-4o-mini-2024-07-18:personal::AB3GrlLu"
+TITLE = "AutoArticle (Alpha)"
+SYSTEM_PROMPT = "You are a professional journalist that creates news articles based on a set of bullet pointed notes. Do not include information you are not given. Return unicode formatted articles in the format <headline>...</headline><text>...</text>. Ensure the article does not use excessive or emotive language."
+#MODEL = "ft:gpt-4o-mini-2024-07-18:personal::AB3GrlLu"
+MODEL = "gpt-4o-mini"
 DEFAULT_NOTES = """- Ongoing concerns over Jersey's bed blocking issues\n- Islanders facing hospital discharge delays due to carer shortages\n- Jersey Care Federation warns of 'no movement' on the issue in recent years\n- 32 patients last week unable to leave hospital despite being medically fit"""
-#FINETUNE_MODEL = 'gpt-4o'
 
 # Load Secrets
 try:
@@ -57,7 +57,7 @@ else:
                 {"role": "system", "content": SYSTEM_PROMPT},
                 {"role": "user", "content": user_prompt},
             ],
-            model=FINETUNE_MODEL
+            model=MODEL
         )
         return response.choices[0].message.content
     
@@ -70,6 +70,28 @@ else:
         article = article.replace("<text>", "")
         article = article.replace("</text>", "")
         return article
+    
+    def change_article_length(article: str, type: str) -> str:
+        if type == "shorter":
+            client = OpenAI(api_key=OPENAI_KEY)
+            response = client.chat.completions.create(
+                messages=[
+                    {"role": "user", "content": f"Make the following article slightly shorter: {article}"},
+                ],
+                model=MODEL
+            )
+            return response.choices[0].message.content
+        elif type == "longer":
+            client = OpenAI(api_key=OPENAI_KEY)
+            response = client.chat.completions.create(
+                messages=[
+                    {"role": "user", "content": f"Make the following article slightly longer: {article}"},
+                ],
+                model=MODEL
+            )
+        else:
+            raise ValueError("Invalid type")
+        return response.choices[0].message.content
 
 
     # Streamlit Layout
@@ -89,3 +111,12 @@ else:
     
     # Editable text box for article
     article_text = st.text_area("Article", value=st.session_state.get('article', ""))
+
+    # 2 side by side buttons to make shorter or make longer
+    col1, col2 = st.columns(2)
+    if col1.button("Make Shorter"):
+        with st.spinner("Processing..."):
+            st.session_state['article'] = change_article_length(st.session_state['article'], 'shorter')
+    if col2.button("Make Longer"):
+        with st.spinner("Processing..."):
+            st.session_state['article'] = change_article_length(st.session_state['article'], 'longer')
