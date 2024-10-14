@@ -11,7 +11,7 @@ from aim.radio.voice import VoiceGenerator
 logger = logging.getLogger(__name__)
 
 # Set valid speakers
-VALID_SPEAKERS = ['aim_christie', 'aim_jodie', 'aim_fiona']
+VALID_SPEAKERS = ['aim_christie', 'aim_jodie']
 TITLE = "Daily News Podcast"
 
 # Load Secrets
