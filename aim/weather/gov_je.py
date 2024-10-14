@@ -43,7 +43,10 @@ class GovJeWeather:
         time_object = datetime.strptime(time, '%H:%M')
         round_minutes = time_object.minute // 15 * 15
         rounded_time = time_object.replace(minute=round_minutes)
-        return rounded_time.strftime("%I:%M%p").lower()
+        output = rounded_time.strftime("%I:%M%p").lower()
+        if output.startswith('0'):
+            output = output[1:]
+        return output
         
     def replace_force(self, report: str) -> str:
         """
