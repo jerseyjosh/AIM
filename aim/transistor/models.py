@@ -31,6 +31,13 @@ class Show:
     def __str__(self):
         return f"Show(title={self.title}, id={self.id})"
     
+class ShowList:
+    """A list of Transistor shows (podcasts)."""
+    def __init__(self, data: dict):
+        self.shows = [Show(show) for show in data['data']]
+    def __str__(self):
+        return f"ShowList({self.shows})"
+    
 class Episode:
     """An individual Transistor podcast episode record."""
     def __init__(self, data):

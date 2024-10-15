@@ -1,4 +1,5 @@
 import asyncio
+import re
 
 from aim.news.news_scraper import BEScraper
 from aim.news.models import NewsStory
@@ -23,10 +24,7 @@ class DailyNews:
         self.weather_scraper = GovJeWeather()
 
     async def close(self):
-        await asyncio.gather(
-            self.be_scraper.close(),
-            self.weather_scraper.close(),
-        )
+        await self.be_scraper.close()
 
     async def get_all_data(self):
         await asyncio.gather(
@@ -47,6 +45,13 @@ class DailyNews:
         if weather[-1] != ".":
             weather += "."
         self.weather = weather
+
+    def process_script(self, script: str) -> str:
+        # remove any double spaces
+        script = " ".join(script.split())
+        # remove any double newlines
+        script = "\n".join([line for line in script.split("\n") if line.strip()])
+        return script
         
     def make_script(self) -> str:
         # intro
@@ -67,7 +72,7 @@ class DailyNews:
         script += f"Now for the weather. {self.weather}\n\n"
         # outro
         script += "You're up to date with Bailiwick Radio News."
-        return script
+        return self.process_script(script)
         
 # if __name__ == "__main__":
 

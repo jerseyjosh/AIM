@@ -5,6 +5,7 @@ from datetime import datetime
 from bs4 import BeautifulSoup
 from bs4.element import Tag
 from selenium_driverless import webdriver
+from tenacity import retry
 
 logger = logging.getLogger(__name__)
 
@@ -15,26 +16,20 @@ class GovJeWeather:
     def __init__(self):
         self.options = webdriver.ChromeOptions()
         self.options.add_argument('--headless')
-        self.driver = webdriver.Chrome(options=self.options)
 
-    async def close(self):
-        """
-        Close the driver session.
-        """
-        await self.driver.close()
-
+    @retry
     async def get(self) -> str:
         """
         Get the weather report from the gov.je website.
         """
-        async with self.driver as driver:
-            await driver.get(self.BASE_URL)
-            await driver.sleep(5)
+        async with webdriver.Chrome(options=self.options) as driver:
+            await driver.get(self.BASE_URL, wait_load=True)
+            await driver.sleep(0.5)
             html = await driver.page_source
-            soup = BeautifulSoup(html, 'html.parser')
-            weather = self.parse_weather_response(soup)
-            tides = self.get_tides(soup)
-            return weather + " " + tides
+        soup = BeautifulSoup(html, 'html.parser')
+        weather = self.parse_weather_response(soup)
+        tides = self.get_tides(soup)
+        return weather + " " + tides
         
     def parse_time(self, time: str) -> str:
         """
@@ -69,19 +64,20 @@ class GovJeWeather:
     def parse_weather_response(self, soup: BeautifulSoup):
         reports: list[Tag] = soup.find_all('p', class_='description')
         output = ""
-        # if len(reports) == 1: # only night
-        #     output += reports[0].text
-        # elif len(reports) == 2: # afternoon and night.
-        #     output += reports[0].text + " Tonight, " + reports[1].text
-        # elif len(reports) == 3: # morning, afternoon and night.
-        #     output += reports[0].text + " This afternoon, " + reports[1].text + ". Tonight, " + reports[2].text
-        # else:
-        #     logger.error(f"Unexpected number of reports: {len(reports)}")
-        #     logger.error(reports)
-        try:
+        if len(reports) == 0:
+            raise ValueError("No weather report found.")
+        if len(reports) == 1: # only night
             output += reports[0].text
-        except IndexError:
-            logger.error("No weather report found.")
+        elif len(reports) == 2: # afternoon and night.
+            output += reports[0].text + " Tonight, " + reports[1].text
+        elif len(reports) == 3: # morning, afternoon and night.
+            output += reports[0].text + " This afternoon, " + reports[1].text + ". Tonight, " + reports[2].text
+        else:
+            raise ValueError(f"Too many weather reports found, expected 1-3, got {len(reports)}")
+        # try:
+        #     output += reports[0].text
+        # except IndexError:
+        #     logger.error("No weather report found.")
         return self.replace_force(output)
     
 if __name__=="__main__":

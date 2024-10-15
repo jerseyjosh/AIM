@@ -1,9 +1,11 @@
-from typing import List
+from typing import List, Optional
 import datetime
+import logging
 
 import requests
 
-from aim.transistor.models import User, AudioUpload, Show, Episode
+from aim.transistor.models import User, AudioUpload, Show, ShowList, Episode
+
 
 class TransistorClient:
     def __init__(self, api_key: str):
@@ -16,9 +18,7 @@ class TransistorClient:
 
     def get_authenticated_user(self) -> User:
         response = requests.get(self.base_url, headers=self.headers)
-        if response.status_code != 200:
-            response.raise_for_status()
-        return User(response.json())
+        return User(response)
     
     def authorize_upload(self, file_path: str) -> AudioUpload:
         url = self.base_url + "episodes/authorize_upload"
@@ -75,9 +75,9 @@ class TransistorClient:
             response.raise_for_status()
         return Episode(response.json())
     
-    def get_shows(self) -> List[Show]:
+    def get_shows(self) -> ShowList:
         url = self.base_url + "shows"
         response = requests.get(url, headers=self.headers)
         if response.status_code != 200:
             response.raise_for_status()
-        return [Show(show) for show in response.json()['data']]
+        return ShowList(response.json()).shows
