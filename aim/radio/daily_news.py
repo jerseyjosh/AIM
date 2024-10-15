@@ -51,6 +51,15 @@ class DailyNews:
         script = " ".join(script.split())
         # remove any double newlines
         script = "\n".join([line for line in script.split("\n") if line.strip()])
+        # replace £300m with 300 million pounds
+        for word in script.split():
+            if word.startswith("£"):
+                if word.lower().endswith(('m','mn')):
+                    script = script.replace(word, f"{word[1:-1]} million pounds")
+                if word.lower().endswith(('b','bn')):
+                    script = script.replace(word, f"{word[1:-1]} billion pounds")
+                if word.lower().endswith(('k', 'th')):
+                    script = script.replace(word, f"{word[1:-1]} thousand pounds")
         return script
         
     def make_script(self) -> str:
