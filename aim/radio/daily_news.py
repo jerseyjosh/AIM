@@ -49,8 +49,6 @@ class DailyNews:
     def process_script(self, script: str) -> str:
         # remove any double spaces
         script = " ".join(script.split())
-        # remove any double newlines
-        script = "\n".join([line for line in script.split("\n") if line.strip()])
         # replace £300m with 300 million pounds
         for word in script.split():
             if word.startswith("£"):
