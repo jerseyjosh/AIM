@@ -47,18 +47,19 @@ class DailyNews:
         self.weather = weather
 
     def process_script(self, script: str) -> str:
-        # remove any double spaces
-        script = " ".join(script.split())
-        # replace £300m with 300 million pounds
-        for word in script.split():
-            if word.startswith("£"):
-                if word.lower().endswith(('m','mn')):
-                    script = script.replace(word, f"{word[1:-1]} million pounds")
-                if word.lower().endswith(('b','bn')):
-                    script = script.replace(word, f"{word[1:-1]} billion pounds")
-                if word.lower().endswith(('k', 'th')):
-                    script = script.replace(word, f"{word[1:-1]} thousand pounds")
         return script
+        # # remove any double spaces
+        # script = " ".join(script.split())
+        # # replace £300m with 300 million pounds
+        # for word in script.split():
+        #     if word.startswith("£"):
+        #         if word.lower().endswith(('m','mn')):
+        #             script = script.replace(word, f"{word[1:-1]} million pounds")
+        #         if word.lower().endswith(('b','bn')):
+        #             script = script.replace(word, f"{word[1:-1]} billion pounds")
+        #         if word.lower().endswith(('k', 'th')):
+        #             script = script.replace(word, f"{word[1:-1]} thousand pounds")
+        # return script
         
     def make_script(self) -> str:
         # intro
