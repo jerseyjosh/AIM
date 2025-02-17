@@ -10,6 +10,7 @@ class NewsStory:
     date: str
     author: str
     url: str
+    image_url: str
 
     def __str__(self):
         # Limit the preview of the text to 100 characters
@@ -19,7 +20,8 @@ class NewsStory:
                 f"  Date: {self.date}\n"
                 f"  Author: {self.author}\n"
                 f"  Text: {text_preview}\n"
-                f"  URL: {self.url}\n"
+                f"  url: {self.url}\n"
+                f"  image_url: {self.image_url}\n"
                 f")")
     
     def __repr__(self):

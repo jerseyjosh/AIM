@@ -19,6 +19,7 @@ from aim.news.models import NewsStory
 
 logger = logging.getLogger(__name__)
 
+
 class BaseScraper(ABC):
 
     def __init__(self, requests_per_period: int = 100, period_seconds: int = 1): # default 100 requests per second
@@ -130,23 +131,32 @@ class BEScraper(BaseScraper):
                 story = self.parse_story(link, soup)
                 stories.append(story)
         return stories
+
         
     def parse_story(self, url, soup: BeautifulSoup) -> NewsStory:
         """
         Parse a news story from the given url.
         """
+        # get headline
         headline = soup.find('h1').text.strip()
-        text = '\n'.join([p.text.strip() for p in soup.find_all('p')[1:]])
+        # get article text
+        entry_content = soup.find('div', class_='entry-content')
+        p_tags = entry_content.find_all('p')
+        text = '\n'.join([p.text.strip() for p in p_tags])
+        # get date
         date = soup.find('time').text
+        # get author
         author = soup.find('a', class_=['url', 'fn', 'a']).text
+        # get image url
+        image_url = soup.find('figure', class_='post-thumbnail').find('img').get('src')
         return NewsStory(
             headline=headline,
             text=text,
             date=date,
             author=author,
-            url=url
+            url=url,
+            image_url=image_url
         )
-
 
 # if __name__ == "__main__":
    
@@ -155,11 +165,10 @@ class BEScraper(BaseScraper):
 
 #     async def main():
 #         scraper = BEScraper()
-#         home = await scraper.get_home_page_soup("gsy")
-#         story_links = scraper.get_story_urls_from_page(home, 'gsy')
-#         jsy_stories, gsy_stories = await scraper.get_podcast_stories(3)
-#         breakpoint()
-        
+#         home = await scraper.get_home_page_soup("jsy")
+#         story_url = scraper.get_story_urls_from_page(home, "jsy")[0]
+#         soup = await scraper.fetch_and_soupify_story(story_url)
+#         news_story = scraper.parse_story(story_url, soup)
     
 #     asyncio.run(main())
 
