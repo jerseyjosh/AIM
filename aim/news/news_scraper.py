@@ -21,14 +21,15 @@ logger = logging.getLogger(__name__)
 
 class BaseScraper(ABC):
 
-    def __init__(self, requests_per_period: int = 1000, period_seconds: int = 1): # default 100 requests per second
+    def __init__(self, requests_per_period: int = 100, period_seconds: int = 1): # default 100 requests per second
         self.requests_per_period = requests_per_period
         self.period_seconds = period_seconds
         #self.session = CachedSession(cache=SQLiteBackend(cache_name='.cache/aiohttp_cache.sqlite')) # cache does not work, some memory leaks
         self.session = aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=None))
         self.limiter = aiolimiter.AsyncLimiter(self.requests_per_period, self.period_seconds) if self.requests_per_period and self.period_seconds else nullcontext()
 
-    def soupify(self, html: str) -> BeautifulSoup:
+    @staticmethod
+    def soupify(html: str) -> BeautifulSoup:
         """
         Create a BeautifulSoup object from an html string.
         """
@@ -64,13 +65,7 @@ class BaseScraper(ABC):
         """
         logger.debug("Closing session")
         await self.session.close()
-                
-    @abstractmethod
-    def extract_news_story(self, soup: BeautifulSoup) -> NewsStory:
-        """
-        Extract the news story from the BeautifulSoup object.
-        """
-        pass
+
 
 class BEScraper(BaseScraper):
     """
@@ -79,124 +74,92 @@ class BEScraper(BaseScraper):
 
     REGIONS = ["jsy", "gsy"]
     JSY_URL = "https://www.bailiwickexpress.com/"
-    GSY_URL = "https://gsy.bailiwickexpress.com/"
+    GSY_URL = "https://www.bailiwickexpress.com/bailiwickexpress-guernsey-edition/"
 
     def __init__(self):
         super().__init__()
 
-    def get_page_url(self, region: str, page: int) -> str:
-        """
-        Create a page url for a given region and page number.
-        """
-        if region == "jsy":
-            return f"{self.JSY_URL}{region}/news/?ccm_paging_p={page}"
-        elif region == "gsy":
-            return f"{self.GSY_URL}{region}/news/?ccm_paging_p={page}"
+    async def get_home_page_soup(self, region: str):
+        assert region.lower() in ['jsy', 'gsy'], "Region must be one of jsy, gsy"
+        if region.lower() == 'jsy':
+            url = self.JSY_URL
+        elif region.lower() == 'gsy':
+            url = self.GSY_URL
+        return self.soupify(await self.fetch(url))
     
-    def get_page_urls(self, region: str, num_pages: int) -> list[str]:
-        """
-        Create a list of page urls for a given region and number of pages.
-        """
-        logger.debug(f"Getting page urls for {region} for {num_pages} pages")
-        return [self.get_page_url(region, page) for page in range(1, num_pages + 1)]
+    async def get_podcast_stories(self, n_stories_per_region: int) -> list[NewsStory]:
+        """Get first n stories for each region for daily news podcast"""
+        jsy_soup = await self.get_home_page_soup('jsy')
+        gsy_soup = await self.get_home_page_soup('gsy')
+        jsy_links = self.get_story_urls_from_page(jsy_soup, 'jsy')[:n_stories_per_region]
+        gsy_links = self.get_story_urls_from_page(gsy_soup, 'gsy')[:n_stories_per_region]
+        jsy_stories = await self.fetch_and_parse_stories(jsy_links)
+        gsy_stories = await self.fetch_and_parse_stories(gsy_links)
+        return jsy_stories, gsy_stories
 
-    def extract_news_story(self, url: str, soup: BeautifulSoup) -> NewsStory:
+    def get_story_urls_from_page(self, soup: BeautifulSoup, region: str) -> list[str]:
         """
-        Extract the news story from the BeautifulSoup object.
+        Extract the links to all news stories from the current page display.
         """
-        try:
-            # get author byline image
-            byline = soup.find('div', class_='span8 content').find('img').get('src', '')
-            author = byline.split('/')[-1].split('.')[0].lower()
-            # get article div
-            div = soup.find("div", class_="news-article") 
-            if not div:
-                logger.warning(f"Div not found for url {soup.url}")
-                return NewsStory(text="", date="", author="")
-            # get headline
-            headline = div.find("h1").get_text().strip()
-            # get text
-            paragraphs = div.find_all("p")
-            joined_text = ' '.join(p.get_text(strip=True) for p in paragraphs)
-            # get date
-            date = soup.find("h4", class_="visible-phone").get_text()
-            return NewsStory(headline=headline, text=joined_text, date=date, author=author, url=url)
-        except Exception as e:
-            logger.error(e)
-            return NewsStory(headline="", text="", date="", author="", url=url)
+        links = soup.find_all('a')
+        news_urls = []
+        seen = set() # keep track of seen to maintain order without duplicates
+        pattern = r'/news/.+' if region == 'jsy' else r'/news-ge/.+'
+        for link in links:
+            href = link.get('href')
+            if href and re.search(pattern, href) and href not in seen:
+                news_urls.append(href)
+                seen.add(href)
+        return news_urls
+    
+    async def fetch_and_soupify_story(self, url: str) -> BeautifulSoup:
+        """
+        Fetch and soupify a news story from the given url.
+        """
+        return self.soupify(await self.fetch(url))
+    
+    async def fetch_and_parse_stories(self, links: list[str]) -> list[BeautifulSoup]:
+        """
+        Fetch and soupify all news stories from the given list of links.
+        """
+        responses = await self.fetch_all(links)
+        stories = []
+        for link,response in zip(links, responses):
+            if response:
+                soup = self.soupify(response)
+                story = self.parse_story(link, soup)
+                stories.append(story)
+        return stories
         
-    def get_news_story_from_url(self, url: str) -> NewsStory:
+    def parse_story(self, url, soup: BeautifulSoup) -> NewsStory:
         """
-        Get a news story from a given url.
+        Parse a news story from the given url.
         """
-        html = asyncio.run(self.fetch(url))
-        soup = self.soupify(html)
-        return self.extract_news_story(url, soup)
-    
-    def get_story_urls(self, region: str, soup: BeautifulSoup, n_stories: Optional[int] = None) -> list[str]:
-        """
-        Extract news story links from a page of news stories.
-        """
-        # Get base url based on region
-        base_url = self.JSY_URL if region == "jsy" else self.GSY_URL
-        # Get article links
-        links: list = soup.find_all("a")
-        hrefs = [link.get("href") for link in links]
-        if not hrefs:
-            return []
-        article_hrefs = [href for href in hrefs if href and re.search(rf"news/[^?]+", href)]
-        unique_hrefs = []
-        for href in article_hrefs:
-            if href not in unique_hrefs:
-                unique_hrefs.append(href)
-        full_urls = [urljoin(base_url, href) for href in unique_hrefs]
-        return full_urls[:n_stories] if n_stories else full_urls
-    
-    async def get_all_story_urls(self, region: str, num_pages: int) -> list[str]:
-        """
-        Get all news story urls for a given region and number of pages.
-        """
-        page_urls = self.get_page_urls(region, num_pages)
-        htmls = await self.fetch_all(page_urls)
-        page_soups = [self.soupify(html) for html in htmls if type(html) is str]
-        logger.debug(f"Got {len(page_soups)} soups from {num_pages} pages")
-        story_urls = [self.get_story_urls(region, soup) for soup in page_soups]
-        return [url for sublist in story_urls for url in sublist]
-    
-    async def get_all_stories_from_n_pages(self, region: str, num_pages: int) -> list[NewsStory]:
-        """
-        Get news stories from a given region and number of pages.
-        """
-        logger.debug(f"Getting news stories from {region} for {num_pages} pages")
-        urls = await self.get_all_story_urls(region, num_pages)
-        htmls = await self.fetch_all(urls)
-        soups = []
-        for html in tqdm(htmls, desc="Parsing HTML"):
-            try:
-                soup = self.soupify(html)
-            except Exception as e:
-                logger.error(f"Error parsing html: {e}")
-                soup = None
-            soups.append(soup)
-        return [self.extract_news_story(url, soup) for url, soup in zip(urls, soups) if soup]
-    
-class JEPScraper(BaseScraper):
-    """
-    Jersey Evening Post News Scraper
-    """
-    def __init__(self):
-        raise NotImplementedError
-    
+        headline = soup.find('h1').text.strip()
+        text = '\n'.join([p.text.strip() for p in soup.find_all('p')[1:]])
+        date = soup.find('time').text
+        author = soup.find('a', class_=['url', 'fn', 'a']).text
+        return NewsStory(
+            headline=headline,
+            text=text,
+            date=date,
+            author=author,
+            url=url
+        )
 
-if __name__ == "__main__":
+
+# if __name__ == "__main__":
    
-    logging.basicConfig(level=logging.DEBUG)
-    import json
+#     logging.basicConfig(level=logging.DEBUG)
+#     import json
 
-    async def main():
-        scraper = BEScraper()
-        urls = await scraper.get_all_story_urls("jsy", 1)
-        breakpoint()
+#     async def main():
+#         scraper = BEScraper()
+#         home = await scraper.get_home_page_soup("gsy")
+#         story_links = scraper.get_story_urls_from_page(home, 'gsy')
+#         jsy_stories, gsy_stories = await scraper.get_podcast_stories(3)
+#         breakpoint()
+        
     
-    asyncio.run(main())
+#     asyncio.run(main())
 

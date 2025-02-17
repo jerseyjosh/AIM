@@ -33,11 +33,8 @@ class DailyNews:
         )
 
     async def get_news_stories(self) -> list[NewsStory]:
-        jsy_stories, gsy_stories = await asyncio.gather(
-            self.be_scraper.get_all_stories_from_n_pages("jsy", 1),
-            self.be_scraper.get_all_stories_from_n_pages("gsy", 1)
-        )
-        self.stories = jsy_stories[:self.NUM_STORIES_PER_REGION] + gsy_stories[:self.NUM_STORIES_PER_REGION]
+        jsy_stories, gsy_stories = await self.be_scraper.get_podcast_stories(self.NUM_STORIES_PER_REGION)
+        self.stories = jsy_stories + gsy_stories
     
     async def get_weather(self) -> str:
         weather = await self.weather_scraper.get()
@@ -72,7 +69,7 @@ class DailyNews:
                 script += "Meanwhile in Guernsey, "
             if i == 3:
                 script += "Also in Guernsey, "
-            first_sentences = '. '.join(story.text.split(".")[:self.NUM_SENTENCES_PER_STORY])
+            first_sentences = '. '.join(story.text.split(". ")[:self.NUM_SENTENCES_PER_STORY])
             script += f"{first_sentences}.\n\n"
         # strapline
         script += "For more on all these stories, visit Bailiwick Express dot com.\n\n"
