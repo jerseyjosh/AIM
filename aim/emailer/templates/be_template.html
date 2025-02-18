@@ -366,25 +366,26 @@ table{mso-table-lspace:0pt;mso-table-rspace:0pt;mso-line-height-rule:exactly}.si
       </div>
     </div>
 
+    <!-- HEADLINE STORY -->
     <div class="layout one-col fixed-width stack" style="Margin: 0 auto;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
       <div class="layout__inner" style="border-collapse: collapse;display: table;width: 100%;background-color: #ffffff;">
       <!--[if mso]><table align="center" cellpadding="0" cellspacing="0" role="presentation"><tr class="layout-fixed-width" style="background-color: #ffffff;"><td style="width: 600px" class="w560"><![endif]-->
         <div class="column" style="text-align: left;color: #808285;font-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;">
       
           <div style="font-size: 12px;font-style: normal;font-weight: normal;line-height: 19px;" align="center">
-            <img class="gnd-corner-image gnd-corner-image-center gnd-corner-image-top" style="border: 0;display: block;height: auto;width: 100%;max-width: 900px;" alt="" width="600" src="https://i0.wp.com/www.bailiwickexpress.com/wp-content/uploads/2021/07/rsz_construction-1-scaled.jpg?zoom=2&amp;resize=1200%2C900&amp;ssl=1">
+            <img class="gnd-corner-image gnd-corner-image-center gnd-corner-image-top" style="border: 0;display: block;height: auto;width: 100%;max-width: 900px;" alt="" width="600" src="{{ news_stories[0].image_url }}?zoom=2&amp;resize=1200%2C900&amp;ssl=1">
           </div>
     
           <div style="Margin-left: 20px;Margin-right: 20px;Margin-top: 20px;">
             <div style="mso-line-height-rule: exactly;mso-text-raise: 11px;vertical-align: middle;">
-              <h1 style="Margin-top: 0;Margin-bottom: 0;font-style: normal;font-weight: normal;color: #27313c;font-size: 17px;line-height: 26px;font-family: PT Sans,Trebuchet MS,sans-serif;text-align: center;">Builder accuses Planning of “malfeasance in public office”</h1><p style="Margin-top: 20px;Margin-bottom: 20px;text-align: center;">A long-running planning row is set to play out in Jersey’s Royal Court over the coming weeks, with a local builder pursuing a claim of malfeasance in public office against several senior government figures.</p>
+              <h1 style="Margin-top: 0;Margin-bottom: 0;font-style: normal;font-weight: normal;color: #27313c;font-size: 17px;line-height: 26px;font-family: PT Sans,Trebuchet MS,sans-serif;text-align: center;">{{ news_stories[0].headline }}</h1><p style="Margin-top: 20px;Margin-bottom: 20px;text-align: center;">{{ news_stories[0].text | first_sentence }}</p>
             </div>
           </div>
       
           <div style="Margin-left: 20px;Margin-right: 20px;Margin-bottom: 24px;">
             <div class="btn fullwidth btn--shadow btn--medium" style="text-align: center;">
-              <!--[if !mso]><!--><a style="border-radius: 4px;display: block;font-size: 12px;font-weight: bold;line-height: 22px;padding: 10px 20px 11px 20px;text-align: center;text-decoration: none !important;transition: opacity 0.1s ease-in;color: #27313c !important;box-shadow: inset 0 -2px 0 0 rgba(0, 0, 0, 0.2);background-color: #a6ce39;font-family: Open Sans, sans-serif;" href="https://allislandmedia.createsend1.com/t/d-l-striitd-djllokktk-t/">Read more</a><!--<![endif]-->
-            <!--[if mso]><p style="line-height:0;margin:0;">&nbsp;</p><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" href="https://allislandmedia.createsend1.com/t/d-l-striitd-djllokktk-t/" style="width:420pt" arcsize="10%" fillcolor="#A6CE39" stroke="f"><v:shadow on="t" color="#85A52E" offset="0,2px"></v:shadow><v:textbox style="mso-fit-shape-to-text:t" inset="0pt,6.75pt,0pt,6pt"><center style="font-size:12px;line-height:22px;color:#27313C;font-family:Open Sans,sans-serif;font-weight:bold;mso-line-height-rule:exactly;mso-text-raise:2px">Read more</center></v:textbox></v:roundrect><![endif]--></div>
+              <!--[if !mso]><!--><a style="border-radius: 4px;display: block;font-size: 12px;font-weight: bold;line-height: 22px;padding: 10px 20px 11px 20px;text-align: center;text-decoration: none !important;transition: opacity 0.1s ease-in;color: #27313c !important;box-shadow: inset 0 -2px 0 0 rgba(0, 0, 0, 0.2);background-color: #a6ce39;font-family: Open Sans, sans-serif;" href="{{ news_stories[0].url }}">Read more</a><!--<![endif]-->
+            <!--[if mso]><p style="line-height:0;margin:0;">&nbsp;</p><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" href="{{ news_stories[0].url }}" style="width:420pt" arcsize="10%" fillcolor="#A6CE39" stroke="f"><v:shadow on="t" color="#85A52E" offset="0,2px"></v:shadow><v:textbox style="mso-fit-shape-to-text:t" inset="0pt,6.75pt,0pt,6pt"><center style="font-size:12px;line-height:22px;color:#27313C;font-family:Open Sans,sans-serif;font-weight:bold;mso-line-height-rule:exactly;mso-text-raise:2px">Read more</center></v:textbox></v:roundrect><![endif]--></div>
           </div>
       
         </div>
@@ -417,7 +418,7 @@ table{mso-table-lspace:0pt;mso-table-rspace:0pt;mso-line-height-rule:exactly}.si
         <!-- NEWS STORIES SECTION -->
         <div class="column wide" style="text-align: left;color: #808285;font-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;Float: left;max-width: 400px;min-width: 320px; width: 320px;width: calc(8000% - 47600px);">
         
-          {% for news_story in news_stories %}
+          {% for news_story in news_stories[1:] %}
             <div style="Margin-left: 20px;Margin-right: 20px;Margin-top: 24px;">
               <div style="font-size: 12px;font-style: normal;font-weight: normal;line-height: 19px;Margin-bottom: 20px;" align="center">
                 <img style="border: 0;display: block;height: auto;width: 100%;max-width: 600px;" alt="" width="360" src="{{ news_story.image_url }}?resize=2000%2C1333&amp;ssl=1">
@@ -441,54 +442,28 @@ table{mso-table-lspace:0pt;mso-table-rspace:0pt;mso-line-height-rule:exactly}.si
         <!-- END NEWS STORIES -->
 
 
+      <!-- NEWS STORY SIDE ADVERTS -->
       <!--[if mso]></td><td style="width: 200px" valign="top" class="w160"><![endif]-->
         <div class="column narrow" style="text-align: left;color: #808285;font-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;Float: left;max-width: 320px;min-width: 200px; width: 320px;width: calc(72200px - 12000%);">
-        
-          <div style="Margin-left: 20px;Margin-right: 20px;Margin-top: 24px;">
-      <div style="font-size: 12px;font-style: normal;font-weight: normal;line-height: 19px;Margin-bottom: 20px;" align="center">
-        <a style="text-decoration: underline;transition: opacity 0.1s ease-in;color: #27313c;" href="https://allislandmedia.createsend1.com/t/d-l-striitd-djllokktk-m/"><img style="border: 0;display: block;height: auto;width: 100%;max-width: 160px;" alt="" width="160" src="https://i4.createsend1.com/ei/d/D1/8C6/E5E/221251/csfinal/JEG_80_C0059_JT_3MF_Consumer_BML_Bailiwick_160x600-990000079e01453c.gif"></a>
-      </div>
-    </div>
-        
-          <div style="Margin-left: 20px;Margin-right: 20px;">
-    <div class="divider" style="display: block;font-size: 2px;line-height: 2px;Margin-left: auto;Margin-right: auto;width: 40px;background-color: #000;Margin-bottom: 20px;">&nbsp;</div>
-  </div>
-        
-          <div style="Margin-left: 20px;Margin-right: 20px;">
-      <div style="font-size: 12px;font-style: normal;font-weight: normal;line-height: 19px;Margin-bottom: 20px;" align="center">
-        <a style="text-decoration: underline;transition: opacity 0.1s ease-in;color: #27313c;" href="https://allislandmedia.createsend1.com/t/d-l-striitd-djllokktk-c/"><img style="border: 0;display: block;height: auto;width: 100%;max-width: 161px;" alt="" width="160" src="https://i5.createsend1.com/ei/d/D1/8C6/E5E/221251/csfinal/Parslows29976-BEFamilyServiceLinesCreative-January-990000079e01453c.jpg"></a>
-      </div>
-    </div>
-        
-          <div style="Margin-left: 20px;Margin-right: 20px;">
-    <div class="divider" style="display: block;font-size: 2px;line-height: 2px;Margin-left: auto;Margin-right: auto;width: 40px;background-color: #000;Margin-bottom: 20px;">&nbsp;</div>
-  </div>
-        
-          <div style="Margin-left: 20px;Margin-right: 20px;">
-      <div style="font-size: 12px;font-style: normal;font-weight: normal;line-height: 19px;Margin-bottom: 20px;" align="center">
-        <a style="text-decoration: underline;transition: opacity 0.1s ease-in;color: #27313c;" href="https://allislandmedia.createsend1.com/t/d-l-striitd-djllokktk-q/"><img style="border: 0;display: block;height: auto;width: 100%;max-width: 160px;" alt="" width="160" src="https://i6.createsend1.com/ei/d/D1/8C6/E5E/221251/csfinal/DigitalJerseySkyscraperBailiwick-990000079e01453c.gif"></a>
-      </div>
-    </div>
-        
-          <div style="Margin-left: 20px;Margin-right: 20px;">
-    <div class="divider" style="display: block;font-size: 2px;line-height: 2px;Margin-left: auto;Margin-right: auto;width: 40px;background-color: #000;Margin-bottom: 20px;">&nbsp;</div>
-  </div>
-        
-          <div style="Margin-left: 20px;Margin-right: 20px;">
-      <div style="font-size: 12px;font-style: normal;font-weight: normal;line-height: 19px;Margin-bottom: 20px;" align="center">
-        <a style="text-decoration: underline;transition: opacity 0.1s ease-in;color: #27313c;" href="https://allislandmedia.createsend1.com/t/d-l-striitd-djllokktk-a/"><img style="border: 0;display: block;height: auto;width: 100%;max-width: 160px;" alt="" width="160" src="https://i7.createsend1.com/ei/d/D1/8C6/E5E/221251/csfinal/islandlockSkyscraper3-990000079e01453c.gif"></a>
-      </div>
-    </div>
-        
-          <div style="Margin-left: 20px;Margin-right: 20px;Margin-bottom: 24px;">
-    <div class="divider" style="display: block;font-size: 2px;line-height: 2px;Margin-left: auto;Margin-right: auto;width: 40px;background-color: #000;">&nbsp;</div>
-  </div>
+
+          {% for advert in side_adverts %}
+            <div style="Margin-left: 20px;Margin-right: 20px;Margin-top: 24px;">
+              <div style="font-size: 12px;font-style: normal;font-weight: normal;line-height: 19px;Margin-bottom: 20px;" align="center">
+                <a style="text-decoration: underline;transition: opacity 0.1s ease-in;color: #27313c;" href="{{ advert.url }}"><img style="border: 0;display: block;height: auto;width: 100%;max-width: 160px;" alt="" width="160" src="{{ advert.image_url }}"></a>
+              </div>
+            </div>
+          
+            <div style="Margin-left: 20px;Margin-right: 20px;">
+              <div class="divider" style="display: block;font-size: 2px;line-height: 2px;Margin-left: auto;Margin-right: auto;width: 40px;background-color: #000;Margin-bottom: 20px;">&nbsp;</div>
+            </div>
+          {% endfor %}
         
         </div>
       <!--[if mso]></td></tr></table><![endif]-->
       </div>
     </div>
 
+    <!-- NEWS FOOTER -->
     <div class="layout one-col fixed-width stack" style="Margin: 0 auto;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
       <div class="layout__inner" style="border-collapse: collapse;display: table;width: 100%;background-color: #ffffff;">
       <!--[if mso]><table align="center" cellpadding="0" cellspacing="0" role="presentation"><tr class="layout-fixed-width" style="background-color: #ffffff;"><td style="width: 600px" class="w560"><![endif]-->
@@ -505,6 +480,7 @@ table{mso-table-lspace:0pt;mso-table-rspace:0pt;mso-line-height-rule:exactly}.si
 
     <div style="mso-line-height-rule: exactly;line-height: 35px;font-size: 35px;">&nbsp;</div>
 
+    <!-- ADVERT BANNER BETWEEN NEWS AND BUSINESS -->
     <div class="layout one-col fixed-width stack" style="Margin: 0 auto;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
       <div class="layout__inner" style="border-collapse: collapse;display: table;width: 100%;background-color: #ffffff;">
       <!--[if mso]><table align="center" cellpadding="0" cellspacing="0" role="presentation"><tr class="layout-fixed-width" style="background-color: #ffffff;"><td style="width: 600px" class="w560"><![endif]-->
@@ -521,14 +497,15 @@ table{mso-table-lspace:0pt;mso-table-rspace:0pt;mso-line-height-rule:exactly}.si
 
     <div style="mso-line-height-rule: exactly;line-height: 20px;font-size: 20px;">&nbsp;</div>
 
+    <!-- BUSINESS NEWS BANNER -->
     <div class="layout one-col fixed-width stack" style="Margin: 0 auto;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
       <div class="layout__inner" style="border-collapse: collapse;display: table;width: 100%;background-color: #edd2b9;">
       <!--[if mso]><table align="center" cellpadding="0" cellspacing="0" role="presentation"><tr class="layout-fixed-width" style="background-color: #edd2b9;"><td style="width: 600px" class="w560"><![endif]-->
         <div class="column" style="text-align: left;color: #808285;font-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;">
       
-      <div style="font-size: 12px;font-style: normal;font-weight: normal;line-height: 19px;" align="center">
-        <img class="gnd-corner-image gnd-corner-image-center gnd-corner-image-top gnd-corner-image-bottom" style="border: 0;display: block;height: auto;width: 100%;max-width: 729px;" alt="" width="600" src="https://i10.createsend1.com/ei/d/D1/8C6/E5E/221251/csfinal/image1-9900000000079e3c.png">
-      </div>
+          <div style="font-size: 12px;font-style: normal;font-weight: normal;line-height: 19px;" align="center">
+            <img class="gnd-corner-image gnd-corner-image-center gnd-corner-image-top gnd-corner-image-bottom" style="border: 0;display: block;height: auto;width: 100%;max-width: 729px;" alt="" width="600" src="https://i10.createsend1.com/ei/d/D1/8C6/E5E/221251/csfinal/image1-9900000000079e3c.png">
+          </div>
     
         </div>
       <!--[if mso]></td></tr></table><![endif]-->
@@ -540,61 +517,63 @@ table{mso-table-lspace:0pt;mso-table-rspace:0pt;mso-line-height-rule:exactly}.si
       <!--[if mso]><table align="center" cellpadding="0" cellspacing="0" role="presentation"><tr class="layout-fixed-width" style="background-color: #edd2b9;"><td style="width: 400px" valign="top" class="w360"><![endif]-->
         <div class="column wide" style="text-align: left;color: #808285;font-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;Float: left;max-width: 400px;min-width: 320px; width: 320px;width: calc(8000% - 47600px);">
         
+          <!-- BUSINESS ARTICLES   -->
           <div style="Margin-left: 20px;Margin-right: 20px;Margin-top: 24px;">
-      <div style="font-size: 12px;font-style: normal;font-weight: normal;line-height: 19px;Margin-bottom: 20px;" align="center">
-        <img style="border: 0;display: block;height: auto;width: 100%;max-width: 600px;" alt="" width="360" src="https://i0.wp.com/www.bailiwickexpress.com/wp-content/uploads/2025/02/Alexforbes-Nick-Carter-Adrian-Peacock-Guy-Browning.jpg?resize=1536%2C1024&amp;ssl=1">
-      </div>
-    </div>
+            <div style="font-size: 12px;font-style: normal;font-weight: normal;line-height: 19px;Margin-bottom: 20px;" align="center">
+              <img style="border: 0;display: block;height: auto;width: 100%;max-width: 600px;" alt="" width="360" src="https://i0.wp.com/www.bailiwickexpress.com/wp-content/uploads/2025/02/Alexforbes-Nick-Carter-Adrian-Peacock-Guy-Browning.jpg?resize=1536%2C1024&amp;ssl=1">
+            </div>
+          </div>
         
           <div style="Margin-left: 20px;Margin-right: 20px;">
-    <div style="mso-line-height-rule: exactly;mso-text-raise: 11px;vertical-align: middle;">
-      <h1 style="Margin-top: 0;Margin-bottom: 0;font-style: normal;font-weight: normal;color: #27313c;font-size: 17px;line-height: 26px;font-family: PT Sans,Trebuchet MS,sans-serif;">Alexforbes Offshore makes two senior appointments</h1><p style="Margin-top: 20px;Margin-bottom: 20px;">Financial advisers Alexforbes Offshore has expanded its wealth management team with two new advisers.&nbsp;&nbsp;</p>
-    </div>
-  </div>
+            <div style="mso-line-height-rule: exactly;mso-text-raise: 11px;vertical-align: middle;">
+              <h1 style="Margin-top: 0;Margin-bottom: 0;font-style: normal;font-weight: normal;color: #27313c;font-size: 17px;line-height: 26px;font-family: PT Sans,Trebuchet MS,sans-serif;">Alexforbes Offshore makes two senior appointments</h1><p style="Margin-top: 20px;Margin-bottom: 20px;">Financial advisers Alexforbes Offshore has expanded its wealth management team with two new advisers.&nbsp;&nbsp;</p>
+            </div>
+          </div>
         
           <div style="Margin-left: 20px;Margin-right: 20px;Margin-bottom: 24px;">
-    <div class="btn btn--shadow btn--medium" style="text-align:left;">
-      <!--[if !mso]><!--><a style="border-radius: 4px;display: inline-block;font-size: 12px;font-weight: bold;line-height: 22px;padding: 10px 20px 11px 20px;text-align: center;text-decoration: none !important;transition: opacity 0.1s ease-in;color: #27313c !important;box-shadow: inset 0 -2px 0 0 rgba(0, 0, 0, 0.2);background-color: #a6ce39;font-family: Open Sans, sans-serif;" href="https://allislandmedia.createsend1.com/t/d-l-striitd-djllokktk-z/">Read more</a><!--<![endif]-->
-    <!--[if mso]><p style="line-height:0;margin:0;">&nbsp;</p><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" href="https://allislandmedia.createsend1.com/t/d-l-striitd-djllokktk-z/" style="width:78.75pt" arcsize="10%" fillcolor="#A6CE39" stroke="f"><v:shadow on="t" color="#85A52E" offset="0,2px"></v:shadow><v:textbox style="mso-fit-shape-to-text:t" inset="0pt,6.75pt,0pt,6pt"><center style="font-size:12px;line-height:22px;color:#27313C;font-family:Open Sans,sans-serif;font-weight:bold;mso-line-height-rule:exactly;mso-text-raise:2px">Read more</center></v:textbox></v:roundrect><![endif]--></div>
-  </div>
+            <div class="btn btn--shadow btn--medium" style="text-align:left;">
+              <!--[if !mso]><!--><a style="border-radius: 4px;display: inline-block;font-size: 12px;font-weight: bold;line-height: 22px;padding: 10px 20px 11px 20px;text-align: center;text-decoration: none !important;transition: opacity 0.1s ease-in;color: #27313c !important;box-shadow: inset 0 -2px 0 0 rgba(0, 0, 0, 0.2);background-color: #a6ce39;font-family: Open Sans, sans-serif;" href="https://allislandmedia.createsend1.com/t/d-l-striitd-djllokktk-z/">Read more</a><!--<![endif]-->
+            <!--[if mso]><p style="line-height:0;margin:0;">&nbsp;</p><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" href="https://allislandmedia.createsend1.com/t/d-l-striitd-djllokktk-z/" style="width:78.75pt" arcsize="10%" fillcolor="#A6CE39" stroke="f"><v:shadow on="t" color="#85A52E" offset="0,2px"></v:shadow><v:textbox style="mso-fit-shape-to-text:t" inset="0pt,6.75pt,0pt,6pt"><center style="font-size:12px;line-height:22px;color:#27313C;font-family:Open Sans,sans-serif;font-weight:bold;mso-line-height-rule:exactly;mso-text-raise:2px">Read more</center></v:textbox></v:roundrect><![endif]--></div>
+          </div>
         
         </div>
       <!--[if mso]></td><td style="width: 200px" valign="top" class="w160"><![endif]-->
         <div class="column narrow" style="text-align: left;color: #808285;font-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;Float: left;max-width: 320px;min-width: 200px; width: 320px;width: calc(72200px - 12000%);">
         
           <div style="Margin-left: 20px;Margin-right: 20px;Margin-top: 24px;">
-    <div class="divider" style="display: block;font-size: 2px;line-height: 2px;Margin-left: auto;Margin-right: auto;width: 40px;background-color: #000;Margin-bottom: 20px;">&nbsp;</div>
-  </div>
+            <div class="divider" style="display: block;font-size: 2px;line-height: 2px;Margin-left: auto;Margin-right: auto;width: 40px;background-color: #000;Margin-bottom: 20px;">&nbsp;</div>
+          </div>
         
           <div style="Margin-left: 20px;Margin-right: 20px;">
-      <div style="font-size: 12px;font-style: normal;font-weight: normal;line-height: 19px;Margin-bottom: 20px;" align="center">
-        <img style="border: 0;display: block;height: auto;width: 100%;max-width: 480px;" alt="" width="160" src="https://i1.createsend1.com/ei/d/D1/8C6/E5E/221251/csfinal/654351-990000079e01453c.jpg">
-      </div>
-    </div>
+            <div style="font-size: 12px;font-style: normal;font-weight: normal;line-height: 19px;Margin-bottom: 20px;" align="center">
+              <img style="border: 0;display: block;height: auto;width: 100%;max-width: 480px;" alt="" width="160" src="https://i1.createsend1.com/ei/d/D1/8C6/E5E/221251/csfinal/654351-990000079e01453c.jpg">
+            </div>
+          </div>
         
           <div style="Margin-left: 20px;Margin-right: 20px;">
-    <div class="btn fullwidth btn--shadow btn--medium" style="Margin-bottom: 20px;text-align: center;">
-      <!--[if !mso]><!--><a style="border-radius: 4px;display: block;font-size: 12px;font-weight: bold;line-height: 22px;padding: 10px 20px 11px 20px;text-align: center;text-decoration: none !important;transition: opacity 0.1s ease-in;color: #27313c !important;box-shadow: inset 0 -2px 0 0 rgba(0, 0, 0, 0.2);background-color: #ffffff;font-family: Open Sans, sans-serif;" href="https://allislandmedia.createsend1.com/t/d-l-striitd-djllokktk-v/">Read online</a><!--<![endif]-->
-    <!--[if mso]><p style="line-height:0;margin:0;">&nbsp;</p><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" href="https://allislandmedia.createsend1.com/t/d-l-striitd-djllokktk-v/" style="width:120pt" arcsize="10%" fillcolor="#FFFFFF" stroke="f"><v:shadow on="t" color="#CCCCCC" offset="0,2px"></v:shadow><v:textbox style="mso-fit-shape-to-text:t" inset="0pt,6.75pt,0pt,6pt"><center style="font-size:12px;line-height:22px;color:#27313C;font-family:Open Sans,sans-serif;font-weight:bold;mso-line-height-rule:exactly;mso-text-raise:2px">Read online</center></v:textbox></v:roundrect><![endif]--></div>
-  </div>
+            <div class="btn fullwidth btn--shadow btn--medium" style="Margin-bottom: 20px;text-align: center;">
+              <!--[if !mso]><!--><a style="border-radius: 4px;display: block;font-size: 12px;font-weight: bold;line-height: 22px;padding: 10px 20px 11px 20px;text-align: center;text-decoration: none !important;transition: opacity 0.1s ease-in;color: #27313c !important;box-shadow: inset 0 -2px 0 0 rgba(0, 0, 0, 0.2);background-color: #ffffff;font-family: Open Sans, sans-serif;" href="https://allislandmedia.createsend1.com/t/d-l-striitd-djllokktk-v/">Read online</a><!--<![endif]-->
+            <!--[if mso]><p style="line-height:0;margin:0;">&nbsp;</p><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" href="https://allislandmedia.createsend1.com/t/d-l-striitd-djllokktk-v/" style="width:120pt" arcsize="10%" fillcolor="#FFFFFF" stroke="f"><v:shadow on="t" color="#CCCCCC" offset="0,2px"></v:shadow><v:textbox style="mso-fit-shape-to-text:t" inset="0pt,6.75pt,0pt,6pt"><center style="font-size:12px;line-height:22px;color:#27313C;font-family:Open Sans,sans-serif;font-weight:bold;mso-line-height-rule:exactly;mso-text-raise:2px">Read online</center></v:textbox></v:roundrect><![endif]--></div>
+          </div>
         
           <div style="Margin-left: 20px;Margin-right: 20px;Margin-bottom: 24px;">
-    <div class="divider" style="display: block;font-size: 2px;line-height: 2px;Margin-left: auto;Margin-right: auto;width: 40px;background-color: #000;">&nbsp;</div>
-  </div>
+            <div class="divider" style="display: block;font-size: 2px;line-height: 2px;Margin-left: auto;Margin-right: auto;width: 40px;background-color: #000;">&nbsp;</div>
+          </div>
         
         </div>
       <!--[if mso]></td></tr></table><![endif]-->
       </div>
     </div>
-
+    
+    <!-- CONNECT SECTION FOOTER -->
     <div class="layout one-col fixed-width stack" style="Margin: 0 auto;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
       <div class="layout__inner" style="border-collapse: collapse;display: table;width: 100%;background-color: #ffffff;">
       <!--[if mso]><table align="center" cellpadding="0" cellspacing="0" role="presentation"><tr class="layout-fixed-width" style="background-color: #ffffff;"><td style="width: 600px" class="w560"><![endif]-->
         <div class="column" style="text-align: left;color: #808285;font-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;">
       
-      <div style="font-size: 12px;font-style: normal;font-weight: normal;line-height: 19px;" align="center">
-        <img class="gnd-corner-image gnd-corner-image-center gnd-corner-image-top gnd-corner-image-bottom" style="border: 0;display: block;height: auto;width: 100%;max-width: 850px;" alt="" width="600" src="https://i2.createsend1.com/ei/d/D1/8C6/E5E/221251/csfinal/image-9900000000079e3c.png">
-      </div>
+          <div style="font-size: 12px;font-style: normal;font-weight: normal;line-height: 19px;" align="center">
+            <img class="gnd-corner-image gnd-corner-image-center gnd-corner-image-top gnd-corner-image-bottom" style="border: 0;display: block;height: auto;width: 100%;max-width: 850px;" alt="" width="600" src="https://i2.createsend1.com/ei/d/D1/8C6/E5E/221251/csfinal/image-9900000000079e3c.png">
+          </div>
     
         </div>
       <!--[if mso]></td></tr></table><![endif]-->
@@ -603,6 +582,7 @@ table{mso-table-lspace:0pt;mso-table-rspace:0pt;mso-line-height-rule:exactly}.si
 
     <div style="mso-line-height-rule: exactly;line-height: 30px;font-size: 30px;">&nbsp;</div>
 
+    <!-- ADVERT BANNER BUSINESS TO FAMILY NOTICES -->
     <div class="layout one-col fixed-width stack" style="Margin: 0 auto;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
       <div class="layout__inner" style="border-collapse: collapse;display: table;width: 100%;background-color: #ffffff;">
       <!--[if mso]><table align="center" cellpadding="0" cellspacing="0" role="presentation"><tr class="layout-fixed-width" style="background-color: #ffffff;"><td style="width: 600px" class="w560"><![endif]-->
@@ -619,14 +599,15 @@ table{mso-table-lspace:0pt;mso-table-rspace:0pt;mso-line-height-rule:exactly}.si
 
     <div style="mso-line-height-rule: exactly;line-height: 20px;font-size: 20px;">&nbsp;</div>
 
+    <!-- FAMILY NOTICES HEADER -->
     <div class="layout one-col fixed-width stack" style="Margin: 0 auto;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
       <div class="layout__inner" style="border-collapse: collapse;display: table;width: 100%;background-color: #ffffff;">
       <!--[if mso]><table align="center" cellpadding="0" cellspacing="0" role="presentation"><tr class="layout-fixed-width" style="background-color: #ffffff;"><td style="width: 600px" class="w560"><![endif]-->
         <div class="column" style="text-align: left;color: #808285;font-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;">
       
-      <div style="font-size: 12px;font-style: normal;font-weight: normal;line-height: 19px;" align="center">
-        <img class="gnd-corner-image gnd-corner-image-center gnd-corner-image-top gnd-corner-image-bottom" style="border: 0;display: block;height: auto;width: 100%;max-width: 729px;" alt="" width="600" src="https://i4.createsend1.com/ei/d/D1/8C6/E5E/221251/csfinal/image-9900000000079e3c-9900000000079e3c-9900000000079e3c.jpg">
-      </div>
+          <div style="font-size: 12px;font-style: normal;font-weight: normal;line-height: 19px;" align="center">
+            <img class="gnd-corner-image gnd-corner-image-center gnd-corner-image-top gnd-corner-image-bottom" style="border: 0;display: block;height: auto;width: 100%;max-width: 729px;" alt="" width="600" src="https://i4.createsend1.com/ei/d/D1/8C6/E5E/221251/csfinal/image-9900000000079e3c-9900000000079e3c-9900000000079e3c.jpg">
+          </div>
     
         </div>
       <!--[if mso]></td></tr></table><![endif]-->
@@ -957,4 +938,6 @@ De Gruchy's Funeral Care</p>
 table{display:table !important;width:100% !important}.email-flexible-footer .footer__share-button,.email-flexible-footer .email-footer__additional-info{margin-left:20px;margin-right:20px}}
 </style>
 
-</body><x0e81345e-03b0-48a7-83cf-3b7585131cd4></x0e81345e-03b0-48a7-83cf-3b7585131cd4></html>
+</body>
+<!-- <x0e81345e-03b0-48a7-83cf-3b7585131cd4></x0e81345e-03b0-48a7-83cf-3b7585131cd4> ?? weird token-->
+</html>

@@ -88,14 +88,20 @@ class BEScraper(BaseScraper):
             url = self.GSY_URL
         return self.soupify(await self.fetch(url))
     
-    async def get_podcast_stories(self, n_stories_per_region: int) -> list[NewsStory]:
+    async def get_podcast_stories(self, n_stories_per_region: int) -> tuple[list[NewsStory], list[NewsStory]]:
         """Get first n stories for each region for daily news podcast"""
-        jsy_soup = await self.get_home_page_soup('jsy')
-        gsy_soup = await self.get_home_page_soup('gsy')
+        # return home pages concurrently
+        jsy_soup, gsy_soup = await asyncio.gather(
+            self.get_home_page_soup('jsy'),
+            self.get_home_page_soup('gsy')
+        )
+        # parse for story urls
         jsy_links = self.get_story_urls_from_page(jsy_soup, 'jsy')[:n_stories_per_region]
         gsy_links = self.get_story_urls_from_page(gsy_soup, 'gsy')[:n_stories_per_region]
-        jsy_stories = await self.fetch_and_parse_stories(jsy_links)
-        gsy_stories = await self.fetch_and_parse_stories(gsy_links)
+        jsy_stories, gsy_stories = await asyncio.gather(
+            self.fetch_and_parse_stories(jsy_links),
+            self.fetch_and_parse_stories(gsy_links)
+        )
         return jsy_stories, gsy_stories
 
     def get_story_urls_from_page(self, soup: BeautifulSoup, region: str) -> list[str]:
@@ -131,7 +137,13 @@ class BEScraper(BaseScraper):
                 story = self.parse_story(link, soup)
                 stories.append(story)
         return stories
-
+    
+    async def get_n_stories_for_region(self, region: str, n: int) -> list[NewsStory]:
+        """Get the first n stories for the given region"""
+        soup = await self.get_home_page_soup(region)
+        links = self.get_story_urls_from_page(soup, region)[:n]
+        stories = await self.fetch_and_parse_stories(links)
+        return stories
         
     def parse_story(self, url, soup: BeautifulSoup) -> NewsStory:
         """
@@ -158,17 +170,15 @@ class BEScraper(BaseScraper):
             image_url=image_url
         )
 
-# if __name__ == "__main__":
+if __name__ == "__main__":
    
-#     logging.basicConfig(level=logging.DEBUG)
-#     import json
+    logging.basicConfig(level=logging.DEBUG)
+    import json
 
-#     async def main():
-#         scraper = BEScraper()
-#         home = await scraper.get_home_page_soup("jsy")
-#         story_url = scraper.get_story_urls_from_page(home, "jsy")[0]
-#         soup = await scraper.fetch_and_soupify_story(story_url)
-#         news_story = scraper.parse_story(story_url, soup)
+    async def main():
+        scraper = BEScraper()
+        stories = await scraper.get_n_stories_for_region('jsy', 5)
+        breakpoint()
     
-#     asyncio.run(main())
+    asyncio.run(main())
 
