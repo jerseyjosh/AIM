@@ -1,4 +1,3 @@
-import asyncio
 import os
 import logging
 
@@ -6,10 +5,8 @@ import streamlit as st
 from streamlit.components.v1 import html
 import pandas as pd
 
-from aim.news.news_scraper import BEScraper
 from aim.emailer.base import Email, Advert
 from aim.news.models import NewsStory
-import aim.emailer  # import the emailer package so we can get its path
 
 logger = logging.getLogger(__name__)
 
@@ -70,11 +67,13 @@ else:
     # Boxes for email params
     num_stories = st.number_input("Number of News Stories", min_value=1, max_value=20, value=7, step=1)
     num_business_stories = st.number_input("Number of Business Stories", min_value=1, max_value=20, value=1, step=1)
+    num_sports_stories = st.number_input("Number of Sports Stories", min_value=1, max_value=20, value=1, step=1)
     st.session_state.email_vars['top_image_url'] = st.text_input("Top Image URL")
     st.session_state.email_vars['top_image_title'] = st.text_input("Top Image Title")
     st.session_state.email_vars['top_image_author'] = st.text_input("Top Image Author")
 
     # Editable dataframe for advert banners
+    st.header("Vertical Adverts")
     vertical_adverts = st.data_editor(
         pd.DataFrame({'url': [], 'image_url': []}, dtype='object'),
         key='vertical_banners',
@@ -91,9 +90,10 @@ else:
 
         # Fetch stories
         with st.spinner("Fetching Stories..."):
-            email.get_data(num_stories, num_business_stories)
+            email.get_data(num_stories, num_business_stories, num_sports_stories)
             st.session_state.email_vars['news_stories'] = email.news_stories
             st.session_state.email_vars['business_stories'] = email.business_stories
+            st.session_state.email_vars['sport_stories'] = email.sport_stories
             st.session_state.email_vars['weather'] = email.weather
 
         # display news_stories df

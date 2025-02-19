@@ -2456,7 +2456,7 @@
                 &nbsp;
               </div>
 
-              {% if sports_stories|length > 0 %}
+              {% if sport_stories|length > 0 %}
               <!-- SPORTS HEADER -->
               <div
                 class="layout one-col fixed-width stack"
@@ -2558,7 +2558,7 @@
                       width: calc(8000% - 47600px);
                     "
                   >
-                    {% for sports_story in sports_stories %}
+                    {% for news_story in sport_stories %}
                     <div
                       style="
                         margin-left: 20px;
@@ -2685,6 +2685,8 @@
                         [endif]-->
                       </div>
                     </div>
+                    {% endfor %}
+
                   </div>
                   <!--[if mso]></td><td style="width: 200px" valign="top" class="w160"><![endif]-->
                   <div

@@ -36,20 +36,21 @@ class Email:
             news_scraper = BEScraper() if site == 'be' else JEPScraper()
             weather_scraper = GovJeWeather()
             # get data
-            news_stories, business_stories, weather_soup = await asyncio.gather(
+            news_stories, business_stories, sport_stories, weather_soup = await asyncio.gather(
                 news_scraper.get_n_stories_for_region('jsy', n_news),
                 news_scraper.get_n_stories_for_region('jsy_business', n_business),
-                news_scraper.get_n_stories_for_region('jsy_sports', n_sports),
+                news_scraper.get_n_stories_for_region('jsy_sport', n_sports),
                 weather_scraper.get()
             )
             # close the news scraper
             await news_scraper.close()
             # parse weather
             weather = weather_scraper.to_email(weather_soup)
-            return news_stories, business_stories, weather
-        news_stories, business_stories, weather = asyncio.run(func())
+            return news_stories, business_stories, sport_stories, weather
+        news_stories, business_stories, sport_stories, weather = asyncio.run(func())
         self.news_stories = news_stories
         self.business_stories = business_stories
+        self.sport_stories = sport_stories
         self.weather = weather
 
     def render(self, save_path: Optional[str] = None, **kwargs) -> str:
