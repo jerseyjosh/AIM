@@ -5,6 +5,7 @@ import asyncio
 import jinja2
 
 from aim.news.news_scraper import BEScraper, JEPScraper
+from aim.weather.gov_je import GovJeWeather
 
 __all__ = ['Email']
 
@@ -28,21 +29,27 @@ class Email:
         self.template_env.filters['first_sentence'] = self.first_sentence
         self.template = self.template_env.get_template(self.template_name)
 
-    def get_stories(self, n_news: int, n_business: int, site: str = 'be'):
+    def get_data(self, n_news: int, n_business: int, site: str = 'be'):
         """Async wrapper for getting news and business stories from the given site"""
         assert site in ['be', 'jep'], "Site must be either 'be' or 'jep'"
         async def func():
-            scraper = BEScraper() if site == 'be' else JEPScraper()
-            # get normal stories
-            news_stories, business_stories = await asyncio.gather(
-                scraper.get_n_stories_for_region('jsy', n_news),
-                scraper.get_n_stories_for_region('jsy_business', n_business)
+            news_scraper = BEScraper() if site == 'be' else JEPScraper()
+            weather_scraper = GovJeWeather()
+            # get data
+            news_stories, business_stories, weather_soup = await asyncio.gather(
+                news_scraper.get_n_stories_for_region('jsy', n_news),
+                news_scraper.get_n_stories_for_region('jsy_business', n_business),
+                weather_scraper.get()
             )
-            await scraper.close()
-            return news_stories, business_stories
-        news_stories, business_stories = asyncio.run(func())
+            # close the news scraper
+            await news_scraper.close()
+            # parse weather
+            weather = weather_scraper.to_email(weather_soup)
+            return news_stories, business_stories, weather
+        news_stories, business_stories, weather = asyncio.run(func())
         self.news_stories = news_stories
         self.business_stories = business_stories
+        self.weather = weather
 
     def render(self, save_path: Optional[str] = None, **kwargs) -> str:
         """Render the email template with the given context variables"""

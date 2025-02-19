@@ -17,8 +17,7 @@ class GovJeWeather:
         self.options = webdriver.ChromeOptions()
         self.options.add_argument('--headless')
 
-    @retry
-    async def get(self) -> str:
+    async def get(self) -> BeautifulSoup:
         """
         Get the weather report from the gov.je website.
         """
@@ -26,10 +25,37 @@ class GovJeWeather:
             await driver.get(self.BASE_URL, wait_load=True)
             await driver.sleep(0.5)
             html = await driver.page_source
-        soup = BeautifulSoup(html, 'html.parser')
-        weather = self.parse_weather_response(soup)
-        tides = self.get_tides(soup)
-        return weather + " " + tides
+        return BeautifulSoup(html, 'html.parser')
+    
+    def to_radio(self, soup: BeautifulSoup) -> str:
+        """Parse weather to"""
+        tides = self.parse_tides(soup)
+        high_tides = [item['time'] for item in tides if item['direction'] == 'high']
+        low_tides = [item['time'] for item in tides if item['direction'] == 'low']
+        tide_script = f"High tides today at around {', '.join(high_tides)}, with low tides around {', '.join(low_tides)}."
+        return f"{self.parse_weather_response(soup)} {tide_script}"
+    
+    def to_email(self, soup: BeautifulSoup) -> dict:
+        """
+        News email requires weather to be rendered in jinja template:
+            Today's weather: 6°c, few clouds
+            Tide: Low 13:14 (1.7m) High 18:51 (10.3m)
+            Wednesday 12 February 2025
+        """
+        # get first temperature for the day
+        first_temp = self.parse_temperatures(soup)[0]
+        # get short weather summary
+        weather_summary = soup.find('div', class_='weathergrid').find('div', class_='borderLeft').text.strip()
+        # get tide info
+        tides = self.parse_tides(soup)
+        first_low_tide = [t for t in tides if t['direction'] == 'low'][0]
+        first_high_tide = [t for t in tides if t['direction'] == 'high'][0]
+        # format and return
+        return {
+            'todays_weather': f"{first_temp}, {weather_summary}",
+            'tides': f"Low {first_low_tide['time']} ({first_low_tide['height']}) High {first_high_tide['time']} ({first_high_tide['height']})",
+            'date': datetime.now().strftime("%A %d %B %Y")
+        }
         
     def parse_time(self, time: str) -> str:
         """
@@ -49,17 +75,22 @@ class GovJeWeather:
         """
         return re.sub(r'F(\d)', r'Force \1', report)
     
-    def get_tides(self, soup: BeautifulSoup):
+    def parse_tides(self, soup: BeautifulSoup):
         tide_rows = soup.find('table', class_='tide-mobile').find_all('tr')
-        high_tides = []
-        low_tides = []
+        tides = []
         for row in tide_rows[1:]:
             cols = row.find_all('td')
-            if 'low' in cols[0].text.lower():
-                low_tides.append(self.parse_time(cols[1].text))
-            elif 'high' in cols[0].text.lower():
-                high_tides.append(self.parse_time(cols[1].text))
-        return f"High tides today at around {', '.join(high_tides)}, with low tides around {', '.join(low_tides)}."
+            tide_entry = {
+                'direction': cols[0].text.lower().split()[0],
+                'time': self.parse_time(cols[1].text),
+                'height': cols[2].text
+            }
+            tides.append(tide_entry)
+        return tides
+    
+    def parse_temperatures(self, soup: BeautifulSoup):
+        temps = soup.find_all('span', class_='boldWeather')
+        return [temp.text for temp in temps]
         
     def parse_weather_response(self, soup: BeautifulSoup):
         reports: list[Tag] = soup.find_all('p', class_='description')
@@ -83,7 +114,8 @@ class GovJeWeather:
 if __name__=="__main__":
     async def main():
         weather = GovJeWeather()
-        report = await weather.get()
-        breakpoint()
+        soup = await weather.get()
+        email = weather.to_email(soup)
+        print(email)
     import asyncio
     asyncio.run(main())

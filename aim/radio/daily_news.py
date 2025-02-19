@@ -1,5 +1,4 @@
 import asyncio
-import re
 
 from aim.news.news_scraper import BEScraper
 from aim.news.models import NewsStory
@@ -37,26 +36,17 @@ class DailyNews:
         self.stories = jsy_stories + gsy_stories
     
     async def get_weather(self) -> str:
-        weather = await self.weather_scraper.get()
+        soup = await self.weather_scraper.get()
+        weather = self.weather_scraper.to_radio(soup)
         weather = weather.strip()
         if weather[-1] != ".":
             weather += "."
         self.weather = weather
 
     def process_script(self, script: str) -> str:
+        """Process the script to make it more radio-friendly"""
+        # currently no preprocessing
         return script
-        # # remove any double spaces
-        # script = " ".join(script.split())
-        # # replace £300m with 300 million pounds
-        # for word in script.split():
-        #     if word.startswith("£"):
-        #         if word.lower().endswith(('m','mn')):
-        #             script = script.replace(word, f"{word[1:-1]} million pounds")
-        #         if word.lower().endswith(('b','bn')):
-        #             script = script.replace(word, f"{word[1:-1]} billion pounds")
-        #         if word.lower().endswith(('k', 'th')):
-        #             script = script.replace(word, f"{word[1:-1]} thousand pounds")
-        # return script
         
     def make_script(self) -> str:
         # intro
@@ -69,7 +59,7 @@ class DailyNews:
                 script += "Meanwhile in Guernsey, "
             if i == 3:
                 script += "Also in Guernsey, "
-            first_sentences = '. '.join(story.text.split(". ")[:self.NUM_SENTENCES_PER_STORY])
+            first_sentences = '. '.join(story.text.split(".")[:self.NUM_SENTENCES_PER_STORY])
             script += f"{first_sentences}.\n\n"
         # strapline
         script += "For more on all these stories, visit Bailiwick Express dot com.\n\n"
@@ -79,15 +69,16 @@ class DailyNews:
         script += "You're up to date with Bailiwick Radio News."
         return self.process_script(script)
         
-# if __name__ == "__main__":
+if __name__ == "__main__":
 
-#     from pprint import pprint
+    from pprint import pprint
 
-#     async def main():
-#         daily_news = DailyNews("AIM_christie")
-#         await daily_news.get_all_data()
-#         script = daily_news.make_script()
-#         pprint(script)
+    async def main():
+        daily_news = DailyNews("AIM_christie")
+        await daily_news.get_all_data()
+        breakpoint()
+        script = daily_news.make_script()
+        pprint(script)
 
-#     asyncio.run(main())
+    asyncio.run(main())
         

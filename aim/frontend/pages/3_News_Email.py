@@ -19,12 +19,13 @@ NEWS_SITES = ['BE', 'JEP']
 
 # init required session state
 st.session_state.email_vars = {
+    "weather": "",
     "news_stories": [],
     "business_stories": [],
     "top_image_url": "",
     "top_image_title": "",
     "top_image_author": "",
-    "vertical_adverts": []
+    "vertical_adverts": [],
 }
 
 # Load Secrets
@@ -89,9 +90,12 @@ else:
 
         # Fetch stories
         with st.spinner("Fetching Stories..."):
-            email.get_stories(num_stories, num_business_stories)
+            email.get_data(num_stories, num_business_stories)
             st.session_state.email_vars['news_stories'] = email.news_stories
             st.session_state.email_vars['business_stories'] = email.business_stories
+            st.session_state.email_vars['weather'] = email.weather
+            
+        breakpoint()
 
         # display news_stories df
         news_stories_df = st.data_editor(
