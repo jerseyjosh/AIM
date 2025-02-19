@@ -25,7 +25,6 @@ class BaseScraper(ABC):
     def __init__(self, requests_per_period: int = 100, period_seconds: int = 1): # default 100 requests per second
         self.requests_per_period = requests_per_period
         self.period_seconds = period_seconds
-        #self.session = CachedSession(cache=SQLiteBackend(cache_name='.cache/aiohttp_cache.sqlite')) # cache does not work, some memory leaks
         self.session = aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=None))
         self.limiter = aiolimiter.AsyncLimiter(self.requests_per_period, self.period_seconds) if self.requests_per_period and self.period_seconds else nullcontext()
 
@@ -73,20 +72,34 @@ class BEScraper(BaseScraper):
     Bailiwick Express News Scraper
     """
 
-    REGIONS = ["jsy", "gsy"]
-    JSY_URL = "https://www.bailiwickexpress.com/"
-    GSY_URL = "https://www.bailiwickexpress.com/bailiwickexpress-guernsey-edition/"
+    URLS = {
+        "jsy": "https://www.bailiwickexpress.com/",
+        "gsy": "https://www.bailiwickexpress.com/bailiwickexpress-guernsey-edition/",
+        "jsy_business": "https://www.bailiwickexpress.com/jsy-business/",
+        "gsy_business": "https://www.bailiwickexpress.com/gsy-business/"
+    }
 
     def __init__(self):
         super().__init__()
 
+    def get_news_pattern(self, region: str):
+        """
+        Get the regex pattern for news urls for the given region.
+        """
+        region = region.lower()
+        if region == "jsy":
+            return r'/news/.+'
+        elif region == "gsy":
+            return r'/news-ge/.+'
+        elif region == "jsy_business":
+            return r'/business/.+'
+        elif region == "gsy_business":
+            return r'/business-ge/.+'
+
     async def get_home_page_soup(self, region: str):
-        assert region.lower() in ['jsy', 'gsy'], "Region must be one of jsy, gsy"
-        if region.lower() == 'jsy':
-            url = self.JSY_URL
-        elif region.lower() == 'gsy':
-            url = self.GSY_URL
-        return self.soupify(await self.fetch(url))
+        """Get the home page soup for the given region"""
+        assert region.lower() in self.URLS, f"Invalid region {region}"
+        return self.soupify(await self.fetch(self.URLS[region]))
     
     async def get_podcast_stories(self, n_stories_per_region: int) -> tuple[list[NewsStory], list[NewsStory]]:
         """Get first n stories for each region for daily news podcast"""
@@ -98,6 +111,7 @@ class BEScraper(BaseScraper):
         # parse for story urls
         jsy_links = self.get_story_urls_from_page(jsy_soup, 'jsy')[:n_stories_per_region]
         gsy_links = self.get_story_urls_from_page(gsy_soup, 'gsy')[:n_stories_per_region]
+        # fetch and parse stories concurrently
         jsy_stories, gsy_stories = await asyncio.gather(
             self.fetch_and_parse_stories(jsy_links),
             self.fetch_and_parse_stories(gsy_links)
@@ -111,19 +125,13 @@ class BEScraper(BaseScraper):
         links = soup.find_all('a')
         news_urls = []
         seen = set() # keep track of seen to maintain order without duplicates
-        pattern = r'/news/.+' if region == 'jsy' else r'/news-ge/.+'
+        pattern = self.get_news_pattern(region)
         for link in links:
             href = link.get('href')
             if href and re.search(pattern, href) and href not in seen:
                 news_urls.append(href)
                 seen.add(href)
         return news_urls
-    
-    async def fetch_and_soupify_story(self, url: str) -> BeautifulSoup:
-        """
-        Fetch and soupify a news story from the given url.
-        """
-        return self.soupify(await self.fetch(url))
     
     async def fetch_and_parse_stories(self, links: list[str]) -> list[BeautifulSoup]:
         """
@@ -169,16 +177,20 @@ class BEScraper(BaseScraper):
             url=url,
             image_url=image_url
         )
-
-if __name__ == "__main__":
-   
-    logging.basicConfig(level=logging.DEBUG)
-    import json
-
-    async def main():
-        scraper = BEScraper()
-        stories = await scraper.get_n_stories_for_region('jsy', 5)
-        breakpoint()
     
-    asyncio.run(main())
+class JEPScraper(BaseScraper):
+    def __init__(self):
+        super().__init__()
+
+# if __name__ == "__main__":
+   
+#     logging.basicConfig(level=logging.DEBUG)
+#     import json
+
+#     async def main():
+#         scraper = BEScraper()
+#         stories = await scraper.get_n_stories_for_region('jsy_business', 3)
+#         breakpoint()
+    
+#     asyncio.run(main())
 

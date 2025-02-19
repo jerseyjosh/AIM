@@ -1,38 +1,67 @@
 from typing import Union, Optional
 import os
+import asyncio
 
 import jinja2
+
+from aim.news.news_scraper import BEScraper, JEPScraper
 
 __all__ = ['Email']
 
 TEMPLATES_DIR = os.path.join(os.path.dirname(__file__), 'templates')
-
-def first_sentence(text):
-    # Split on period and return the first sentence with a period added back
-    parts = text.split('.')
-    if parts:
-        return parts[0] + '.'
-    return ''
 
 class TopImage:
     def __init__(self, image_url: str, image_author: str):
         self.image_url = image_url
         self.image_author = image_author
 
+class Advert:
+    def __init__(self, url: str, image_url: str):
+        self.url = url
+        self.image_url = image_url
+
 class Email:
     def __init__(self, template_name: str = 'be_template.html'):
         self.template_name = template_name
         self.template_loader = jinja2.FileSystemLoader(TEMPLATES_DIR)
         self.template_env = jinja2.Environment(loader=self.template_loader)
-        self.template_env.filters['first_sentence'] = first_sentence
+        self.template_env.filters['first_sentence'] = self.first_sentence
         self.template = self.template_env.get_template(self.template_name)
 
+    def get_stories(self, n_news: int, n_business: int, site: str = 'be'):
+        """Async wrapper for getting news and business stories from the given site"""
+        assert site in ['be', 'jep'], "Site must be either 'be' or 'jep'"
+        async def func():
+            scraper = BEScraper() if site == 'be' else JEPScraper()
+            # get normal stories
+            news_stories, business_stories = await asyncio.gather(
+                scraper.get_n_stories_for_region('jsy', n_news),
+                scraper.get_n_stories_for_region('jsy_business', n_business)
+            )
+            await scraper.close()
+            return news_stories, business_stories
+        news_stories, business_stories = asyncio.run(func())
+        self.news_stories = news_stories
+        self.business_stories = business_stories
+
     def render(self, save_path: Optional[str] = None, **kwargs) -> str:
+        """Render the email template with the given context variables"""
         res = self.template.render(**kwargs)
         if save_path:
             with open(save_path, "w") as f:
                 f.write(res)
+        return res
+    
+    @staticmethod
+    def first_sentence(x: str):
+        """Helper jinja filter for getting first sentence of NewsStory.text"""
+        splits = x.split('.')
+        first = splits[0]
+        if first:
+            return first if first[-1] == '.' else first + '.'
+        else:
+            return ''
+
 
 if __name__ == "__main__":
     email = Email()
-    breakpoint()
