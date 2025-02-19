@@ -29,7 +29,7 @@ class Email:
         self.template_env.filters['first_sentence'] = self.first_sentence
         self.template = self.template_env.get_template(self.template_name)
 
-    def get_data(self, n_news: int, n_business: int, site: str = 'be'):
+    def get_data(self, n_news: int, n_business: int, n_sports: int, site: str = 'be'):
         """Async wrapper for getting news and business stories from the given site"""
         assert site in ['be', 'jep'], "Site must be either 'be' or 'jep'"
         async def func():
@@ -39,6 +39,7 @@ class Email:
             news_stories, business_stories, weather_soup = await asyncio.gather(
                 news_scraper.get_n_stories_for_region('jsy', n_news),
                 news_scraper.get_n_stories_for_region('jsy_business', n_business),
+                news_scraper.get_n_stories_for_region('jsy_sports', n_sports),
                 weather_scraper.get()
             )
             # close the news scraper

@@ -22,6 +22,7 @@ st.session_state.email_vars = {
     "weather": "",
     "news_stories": [],
     "business_stories": [],
+    "sport_stories": [],
     "top_image_url": "",
     "top_image_title": "",
     "top_image_author": "",
@@ -118,6 +119,19 @@ else:
         st.session_state.email_vars['business_stories'] = (
             [NewsStory(**item) for item in business_stories_df.to_dict('records')]
             if len(business_stories_df) > 0
+            else []
+        )
+
+        # display sports stories df
+        sports_stories_df = st.data_editor(
+            pd.DataFrame(st.session_state.email_vars.get('sport_stories', [])),
+            key='sport_data_editor',
+            num_rows='dynamic',
+            use_container_width=True
+        )
+        st.session_state.email_vars['sport_stories'] = (
+            [NewsStory(**item) for item in sports_stories_df.to_dict('records')]
+            if len(sports_stories_df) > 0
             else []
         )
 

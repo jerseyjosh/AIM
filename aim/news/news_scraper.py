@@ -1,19 +1,20 @@
 from abc import ABC, abstractmethod
-from typing import Union, Optional
+from typing import Union
 
-import os
 import logging
 import asyncio
 import re
-from tenacity import retry, wait_random_exponential, stop_never, stop_after_attempt
+from tenacity import retry, wait_random_exponential, stop_never
 from contextlib import nullcontext
 
 import aiohttp
-from urllib.parse import urljoin
 import aiolimiter
 from bs4 import BeautifulSoup
 from tqdm.asyncio import tqdm_asyncio
-from tqdm import tqdm
+from selenium_driverless import webdriver
+from selenium_driverless.types.by import By
+
+from urllib.parse import urljoin
 
 from aim.news.models import NewsStory
 
@@ -76,7 +77,10 @@ class BEScraper(BaseScraper):
         "jsy": "https://www.bailiwickexpress.com/",
         "gsy": "https://www.bailiwickexpress.com/bailiwickexpress-guernsey-edition/",
         "jsy_business": "https://www.bailiwickexpress.com/jsy-business/",
-        "gsy_business": "https://www.bailiwickexpress.com/gsy-business/"
+        "gsy_business": "https://www.bailiwickexpress.com/gsy-business/",
+        "jsy_sport": "https://www.bailiwickexpress.com/jsy-sport/",
+        "gsy_sport": "https://www.bailiwickexpress.com/gsy-sport/",
+        "jsy_connect": "https://www.bailiwickexpress.com/jsy-connect/"
     }
 
     def __init__(self):
@@ -95,6 +99,12 @@ class BEScraper(BaseScraper):
             return r'/business/.+'
         elif region == "gsy_business":
             return r'/business-ge/.+'
+        elif region == "jsy_sport":
+            return r'/sport/.+'
+        elif region == "gsy_sport":
+            return r'/sport-ge/.+'
+        else:
+            raise ValueError(f"Invalid region {region}")
 
     async def get_home_page_soup(self, region: str):
         """Get the home page soup for the given region"""
@@ -152,6 +162,24 @@ class BEScraper(BaseScraper):
         links = self.get_story_urls_from_page(soup, region)[:n]
         stories = await self.fetch_and_parse_stories(links)
         return stories
+    
+    async def get_connect_cover(self) -> NewsStory:
+        """Get connect cover image link, have to use hacky chromedriver solution for iframe rendering."""
+        options = webdriver.ChromeOptions()
+        options.add_argument('--headless')
+        async with webdriver.Chrome(options=options) as driver:
+            await driver.get(self.URLS['jsy_connect'], wait_load=True)
+            await driver.sleep(1)
+            iframe = await driver.find_element(By.CSS_SELECTOR, 'iframe')
+            await driver.switch_to.frame(iframe)
+            await driver.find_element(By.CLASS_NAME, 'side-image')
+            html = await driver.page_source
+            current_page_url = await driver.current_url
+        # soupify
+        soup = self.soupify(html)
+        # get img src
+        relative_path = soup.find('div', class_='side-image').img.get('src')
+        return urljoin(current_page_url, relative_path)
         
     def parse_story(self, url, soup: BeautifulSoup) -> NewsStory:
         """
@@ -168,7 +196,12 @@ class BEScraper(BaseScraper):
         # get author
         author = soup.find('a', class_=['url', 'fn', 'a']).text
         # get image url
-        image_url = soup.find('figure', class_='post-thumbnail').find('img').get('src')
+        try:
+            image_url = soup.find('figure', class_='post-thumbnail').find('img').get('src')
+            image_url = image_url.split('?')[0] # remove query string
+        except Exception as e:
+            logger.debug(f"Failed to get image url for {url}")
+            image_url = None
         return NewsStory(
             headline=headline,
             text=text,
@@ -182,15 +215,15 @@ class JEPScraper(BaseScraper):
     def __init__(self):
         super().__init__()
 
-# if __name__ == "__main__":
+if __name__ == "__main__":
    
-#     logging.basicConfig(level=logging.DEBUG)
-#     import json
+    logging.basicConfig(level=logging.DEBUG)
+    logging.getLogger('websockets').setLevel(logging.ERROR)
 
-#     async def main():
-#         scraper = BEScraper()
-#         stories = await scraper.get_n_stories_for_region('jsy_business', 3)
-#         breakpoint()
+    async def main():
+        scraper = BEScraper()
+        cover_url = await scraper.get_connect_cover()
+        breakpoint()
     
-#     asyncio.run(main())
+    asyncio.run(main())
 
