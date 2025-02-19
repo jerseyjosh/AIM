@@ -94,8 +94,6 @@ else:
             st.session_state.email_vars['news_stories'] = email.news_stories
             st.session_state.email_vars['business_stories'] = email.business_stories
             st.session_state.email_vars['weather'] = email.weather
-            
-        breakpoint()
 
         # display news_stories df
         news_stories_df = st.data_editor(
