@@ -126,3 +126,7 @@ else:
         # Display the rendered HTML in the Streamlit app.
         # Adjust the height as needed.
         html(rendered_html, height=800, scrolling=True)
+
+        # save
+        if st.download_button("Save Email", rendered_html, f"email.html", "Save"):
+            st.success("Email saved successfully")

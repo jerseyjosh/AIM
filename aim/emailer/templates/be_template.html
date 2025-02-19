@@ -305,30 +305,75 @@ table{mso-table-lspace:0pt;mso-table-rspace:0pt;mso-line-height-rule:exactly}.si
       </div>
     </div>
     <div>
-      <div style="background-color: #27313c;background: 49% 32%/cover no-repeat url({{ top_image_url }}) #27313c;background-position: 49% 32%;background-image: url({{ top_image_url }});background-repeat: no-repeat;background-size: cover;">
+      <div style="
+        background-color: #27313c; /* Fallback color */
+        background-image: linear-gradient(
+          to bottom,
+          /* Fully transparent (showing the image) */
+          rgba(39,49,60,0) 0%,
+          rgba(39,49,60,0) 60%,
+
+          /* Gradually fade to opaque color */
+          rgba(39,49,60,1) 90%,
+
+          /* Fully opaque color until end (the image is hidden) */
+          rgba(39,49,60,1) 100%
+        ),
+        url({{ top_image_url }});
+        background-position: 49% 32%;
+        background-repeat: no-repeat;
+        background-size: cover;
+      ">
         <div class="layout one-col stack" style="Margin: 0 auto;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
           <div class="layout__inner" style="border-collapse: collapse;display: table;width: 100%;">
-          <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" role="presentation"><tr class="layout-full-width" style="background: 49% 32%/cover no-repeat url(https://i1.createsend1.com/ei/d/D1/8C6/E5E/221251/csfinal/jsyemailheader10.02.25.jpg) #27313c;background-position: 49% 32%;background-image: url(https://i1.createsend1.com/ei/d/D1/8C6/E5E/221251/csfinal/jsyemailheader10.02.25.jpg);background-repeat: no-repeat;background-size: cover;background-color: #27313c;"><td class="layout__edges">&nbsp;</td><td style="width: 600px" class="w560"><![endif]-->
-            <div class="column" style="text-align: left;color: #808285;font-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;">
-            
-              <div style="font-size: 12px;font-style: normal;font-weight: normal;line-height: 19px;" align="center">
-                <img class="gnd-corner-image gnd-corner-image-center gnd-corner-image-top" style="border: 0;display: block;height: auto;width: 100%;max-width: 728px;" alt="JERSEY EDITION" width="600" src="https://i1.createsend1.com/ei/d/D1/8C6/E5E/221251/csfinal/Arrow1-9900000000079e3c.png">
-              </div>
+            <!--[if mso]>
+              <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
+                <tr class="layout-full-width" 
+                  style="background: 49% 32%/cover no-repeat url(https://i1.createsend1.com/ei/d/D1/8C6/E5E/221251/csfinal/jsyemailheader10.02.25.jpg) #27313c;
+                        background-position: 49% 32%;
+                        background-image: url(https://i1.createsend1.com/ei/d/D1/8C6/E5E/221251/csfinal/jsyemailheader10.02.25.jpg);
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        background-color: #27313c;">
+                  <td class="layout__edges">&nbsp;</td>
+                  <td style="width: 600px" class="w560">
+                  <![endif]-->
+                  <div class="column" style="text-align: left;color: #808285;font-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;">
+                    
+                    <div style="font-size: 12px;font-style: normal;font-weight: normal;line-height: 19px;" align="center">
+                      <img class="gnd-corner-image gnd-corner-image-center gnd-corner-image-top"
+                          style="border: 0;display: block;height: auto;width: 100%;max-width: 728px;"
+                          alt="JERSEY EDITION" width="600"
+                          src="https://i1.createsend1.com/ei/d/D1/8C6/E5E/221251/csfinal/Arrow1-9900000000079e3c.png">
+                    </div>
       
-              <div style="Margin-left: 20px;Margin-right: 20px;Margin-top: 20px;">
-                <div style="mso-line-height-rule: exactly;line-height: 879px;font-size: 1px;">&nbsp;</div>
-              </div>
-            
-              <div style="Margin-left: 20px;Margin-right: 20px;Margin-bottom: 24px;">
-                <div style="mso-line-height-rule: exactly;mso-text-raise: 11px;vertical-align: middle;">
-                  <p style="Margin-top: 0;Margin-bottom: 0;text-align: right;"><strong><span style="text-decoration: inherit;color: #ffffff;">{{ top_image_title }} <em>({{ top_image_author }})</em>&nbsp;</span></strong><a style="text-decoration: underline;transition: opacity 0.1s ease-in;color: #27313c;" data-emb-iscopy="true" href="https://allislandmedia.createsend1.com/t/d-l-striitd-djllokktk-y/"><span style="text-decoration: inherit;color: #ffffff;">CLICK HERE&nbsp;</span></a><a style="text-decoration: underline;transition: opacity 0.1s ease-in;color: #27313c;" data-emb-iscopy="true" href="mailto:pictures@bailiwickexpress.com"><span style="text-decoration: inherit;color: #ffffff;">to send us your pictures</span></a></p>
-                </div>
-              </div>
-            </div>
-          <!--[if mso]></td><td class="layout__edges">&nbsp;</td></tr></table><![endif]-->
+                    <div style="Margin-left: 20px;Margin-right: 20px;Margin-top: 20px;">
+                      <div style="mso-line-height-rule: exactly;line-height: 879px;font-size: 1px;">
+                        &nbsp;
+                      </div>
+                    </div>
+                  
+                    <div style="Margin-left: 20px;Margin-right: 20px;Margin-bottom: 24px;">
+                      <div style="mso-line-height-rule: exactly;mso-text-raise: 11px;vertical-align: middle;">
+                        <p style="Margin-top: 0;Margin-bottom: 0;text-align: right;">
+                          <strong><span style="text-decoration: inherit;color: #ffffff;">
+                            {{ top_image_title }} <em>({{ top_image_author }})</em>&nbsp;
+                          </span></strong>
+                          <a style="text-decoration: underline;transition: opacity 0.1s ease-in;color: #27313c;" data-emb-iscopy="true" href="https://allislandmedia.createsend1.com/t/d-l-striitd-djllokktk-y/">
+                            <span style="text-decoration: inherit;color: #ffffff;">CLICK HERE&nbsp;</span>
+                          </a>
+                          <a style="text-decoration: underline;transition: opacity 0.1s ease-in;color: #27313c;" data-emb-iscopy="true" href="mailto:pictures@bailiwickexpress.com">
+                            <span style="text-decoration: inherit;color: #ffffff;">to send us your pictures</span>
+                          </a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <!--[if mso]></td><td class="layout__edges">&nbsp;</td></tr></table><![endif]-->
           </div>
         </div>
-      </div>
+    </div>
+    
 
       <div class="layout one-col fixed-width stack" style="Margin: 0 auto;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
         <div class="layout__inner" style="border-collapse: collapse;display: table;width: 100%;background-color: #ffffff;">
