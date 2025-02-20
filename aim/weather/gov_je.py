@@ -22,8 +22,8 @@ class GovJeWeather:
         Get the weather report from the gov.je website.
         """
         async with webdriver.Chrome(options=self.options) as driver:
-            await driver.get(self.BASE_URL, wait_load=True)
-            await driver.sleep(0.5)
+            await driver.get(self.BASE_URL)
+            await driver.sleep(2)
             html = await driver.page_source
         return BeautifulSoup(html, 'html.parser')
     
