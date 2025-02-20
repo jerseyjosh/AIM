@@ -5,6 +5,7 @@ from datetime import datetime
 from bs4 import BeautifulSoup
 from bs4.element import Tag
 from selenium_driverless import webdriver
+from selenium_driverless.types.by import By
 from tenacity import retry
 
 logger = logging.getLogger(__name__)
@@ -17,15 +18,22 @@ class GovJeWeather:
         self.options = webdriver.ChromeOptions()
         self.options.add_argument('--headless')
 
+
     async def get(self) -> BeautifulSoup:
         """
         Get the weather report from the gov.je website.
         """
         async with webdriver.Chrome(options=self.options) as driver:
-            await driver.get(self.BASE_URL)
-            await driver.sleep(2)
+            # Navigate to the page, wait for initial load
+            await driver.get(self.BASE_URL, wait_load=True)
+
+            # wait for specific elements to load
+            await driver.find_element(By.CSS_SELECTOR, "table.tide-mobile", timeout=10)
+            await driver.find_element(By.CSS_SELECTOR, ".weathergrid", timeout=10)
+            await driver.find_element(By.CSS_SELECTOR, "span.boldWeather", timeout=10)
             html = await driver.page_source
-        return BeautifulSoup(html, 'html.parser')
+
+        return BeautifulSoup(html, "html.parser")
     
     def to_radio(self, soup: BeautifulSoup) -> str:
         """Parse weather to"""
