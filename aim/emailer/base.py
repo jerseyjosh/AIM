@@ -6,6 +6,7 @@ import jinja2
 
 from aim.news.news_scraper import BEScraper, JEPScraper
 from aim.weather.gov_je import GovJeWeather
+from aim.family_notices import FamilyNotices
 
 
 TEMPLATES_DIR = os.path.join(os.path.dirname(__file__), "templates")
@@ -37,17 +38,20 @@ class Email:
         async def func():
             news_scraper = BEScraper() if site == "be" else JEPScraper()
             weather_scraper = GovJeWeather()
+            family_notices_scraper = FamilyNotices()
             # get data
             (
                 news_stories,
                 business_stories,
                 sport_stories,
                 weather_soup,
+                family_notices
             ) = await asyncio.gather(
                 news_scraper.get_n_stories_for_region("jsy", n_news),
                 news_scraper.get_n_stories_for_region("jsy_business", n_business),
                 news_scraper.get_n_stories_for_region("jsy_sport", n_sports),
                 weather_scraper.get(),
+                family_notices_scraper.get_notices()
             )
             # close the news scraper
             await news_scraper.close()

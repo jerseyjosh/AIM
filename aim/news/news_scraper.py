@@ -217,8 +217,91 @@ class BEScraper(BaseScraper):
         )
     
 class JEPScraper(BaseScraper):
+    """
+    Jersey Evening Post News Scraper
+    """
+
+    URLS = {
+        "jsy": "https://jerseyeveningpost.com/category/news/",
+        "jsy_sport": "https://jerseyeveningpost.com/category/sport/",
+        "jsy_business": "https://jerseyeveningpost.com/category/business/",
+    }
+
     def __init__(self):
         super().__init__()
+
+    def get_news_pattern(self, region: str):
+        """
+        Get the regex pattern for news urls for the given region.
+        """
+        region = region.lower()
+        if region == "jsy":
+            return r'/news/.+'
+        elif region == "jsy_business":
+            return r'/business/.+'
+        elif region == "jsy_sport":
+            return r'/sport/.+'
+        else:
+            raise ValueError(f"Invalid region {region}")
+
+    async def get_home_page_soup(self, region: str):
+        """Get the home page soup for the given region"""
+        assert region.lower() in self.URLS, f"Invalid region {region}"
+        return self.soupify(await self.fetch(self.URLS[region]))
+    
+    def get_story_urls_from_page(self, soup: BeautifulSoup, region: str) -> list[str]:
+        """
+        Extract the links to all news stories from the current page display.
+        """
+        titles = soup.find_all('h2', class_='entry-title')
+        news_urls = []
+        for title in titles:
+            link = title.find('a').get('href')
+            if link:
+                news_urls.append(link)
+        return news_urls
+    
+    async def fetch_and_parse_stories(self, links: list[str]) -> list[BeautifulSoup]:
+        """
+        Fetch and soupify all news stories from the given list of links.
+        """
+        responses = await self.fetch_all(links)
+        stories = []
+        for link,response in zip(links, responses):
+            if response:
+                soup = self.soupify(response)
+                story = self.parse_story(link, soup)
+                stories.append(story)
+        return stories
+    
+    def parse_story(self, url: str, soup: BeautifulSoup) -> NewsStory:
+        """
+        Parse a news story from the given url.
+        """
+        # get headline
+        headline = soup.find('h1', class_='entry-title').text.strip()
+        # get article text
+        entry_content = soup.find('div', class_='entry-content')
+        p_tags = entry_content.find_all('p')
+        text = '\n'.join([p.text.strip() for p in p_tags])
+        # get date
+        date = soup.find('time').text
+        # get author
+        author = soup.find('span', class_='author').text
+        # get image url
+        try:
+            image_url = soup.find('figure', class_='wp-block-image').find('img').get('src')
+        except Exception as e:
+            logger.debug(f"Failed to get image url for {url}")
+            image_url = None
+        return NewsStory(
+            headline=headline,
+            text=text,
+            date=date,
+            author=author,
+            url=url,
+            image_url=image_url
+        )
 
 if __name__ == "__main__":
    
@@ -226,9 +309,10 @@ if __name__ == "__main__":
     logging.getLogger('websockets').setLevel(logging.ERROR)
 
     async def main():
-        scraper = BEScraper()
-        cover_url = await scraper.get_connect_cover()
-        breakpoint()
+        scraper = JEPScraper()
+        soup = await scraper.get_home_page_soup('jsy_sport')
+        links = scraper.get_story_urls_from_page(soup, 'jsy_sport')
+        soup = await scraper.fetch(links[0])
     
     asyncio.run(main())
 
