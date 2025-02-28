@@ -6,7 +6,9 @@ from bs4 import BeautifulSoup
 from bs4.element import Tag
 from selenium_driverless import webdriver
 from selenium_driverless.types.by import By
-from tenacity import retry
+from tenacity import retry, before_sleep_log, stop_never, wait_random_exponential
+
+from aim import HEADERS
 
 logger = logging.getLogger(__name__)
 
@@ -18,19 +20,19 @@ class GovJeWeather:
         self.options = webdriver.ChromeOptions()
         self.options.add_argument('--headless')
 
-
-    async def get(self) -> BeautifulSoup:
+    @retry(stop=stop_never, wait=wait_random_exponential(multiplier=0.5, max=5), before_sleep=before_sleep_log(logger, logging.DEBUG))
+    async def get(self, timeout=5) -> BeautifulSoup:
         """
         Get the weather report from the gov.je website.
         """
+        logger.debug("Getting weather report from gov.je")
         async with webdriver.Chrome(options=self.options) as driver:
             # Navigate to the page, wait for initial load
             await driver.get(self.BASE_URL, wait_load=True)
-
             # wait for specific elements to load
-            await driver.find_element(By.CSS_SELECTOR, "table.tide-mobile", timeout=10)
-            await driver.find_element(By.CSS_SELECTOR, ".weathergrid", timeout=10)
-            await driver.find_element(By.CSS_SELECTOR, "span.boldWeather", timeout=10)
+            await driver.find_element(By.CSS_SELECTOR, "table.tide-mobile", timeout=timeout)
+            await driver.find_element(By.CSS_SELECTOR, ".weathergrid", timeout=timeout)
+            await driver.find_element(By.CSS_SELECTOR, "span.boldWeather", timeout=timeout)
             html = await driver.page_source
 
         return BeautifulSoup(html, "html.parser")
@@ -120,6 +122,10 @@ class GovJeWeather:
         return self.replace_force(output)
     
 if __name__=="__main__":
+
+    logging.basicConfig(level=logging.DEBUG)
+    logging.getLogger('websockets').setLevel(logging.ERROR)
+
     async def main():
         weather = GovJeWeather()
         soup = await weather.get()

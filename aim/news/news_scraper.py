@@ -4,7 +4,7 @@ from typing import Union
 import logging
 import asyncio
 import re
-from tenacity import retry, wait_random_exponential, stop_never
+from tenacity import retry, wait_random_exponential, stop_never, before_sleep_log
 from contextlib import nullcontext
 
 import aiohttp
@@ -17,6 +17,7 @@ from selenium_driverless.types.by import By
 from urllib.parse import urljoin
 
 from aim.news.models import NewsStory
+from aim import HEADERS
 
 logger = logging.getLogger(__name__)
 
@@ -36,13 +37,17 @@ class BaseScraper(ABC):
         """
         return BeautifulSoup(html, "html.parser")
 
-    @retry(stop=stop_never, wait=wait_random_exponential(multiplier=1, min=1, max=64))
+    @retry(
+            stop=stop_never, 
+            wait=wait_random_exponential(multiplier=0.5, max=5),
+            before_sleep=before_sleep_log(logger, logging.DEBUG)
+    )
     async def fetch(self, url) -> BeautifulSoup:
         """
         Scrape a url and return the BeautifulSoup object.
         """
         async with self.limiter:
-            async with self.session.get(url) as response:
+            async with self.session.get(url, headers=HEADERS) as response:
                 response.raise_for_status()
                 html = await response.text()
                 return html
