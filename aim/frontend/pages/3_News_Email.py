@@ -5,40 +5,51 @@ import streamlit as st
 import pandas as pd
 from streamlit.components.v1 import html
 
-from aim.emailer.base import Email, Advert
+from aim.emailer.base import Email, Advert, TopImage
 from aim.news.models import NewsStory
 
 logger = logging.getLogger(__name__)
 
 TITLE = "News Email"
 NEWS_SITES = ["BE", "JEP"]
+EMAIL = Email(template_name="be_template.html")
+
+# ---------------------------
+# Helper functions
+# ---------------------------
+
+def update_email_vars():
+    # iterate keys required to update
+    for key in EMAIL.data.keys():
+        # if we have local version of data, update email
+        if key in st.session_state:
+            internal = st.session_state[key]
+            if isinstance(internal, pd.DataFrame):
+                # convert to list of dictionaries
+                internal = internal.to_dict(orient="records")
+            EMAIL.update_data(key, internal)
+
+def render_data_editor(key):
+    # reorder such that order is first
+    columns = list(NewsStory.__annotations__.keys())
+    if 'order' in columns:
+        columns.remove('order')
+        columns = ['order'] + columns
+    return st.data_editor(
+        pd.DataFrame(EMAIL.data[key])[columns],
+        key=key,
+        num_rows="dynamic",
+        use_container_width=True,
+        on_change=update_email_vars,
+    )
+
 
 # ---------------------------
 # Initialize Session State
 # ---------------------------
-if "email_vars" not in st.session_state:
-    st.session_state["email_vars"] = {
-        "weather": "",
-        "news_stories": [],
-        "business_stories": [],
-        "sport_stories": [],
-        "top_image_url": "",
-        "top_image_title": "",
-        "top_image_author": "",
-        "vertical_adverts": [],
-    }
 
 if "logged_in" not in st.session_state:
     st.session_state["logged_in"] = False
-
-# We also store the DataFrames separately in session_state,
-# so that user edits remain across reruns (unless we explicitly overwrite them).
-if "news_df" not in st.session_state:
-    st.session_state["news_df"] = pd.DataFrame()
-if "business_df" not in st.session_state:
-    st.session_state["business_df"] = pd.DataFrame()
-if "sports_df" not in st.session_state:
-    st.session_state["sports_df"] = pd.DataFrame()
 
 # ---------------------------
 # Load Secrets
@@ -85,59 +96,30 @@ num_stories = st.number_input("Number of News Stories", min_value=1, max_value=2
 num_business_stories = st.number_input("Number of Business Stories", min_value=1, max_value=20, value=1, step=1)
 num_sports_stories = st.number_input("Number of Sports Stories", min_value=1, max_value=20, value=1, step=1)
 
-st.session_state["email_vars"]["top_image_url"] = st.text_input("Top Image URL")
-st.session_state["email_vars"]["top_image_title"] = st.text_input("Top Image Title")
-st.session_state["email_vars"]["top_image_author"] = st.text_input("Top Image Author")
+# Top image parameters
+st.text_input("Top Image URL", key="top_image_url", on_change=update_email_vars)
+st.text_input("Top Image TItle", key="top_image_title", on_change=update_email_vars)
+st.text_input("Top Image Author", key="top_image_author", on_change=update_email_vars)
 
-# Vertical Adverts
-st.header("Vertical Adverts")
-vertical_adverts_df = (
-    pd.DataFrame.from_records(
-        [advert.__dict__ for advert in st.session_state["email_vars"]["vertical_adverts"]]
-    )
-    if st.session_state["email_vars"]["vertical_adverts"]
-    else pd.DataFrame(columns=["url", "image_url"])
-)
-edited_adverts_df = st.data_editor(
-    vertical_adverts_df,
-    key="vertical_banners_editor",
+# Vertical Advert parameters
+st.title("Vertical Adverts")
+st.data_editor(
+    pd.DataFrame(EMAIL.data["vertical_adverts"], columns=Advert.__annotations__.keys()),
+    key="vertical_adverts",
     num_rows="dynamic",
     use_container_width=True,
+    on_change=update_email_vars,
 )
-
-# Update adverts in session state
-st.session_state["email_vars"]["vertical_adverts"] = [
-    Advert(**row) for row in edited_adverts_df.to_dict("records")
-]
 
 # ---------------------------
 # Fetch Stories Button
 # ---------------------------
 if st.button("Fetch Stories"):
-    email = Email(template_name="be_template.html")
 
     with st.spinner("Fetching Stories..."):
-        email.get_data(num_stories, num_business_stories, num_sports_stories)
-        st.session_state["email_vars"]["news_stories"] = email.news_stories
-        st.session_state["email_vars"]["business_stories"] = email.business_stories
-        st.session_state["email_vars"]["sport_stories"] = email.sport_stories
-        st.session_state["email_vars"]["weather"] = email.weather
 
-        # Build the DataFrames for editing
-        news_df = pd.DataFrame(email.news_stories)
-        if not news_df.empty and "order" not in news_df.columns:
-            news_df.insert(0, "order", range(1, len(news_df) + 1))
-        st.session_state["news_df"] = news_df
-
-        business_df = pd.DataFrame(email.business_stories)
-        if not business_df.empty and "order" not in business_df.columns:
-            business_df.insert(0, "order", range(1, len(business_df) + 1))
-        st.session_state["business_df"] = business_df
-
-        sports_df = pd.DataFrame(email.sport_stories)
-        if not sports_df.empty and "order" not in sports_df.columns:
-            sports_df.insert(0, "order", range(1, len(sports_df) + 1))
-        st.session_state["sports_df"] = sports_df
+        # Get all data
+        EMAIL.get_data(num_stories, num_business_stories, num_sports_stories)
 
     st.success("Stories fetched successfully!")
 
@@ -154,55 +136,15 @@ st.info(
 # ---------------------------
 # Data Editing
 # ---------------------------
-# NEWS
-news_df = st.session_state["news_df"]
-news_df = st.data_editor(
-    news_df,
-    key="news_data_editor",
-    num_rows="dynamic",
-    use_container_width=True,
-)
-# Save changes back
-st.session_state["news_df"] = news_df
 
-# BUSINESS
-business_df = st.session_state["business_df"]
-business_df = st.data_editor(
-    business_df,
-    key="business_data_editor",
-    num_rows="dynamic",
-    use_container_width=True,
-)
-st.session_state["business_df"] = business_df
-
-# SPORTS
-sports_df = st.session_state["sports_df"]
-sports_df = st.data_editor(
-    sports_df,
-    key="sports_data_editor",
-    num_rows="dynamic",
-    use_container_width=True,
-)
-st.session_state["sports_df"] = sports_df
+render_data_editor("news_stories")
+render_data_editor("business_stories")
+render_data_editor("sport_stories")
 
 # ---------------------------
 # Render Email
 # ---------------------------
 if st.button("Render Email"):
-    # Convert DFs back to lists of NewsStory objects, sorted by 'order'
-    def to_stories(df: pd.DataFrame) -> list[NewsStory]:
-        if df.empty:
-            return []
-        df_sorted = df.sort_values("order")
-        # Keep only the fields that map to NewsStory
-        columns = list(NewsStory.__annotations__.keys())
-        # Drop any columns not in NewsStory (like 'order')
-        df_cleaned = df_sorted[columns].copy()
-        return [NewsStory(**row) for _, row in df_cleaned.iterrows()]
-
-    st.session_state["email_vars"]["news_stories"] = to_stories(st.session_state["news_df"])
-    st.session_state["email_vars"]["business_stories"] = to_stories(st.session_state["business_df"])
-    st.session_state["email_vars"]["sport_stories"] = to_stories(st.session_state["sports_df"])
 
     # Reuse the same Email object to render
     email = Email(template_name="be_template.html")
