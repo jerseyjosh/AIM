@@ -18,7 +18,7 @@ class GovJeWeather:
 
     def __init__(self):
         self.options = webdriver.ChromeOptions()
-        self.options.add_argument('--headless')
+        self.options.add_argument('--headless=new')
 
     @retry(stop=stop_never, wait=wait_random_exponential(multiplier=0.5, max=5), before_sleep=before_sleep_log(logger, logging.DEBUG))
     async def get(self, timeout=5) -> BeautifulSoup:

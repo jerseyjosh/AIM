@@ -24,6 +24,9 @@ logger = logging.getLogger(__name__)
 
 class BaseScraper(ABC):
 
+    # placeholder for urls for each region, will be overwritten by subclass
+    URLS = {}
+
     def __init__(self, requests_per_period: int = 100, period_seconds: int = 1): # default 100 requests per second
         self.requests_per_period = requests_per_period
         self.period_seconds = period_seconds
@@ -36,6 +39,12 @@ class BaseScraper(ABC):
         Create a BeautifulSoup object from an html string.
         """
         return BeautifulSoup(html, "html.parser")
+    
+    def get_regions(self):
+        """
+        Get the regions available for scraping.
+        """
+        return list(self.URLS.keys())
 
     @retry(
             stop=stop_never, 
@@ -72,6 +81,52 @@ class BaseScraper(ABC):
         logger.debug("Closing session")
         await self.session.close()
 
+    async def get_home_page_soup(self, region: str):
+        """Get the home page soup for the given region"""
+        assert region.lower() in self.URLS, f"Invalid region {region}"
+        return self.soupify(await self.fetch(self.URLS[region]))
+
+    @abstractmethod
+    def get_news_pattern(self, region: str) -> str:
+        """
+        Get the regex pattern for news urls for the given region.
+        """
+        pass
+
+    @abstractmethod
+    def get_story_urls_from_page(self, soup: BeautifulSoup, region: str) -> list[str]:
+        """
+        Extract the links to all news stories from the current page display.
+        """
+        pass
+    
+    @abstractmethod
+    def parse_story(self, url: str, soup: BeautifulSoup) -> NewsStory:
+        """
+        Parse a news story from the given url.
+        """
+        pass
+
+    async def fetch_and_parse_stories(self, links: list[str]) -> list[BeautifulSoup]:
+        """
+        Fetch and soupify all news stories from the given list of links.
+        """
+        responses = await self.fetch_all(links)
+        stories = []
+        for link,response in zip(links, responses):
+            if response:
+                soup = self.soupify(response)
+                story = self.parse_story(link, soup)
+                stories.append(story)
+        return stories
+
+    async def get_n_stories_for_region(self, region: str, n: int) -> list[NewsStory]:
+        """Get the first n stories for the given region"""
+        soup = await self.get_home_page_soup(region)
+        links = self.get_story_urls_from_page(soup, region)[:n]
+        stories = await self.fetch_and_parse_stories(links)
+        return stories
+
 
 class BEScraper(BaseScraper):
     """
@@ -85,8 +140,9 @@ class BEScraper(BaseScraper):
         "gsy_business": "https://www.bailiwickexpress.com/gsy-business/",
         "jsy_sport": "https://www.bailiwickexpress.com/jsy-sport/",
         "gsy_sport": "https://www.bailiwickexpress.com/gsy-sport/",
-        "jsy_connect": "https://www.bailiwickexpress.com/jsy-connect/"
     }
+
+    CONNECT_COVER = "https://www.bailiwickexpress.com/jsy-connect/"
 
     def __init__(self):
         super().__init__()
@@ -109,12 +165,7 @@ class BEScraper(BaseScraper):
         elif region == "gsy_sport":
             return r'/sport-ge/.+'
         else:
-            raise ValueError(f"Invalid region {region}")
-
-    async def get_home_page_soup(self, region: str):
-        """Get the home page soup for the given region"""
-        assert region.lower() in self.URLS, f"Invalid region {region}"
-        return self.soupify(await self.fetch(self.URLS[region]))
+            raise NotImplementedError(f"Invalid region {region}")
     
     async def get_podcast_stories(self, n_stories_per_region: int) -> tuple[list[NewsStory], list[NewsStory]]:
         """Get first n stories for each region for daily news podcast"""
@@ -148,35 +199,15 @@ class BEScraper(BaseScraper):
                 seen.add(href)
         return news_urls
     
-    async def fetch_and_parse_stories(self, links: list[str]) -> list[BeautifulSoup]:
-        """
-        Fetch and soupify all news stories from the given list of links.
-        """
-        responses = await self.fetch_all(links)
-        stories = []
-        for link,response in zip(links, responses):
-            if response:
-                soup = self.soupify(response)
-                story = self.parse_story(link, soup)
-                stories.append(story)
-        return stories
-    
-    async def get_n_stories_for_region(self, region: str, n: int) -> list[NewsStory]:
-        """Get the first n stories for the given region"""
-        soup = await self.get_home_page_soup(region)
-        links = self.get_story_urls_from_page(soup, region)[:n]
-        stories = await self.fetch_and_parse_stories(links)
-        return stories
-    
     async def get_connect_cover(self) -> NewsStory:
         """Get connect cover image link, have to use hacky chromedriver solution for iframe rendering."""
         options = webdriver.ChromeOptions()
-        options.add_argument('--headless')
+        options.add_argument('--headless=new') # headless mode with new session
         async with webdriver.Chrome(options=options) as driver:
-            await driver.get(self.URLS['jsy_connect'], wait_load=True)
+            await driver.get(self.CONNECT_COVER, wait_load=True)
             await driver.sleep(1)
             iframe = await driver.find_element(By.CSS_SELECTOR, 'iframe')
-            await driver.switch_to.frame(iframe)
+            await driver.switch_to.frame(iframe) # causes warning
             await driver.find_element(By.CLASS_NAME, 'side-image')
             html = await driver.page_source
             current_page_url = await driver.current_url
@@ -243,11 +274,6 @@ class JEPScraper(BaseScraper):
             return r'/sport/.+'
         else:
             raise ValueError(f"Invalid region {region}")
-
-    async def get_home_page_soup(self, region: str):
-        """Get the home page soup for the given region"""
-        assert region.lower() in self.URLS, f"Invalid region {region}"
-        return self.soupify(await self.fetch(self.URLS[region]))
     
     def get_story_urls_from_page(self, soup: BeautifulSoup, region: str) -> list[str]:
         """
@@ -261,19 +287,6 @@ class JEPScraper(BaseScraper):
                 news_urls.append(link)
         return news_urls
     
-    async def fetch_and_parse_stories(self, links: list[str]) -> list[BeautifulSoup]:
-        """
-        Fetch and soupify all news stories from the given list of links.
-        """
-        responses = await self.fetch_all(links)
-        stories = []
-        for link,response in zip(links, responses):
-            if response:
-                soup = self.soupify(response)
-                story = self.parse_story(link, soup)
-                stories.append(story)
-        return stories
-    
     def parse_story(self, url: str, soup: BeautifulSoup) -> NewsStory:
         """
         Parse a news story from the given url.
@@ -284,6 +297,14 @@ class JEPScraper(BaseScraper):
         entry_content = soup.find('div', class_='entry-content')
         p_tags = entry_content.find_all('p')
         text = '\n'.join([p.text.strip() for p in p_tags])
+        # capitalize first word of text, JEP defaults to all caps first word
+        words = text.split()
+        if words[0].lower() == 'a':
+            words[0] = words[0].capitalize()
+            words[1] = words[1].lower()
+        else:
+            words[0] = words[0].capitalize()
+        text = ' '.join(words)
         # get date
         date = soup.find('time').text
         # get author
@@ -305,14 +326,12 @@ class JEPScraper(BaseScraper):
 
 if __name__ == "__main__":
    
-    logging.basicConfig(level=logging.DEBUG)
+    #logging.basicConfig(level=logging.DEBUG)
     logging.getLogger('websockets').setLevel(logging.ERROR)
 
     async def main():
-        scraper = JEPScraper()
-        soup = await scraper.get_home_page_soup('jsy_sport')
-        links = scraper.get_story_urls_from_page(soup, 'jsy_sport')
-        soup = await scraper.fetch(links[0])
-    
+        scraper = BEScraper()
+        connect = await scraper.get_connect_cover()
+        breakpoint()
     asyncio.run(main())
 

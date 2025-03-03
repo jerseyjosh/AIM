@@ -1,1 +1,1 @@
-from family_notices import FamilyNotices
+from aim.family_notices import FamilyNotices
