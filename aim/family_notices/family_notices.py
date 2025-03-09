@@ -24,7 +24,7 @@ HEADERS = {
 BASE_URL = "https://familynotices.jerseyeveningpost.com/wp-admin/admin-ajax.php"
 
 @dataclass
-class DeathNotice:
+class FamilyNotice:
 
     name: str
     url: str
@@ -78,7 +78,7 @@ class FamilyNotices:
     async def close(self):
         await self.session.close()
 
-    async def get_notices(self, start_date: str = None, end_date: str = None) -> list[DeathNotice]:
+    async def get_notices(self, start_date: str = None, end_date: str = None) -> list[FamilyNotice]:
         """Fetch notices for a given date range (YYYY-MM-DD format)."""
         # default to today if not provided
         start_date = start_date or datetime.now().strftime("%Y-%m-%d")
@@ -117,13 +117,13 @@ class FamilyNotices:
         # return parsed notices
         return self.parse_notices(soup)
     
-    def parse_notices(self, soup: BeautifulSoup) -> list[DeathNotice]:
+    def parse_notices(self, soup: BeautifulSoup) -> list[FamilyNotice]:
         """Parse notices from the BeautifulSoup object."""
         notices = []
         for notice in soup.find_all("div", class_="notice-card"):
             name = notice.find('h3').text
             url = notice.find('a').get('href')
-            notices.append(DeathNotice(name=name, url=url))
+            notices.append(FamilyNotice(name=name, url=url))
         return notices
 
 if __name__ == "__main__":

@@ -12,37 +12,50 @@ logger = logging.getLogger(__name__)
 
 TITLE = "News Email"
 NEWS_SITES = ["BE", "JEP"]
-EMAIL = Email(template_name="be_template.html")
+
+# Initialize global email only once at start of session
+if "global_email" not in st.session_state:
+    st.session_state["global_email"] = Email(template_name="be_template.html")
 
 # ---------------------------
 # Helper functions
 # ---------------------------
 
+def get_global_email() -> Email:
+    return st.session_state['global_email']
+
 def update_email_vars():
-    # iterate keys required to update
-    for key in EMAIL.data.keys():
-        # if we have local version of data, update email
-        if key in st.session_state:
-            internal = st.session_state[key]
-            if isinstance(internal, pd.DataFrame):
-                # convert to list of dictionaries
-                internal = internal.to_dict(orient="records")
-            EMAIL.update_data(key, internal)
+    try:
+        # iterate keys required to update
+        for key in get_global_email().data.keys():
+            # if we have local version of data, update email
+            if key in st.session_state:
+                internal = st.session_state[key]
+                if isinstance(internal, pd.DataFrame):
+                    # convert to list of dictionaries
+                    internal = internal.to_dict(orient="records")
+                get_global_email().update_data(key, internal)
+    except Exception as e:
+        breakpoint()
 
 def render_data_editor(key):
     # reorder such that order is first
     columns = list(NewsStory.__annotations__.keys())
-    if 'order' in columns:
-        columns.remove('order')
-        columns = ['order'] + columns
+    if len(get_global_email().data[key]) == 0:
+        df = pd.DataFrame(columns=columns)
+    else:
+        df = pd.DataFrame(get_global_email().data[key])[columns]
+    # if 'order' in columns, sort by order and make it appear first
+    if "order" in columns:
+        df.sort_values('order', inplace=True)
+        df = df[['order'] + [col for col in columns if col != "order"]]
     return st.data_editor(
-        pd.DataFrame(EMAIL.data[key])[columns],
+        df,
         key=key,
         num_rows="dynamic",
         use_container_width=True,
         on_change=update_email_vars,
     )
-
 
 # ---------------------------
 # Initialize Session State
@@ -104,7 +117,7 @@ st.text_input("Top Image Author", key="top_image_author", on_change=update_email
 # Vertical Advert parameters
 st.title("Vertical Adverts")
 st.data_editor(
-    pd.DataFrame(EMAIL.data["vertical_adverts"], columns=Advert.__annotations__.keys()),
+    pd.DataFrame(get_global_email().data["vertical_adverts"], columns=Advert.__annotations__.keys()),
     key="vertical_adverts",
     num_rows="dynamic",
     use_container_width=True,
@@ -119,7 +132,7 @@ if st.button("Fetch Stories"):
     with st.spinner("Fetching Stories..."):
 
         # Get all data
-        EMAIL.get_data(num_stories, num_business_stories, num_sports_stories)
+        get_global_email().get_data(num_stories, num_business_stories, num_sports_stories)
 
     st.success("Stories fetched successfully!")
 
@@ -146,9 +159,7 @@ render_data_editor("sport_stories")
 # ---------------------------
 if st.button("Render Email"):
 
-    # Reuse the same Email object to render
-    email = Email(template_name="be_template.html")
-    rendered_html = email.render(**st.session_state["email_vars"])
+    rendered_html = get_global_email().render()
 
     # Display the rendered HTML in the Streamlit app
     html(rendered_html, height=800, scrolling=True)

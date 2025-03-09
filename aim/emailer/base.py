@@ -90,7 +90,8 @@ class Email:
 
     def get_data(self, n_news: int, n_business: int, n_sports: int, site: str = "be"):
         """Sync wrapper to fetch data and store it as an instance attribute."""
-        self.data = asyncio.run(self._get_data_wrapper(site, n_news, n_business, n_sports))
+        fetched_data = asyncio.run(self._get_data_wrapper(site, n_news, n_business, n_sports))
+        self.data.update(fetched_data)
 
     def update_data(self, key: str, value):
         """Manually update the data object for external changes (e.g., from Streamlit)."""
@@ -110,5 +111,6 @@ class Email:
         return first + "." if first and first[-1] != "." else first
     
 if __name__ == "__main__":
+    email = Email()
+    email.get_data(3, 1, 1)
     breakpoint()
-    Advert.__annotations__
