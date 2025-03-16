@@ -4,6 +4,7 @@ import asyncio
 import logging
 import jinja2
 from dataclasses import dataclass
+from datetime import datetime
 
 from aim.news.news_scraper import BEScraper, JEPScraper
 from aim.weather.gov_je import GovJeWeather
@@ -14,11 +15,6 @@ logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 
 TEMPLATES_DIR = os.path.join(os.path.dirname(__file__), "templates")
-
-@dataclass
-class TopImage:
-    image_url: str
-    image_author: str
 
 @dataclass
 class Advert:
@@ -47,7 +43,7 @@ class Email:
             "vertical_adverts": [],
         }
 
-    async def _get_data_wrapper(self, site: str, n_news: int, n_business: int, n_sports: int) -> Dict[str, Any]:
+    async def _get_data_wrapper(self, site: str, n_news: int, n_business: int, n_sports: int, deaths_start: datetime, deaths_end: datetime) -> Dict[str, Any]:
         """Fetch data from multiple sources asynchronously."""
         if site not in ["be", "jep"]:
             raise ValueError("Site must be either 'be' or 'jep'")
@@ -62,7 +58,7 @@ class Email:
             "sport_stories": news_scraper.get_n_stories_for_region("jsy_sport", n_sports),
             "connect_cover_image": news_scraper.get_connect_cover(),
             "weather_soup": weather_scraper.get(),
-            "family_notices": family_notices_scraper.get_notices(),
+            "family_notices": family_notices_scraper.get_notices(deaths_start, deaths_end),
         }
 
         results = await asyncio.gather(*tasks.values(), return_exceptions=True)
@@ -86,10 +82,10 @@ class Email:
 
         return data
 
-    def get_data(self, n_news: int, n_business: int, n_sports: int, site: str = "be") -> None:
+    def get_data(self, n_news: int, n_business: int, n_sports: int, deaths_start: datetime, deaths_end: datetime, site: str = "be") -> None:
         """Synchronously fetch data and update instance state."""
         try:
-            fetched_data = asyncio.run(self._get_data_wrapper(site, n_news, n_business, n_sports))
+            fetched_data = asyncio.run(self._get_data_wrapper(site, n_news, n_business, n_sports, deaths_start, deaths_end))
             self.data.update(fetched_data)
         except Exception as e:
             logger.error(f"Error in get_data: {e}")
@@ -112,8 +108,3 @@ class Email:
             return ""
         first = text.split(".")[0]
         return first + "." if first and not first.endswith(".") else first
-
-if __name__ == "__main__":
-    email = Email()
-    email.get_data(3, 1, 1)
-    print(email.render())

@@ -2,7 +2,7 @@ import aiohttp
 import aiolimiter
 import asyncio
 from bs4 import BeautifulSoup
-from datetime import datetime
+from datetime import datetime, timedelta
 from dataclasses import dataclass
 import re
 
@@ -77,12 +77,16 @@ class FamilyNotices:
 
     async def close(self):
         await self.session.close()
-
-    async def get_notices(self, start_date: str = None, end_date: str = None) -> list[FamilyNotice]:
+        
+    async def get_notices(self, start_date: datetime = None, end_date: datetime = None) -> list[FamilyNotice]:
         """Fetch notices for a given date range (YYYY-MM-DD format)."""
         # default to today if not provided
-        start_date = start_date or datetime.now().strftime("%Y-%m-%d")
-        end_date = end_date or start_date
+        end_date = end_date or datetime.now().strftime("%Y-%m-%d")
+        start_date = start_date or (datetime.strptime(end_date, "%Y-%m-%d") - timedelta(days=1)).strftime("%Y-%m-%d")
+        if isinstance(start_date, datetime):
+            start_date = start_date.strftime("%Y-%m-%d")
+        if isinstance(end_date, datetime):
+            end_date = end_date.strftime("%Y-%m-%d")
         # php request params
         params = {
             "action": "alm_get_posts",
@@ -120,27 +124,12 @@ class FamilyNotices:
     def parse_notices(self, soup: BeautifulSoup) -> list[FamilyNotice]:
         """Parse notices from the BeautifulSoup object."""
         notices = []
+        seen = set()
         for notice in soup.find_all("div", class_="notice-card"):
             name = notice.find('h3').text
+            if name in seen:
+                continue
+            seen.add(name)
             url = notice.find('a').get('href')
             notices.append(FamilyNotice(name=name, url=url))
         return notices
-
-if __name__ == "__main__":
-
-    # test function
-    async def main():
-        scraper = FamilyNotices()
-
-        # Define date range (modify as needed)
-        start_date = "2025-02-27"
-        end_date = "2025-02-27"
-
-        notices = await scraper.get_notices(start_date, end_date)
-
-        await scraper.close()
-
-        return notices
-    
-    notices = asyncio.run(main())
-    breakpoint()

@@ -11,7 +11,6 @@ class NewsStory:
     author: str
     url: str
     image_url: str
-    order: int = 1 # required for displaying in email
 
     def __str__(self):
         # Limit the preview of the text to 100 characters

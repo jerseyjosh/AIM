@@ -58,12 +58,19 @@ class GovJeWeather:
         weather_summary = soup.find('div', class_='weathergrid').find('div', class_='borderLeft').text.strip()
         # get tide info
         tides = self.parse_tides(soup)
-        first_low_tide = [t for t in tides if t['direction'] == 'low'][0]
-        first_high_tide = [t for t in tides if t['direction'] == 'high'][0]
+        # first_low_tide = [t for t in tides if t['direction'] == 'low'][0]
+        # first_high_tide = [t for t in tides if t['direction'] == 'high'][0]
+        low_tides = [t for t in tides if t['direction'] == 'low']
+        high_tides = [t for t in tides if t['direction'] == 'high']
         # format and return
         return {
             'todays_weather': f"{first_temp}, {weather_summary}",
-            'tides': f"Low {first_low_tide['time']} ({first_low_tide['height']}) High {first_high_tide['time']} ({first_high_tide['height']})",
+            #'tides': f"Low {first_low_tide['time']} ({first_low_tide['height']}) High {first_high_tide['time']} ({first_high_tide['height']})",
+            'tides': 
+                f"Low " + 
+                ', '.join([f"{t['time']} ({t['height']})" for t in low_tides]) + 
+                ". High " + 
+                ', '.join([f"{t['time']} ({t['height']})" for t in high_tides]),
             'date': datetime.now().strftime("%A %d %B %Y")
         }
         
