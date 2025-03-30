@@ -1,10 +1,14 @@
-Metadata-Version: 2.1
-Name: aim-tools
+Metadata-Version: 2.4
+Name: aim_tools
 Version: 0.1
-Summary: UNKNOWN
-Home-page: UNKNOWN
-License: UNKNOWN
-Platform: UNKNOWN
-
-UNKNOWN
-
+Requires-Dist: streamlit
+Requires-Dist: aiohttp
+Requires-Dist: beautifulsoup4
+Requires-Dist: selenium-driverless
+Requires-Dist: python-dotenv
+Requires-Dist: elevenlabs
+Requires-Dist: aiolimiter
+Requires-Dist: tqdm
+Requires-Dist: python-dotenv
+Requires-Dist: openai
+Dynamic: requires-dist
