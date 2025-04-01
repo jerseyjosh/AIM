@@ -68,7 +68,7 @@ class BaseScraper(ABC):
         if type(urls) is str:
             return await self.fetch(urls)
         logger.debug(f"Fetching {len(urls)} urls, {str(urls)[:100]}...")
-        responses = await tqdm_asyncio.gather(*[self.fetch(url) for url in urls])
+        responses = await asyncio.gather(*[self.fetch(url) for url in urls])
         # Filter out None or exceptions from the responses
         valid_responses = [response for response in responses if response]
         logger.debug(f"Fetched {len(valid_responses)} valid responses out of {len(urls)}")

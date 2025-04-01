@@ -18,7 +18,8 @@ class GovJeWeather:
 
     def __init__(self):
         self.options = webdriver.ChromeOptions()
-        self.options.add_argument('--headless=new')
+        self.options.add_argument('--headless')
+        self.options.add_argument('--blink-settings=imagesEnabled=false')
 
     @retry(stop=stop_never, wait=wait_random_exponential(multiplier=0.5, max=5), before_sleep=before_sleep_log(logger, logging.INFO))
     async def get(self, timeout=5) -> BeautifulSoup:
@@ -138,5 +139,5 @@ if __name__=="__main__":
         soup = await weather.get()
         email = weather.to_email(soup)
         print(email)
-    import asyncio
-    asyncio.run(main())
+    import uvloop
+    uvloop.run(main())
