@@ -199,28 +199,35 @@ class BEScraper(BaseScraper):
                 seen.add(href)
         return news_urls
     
-    @retry(
-        stop=stop_never, 
-        wait=wait_random_exponential(multiplier=0.5, max=5),
-        before_sleep=before_sleep_log(logger, logging.INFO)
-    )
     async def get_connect_cover(self) -> NewsStory:
         """Get connect cover image link, have to use hacky chromedriver solution for iframe rendering."""
         options = webdriver.ChromeOptions()
-        options.add_argument('--headless=new') # headless mode with new session
+        options.add_argument('--headless')
+        
         async with webdriver.Chrome(options=options) as driver:
-            await driver.get(self.CONNECT_COVER, wait_load=True)
-            await driver.sleep(1)
-            iframe = await driver.find_element(By.CSS_SELECTOR, 'iframe')
-            await driver.switch_to.frame(iframe) # causes warning
-            await driver.find_element(By.CLASS_NAME, 'side-image')
-            html = await driver.page_source
-            current_page_url = await driver.current_url
-        # soupify
-        soup = self.soupify(html)
-        # get img src
-        relative_path = soup.find('div', class_='side-image').img.get('src')
-        return urljoin(current_page_url, relative_path)
+            @retry(
+                stop=stop_never, 
+                wait=wait_random_exponential(multiplier=0.5, max=5),
+                before_sleep=before_sleep_log(logger, logging.INFO)
+            )
+            async def _get_cover():
+                await driver.get(self.CONNECT_COVER, wait_load=True, timeout=60)
+                await driver.sleep(3)
+                
+                iframe = await driver.find_element(By.CSS_SELECTOR, 'iframe')
+                await driver.switch_to.frame(iframe)
+                await driver.find_element(By.CLASS_NAME, 'side-image')
+                
+                html = await driver.page_source
+                current_page_url = await driver.current_url
+                return html, current_page_url
+            
+            html, current_page_url = await _get_cover()
+            
+            # Process results outside retry block since these operations don't need retrying
+            soup = self.soupify(html)
+            relative_path = soup.find('div', class_='side-image').img.get('src')
+            return urljoin(current_page_url, relative_path)
         
     def parse_story(self, url, soup: BeautifulSoup) -> NewsStory:
         """
@@ -331,7 +338,7 @@ class JEPScraper(BaseScraper):
 
 if __name__ == "__main__":
    
-    #logging.basicConfig(level=logging.DEBUG)
+    logging.basicConfig(level=logging.DEBUG)
     logging.getLogger('websockets').setLevel(logging.ERROR)
 
     async def main():
