@@ -218,14 +218,13 @@ class BEScraper(BaseScraper):
                 
                 html = await driver.page_source
                 current_page_url = await driver.current_url
-                return html, current_page_url
+                        
+                # Process results outside retry block since these operations don't need retrying
+                soup = self.soupify(html)
+                relative_path = soup.find('div', class_='side-image').img.get('src')
+                return urljoin(current_page_url, relative_path)
             
-            html, current_page_url = await _get_cover()
-            
-            # Process results outside retry block since these operations don't need retrying
-            soup = self.soupify(html)
-            relative_path = soup.find('div', class_='side-image').img.get('src')
-            return urljoin(current_page_url, relative_path)
+            return await _get_cover()
         
     def parse_story(self, url, soup: BeautifulSoup) -> NewsStory:
         """
