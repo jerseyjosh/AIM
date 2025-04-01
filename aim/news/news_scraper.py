@@ -203,7 +203,6 @@ class BEScraper(BaseScraper):
         """Get connect cover image link, have to use hacky chromedriver solution for iframe rendering."""
         options = webdriver.ChromeOptions()
         options.add_argument('--headless')
-        
         async with webdriver.Chrome(options=options) as driver:
             @retry(
                 stop=stop_never, 
@@ -211,10 +210,9 @@ class BEScraper(BaseScraper):
                 before_sleep=before_sleep_log(logger, logging.INFO)
             )
             async def _get_cover():
-                await driver.get(self.CONNECT_COVER, wait_load=True, timeout=60)
-                await driver.sleep(3)
-                
-                iframe = await driver.find_element(By.CSS_SELECTOR, 'iframe')
+                await driver.get(self.CONNECT_COVER, wait_load=True, timeout=10)
+                await driver.sleep(1)
+                iframe = await driver.find_element(By.CSS_SELECTOR, 'iframe', timeout=10)
                 await driver.switch_to.frame(iframe)
                 await driver.find_element(By.CLASS_NAME, 'side-image')
                 
