@@ -1,4 +1,4 @@
-import asyncio
+import uvloop
 import os
 import logging
 from datetime import datetime
@@ -59,7 +59,7 @@ else:
             script = daily_news.make_script()
             await daily_news.close()
             return script
-        return asyncio.run(_generate_script(speaker))
+        return uvloop.run(_generate_script(speaker))
 
     # Streamlit App Layout
     st.title("Daily News Podcast")

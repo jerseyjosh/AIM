@@ -102,4 +102,5 @@ if __name__ == "__main__":
         pprint(script)
         logger.info("Script generation complete")
 
-    asyncio.run(main())
+    import uvloop
+    uvloop.run(main())

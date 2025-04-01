@@ -31,4 +31,5 @@ async def main():
     logger.info('Scraping and storing process completed.')
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    import uvloop
+    uvloop.run(main())

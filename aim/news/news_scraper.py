@@ -333,5 +333,6 @@ if __name__ == "__main__":
         scraper = BEScraper()
         connect = await scraper.get_connect_cover()
         breakpoint()
-    asyncio.run(main())
+    import uvloop
+    uvloop.run(main())
 

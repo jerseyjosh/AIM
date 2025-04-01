@@ -53,7 +53,7 @@
 #             news_story = scraper.get_news_story_from_url(url)
 #             await scraper.close()
 #             return news_story
-#         return asyncio.run(func(url))
+#         return uvloop.run(func(url))
 
 #     # Url iput
 #     url = st.text_input("BailiwickExpress Article URL")

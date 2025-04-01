@@ -1,6 +1,7 @@
 from typing import Optional, Dict, List, Any
 import os
 import asyncio
+import uvloop
 import logging
 import jinja2
 from dataclasses import dataclass
@@ -85,7 +86,7 @@ class Email:
     def get_data(self, n_news: int, n_business: int, n_sports: int, deaths_start: datetime, deaths_end: datetime, site: str = "be") -> None:
         """Synchronously fetch data and update instance state."""
         try:
-            fetched_data = asyncio.run(self._get_data_wrapper(site, n_news, n_business, n_sports, deaths_start, deaths_end))
+            fetched_data = uvloop.run(self._get_data_wrapper(site, n_news, n_business, n_sports, deaths_start, deaths_end))
             self.data.update(fetched_data)
         except Exception as e:
             logger.error(f"Error in get_data: {e}")

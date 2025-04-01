@@ -114,4 +114,5 @@ if __name__=="__main__":
         response = await weather.get_weather_symbol()
         breakpoint()
 
-    asyncio.run(main())
+    import uvloop
+    uvloop.run(main())
