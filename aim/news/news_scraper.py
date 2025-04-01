@@ -199,6 +199,11 @@ class BEScraper(BaseScraper):
                 seen.add(href)
         return news_urls
     
+    @retry(
+        stop=stop_never, 
+        wait=wait_random_exponential(multiplier=0.5, max=5),
+        before_sleep=before_sleep_log(logger, logging.INFO)
+    )
     async def get_connect_cover(self) -> NewsStory:
         """Get connect cover image link, have to use hacky chromedriver solution for iframe rendering."""
         options = webdriver.ChromeOptions()
