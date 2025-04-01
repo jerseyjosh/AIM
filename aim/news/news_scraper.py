@@ -203,27 +203,73 @@ class BEScraper(BaseScraper):
         """Get connect cover image link, have to use hacky chromedriver solution for iframe rendering."""
         options = webdriver.ChromeOptions()
         options.add_argument('--headless=new')
+        options.add_argument('--no-sandbox')  # Required for some cloud environments
+        options.add_argument('--disable-dev-shm-usage')  # Overcome limited resource problems
+        options.add_argument('--disable-gpu')  # Often needed in headless environments
+        
         async with webdriver.Chrome(options=options) as driver:
-            await driver.get(self.CONNECT_COVER, wait_load=True, timeout=30)
+            # Initial page load with very generous timeout
+            logger.info("Starting to load connect cover page...")
+            await driver.get(self.CONNECT_COVER, wait_load=True)
+            
             @retry(
                 stop=stop_never, 
-                wait=wait_random_exponential(multiplier=0.5, max=5),
+                wait=wait_random_exponential(multiplier=1, max=10),  # Increased wait times
                 before_sleep=before_sleep_log(logger, logging.INFO)
             )
             async def _get_cover():
-                await driver.sleep(10)
-                iframe = await driver.find_element(By.CSS_SELECTOR, 'iframe', timeout=10)
-                await driver.switch_to.frame(iframe)
-                await driver.find_element(By.CLASS_NAME, 'side-image')
+                logger.info("Attempting to find iframe...")
                 
-                html = await driver.page_source
-                current_page_url = await driver.current_url
-                        
-                # Process results outside retry block since these operations don't need retrying
-                soup = self.soupify(html)
-                relative_path = soup.find('div', class_='side-image').img.get('src')
-                return urljoin(current_page_url, relative_path)
-            
+                # Wait longer before looking for iframe
+                await driver.sleep(1)  # Give more time for JS to load
+                
+                try:
+                    # Try different iframe selectors
+                    for selector in ['iframe', 'iframe[id*="issuu"]', 'iframe[src*="issuu"]']:
+                        try:
+                            logger.info(f"Trying to find iframe with selector: {selector}")
+                            iframe = await driver.find_element(By.CSS_SELECTOR, selector, timeout=15)
+                            if iframe:
+                                logger.info("Found iframe!")
+                                break
+                        except Exception as e:
+                            logger.warning(f"Selector {selector} failed: {str(e)}")
+                    else:
+                        raise Exception("No iframe found with any selector")
+                    
+                    logger.info("Switching to iframe...")
+                    await driver.switch_to.frame(iframe)
+                    
+                    logger.info("Looking for side-image...")
+                    await driver.find_element(By.CLASS_NAME, 'side-image', timeout=15)
+                    
+                    logger.info("Getting page source...")
+                    html = await driver.page_source
+                    current_page_url = await driver.current_url
+                    
+                    # Process results
+                    logger.info("Processing HTML...")
+                    soup = self.soupify(html)
+                    side_image = soup.find('div', class_='side-image')
+                    if not side_image or not side_image.img:
+                        raise Exception("Side image element not found in HTML")
+                    
+                    relative_path = side_image.img.get('src')
+                    if not relative_path:
+                        raise Exception("No src attribute found in image")
+                    
+                    return urljoin(current_page_url, relative_path)
+                    
+                except Exception as e:
+                    logger.error(f"Error in _get_cover: {str(e)}")
+                    # Log the page source for debugging
+                    try:
+                        page_source = await driver.page_source
+                        logger.debug(f"Current page source: {page_source[:500]}...")
+                    except:
+                        logger.error("Could not get page source for debugging")
+                    raise
+                
             return await _get_cover()
         
     def parse_story(self, url, soup: BeautifulSoup) -> NewsStory:
