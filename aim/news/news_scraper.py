@@ -211,7 +211,7 @@ class BEScraper(BaseScraper):
             )
             async def _get_cover():
                 await driver.get(self.CONNECT_COVER, wait_load=True, timeout=10)
-                await driver.sleep(1)
+                await driver.sleep(10)
                 iframe = await driver.find_element(By.CSS_SELECTOR, 'iframe', timeout=10)
                 await driver.switch_to.frame(iframe)
                 await driver.find_element(By.CLASS_NAME, 'side-image')
