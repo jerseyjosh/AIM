@@ -107,6 +107,13 @@ class BaseScraper(ABC):
         """
         pass
 
+    async def fetch_and_parse_story(self, url: str) -> NewsStory:
+        """
+        Fetch and parse a news story from the given url.
+        """
+        soup = await self.fetch(url)
+        return self.parse_story(url, soup)
+
     async def fetch_and_parse_stories(self, links: list[str]) -> list[BeautifulSoup]:
         """
         Fetch and soupify all news stories from the given list of links.

@@ -1,12 +1,15 @@
 import os
 import logging
+import asyncio
 
 import streamlit as st
 import pandas as pd
 from streamlit.components.v1 import html
+import aiohttp
 
 from aim.emailer.base import Email, Advert
 from aim.news.models import NewsStory
+from aim.news.news_scraper import BEScraper, JEPScraper
 
 logger = logging.getLogger(__name__)
 
@@ -23,6 +26,10 @@ if "logged_in" not in st.session_state:
 if 'email' not in st.session_state:
     st.session_state['email'] = Email()
 
+# Don't initialize scrapers at module load time
+if 'scrapers' not in st.session_state:
+    st.session_state['scrapers'] = {}
+
 # ---------------------------
 # Helper Functions
 # ---------------------------
@@ -34,6 +41,26 @@ def update_email_data(key, value):
     email: Email = st.session_state['email']
     email.data[key] = value
     st.session_state['email'] = email
+
+async def process_urls(urls, site):
+    """Process a list of URLs using the appropriate scraper"""
+    stories = []
+    
+    # Create a scraper with a fresh session for this batch of processing
+    if site == 'BE':
+        scraper = BEScraper()
+    else:
+        scraper = JEPScraper()
+    
+    try:
+        stories = await scraper.fetch_and_parse_stories(urls)
+    except Exception as e:
+        logger.error(f"Error processing URLs: {e}")
+    finally:
+        # Clean up by closing the session
+        await scraper.close()
+    
+    return stories
 
 # ---------------------------
 # Load Secrets
@@ -104,6 +131,38 @@ if st.button("Fetch Stories"):
     with st.spinner("Fetching Stories..."):
         get_email().get_data(num_stories, num_business_stories, num_sports_stories, deaths_start, deaths_end)
     st.success("Stories fetched successfully!")
+
+# ---------------------------
+# Manual URL Input Section
+# ---------------------------
+st.title("Add Stories Manually")
+
+# Select which data editor to add to
+story_type = st.selectbox("Add to", ["news_stories", "business_stories", "sport_stories"], key="manual_url_type")
+site = st.selectbox("Site", NEWS_SITES, key="manual_url_site")
+
+# Text area for URLs
+manual_urls = st.text_area("Enter URLs (one per line)", key="manual_urls")
+
+# Process manual URLs
+if st.button("Process URLs"):
+    if manual_urls:
+        urls = [url.strip() for url in manual_urls.split("\n") if url.strip()]
+        if urls:
+            with st.spinner(f"Processing {len(urls)} URLs..."):
+                # run async function in sync context
+                stories = asyncio.run(process_urls(urls, site))
+                if stories:
+                    # Get current stories and add new ones
+                    current_stories = get_email().data.get(story_type, [])
+                    current_stories.extend(stories)
+                    update_email_data(story_type, current_stories)
+                    st.success(f"Added {len(stories)} stories to {story_type}")
+                    st.rerun()  # Refresh to show updated data editors
+                else:
+                    st.error("No stories were successfully processed")
+        else:
+            st.warning("No valid URLs provided")
 
 # Instructions
 st.info(
