@@ -184,7 +184,13 @@ def render_data_editor(key):
         df.insert(0, "order", range(1, 1 + len(df)))
     columns = ['order'] + list(NewsStory.__annotations__.keys())
     df = df[columns]
-    return st.data_editor(df, key=key, num_rows="dynamic", use_container_width=True, hide_index=True)
+    edited_df = st.data_editor(df, key=key, num_rows="dynamic", use_container_width=True, hide_index=True)
+    
+    # Save changes back to session state
+    if not edited_df.equals(df):
+        update_email_data(key, edited_df.to_dict(orient='records'))
+    
+    return edited_df
 
 news_stories_df = render_data_editor("news_stories")
 business_stories_df = render_data_editor("business_stories")
