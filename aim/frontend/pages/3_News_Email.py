@@ -151,10 +151,10 @@ if st.button("Process URLs"):
         if urls:
             with st.spinner(f"Processing {len(urls)} URLs..."):
                 # run async function in sync context
-                stories = asyncio.run(process_urls(urls, site))
+                stories: list[NewsStory] = asyncio.run(process_urls(urls, site))
                 if stories:
                     # Get current stories and add new ones
-                    current_stories = get_email().data.get(story_type, [])
+                    current_stories: list[NewsStory] = get_email().data.get(story_type, [])
                     current_stories.extend(stories)
                     update_email_data(story_type, current_stories)
                     st.success(f"Added {len(stories)} stories to {story_type}")
@@ -179,18 +179,22 @@ st.info(
 # ---------------------------
 
 def render_data_editor(key):
-    df = pd.DataFrame(get_email().data[key], columns=NewsStory.__annotations__.keys())
-    if 'order' not in df.columns:
-        df.insert(0, "order", range(1, 1 + len(df)))
-    columns = ['order'] + list(NewsStory.__annotations__.keys())
-    df = df[columns]
-    edited_df = st.data_editor(df, key=key, num_rows="dynamic", use_container_width=True, hide_index=True)
-    
-    # Save changes back to session state
-    if not edited_df.equals(df):
-        update_email_data(key, edited_df.to_dict(orient='records'))
-    
-    return edited_df
+    try:
+        df = pd.DataFrame(get_email().data[key], columns=NewsStory.__annotations__.keys())
+        if 'order' not in df.columns:
+            df.insert(0, "order", range(1, 1 + len(df)))
+        columns = ['order'] + list(NewsStory.__annotations__.keys())
+        df = df[columns]
+        edited_df = st.data_editor(df, key=key, num_rows="dynamic", use_container_width=True, hide_index=True)
+        
+        # Save changes back to session state
+        if not edited_df.equals(df):
+            news_stories = [NewsStory(**row) for row in edited_df.drop('order', axis=1).to_dict(orient='records')]
+            update_email_data(key, news_stories)
+        
+        return edited_df
+    except Exception as e:
+        breakpoint()
 
 news_stories_df = render_data_editor("news_stories")
 business_stories_df = render_data_editor("business_stories")
