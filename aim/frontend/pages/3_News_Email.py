@@ -11,6 +11,7 @@ from aim.emailer.base import Email, Advert
 from aim.news.models import NewsStory
 from aim.news.news_scraper import BEScraper, JEPScraper
 
+
 logger = logging.getLogger(__name__)
 
 TITLE = "News Email"
@@ -127,6 +128,11 @@ deaths_end = st.date_input("Deaths End Date")
 # ---------------------------
 # Fetch Stories Button
 # ---------------------------
+st.info("""
+    **Note:**
+    - If no scraped stories are needed, just leave number to 0.
+    - Fetch stories must still be clicked to render connect cover.
+""")
 if st.button("Fetch Stories"):
     with st.spinner("Fetching Stories..."):
         get_email().get_data(num_stories, num_business_stories, num_sports_stories, deaths_start, deaths_end)
@@ -154,7 +160,12 @@ if st.button("Process URLs"):
                 stories: list[NewsStory] = asyncio.run(process_urls(urls, site))
                 if stories:
                     # Get current stories and add new ones
-                    current_stories: list[NewsStory] = get_email().data.get(story_type, [])
+                    current_stories = []
+                    for story in get_email().data.get(story_type, []):
+                        if isinstance(story, NewsStory):
+                            current_stories.append(story)
+                        elif isinstance(story, dict):
+                            current_stories.append(NewsStory(**story))
                     current_stories.extend(stories)
                     update_email_data(story_type, current_stories)
                     st.success(f"Added {len(stories)} stories to {story_type}")
@@ -180,21 +191,24 @@ st.info(
 
 def render_data_editor(key):
     try:
+        # make dataframe from stories
         df = pd.DataFrame(get_email().data[key], columns=NewsStory.__annotations__.keys())
-        if 'order' not in df.columns:
-            df.insert(0, "order", range(1, 1 + len(df)))
-        columns = ['order'] + list(NewsStory.__annotations__.keys())
+        # reorder such that order is first column
+        columns = ['order'] + [col for col in list(NewsStory.__annotations__.keys()) if col != 'order']
         df = df[columns]
         edited_df = st.data_editor(df, key=key, num_rows="dynamic", use_container_width=True, hide_index=True)
         
         # Save changes back to session state
         if not edited_df.equals(df):
-            news_stories = [NewsStory(**row) for row in edited_df.drop('order', axis=1).to_dict(orient='records')]
+            news_stories = [NewsStory(**row) for row in edited_df.to_dict(orient='records')]
             update_email_data(key, news_stories)
+            st.rerun()
         
         return edited_df
     except Exception as e:
-        breakpoint()
+        import traceback
+        traceback.print_exc()
+        raise e
 
 news_stories_df = render_data_editor("news_stories")
 business_stories_df = render_data_editor("business_stories")

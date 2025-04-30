@@ -42,6 +42,7 @@ class Email:
             "top_image_title": "",
             "top_image_author": "",
             "vertical_adverts": [],
+            "connect_cover_image": None,
         }
 
     async def _get_data_wrapper(self, site: str, n_news: int, n_business: int, n_sports: int, deaths_start: datetime, deaths_end: datetime) -> Dict[str, Any]:
