@@ -1,6 +1,7 @@
 import os
 import logging
 import json
+import requests
 
 import streamlit as st
 from openai import OpenAI
@@ -12,9 +13,11 @@ TITLE = "Quote Extractor"
 SYSTEM_PROMPT = (
     "You are a text analysis assistant. "
     "Extract the most important and key quotes from the provided text. "
-    "Do not include any additional commentary, do not invent anything, only use exact quotes from the text. "
+    "Do not include any additional commentary, do not invent anything, only use exact quotes from the text."
     "Respond on plain text format separated by new lines. "
 )
+
+MODEL = "gpt-4.1-mini"
 
 # ---------------------------
 # Load Secrets
@@ -49,12 +52,12 @@ if "openai_client" not in st.session_state:
     st.session_state["openai_client"] = OpenAI(api_key=OPENAI_KEY)
 
 # ---------------------------
-# OpenAI Helper
+# Helpers
 # ---------------------------
 def make_request(client: OpenAI, text: str) -> list:
     try:
         response = client.chat.completions.create(
-            model="gpt-4",
+            model=MODEL,
             messages=[
                 {"role": "system", "content": SYSTEM_PROMPT},
                 {"role": "user", "content": text}
