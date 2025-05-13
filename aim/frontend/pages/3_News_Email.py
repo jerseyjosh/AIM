@@ -35,9 +35,9 @@ if 'vertical_adverts_df' not in st.session_state:
     # cache path is working directory
     cache_path = os.path.join(os.getcwd(), "vertical_adverts_cache.csv")
     try:
-        df = pd.read_csv(cache_path)
+        df = pd.read_csv(cache_path).astype(str)
     except Exception:
-        df = pd.DataFrame([], columns=Advert.__annotations__.keys())
+        df = pd.DataFrame([], columns=Advert.__annotations__.keys(), dtype=str)
     st.session_state['vertical_adverts_df'] = df
 
 # ---------------------------
@@ -134,6 +134,9 @@ vertical_adverts_df = st.data_editor(
 cache_path = os.path.join(os.getcwd(), "vertical_adverts_cache.csv")
 if len(vertical_adverts_df) > 0:
     vertical_adverts_df.to_csv(cache_path, index=False)
+else:
+    # If the DataFrame is empty, create an empty CSV file
+    pd.DataFrame([], columns=Advert.__annotations__.keys(), dtype=str).to_csv(cache_path, index=False)
 
 # deaths start/end
 deaths_start = st.date_input("Deaths Start Date")
