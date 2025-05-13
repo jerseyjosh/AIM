@@ -31,6 +31,15 @@ if 'email' not in st.session_state:
 if 'scrapers' not in st.session_state:
     st.session_state['scrapers'] = {}
 
+if 'vertical_adverts_df' not in st.session_state:
+    # cache path is working directory
+    cache_path = os.path.join(os.getcwd(), "vertical_adverts_cache.csv")
+    try:
+        df = pd.read_csv(cache_path)
+    except Exception:
+        df = pd.DataFrame([], columns=Advert.__annotations__.keys())
+    st.session_state['vertical_adverts_df'] = df
+
 # ---------------------------
 # Helper Functions
 # ---------------------------
@@ -111,15 +120,20 @@ top_image_url = st.text_input("Top Image URL")
 top_image_title = st.text_input("Top Image Title", key="top_image_title")
 top_image_author = st.text_input("Top Image Author", key="top_image_author")
 
-# Vertical Advert parameters
+# NEW Use the cached DataFrame here
 st.title("Vertical Adverts")
 vertical_adverts_df = st.data_editor(
-    pd.DataFrame([], columns=Advert.__annotations__.keys()),
+    st.session_state['vertical_adverts_df'],
     key="vertical_adverts",
     num_rows="dynamic",
     use_container_width=True,
     hide_index=True,
 )
+
+# NEW: persist to cache on every run
+cache_path = os.path.join(os.getcwd(), "vertical_adverts_cache.csv")
+if len(vertical_adverts_df) > 0:
+    vertical_adverts_df.to_csv(cache_path, index=False)
 
 # deaths start/end
 deaths_start = st.date_input("Deaths Start Date")
