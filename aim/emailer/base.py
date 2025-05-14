@@ -36,6 +36,7 @@ class Email:
             "news_stories": [],
             "business_stories": [],
             "sport_stories": [],
+            "community_stories": [],
             "weather": None,
             "family_notices": [],
             "top_image_url": "",
@@ -45,7 +46,16 @@ class Email:
             "connect_cover_image": None,
         }
 
-    async def _get_data_wrapper(self, site: str, n_news: int, n_business: int, n_sports: int, deaths_start: datetime, deaths_end: datetime) -> Dict[str, Any]:
+    async def _get_data_wrapper(
+            self, 
+            site: str,
+            n_news: int,
+            n_business: int,
+            n_sports: int, 
+            n_community: int,
+            deaths_start: datetime, 
+            deaths_end: datetime
+            ) -> Dict[str, Any]:
         """Fetch data from multiple sources asynchronously."""
         if site not in ["be", "jep"]:
             raise ValueError("Site must be either 'be' or 'jep'")
@@ -58,6 +68,7 @@ class Email:
             "news_stories": news_scraper.get_n_stories_for_region("jsy", n_news),
             "business_stories": news_scraper.get_n_stories_for_region("jsy_business", n_business),
             "sport_stories": news_scraper.get_n_stories_for_region("jsy_sport", n_sports),
+            "community_stories": news_scraper.get_n_stories_for_region("jsy_community", n_community),
             "connect_cover_image": news_scraper.get_connect_cover(),
             "weather_soup": weather_scraper.get(),
             "family_notices": family_notices_scraper.get_notices(deaths_start, deaths_end),
@@ -80,14 +91,22 @@ class Email:
         for key, result in data.items():
             if isinstance(result, Exception):
                 logger.error(f"Failed to fetch {key}: {result}")
-                data[key] = [] if key in ["news_stories", "business_stories", "sport_stories", "family_notices"] else None
+                data[key] = [] if key in ["news_stories", "business_stories", "sport_stories", "family_notices", "community_stories"] else None
 
         return data
 
-    def get_data(self, n_news: int, n_business: int, n_sports: int, deaths_start: datetime, deaths_end: datetime, site: str = "be") -> None:
+    def get_data(
+            self, 
+            n_news: int,
+            n_business: int,
+            n_sports: int,
+            n_community: int,
+            deaths_start: datetime,
+            deaths_end: datetime, 
+            site: str = "be") -> None:
         """Synchronously fetch data and update instance state."""
         try:
-            fetched_data = uvloop.run(self._get_data_wrapper(site, n_news, n_business, n_sports, deaths_start, deaths_end))
+            fetched_data = uvloop.run(self._get_data_wrapper(site, n_news, n_business, n_sports, n_community, deaths_start, deaths_end))
             self.data.update(fetched_data)
         except Exception as e:
             logger.error(f"Error in get_data: {e}")

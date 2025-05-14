@@ -1,19 +1,20 @@
 # TODO
 - email
-    - landscape adverts
+    - x landscape adverts
         - add jinja templates to email
         - add landscape advert table to frontend
-    - deaths
+    - x deaths
         - update jinja template to have date of death + funeral director
         - add deaths table to manually add date of death + funeral director
         - maybe scrap scraping if not easy to parse?
-    - new sections
-        - opinion section + community section
+    - x new sections
+        - opinion section
+        - √ community section [1h done 14/05/25]
         - need email templates to update jinja
         - where to get stories? new scrapers?
-    - BE Logo
+    - x BE Logo
         - get new assets
         - add selectbox for which asset 
-    - Ad state
+    - √ Ad state [1h done 13/05/25]
         - how to keep ads from previous emails?
         - store ads dataframe to cache and reload on each run

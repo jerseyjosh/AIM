@@ -114,6 +114,7 @@ st.title(TITLE)
 num_stories = st.number_input("Number of News Stories", min_value=1, max_value=20, value=7, step=1)
 num_business_stories = st.number_input("Number of Business Stories", min_value=1, max_value=20, value=1, step=1)
 num_sports_stories = st.number_input("Number of Sports Stories", min_value=1, max_value=20, value=1, step=1)
+num_community_stories = st.number_input("Number of Community Stories", min_value=1, max_value=20, value=1, step=1)
 
 # Top image parameters
 top_image_url = st.text_input("Top Image URL")
@@ -152,7 +153,13 @@ st.info("""
 """)
 if st.button("Fetch Stories"):
     with st.spinner("Fetching Stories..."):
-        get_email().get_data(num_stories, num_business_stories, num_sports_stories, deaths_start, deaths_end)
+        get_email().get_data(
+            n_news=num_stories,
+            n_business=num_business_stories,
+            n_sports=num_sports_stories,
+            n_community=num_community_stories,
+            deaths_start=deaths_start,
+            deaths_end=deaths_end)
     st.success("Stories fetched successfully!")
 
 # ---------------------------
@@ -161,7 +168,7 @@ if st.button("Fetch Stories"):
 st.title("Add Stories Manually")
 
 # Select which data editor to add to
-story_type = st.selectbox("Add to", ["news_stories", "business_stories", "sport_stories"], key="manual_url_type")
+story_type = st.selectbox("Add to", ["news_stories", "business_stories", "sport_stories", "community_stories"], key="manual_url_type")
 site = st.selectbox("Site", NEWS_SITES, key="manual_url_site")
 
 # Text area for URLs
@@ -230,6 +237,7 @@ def render_data_editor(key):
 news_stories_df = render_data_editor("news_stories")
 business_stories_df = render_data_editor("business_stories")
 sport_stories_df = render_data_editor("sport_stories")
+community_stories_df = render_data_editor("community_stories")
 
 # ---------------------------
 # Render Email
@@ -239,6 +247,7 @@ if st.button("Render Email"):
     rendered_email.data['news_stories'] = sorted(news_stories_df.to_dict(orient='records'), key=lambda x: x['order'])
     rendered_email.data['business_stories'] = sorted(business_stories_df.to_dict(orient='records'), key=lambda x: x['order'])
     rendered_email.data['sport_stories'] = sorted(sport_stories_df.to_dict(orient='records'), key=lambda x: x['order'])
+    rendered_email.data['community_stories'] = sorted(community_stories_df.to_dict(orient='records'), key=lambda x: x['order'])
     rendered_email.data['top_image_url'] = top_image_url
     rendered_email.data['top_image_title'] = top_image_title
     rendered_email.data['top_image_author'] = top_image_author

@@ -147,6 +147,7 @@ class BEScraper(BaseScraper):
         "gsy_business": "https://www.bailiwickexpress.com/gsy-business/",
         "jsy_sport": "https://www.bailiwickexpress.com/jsy-sport/",
         "gsy_sport": "https://www.bailiwickexpress.com/gsy-sport/",
+        "jsy_community": "https://www.bailiwickexpress.com/jsy-community/"
     }
 
     CONNECT_COVER = "https://www.bailiwickexpress.com/jsy-connect/"
@@ -171,6 +172,8 @@ class BEScraper(BaseScraper):
             return r'/sport/.+'
         elif region == "gsy_sport":
             return r'/sport-ge/.+'
+        elif region == "jsy_community":
+            return r"/community/.+"
         else:
             raise NotImplementedError(f"Invalid region {region}")
     
@@ -292,7 +295,11 @@ class BEScraper(BaseScraper):
         # get date
         date = soup.find('time').text
         # get author
-        author = soup.find('a', class_=['url', 'fn', 'a']).text
+        author = soup.find('a', class_=['url', 'fn', 'a'])
+        if author is not None:
+            author = author.text.strip()
+        else:
+            author = "Bailiwick Express"
         # get image url
         try:
             image_url = soup.find('figure', class_='post-thumbnail').find('img').get('src')
@@ -393,8 +400,8 @@ if __name__ == "__main__":
 
     async def main():
         scraper = BEScraper()
-        connect = await scraper.get_connect_cover()
-        breakpoint()
+        stories = await scraper.get_n_stories_for_region('jsy_community', 10)
+        print(stories)
     import uvloop
     uvloop.run(main())
 
