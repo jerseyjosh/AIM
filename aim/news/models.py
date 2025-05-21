@@ -1,6 +1,20 @@
 from dataclasses import dataclass
 
 @dataclass
+class Advert:
+    """
+    Dataclass to hold advertisement information.
+    """
+    url: str
+    image_url: str
+
+    def __str__(self):
+        return f"Advert(url={self.url}, image_url={self.image_url})"
+    
+    def __repr__(self):
+        return str(self)
+
+@dataclass
 class NewsStory:
     """
     Dataclass to hold news story information.

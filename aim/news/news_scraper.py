@@ -141,7 +141,7 @@ class BEScraper(BaseScraper):
     """
 
     URLS = {
-        "jsy": "https://www.bailiwickexpress.com/",
+        "jsy": "https://www.bailiwickexpress.com/news",
         "gsy": "https://www.bailiwickexpress.com/bailiwickexpress-guernsey-edition/",
         "jsy_business": "https://www.bailiwickexpress.com/jsy-business/",
         "gsy_business": "https://www.bailiwickexpress.com/gsy-business/",
@@ -400,8 +400,9 @@ if __name__ == "__main__":
 
     async def main():
         scraper = BEScraper()
-        stories = await scraper.get_n_stories_for_region('jsy_community', 10)
+        stories = await scraper.get_n_stories_for_region('jsy', 10)
         print(stories)
+        breakpoint()
     import uvloop
     uvloop.run(main())
 

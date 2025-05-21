@@ -1,0 +1,2559 @@
+Received: from GV1PR09MB7009.eurprd09.prod.outlook.com (2603:10a6:150:1a4::19)
+ by PAWPR09MB6858.eurprd09.prod.outlook.com with HTTPS; Tue, 13 May 2025
+ 12:17:42 +0000
+Received: from AM0PR02CA0172.eurprd02.prod.outlook.com (2603:10a6:20b:28e::9)
+ by GV1PR09MB7009.eurprd09.prod.outlook.com (2603:10a6:150:1a4::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8722.28; Tue, 13 May
+ 2025 12:17:37 +0000
+Received: from AMS1EPF00000040.eurprd04.prod.outlook.com
+ (2603:10a6:20b:28e:cafe::3c) by AM0PR02CA0172.outlook.office365.com
+ (2603:10a6:20b:28e::9) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8722.25 via Frontend Transport; Tue,
+ 13 May 2025 12:17:37 +0000
+Authentication-Results: spf=pass (sender IP is 27.126.146.33)
+ smtp.mailfrom=cmail19.com; dkim=pass (signature was verified)
+ header.d=allisland.media;dkim=pass (signature was verified)
+ header.d=cmail2.com;dmarc=pass action=none
+ header.from=allisland.media;compauth=pass reason=100
+Received-SPF: Pass (protection.outlook.com: domain of cmail19.com designates
+ 27.126.146.33 as permitted sender) receiver=protection.outlook.com;
+ client-ip=27.126.146.33; helo=mx33.b.outbound.createsend.com; pr=C
+Received: from mx33.b.outbound.createsend.com (27.126.146.33) by
+ AMS1EPF00000040.mail.protection.outlook.com (10.167.16.37) with Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.8722.18
+ via Frontend Transport; Tue, 13 May 2025 12:17:36 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=cm; d=allisland.media;
+ h=Subject:From:To:Reply-To:Date:MIME-Version:Content-Type:List-Unsubscribe:
+ List-Unsubscribe-Post:Message-ID; i=info@allisland.media;
+ bh=6my/Wyeev9Q0mG6ZcAcMMG8P6JouQpTjSZWi1FAQa8Y=;
+ b=O2Sek97Yp5/KWzJUEzsuM2SYKFIpmL5BOgfXwTeo9bo49JZqRA6MLfwABlt23HSTERUaIyPpNIDf
+   N8d78Y8c7uv3vtvlZkDc7JHsK2yrf4ZhPm++CCx6XhcxefWGe8hwV5KbuE3jprGjrWJBFtXZOTB4
+   L/OUEh3ontD+Frq7mPE=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=cs2013; d=cmail2.com;
+ h=Subject:From:To:Reply-To:Date:MIME-Version:Content-Type:List-Unsubscribe:
+ List-Unsubscribe-Post:Message-ID;
+ bh=6my/Wyeev9Q0mG6ZcAcMMG8P6JouQpTjSZWi1FAQa8Y=;
+ b=SznM6rBteuQJZMoA1jnS51GrxHy6OTl1Gk4YCS3NiiE7MZMQz3HkRLAw9niTIh/dvBnKkVFV3CPh
+   AINjdjkFKB02PDhfLGkx2wk5izKMwXodbtwIXzPRiJu7XHviKZ5GEBs47nLBthad70yw87Ucat7U
+   AGVRMFJWxVfm4qSPEXA=
+Subject: Rise in racially-motivated assaults on Health staff
+From: "Bailiwick Express" <info@allisland.media> 
+To: "Victoria Pearce" <vpearce@jerseyeveningpost.com>
+Reply-To: info@allisland.media
+Date: Tue, 13 May 2025 22:17:30 +1000
+Content-Type: multipart/alternative;
+ boundary="_f1fbe956-8578-45df-a7f0-84c8d62a00ce_"; charset=utf-8
+X-Mailer: Create Send
+X-Complaints-To: abuse@cmail19.com
+X-Feedback-ID: CA1-d-shjidik:LI1-d-tyujihr:CL1-d-itttit:createSEND
+List-Unsubscribe: <https://unsub.cmail19.com/t/completeheader/d/shjidik/djllniijl/c/>,
+ <mailto:unsubscribe-shjidik2djllniijl2d-A6AE339E@cmail19.com?subject=Unsubscribe>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+Message-ID: <cm.2217304210125.shjidik.djllniijl.d@cmail19.com>
+Return-Path: BailiwickExpress-shjidik1djllniijl1d@cmail19.com
+X-MS-Exchange-Organization-ExpirationStartTime: 13 May 2025 12:17:37.5375
+ (UTC)
+X-MS-Exchange-Organization-ExpirationStartTimeReason: OriginalSubmit
+X-MS-Exchange-Organization-ExpirationInterval: 1:00:00:00.0000000
+X-MS-Exchange-Organization-ExpirationIntervalReason: OriginalSubmit
+X-MS-Exchange-Organization-Network-Message-Id: 5248a60a-c3a5-4d27-8c9e-08dd92182644
+X-EOPAttributedMessage: 0
+X-EOPTenantAttributedMessage: 2d144215-1180-4206-a7ba-d626ec269ccf:0
+X-MS-Exchange-Organization-MessageDirectionality: Incoming
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AMS1EPF00000040:EE_|GV1PR09MB7009:EE_|PAWPR09MB6858:EE_
+X-MS-Exchange-Organization-AuthSource: AMS1EPF00000040.eurprd04.prod.outlook.com
+X-MS-Exchange-Organization-AuthAs: Anonymous
+X-MS-Office365-Filtering-Correlation-Id: 5248a60a-c3a5-4d27-8c9e-08dd92182644
+X-MS-Exchange-AtpMessageProperties: SA|SL
+X-MS-Exchange-Organization-SCL: 1
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1032899013|69100299015|4022899009|29132699027|2066899003|8096899003|13003099007;
+X-Forefront-Antispam-Report: CIP:27.126.146.33;CTRY:AU;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mx33.b.outbound.createsend.com;PTR:mx33.b.outbound.createsend.com;CAT:NONE;SFS:(13230040)(1032899013)(69100299015)(4022899009)(29132699027)(2066899003)(8096899003)(13003099007);DIR:INB;
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 May 2025 12:17:36.9169
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5248a60a-c3a5-4d27-8c9e-08dd92182644
+X-MS-Exchange-CrossTenant-Id: 2d144215-1180-4206-a7ba-d626ec269ccf
+X-MS-Exchange-CrossTenant-AuthSource: AMS1EPF00000040.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR09MB7009
+X-MS-Exchange-Transport-EndToEndLatency: 00:00:05.9638639
+X-MS-Exchange-Processed-By-BccFoldering: 15.20.8722.017
+X-Microsoft-Antispam-Mailbox-Delivery:
+	ucf:0;jmr:0;auth:0;dest:I;ENG:(910005)(944506478)(944626604)(920097)(930097)(140003);
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?REU3RFF2WTUwTVlmbUpwckZzazRWdXh1UnI4NmtrOHRnK25qeFMvYzVSQlda?=
+ =?utf-8?B?VHc3cW1KVVNOS0UveCtRV0RIaEJIempZUkhIZFJheENxdVZqYUhaNWx6SWh3?=
+ =?utf-8?B?L0VsbVY2SkFmcmRzOWF6Q1V3MjNHTm13QnZuSEFTZVIzcklqcEVFcmM1OWkw?=
+ =?utf-8?B?dm1JcUw3Q3dzK2ZMWm5Gc05zMkVQLzBXSnEzeW9aYkhWZXVuWGtma2VBdC9u?=
+ =?utf-8?B?U0xpcENjOVVYd0dFaGFDU3NtRDF3Z0hiUjZLb2hSNDlSWXV3NVJZYWJ4dnlk?=
+ =?utf-8?B?TXM1KzVwcGdVd1RaOTFTbC9FVDZrSkw1SGptVTlqOUlaVXJjckZidmFSMU1z?=
+ =?utf-8?B?Zi9udkxMOTlzSmJWOERmUENsNG8zWEFjVXZZRW9PcW12Y2txWmdaajZSSFE4?=
+ =?utf-8?B?d0ptaDEwNENFMVVOTWZqV29pVlpRSWppc0RSc2ZybFBRK2syNk02V0ZteUZ2?=
+ =?utf-8?B?OSszNHRFU2kwalYzQmkwdE1lcndwQ0g2ek1GNVptc3hiblV0ZDhHWVBpS3g1?=
+ =?utf-8?B?dnV1cWpHcFBRQmFYbjFMWGdOSW16cy9ZT1JiTklPdThpcWsycVhUTUtVVFRz?=
+ =?utf-8?B?bUtlUVp1SlRyYStYZWxyOEFPS1VrMjExOWIzL1FlUTJYWE5rOFkxcGtITERD?=
+ =?utf-8?B?aU5JWlZ0WHBHTjl1czBrTk84WXFlTHVzd3c4ZjgwRHlaUk5oSTMwbFFBKzBK?=
+ =?utf-8?B?b1JSN05sdXllYU9mZlFSck0zVXpOVHM2Nmh1dEVCbzkyc0w4dUJ1dUtObmp6?=
+ =?utf-8?B?c2lzdWRJSWRwYmVvUjVXWUxWNitWek1ub25JWWJQcks2RGpzeEZPeWpxM2hl?=
+ =?utf-8?B?ZmhEY0tGZDFuY0RhbEc5ZFZpczVxVGxUQStVVXdKbnMzc29oc0U2dmloOGJ6?=
+ =?utf-8?B?dWFvZjNiY2gvakZZVnR6UVNQdXdCZVgxTXA0VVVjQXVPNGp2SThVS2dGczht?=
+ =?utf-8?B?aENpQmZsKzE4RkFZSHpWSEp2OXBERTNIa3JiUGF5UFlIUFdMeU51bFRMUDF1?=
+ =?utf-8?B?UDY4dDRHYnB0SDZybzh6M09NMWIyZDJJWjV5OEw3dy9MUHlDWkthYXp2cnRI?=
+ =?utf-8?B?eklHZXduTTIxSWp2ZE9RTkhyYWp3U00vVzlNVlRiRVVUWmdtdjV1VUp3VjRK?=
+ =?utf-8?B?ci8wRXhWb2V4VlF4Tko0aERUWHpkVnpIMjZPRnJ1T1JHbHZ2S0FEYWpYdjlE?=
+ =?utf-8?B?UTJGOHE3WVNxZkZjSStaQzJzZklKVFlCclllaHZWVVc5QVRSakdiVDFVY29H?=
+ =?utf-8?B?RzY1NG5uNHlpWnV2TUlpc2I3V2dVMGY2L2o0MVhXWXJTd2xGR3NadGxPUG1z?=
+ =?utf-8?B?VHUyMDlEajdXREtuL0tFL1VwUW5jbzFoejIwNDJOWHdyQmFFTTZsU1pScm14?=
+ =?utf-8?B?ZWVhbC9kbDdGQWdnWVJkMTVHYzRJd0xYSmxwMjQ5cWRFZ0RYdWdMaU9QY1Jq?=
+ =?utf-8?B?UllYRWxybnRONGMvTER5ODUvejN5Z0MxTFhITXFIMWpURFdDWVR0bm9kSjc3?=
+ =?utf-8?B?RzZjUUw1K0xLYVZEelZ5dmw4bTRtNGVOVVNXSHlWK0svRXBybE4zcjZXdlhW?=
+ =?utf-8?B?OVVFK2RHQldabVdkcTRVazJrQTl6NHd6dnhHM095eWxOcTA2d3htMlRKWk0v?=
+ =?utf-8?Q?Azlj2bTHiKtKoQNylsWDfgqfsbBW61zATLvmri3cGP4Q=3D?=
+MIME-Version: 1.0
+
+--_f1fbe956-8578-45df-a7f0-84c8d62a00ce_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+CAUTION: This email originated from outside of the organisation. Do not cli=
+ck links or open attachments unless you recognise the sender and know the c=
+ontent is safe.
+
+
+PLUS: Dozens of children miss out on first choice school =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C
+
+No images? Click here<https://allislandmedia.cmail20.com/t/d-e-shjidik-djll=
+niijl-jd/>
+
+[BAILIWICK EXPRESS]<https://allislandmedia.cmail20.com/t/d-l-shjidik-djllni=
+ijl-r/>
+[JERSEY EDITION]
+
+
+Sunset over St Ouen=E2=80=99s Bay. (Christie Bailey) Click HERE<mailto:pict=
+ures@bailiwickexpress.com> to send us your pictures
+
+
+
+Today's weather: 15=C2=B0c, light rain
+Tide: Low 14:14 (2.1m) High 19:53 (10.3m)
+Tuesday 13 May 2025
+
+[https://i2.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/DigitalJerseyTOPBANN=
+ERDJ1-9900000000079e3c.gif]<https://allislandmedia.cmail20.com/t/d-l-shjidi=
+k-djllniijl-y/>
+
+[https://i0.wp.com/www.bailiwickexpress.com/wp-content/uploads/2025/03/pexe=
+ls-artyom-kulakov-1190754-2265634-1-scaled.jpg?resize=3D1200%2C900&ssl=3D1]
+Minister to seek sentencing review if new hit-and-run law passes
+
+A backbencher=E2=80=99s bid to make failing to help after a serious or fata=
+l crash a standalone criminal offence has won the support of the Infrastruc=
+ture Minister, who wants to see deterrents increased.
+
+Read more<https://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-j/>
+
+[https://i3.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/Dandara_Bailiwick-Em=
+ail_6-Percent_728x180_11111111-9900000000079e3c.gif]<https://allislandmedia=
+.cmail20.com/t/d-l-shjidik-djllniijl-t/>
+
+[https://i4.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/News-Header2-9900000=
+000079e3c.jpg]<https://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-i=
+/>
+[https://i0.wp.com/www.bailiwickexpress.com/wp-content/uploads/2025/04/hosp=
+ital-bed.jpg?resize=3D600%2C450&ssl=3D1]
+Rise in racially motivated assaults on Health staff
+
+There has been a 480% rise in racially motivated assaults on health staff i=
+n the last five years, it has emerged.
+
+Read more<https://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-d/>
+[https://i0.wp.com/www.bailiwickexpress.com/wp-content/uploads/2022/07/Quen=
+nevais.png?resize=3D768%2C446&ssl=3D1]
+Dozens of children miss out on first choice school as Les Quennevais oversu=
+bscribed
+
+Nearly 30 children living in the Les Quennevais catchment area have been de=
+nied a place at the school due to it being =E2=80=9Coversubscribed=E2=80=9D=
+, it has emerged.
+
+Read more<https://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-h/>
+[https://i0.wp.com/www.bailiwickexpress.com/wp-content/uploads/2025/05/Isla=
+nds-ferry-on-its-way.jpg?resize=3D768%2C465&ssl=3D1]
+Inter-island ferry en route to Channel Islands
+
+A 316-seat catamaran that will be used to provide a new inter-island ferry =
+service is due to arrive in local waters later this month.
+
+Read more<https://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-k/>
+[https://i0.wp.com/www.bailiwickexpress.com/wp-content/uploads/2025/05/Shot=
+bolt-scaled.jpg?resize=3D768%2C497&ssl=3D1]
+Man jailed for three years after jealously-fuelled attack
+
+A 27-year-old man has been jailed for kicking down a woman=E2=80=99s front =
+door in an =E2=80=9Cangry and jealous rage=E2=80=9D and attacking the man i=
+nside until he was unconscious.
+
+Read more<https://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-u/>
+[https://i0.wp.com/www.bailiwickexpress.com/wp-content/uploads/2025/05/shie=
+lds-scaled.jpg?resize=3D768%2C452&ssl=3D1]
+Woman jailed for smuggling suspected drugs money out of Jersey
+
+A 43-year-old woman who smuggled tens-of-thousands of pounds of suspected d=
+rug money out of Jersey has been jailed for one year and nine months.
+
+Read more<https://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-o/>
+[https://i0.wp.com/www.bailiwickexpress.com/wp-content/uploads/2024/07/Surv=
+ey.jpg?resize=3D400%2C300&ssl=3D1]
+Less than a third of young people can name their elected States Members
+
+Do the children and young people in your family know who their elected repr=
+esentatives are? If the answer is no, they are not alone.
+
+Read more<https://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-b/>
+[https://i0.wp.com/www.bailiwickexpress.com/wp-content/uploads/2025/05/4035=
+3280.jpg?resize=3D768%2C512&ssl=3D1]
+Red Cross praises Jersey=E2=80=99s transformation from wartime aid recipien=
+t to modern humanitarian donor
+
+Jersey=E2=80=99s transformation from a wartime aid recipient to a respected=
+ international donor has been praised by a senior British Red Cross officia=
+l who visited the island last week to mark Liberation Day.
+
+Read more<https://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-n/>
+[https://i0.wp.com/www.bailiwickexpress.com/wp-content/uploads/2025/05/lily=
+-mcgarry.jpg?resize=3D768%2C452&ssl=3D1]
+Young amputee inspires Jersey=E2=80=99s first limb difference support group
+
+Jersey=E2=80=99s first limb difference support group has been launched foll=
+owing the inspiring story of a young islander who recently became a quadrup=
+le amputee.
+
+Read more<https://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-p/>
+
+[https://i5.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/JTBailiwickAIM_160x6=
+00-990000079e01453c.png]<https://allislandmedia.cmail20.com/t/d-l-shjidik-d=
+jllniijl-x/>
+
+[https://i6.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/Ravenscroft160x600-9=
+90000079e01453c.gif]<https://allislandmedia.cmail20.com/t/d-l-shjidik-djlln=
+iijl-m/>
+
+[https://i7.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/TMFEmail-Skyscraper2=
+-990000079e01453c.gif]<https://allislandmedia.cmail20.com/t/d-l-shjidik-djl=
+lniijl-c/>
+
+[https://i8.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/ALEXANDER-DANIELS-SK=
+YSCRAPER4-990000079e01453c.gif]<https://allislandmedia.cmail20.com/t/d-l-sh=
+jidik-djllniijl-q/>
+[https://i9.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/Blank-Reversed-Heade=
+r-9900000000079e3c1-9900000000079e3c.jpg]
+
+[https://i10.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/BHC-728x902-9900000=
+000079e3c.gif]<https://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-a=
+/>
+
+[https://i1.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/Opinion-Header5-9900=
+000000079e3c.jpg]
+[https://i2.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/CircleHappyThanksgiv=
+ingProfilePhotoFrame1-9900000000028a3c.png]
+Jersey Samaritans: Five things to improve mental health awareness in Jersey=
+<https://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-f/>
+
+To mark Mental Health Awareness Week, Express has been speaking to local ch=
+arities and organisations about five things they believe could be changed t=
+o promote better understanding of mental illness in Jersey.<https://allisla=
+ndmedia.cmail20.com/t/d-l-shjidik-djllniijl-z/>
+
+[https://i3.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/Bottomcopy51-9900000=
+000079e3c.jpg]
+
+[https://i4.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/JerseyArtsCentreCont=
+entBanner-9900000000079e3c.jpg]<https://allislandmedia.cmail20.com/t/d-l-sh=
+jidik-djllniijl-v/>
+
+[https://i5.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/image1-9900000000079=
+e3c-9900000000079e3c.png]
+[https://i0.wp.com/www.bailiwickexpress.com/wp-content/uploads/2025/05/Trin=
+ity-Living-Wage.jpg?resize=3D600%2C450&ssl=3D1]
+Trinity becomes fourth parish to receive Jersey Living Wage employer accred=
+itation
+
+Trinity has received accreditation as a =E2=80=9CJersey Living Wage=E2=80=
+=9D employer =E2=80=93 becoming the fourth parish to have done so =E2=80=93=
+ with those behind the campaign hoping the remaining eight parishes will fo=
+llow.
+
+Read more<https://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-e/>
+
+[https://i6.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/Screenshot2025-04-23=
+130356-990000079e01453c.png]
+Read online<https://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-s/>
+
+[https://i7.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/image-2-990000000007=
+9e3c.png]
+
+[https://i8.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/WiTPTop-Banner-GIF2-=
+9900000000079e3c.gif]<https://allislandmedia.cmail20.com/t/d-l-shjidik-djll=
+niijl-g/>
+
+[https://i9.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/fn1-9900000000079e3c=
+.jpg]
+[https://i10.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/DEATH-ICON1-d8a8c43=
+cca1802af.jpg]
+
+DEATHS
+
+Diane Marie Ahier (n=C3=A9e Guise, formerly Collas)
+
+Died: 25/04/25
+Pitcher & Le Quesne Funeral Directors
+
+Ann Beryl Barrett
+
+Died: 28/03/25
+
+Audrey Eileen Murgatroyd
+
+Died: 05/04/25
+
+
+Margaret Elizabeth Pirouet (n=C3=A9e Dean)
+
+Died: 12/04/25
+
+
+[https://i1.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/Bottomcopy5-99000000=
+00079e3c.jpg]
+
+[https://i2.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/Radio-Banner-9900000=
+000079e3c.jpg]<https://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-w=
+/>
+[https://i3.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/Download-Banner1-990=
+0000000079e3c.jpg]
+[https://i4.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/Apple-Classics-99000=
+0000003cf3c.jpg]<https://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl=
+-yd/>
+[https://i5.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/Apple-Hits-990000000=
+003cf3c.jpg]<https://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-yh/=
+>
+
+[https://i6.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/Andriod-Classics-990=
+000000003cf3c.jpg]<https://allislandmedia.cmail20.com/t/d-l-shjidik-djllnii=
+jl-yk/>
+[https://i7.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/Andriod-Hits-9900000=
+00003cf3c.jpg]<https://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-y=
+u/>
+
+[https://i8.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/Email-Us-Banner-9900=
+000000079e3c.jpg]<mailto:sales@bailiwickexpress.com>
+
+[Facebook]<https://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-jl/>[=
+Twitter]<https://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-jr/>[In=
+stagram]<https://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-jy/>[Li=
+nkedIn]<https://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-jj/>[Web=
+site]<https://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-jt/>
+
+[https://i1.cmail20.com/ei/d/A6/CC4/E90/221438/csfinal/logo-200pxwide-99000=
+00000028a3c.png]
+ [https://i1.cmail20.com//static/eb/master/13-the-blueprint-3/images/fblike=
+-white-flex@2x.png]  Share  <https://allislandmedia.cmail20.com/t/d-fb-shji=
+dik-djllniijl-ty/>
+ [https://i2.cmail20.com//static/eb/master/13-the-blueprint-3/images/tweet-=
+white-flex@2x.png]  Tweet  <https://allislandmedia.cmail20.com/t/d-tw-shjid=
+ik-djllniijl-tj/>
+ [https://i3.cmail20.com//static/eb/master/13-the-blueprint-3/images/linked=
+inshare-white-flex@2x.png]  Share  <https://allislandmedia.cmail20.com/t/d-=
+li-shjidik-djllniijl-tt/>
+ [https://i4.cmail20.com//static/eb/master/13-the-blueprint-3/images/forwar=
+dtoafriend-white-flex@2x.png]  Forward  <https://allislandmedia.forwardtomy=
+friend.com/d-djllniijl-A6AE339E-shjidik-l-ti>
+Copyright =C2=A9 Bailiwick Express
+
+You have received this e-mail because you have subscribed to receive e-mail=
+s from Bailiwick Publishing, who publish Bailiwick Express and Connect.
+
+
+
+Unsubscribe to this newsletter<https://allislandmedia.cmail20.com/t/d-l-shj=
+idik-djllniijl-ji/>
+
+
+
+Unsubscribe from everything sent by Bailiwick Express and JEP
+
+Unsubscribe<https://allislandmedia.cmail20.com/t/d-u-shjidik-djllniijl-td/>
+
+
+
+--_f1fbe956-8578-45df-a7f0-84c8d62a00ce_
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www=
+.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html style=3D"margin: 0;pad=
+ding: 0;" xmlns=3D"http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8">
+<title></title>
+<!--[if !mso]><!-->
+<meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge">
+<!--<![endif]-->
+<meta name=3D"viewport" content=3D"width=3Ddevice-width">
+<style type=3D"text/css">
+@media only screen and (min-width: 620px){.column{}.wrapper{min-width:600px=
+ !important}.wrapper h1{}.wrapper h1{font-size:20px !important;line-height:=
+28px !important}.wrapper h2{}.wrapper h2{font-size:20px !important;line-hei=
+ght:28px !important}.wrapper h3{}.wrapper .size-8,.wrapper .size-8-m,.wrapp=
+er .size-8-l{font-size:8px !important;line-height:14px !important}.wrapper =
+.size-8-m{line-height:16px !important}.wrapper .size-8-l{line-height:24px !=
+important}.wrapper .size-9,.wrapper .size-9-m,.wrapper .size-9-l{font-size:=
+9px !important;line-height:16px !important}.wrapper .size-9-m{line-height:1=
+8px !important}.wrapper .size-9-l{line-height:27px !important}.wrapper .siz=
+e-10,.wrapper .size-10-m,.wrapper .size-10-l{font-size:10px !important;line=
+-height:18px !important}.wrapper .size-10-m{line-height:20px !important}.wr=
+apper .size-10-l{line-height:30px !important}.wrapper .size-11,.wrapper=20
+.size-11-m,.wrapper .size-11-l{font-size:11px !important;line-height:19px !=
+important}.wrapper .size-11-m{line-height:22px !important}.wrapper .size-11=
+-l{line-height:33px !important}.wrapper .size-12,.wrapper .size-12-m,.wrapp=
+er .size-12-l{font-size:12px !important;line-height:19px !important}.wrappe=
+r .size-12-m{line-height:24px !important}.wrapper .size-12-l{line-height:36=
+px !important}.wrapper .size-13,.wrapper .size-13-m,.wrapper .size-13-l{fon=
+t-size:13px !important;line-height:21px !important}.wrapper .size-13-m{line=
+-height:26px !important}.wrapper .size-13-l{line-height:39px !important}.wr=
+apper .size-14,.wrapper .size-14-m,.wrapper .size-14-l{font-size:14px !impo=
+rtant;line-height:21px !important}.wrapper .size-14-m{line-height:28px !imp=
+ortant}.wrapper .size-14-l{line-height:42px !important}.wrapper .size-15,.w=
+rapper .size-15-m,.wrapper .size-15-l{font-size:15px=20
+!important;line-height:23px !important}.wrapper .size-15-m{line-height:30px=
+ !important}.wrapper .size-15-l{line-height:45px !important}.wrapper .size-=
+16,.wrapper .size-16-m,.wrapper .size-16-l{font-size:16px !important;line-h=
+eight:24px !important}.wrapper .size-16-m{line-height:32px !important}.wrap=
+per .size-16-l{line-height:48px !important}.wrapper .size-17,.wrapper .size=
+-17-m,.wrapper .size-17-l{font-size:17px !important;line-height:26px !impor=
+tant}.wrapper .size-17-m{line-height:34px !important}.wrapper .size-17-l{li=
+ne-height:51px !important}.wrapper .size-18,.wrapper .size-18-m,.wrapper .s=
+ize-18-l{font-size:18px !important;line-height:26px !important}.wrapper .si=
+ze-18-m{line-height:36px !important}.wrapper .size-18-l{line-height:54px !i=
+mportant}.wrapper .size-20,.wrapper .size-20-m,.wrapper .size-20-l{font-siz=
+e:20px !important;line-height:28px !important}.wrapper=20
+.size-20-m{line-height:40px !important}.wrapper .size-20-l{line-height:60px=
+ !important}.wrapper .size-22,.wrapper .size-22-m,.wrapper .size-22-l{font-=
+size:22px !important;line-height:31px !important}.wrapper .size-22-m{line-h=
+eight:44px !important}.wrapper .size-22-l{line-height:66px !important}.wrap=
+per .size-24,.wrapper .size-24-m,.wrapper .size-24-l{font-size:24px !import=
+ant;line-height:32px !important}.wrapper .size-24-m{line-height:48px !impor=
+tant}.wrapper .size-24-l{line-height:72px !important}.wrapper .size-26,.wra=
+pper .size-26-m,.wrapper .size-26-l{font-size:26px !important;line-height:3=
+4px !important}.wrapper .size-26-m{line-height:52px !important}.wrapper .si=
+ze-26-l{line-height:78px !important}.wrapper .size-28,.wrapper .size-28-m,.=
+wrapper .size-28-l{font-size:28px !important;line-height:36px !important}.w=
+rapper .size-28-m{line-height:56px !important}.wrapper=20
+.size-28-l{line-height:84px !important}.wrapper .size-30,.wrapper .size-30-=
+m,.wrapper .size-30-l{font-size:30px !important;line-height:38px !important=
+}.wrapper .size-30-m{line-height:60px !important}.wrapper .size-30-l{line-h=
+eight:90px !important}.wrapper .size-32,.wrapper .size-32-m,.wrapper .size-=
+32-l{font-size:32px !important;line-height:40px !important}.wrapper .size-3=
+2-m{line-height:64px !important}.wrapper .size-32-l{line-height:96px !impor=
+tant}.wrapper .size-34,.wrapper .size-34-m,.wrapper .size-34-l{font-size:34=
+px !important;line-height:43px !important}.wrapper .size-34-m{line-height:6=
+8px !important}.wrapper .size-34-l{line-height:102px !important}.wrapper .s=
+ize-36,.wrapper .size-36-m,.wrapper .size-36-l{font-size:36px !important;li=
+ne-height:43px !important}.wrapper .size-36-m{line-height:72px !important}.=
+wrapper .size-36-l{line-height:108px !important}.wrapper .size-40,.wrapper=
+=20
+.size-40-m,.wrapper .size-40-l{font-size:40px !important;line-height:47px !=
+important}.wrapper .size-40-m{line-height:80px !important}.wrapper .size-40=
+-l{line-height:120px !important}.wrapper .size-44,.wrapper .size-44-m,.wrap=
+per .size-44-l{font-size:44px !important;line-height:50px !important}.wrapp=
+er .size-44-m{line-height:88px !important}.wrapper .size-44-l{line-height:1=
+32px !important}.wrapper .size-48,.wrapper .size-48-m,.wrapper .size-48-l{f=
+ont-size:48px !important;line-height:54px !important}.wrapper .size-48-m{li=
+ne-height:96px !important}.wrapper .size-48-l{line-height:144px !important}=
+.wrapper .size-56,.wrapper .size-56-m,.wrapper .size-56-l{font-size:56px !i=
+mportant;line-height:60px !important}.wrapper .size-56-m{line-height:112px =
+!important}.wrapper .size-56-l{line-height:168px !important}.wrapper .size-=
+64,.wrapper .size-64-m,.wrapper .size-64-l{font-size:64px=20
+!important;line-height:68px !important}.wrapper .size-64-m{line-height:128p=
+x !important}.wrapper .size-64-l{line-height:192px !important}.wrapper .siz=
+e-72,.wrapper .size-72-m,.wrapper .size-72-l{font-size:72px !important;line=
+-height:76px !important}.wrapper .size-72-m{line-height:144px !important}.w=
+rapper .size-72-l{line-height:216px !important}.wrapper .size-80,.wrapper .=
+size-80-m,.wrapper .size-80-l{font-size:80px !important;line-height:84px !i=
+mportant}.wrapper .size-80-m{line-height:160px !important}.wrapper .size-80=
+-l{line-height:240px !important}.wrapper .size-96,.wrapper .size-96-m,.wrap=
+per .size-96-l{font-size:96px !important;line-height:100px !important}.wrap=
+per .size-96-m{line-height:192px !important}.wrapper .size-96-l{line-height=
+:288px !important}.wrapper .size-112,.wrapper .size-112-m,.wrapper .size-11=
+2-l{font-size:112px !important;line-height:116px !important}.wrapper=20
+.size-112-m{line-height:224px !important}.wrapper .size-112-l{line-height:3=
+36px !important}.wrapper .size-128,.wrapper .size-128-m,.wrapper .size-128-=
+l{font-size:128px !important;line-height:132px !important}.wrapper .size-12=
+8-m{line-height:256px !important}.wrapper .size-128-l{line-height:384px !im=
+portant}.wrapper .size-144,.wrapper .size-144-m,.wrapper .size-144-l{font-s=
+ize:144px !important;line-height:148px !important}.wrapper .size-144-m{line=
+-height:288px !important}.wrapper .size-144-l{line-height:432px !important}=
+}
+</style>
+<meta name=3D"x-apple-disable-message-reformatting">
+<style type=3D"text/css">
+.main, .mso {
+  margin: 0;
+  padding: 0;
+}
+table {
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+* {
+  line-height: inherit;
+}
+[x-apple-data-detectors] {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+.wrapper .footer__share-button a:hover,
+.wrapper .footer__share-button a:focus {
+  color: #ffffff !important;
+}
+.wrapper .footer__share-button a.icon-white:hover,
+.wrapper .footer__share-button a.icon-white:focus {
+  color: #ffffff !important;
+}
+.wrapper .footer__share-button a.icon-black:hover,
+.wrapper .footer__share-button a.icon-black:focus {
+  color: #000000 !important;
+}
+.btn a:hover,
+.btn a:focus,
+.footer__share-button a:hover,
+.footer__share-button a:focus,
+.email-footer__links a:hover,
+.email-footer__links a:focus {
+  opacity: 0.8;
+}
+.preheader,
+.header,
+.layout,
+.column {
+  transition: width 0.25s ease-in-out, max-width 0.25s ease-in-out;
+}
+.preheader td {
+  padding-bottom: 8px;
+}
+.layout,
+div.header {
+  max-width: 400px !important;
+  -fallback-width: 95% !important;
+  width: calc(100% - 20px) !important;
+}
+div.preheader {
+  max-width: 360px !important;
+  -fallback-width: 90% !important;
+  width: calc(100% - 60px) !important;
+}
+.snippet,
+.webversion {
+  Float: none !important;
+}
+.stack .column {
+  max-width: 400px !important;
+  width: 100% !important;
+}
+.fixed-width.has-border {
+  max-width: 402px !important;
+}
+.fixed-width.has-border .layout__inner {
+  box-sizing: border-box;
+}
+.snippet,
+.webversion {
+  width: 50% !important;
+}
+.mso .layout__edges {
+  font-size: 0;
+}
+.layout-fixed-width,
+.mso .layout-full-width {
+  background-color: #ffffff;
+}
+@media only screen and (min-width: 620px) {
+  .column,
+  .gutter {
+    display: table-cell;
+    Float: none !important;
+    vertical-align: top;
+  }
+  div.preheader,
+  .email-footer {
+    max-width: 560px !important;
+    width: 560px !important;
+  }
+  .snippet,
+  .webversion {
+    width: 280px !important;
+  }
+  div.header,
+  .layout,
+  .one-col .column {
+    max-width: 600px !important;
+    width: 600px !important;
+  }
+  .fixed-width.has-border,
+  .fixed-width.x_has-border,
+  .has-gutter.has-border,
+  .has-gutter.x_has-border {
+    max-width: 602px !important;
+    width: 602px !important;
+  }
+  .two-col .column {
+    max-width: 300px !important;
+    width: 300px !important;
+  }
+  .three-col .column,
+  .column.narrow,
+  .column.x_narrow {
+    max-width: 200px !important;
+    width: 200px !important;
+  }
+  .column.wide,
+  .column.x_wide {
+    width: 400px !important;
+  }
+  .two-col.has-gutter .column,
+  .two-col.x_has-gutter .column {
+    max-width: 290px !important;
+    width: 290px !important;
+  }
+  .three-col.has-gutter .column,
+  .three-col.x_has-gutter .column,
+  .has-gutter .narrow {
+    max-width: 188px !important;
+    width: 188px !important;
+  }
+  .has-gutter .wide {
+    max-width: 394px !important;
+    width: 394px !important;
+  }
+  .two-col.has-gutter.has-border .column,
+  .two-col.x_has-gutter.x_has-border .column {
+    max-width: 292px !important;
+    width: 292px !important;
+  }
+  .three-col.has-gutter.has-border .column,
+  .three-col.x_has-gutter.x_has-border .column,
+  .has-gutter.has-border .narrow,
+  .has-gutter.x_has-border .narrow {
+    max-width: 190px !important;
+    width: 190px !important;
+  }
+  .has-gutter.has-border .wide,
+  .has-gutter.x_has-border .wide {
+    max-width: 396px !important;
+    width: 396px !important;
+  }
+}
+@supports (display: flex) {
+  @media only screen and (min-width: 620px) {
+    .fixed-width.has-border .layout__inner {
+      display: flex !important;
+    }
+  }
+}
+/***
+* Mobile Styles
+*
+* 1. Overriding inline styles
+*/
+@media(max-width: 619px) {
+  .email-flexible-footer .left-aligned-footer .column,
+  .email-flexible-footer .center-aligned-footer,
+  .email-flexible-footer .right-aligned-footer .column {
+    max-width: 100% !important; /* [1] */
+    text-align: center !important; /* [1] */
+    width: 100% !important; /* [1] */
+  }
+  .flexible-footer-logo {
+    margin-left: 0px !important; /* [1] */
+    margin-right: 0px !important; /* [1] */
+  }
+  .email-flexible-footer .left-aligned-footer .flexible-footer__share-butto=
+n__container,
+  .email-flexible-footer .center-aligned-footer .flexible-footer__share-but=
+ton__container,
+  .email-flexible-footer .right-aligned-footer .flexible-footer__share-butt=
+on__container {
+    display: inline-block;
+    margin-left: 5px !important; /* [1] */
+    margin-right: 5px !important; /* [1] */
+  }
+  .email-flexible-footer__additionalinfo--center {
+    text-align: center !important; /* [1] */
+  }
+ =20
+  .email-flexible-footer .left-aligned-footer table,
+  .email-flexible-footer .center-aligned-footer table,
+  .email-flexible-footer .right-aligned-footer table {
+    display: table !important; /* [1] */
+    width: 100% !important; /* [1] */
+  }
+  .email-flexible-footer .footer__share-button,
+  .email-flexible-footer .email-footer__additional-info {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and=
+ (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-rat=
+io: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min=
+-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  .fblike {
+    background-image: url(https://i7.cmail20.com/static/eb/master/13-the-bl=
+ueprint-3/images/fblike@2x.png) !important;
+  }
+  .tweet {
+    background-image: url(https://i8.cmail20.com/static/eb/master/13-the-bl=
+ueprint-3/images/tweet@2x.png) !important;
+  }
+  .linkedinshare {
+    background-image: url(https://i9.cmail20.com/static/eb/master/13-the-bl=
+ueprint-3/images/lishare@2x.png) !important;
+  }
+  .forwardtoafriend {
+    background-image: url(https://i10.cmail20.com/static/eb/master/13-the-b=
+lueprint-3/images/forward@2x.png) !important;
+  }
+}
+@media (max-width: 321px) {
+  .fixed-width.has-border .layout__inner {
+    border-width: 1px 0 !important;
+  }
+  .layout,
+  .stack .column {
+    min-width: 320px !important;
+    width: 320px !important;
+  }
+  .border {
+    display: none;
+  }
+  .has-gutter .border {
+    display: table-cell;
+  }
+}
+.cmctbl--inline table {
+  border-collapse: collapse;
+}
+</style><!--[if mso]><xml>
+      <w:WordDocument xmlns:w=3D"urn:schemas-microsoft-com:office:word">
+        <w:DontUseAdvancedTypographyReadingMail/>
+      </w:WordDocument>
+    </xml><![endif]--><!--[if !mso]><!--><style type=3D"text/css">
+@import url(https://fonts.googleapis.com/css?family=3DOpen+Sans:400italic,7=
+00italic,700,400|PT+Sans:400,700,400italic,700italic);
+</style><link href=3D"https://fonts.googleapis.com/css?family=3DOpen+Sans:4=
+00italic,700italic,700,400|PT+Sans:400,700,400italic,700italic" rel=3D"styl=
+esheet" type=3D"text/css"><!--<![endif]--><style type=3D"text/css">
+.main,.mso{background-color:#27313c}.logo a:hover,.logo a:focus{color:#fff =
+!important}.footer-logo a:hover,.footer-logo a:focus{color:#b59b69 !importa=
+nt}.mso .layout-has-border{border-top:1px solid #000;border-bottom:1px soli=
+d #000}.mso .layout-has-bottom-border{border-bottom:1px solid #000}.mso .bo=
+rder{background-color:#000}.mso h1{}.mso h1{font-size:20px !important;line-=
+height:28px !important}.mso h2{}.mso h2{font-size:20px !important;line-heig=
+ht:28px !important}.mso h3{}.mso .layout__inner{}.mso .footer__share-button=
+ p{}.mso .footer__share-button p{font-family:Open Sans,sans-serif}
+</style><!--[if mso]><style type=3D"text/css" emb-not-inline>
+.mso div{border:0 none white !important}.mso .w560 .divider{}.mso .w560 .di=
+vider{Margin-left:260px !important;Margin-right:260px !important}.mso .w360=
+ .divider{}.mso .w360 .divider{Margin-left:160px !important;Margin-right:16=
+0px !important}.mso .w260 .divider{}.mso .w260 .divider{Margin-left:110px !=
+important;Margin-right:110px !important}.mso .w160 .divider{}.mso .w160 .di=
+vider{Margin-left:60px !important;Margin-right:60px !important}.mso .w60 .d=
+ivider{}.mso .w60 .divider{Margin-left:10px !important;Margin-right:10px !i=
+mportant}.mso .w354 .divider{}.mso .w354 .divider{Margin-left:157px !import=
+ant;Margin-right:157px !important}.mso .w250 .divider{}.mso .w250 .divider{=
+Margin-left:105px !important;Margin-right:105px !important}.mso .w148 .divi=
+der{}.mso .w148 .divider{Margin-left:54px !important;Margin-right:54px !imp=
+ortant}.mso .size-8,.mso .size-8-m,.mso .size-8-l{font-size:8px=20
+!important;line-height:14px !important}.mso .size-8-m{line-height:16px !imp=
+ortant}.mso .size-8-l{line-height:24px !important}.mso .size-9,.mso .size-9=
+-m,.mso .size-9-l{font-size:9px !important;line-height:16px !important}.mso=
+ .size-9-m{line-height:18px !important}.mso .size-9-l{line-height:27px !imp=
+ortant}.mso .size-10,.mso .size-10-m,.mso .size-10-l{font-size:10px !import=
+ant;line-height:18px !important}.mso .size-10-m{line-height:20px !important=
+}.mso .size-10-l{line-height:30px !important}.mso .size-11,.mso .size-11-m,=
+.mso .size-11-l{font-size:11px !important;line-height:19px !important}.mso =
+.size-11-m{line-height:22px !important}.mso .size-11-l{line-height:33px !im=
+portant}.mso .size-12,.mso .size-12-m,.mso .size-12-l{font-size:12px !impor=
+tant;line-height:19px !important}.mso .size-12-m{line-height:24px !importan=
+t}.mso .size-12-l{line-height:36px !important}.mso .size-13,.mso=20
+.size-13-m,.mso .size-13-l{font-size:13px !important;line-height:21px !impo=
+rtant}.mso .size-13-m{line-height:26px !important}.mso .size-13-l{line-heig=
+ht:39px !important}.mso .size-14,.mso .size-14-m,.mso .size-14-l{font-size:=
+14px !important;line-height:21px !important}.mso .size-14-m{line-height:28p=
+x !important}.mso .size-14-l{line-height:42px !important}.mso .size-15,.mso=
+ .size-15-m,.mso .size-15-l{font-size:15px !important;line-height:23px !imp=
+ortant}.mso .size-15-m{line-height:30px !important}.mso .size-15-l{line-hei=
+ght:45px !important}.mso .size-16,.mso .size-16-m,.mso .size-16-l{font-size=
+:16px !important;line-height:24px !important}.mso .size-16-m{line-height:32=
+px !important}.mso .size-16-l{line-height:48px !important}.mso .size-17,.ms=
+o .size-17-m,.mso .size-17-l{font-size:17px !important;line-height:26px !im=
+portant}.mso .size-17-m{line-height:34px !important}.mso=20
+.size-17-l{line-height:51px !important}.mso .size-18,.mso .size-18-m,.mso .=
+size-18-l{font-size:18px !important;line-height:26px !important}.mso .size-=
+18-m{line-height:36px !important}.mso .size-18-l{line-height:54px !importan=
+t}.mso .size-20,.mso .size-20-m,.mso .size-20-l{font-size:20px !important;l=
+ine-height:28px !important}.mso .size-20-m{line-height:40px !important}.mso=
+ .size-20-l{line-height:60px !important}.mso .size-22,.mso .size-22-m,.mso =
+.size-22-l{font-size:22px !important;line-height:31px !important}.mso .size=
+-22-m{line-height:44px !important}.mso .size-22-l{line-height:66px !importa=
+nt}.mso .size-24,.mso .size-24-m,.mso .size-24-l{font-size:24px !important;=
+line-height:32px !important}.mso .size-24-m{line-height:48px !important}.ms=
+o .size-24-l{line-height:72px !important}.mso .size-26,.mso .size-26-m,.mso=
+ .size-26-l{font-size:26px !important;line-height:34px !important}.mso=20
+.size-26-m{line-height:52px !important}.mso .size-26-l{line-height:78px !im=
+portant}.mso .size-28,.mso .size-28-m,.mso .size-28-l{font-size:28px !impor=
+tant;line-height:36px !important}.mso .size-28-m{line-height:56px !importan=
+t}.mso .size-28-l{line-height:84px !important}.mso .size-30,.mso .size-30-m=
+,.mso .size-30-l{font-size:30px !important;line-height:38px !important}.mso=
+ .size-30-m{line-height:60px !important}.mso .size-30-l{line-height:90px !i=
+mportant}.mso .size-32,.mso .size-32-m,.mso .size-32-l{font-size:32px !impo=
+rtant;line-height:40px !important}.mso .size-32-m{line-height:64px !importa=
+nt}.mso .size-32-l{line-height:96px !important}.mso .size-34,.mso .size-34-=
+m,.mso .size-34-l{font-size:34px !important;line-height:43px !important}.ms=
+o .size-34-m{line-height:68px !important}.mso .size-34-l{line-height:102px =
+!important}.mso .size-36,.mso .size-36-m,.mso .size-36-l{font-size:36px=20
+!important;line-height:43px !important}.mso .size-36-m{line-height:72px !im=
+portant}.mso .size-36-l{line-height:108px !important}.mso .size-40,.mso .si=
+ze-40-m,.mso .size-40-l{font-size:40px !important;line-height:47px !importa=
+nt}.mso .size-40-m{line-height:80px !important}.mso .size-40-l{line-height:=
+120px !important}.mso .size-44,.mso .size-44-m,.mso .size-44-l{font-size:44=
+px !important;line-height:50px !important}.mso .size-44-m{line-height:88px =
+!important}.mso .size-44-l{line-height:132px !important}.mso .size-48,.mso =
+.size-48-m,.mso .size-48-l{font-size:48px !important;line-height:54px !impo=
+rtant}.mso .size-48-m{line-height:96px !important}.mso .size-48-l{line-heig=
+ht:144px !important}.mso .size-56,.mso .size-56-m,.mso .size-56-l{font-size=
+:56px !important;line-height:60px !important}.mso .size-56-m{line-height:11=
+2px !important}.mso .size-56-l{line-height:168px !important}.mso=20
+.size-64,.mso .size-64-m,.mso .size-64-l{font-size:64px !important;line-hei=
+ght:68px !important}.mso .size-64-m{line-height:128px !important}.mso .size=
+-64-l{line-height:192px !important}.mso .size-72,.mso .size-72-m,.mso .size=
+-72-l{font-size:72px !important;line-height:76px !important}.mso .size-72-m=
+{line-height:144px !important}.mso .size-72-l{line-height:216px !important}=
+.mso .size-80,.mso .size-80-m,.mso .size-80-l{font-size:80px !important;lin=
+e-height:84px !important}.mso .size-80-m{line-height:160px !important}.mso =
+.size-80-l{line-height:240px !important}.mso .size-96,.mso .size-96-m,.mso =
+.size-96-l{font-size:96px !important;line-height:100px !important}.mso .siz=
+e-96-m{line-height:192px !important}.mso .size-96-l{line-height:288px !impo=
+rtant}.mso .size-112,.mso .size-112-m,.mso .size-112-l{font-size:112px !imp=
+ortant;line-height:116px !important}.mso .size-112-m{line-height:224px=20
+!important}.mso .size-112-l{line-height:336px !important}.mso .size-128,.ms=
+o .size-128-m,.mso .size-128-l{font-size:128px !important;line-height:132px=
+ !important}.mso .size-128-m{line-height:256px !important}.mso .size-128-l{=
+line-height:384px !important}.mso .size-144,.mso .size-144-m,.mso .size-144=
+-l{font-size:144px !important;line-height:148px !important}.mso .size-144-m=
+{line-height:288px !important}.mso .size-144-l{line-height:432px !important=
+}.mso .cmctbl table td,.mso .cmctbl table th{Margin-left:20px !important;Ma=
+rgin-right:20px !important}.mso .cmctbl- -inline,.mso .cmctbl{padding-left:=
+20px !important;padding-right:20px !important}.mso .cmctbl- -inline table,.=
+mso .cmctbl=20
+table{mso-table-lspace:0pt;mso-table-rspace:0pt;mso-line-height-rule:exactl=
+y}.size-8,.size-9{mso-text-raise:9px}.size-34,h1{mso-text-raise:13px}.size-=
+36{mso-text-raise:14px}.size-40{mso-text-raise:16px}.size-44{mso-text-raise=
+:17px}.size-48{mso-text-raise:18px}.size-56{mso-text-raise:22px}.size-64{ms=
+o-text-raise:25px}.size-72{mso-text-raise:28px}.size-80{mso-text-raise:32px=
+}.size-96{mso-text-raise:40px}.size-112{mso-text-raise:46px}.size-128{mso-t=
+ext-raise:54px}.size-144{mso-text-raise:58px}.size-11-m,.size-12-m{mso-text=
+-raise:6px}.size-13-m,.size-14-m{mso-text-raise:7px}.size-15-m,.size-16-m,.=
+size-8-l{mso-text-raise:8px}.size-17-m,.size-18-m{mso-text-raise:9px}.size-=
+20-m,.size-10-l{mso-text-raise:10px}.size-22-m,.size-11-l{mso-text-raise:11=
+px}.size-24-m,.size-12-l{mso-text-raise:12px}.size-26-m,.size-13-l{mso-text=
+-raise:13px}.size-28-m,.size-14-l{mso-text-raise:14px}.size-30-m,.size-15-l=
+{mso-text-raise:15px}.size-32-m,.size-16-l{mso-text-raise:16px}.size-34-m,.=
+size-17-l{mso-text-raise:17px}.size-36-m,.size-18-l{mso-text-raise:18px}.si=
+ze-40-m,.size-20-l{mso-text-raise:20px}.size-44-m,.size-22-l{mso-text-raise=
+:22px}.size-48-m,.size-24-l{mso-text-raise:24px}.size-26-l{mso-text-raise:2=
+6px}.size-56-m,.size-28-l{mso-text-raise:28px}.size-30-l{mso-text-raise:30p=
+x}.size-64-m,.size-32-l{mso-text-raise:32px}.size-34-l{mso-text-raise:34px}=
+.size-72-m,.size-36-l{mso-text-raise:36px}.size-80-m,.size-40-l{mso-text-ra=
+ise:40px}.size-44-l{mso-text-raise:44px}.size-96-m,.size-48-l{mso-text-rais=
+e:48px}.size-112-m,.size-56-l{mso-text-raise:56px}.size-128-m,.size-64-l{ms=
+o-text-raise:64px}.size-144-m,.size-72-l{mso-text-raise:72px}.size-80-l{mso=
+-text-raise:80px}.size-96-l{mso-text-raise:96px}.size-112-l{mso-text-raise:=
+112px}.size-128-l{mso-text-raise:128px}.size-144-l{mso-text-raise:144px}=0D
+</style><![endif]--><!--[if mso]>
+  <body class=3D"mso">
+<![endif]--><!--[if !mso]><!-->
+</head>
+<body class=3D"main full-padding" style=3D"margin: 0;padding: 0;-webkit-tex=
+t-size-adjust: 100%;">
+<p></p>
+<div style=3D"background-color:#FFEB9C; width:100%; border-style: solid; bo=
+rder-color:#9C6500; border-width:1pt; padding:2pt; font-size:10pt; line-hei=
+ght:12pt; font-family:'Calibri'; color:Black; text-align: left;">
+<span style=3D"color:#9C6500" ;=3D"" font-weight:bold;=3D"">CAUTION:</span>=
+ This email originated from outside of the organisation. Do not click links=
+ or open attachments unless you recognise the sender and know the content i=
+s safe.</div>
+<br>
+<p></p>
+<div><!--<![endif]-->
+<div style=3D"mso-hide:all;position:fixed;height:0;max-height:0;overflow:hi=
+dden;font-size:0;">
+PLUS: Dozens of children miss out on first choice school =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =
+=E2=80=8C =E2=80=8C =E2=80=8C
+ =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C
+ =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C</=
+div>
+<table class=3D"wrapper" style=3D"border-collapse: collapse;table-layout: f=
+ixed;min-width: 320px;width: 100%;background-color: #27313c;" cellpadding=
+=3D"0" cellspacing=3D"0" role=3D"presentation">
+<tbody>
+<tr>
+<td>
+<div role=3D"banner">
+<div class=3D"preheader" style=3D"Margin: 0 auto;max-width: 560px;min-width=
+: 280px; width: 280px;width: calc(28000% - 167440px);">
+<div style=3D"border-collapse: collapse;display: table;width: 100%;"><!--[i=
+f mso]><table align=3D"center" class=3D"preheader" cellpadding=3D"0" cellsp=
+acing=3D"0" role=3D"presentation"><tr><td style=3D"width: 280px" valign=3D"=
+top"><![endif]-->
+<div class=3D"snippet" style=3D"display: table-cell;Float: left;font-size: =
+12px;line-height: 19px;max-width: 280px;min-width: 140px; width: 140px;widt=
+h: calc(14000% - 78120px);padding: 10px 0 5px 0;color: #fff;font-family: Op=
+en Sans,sans-serif;">
+</div>
+<!--[if mso]></td><td style=3D"width: 280px" valign=3D"top"><![endif]-->
+<div class=3D"webversion" style=3D"display: table-cell;Float: left;font-siz=
+e: 12px;line-height: 19px;max-width: 280px;min-width: 139px; width: 139px;w=
+idth: calc(14100% - 78680px);padding: 10px 0 5px 0;text-align: right;color:=
+ #fff;font-family: Open Sans,sans-serif;">
+<p style=3D"Margin-top: 0;Margin-bottom: 0;" emb-social=3D"webversion">No i=
+mages? <a style=3D"text-decoration: underline;transition: opacity 0.1s ease=
+-in;color: #fff;" href=3D"https://allislandmedia.cmail20.com/t/d-e-shjidik-=
+djllniijl-jd/">
+Click here</a></p>
+</div>
+<!--[if mso]></td></tr></table><![endif]--></div>
+</div>
+<div class=3D"header" style=3D"Margin: 0 auto;max-width: 600px;min-width: 3=
+20px; width: 320px;width: calc(28000% - 167400px);" id=3D"emb-email-header-=
+container">
+<!--[if mso]><table align=3D"center" class=3D"header" cellpadding=3D"0" cel=
+lspacing=3D"0" role=3D"presentation"><tr><td style=3D"width: 600px"><![endi=
+f]-->
+<div class=3D"logo emb-logo-margin-box" style=3D"font-size: 26px;line-heigh=
+t: 32px;Margin-top: 8px;Margin-bottom: 12px;color: #c3ced9;font-family: Rob=
+oto,Tahoma,sans-serif;Margin-left: 20px;Margin-right: 20px;" align=3D"cente=
+r">
+<div class=3D"logo-center" align=3D"center" id=3D"emb-email-header"><a styl=
+e=3D"text-decoration: none;transition: opacity 0.1s ease-in;color: #c3ced9;=
+" href=3D"https://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-r/"><i=
+mg style=3D"display: block;height: auto;width: 100%;border: 0;max-width: 16=
+6px;" src=3D"https://i1.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/BE-heade=
+r-Logo2.png" alt=3D"BAILIWICK EXPRESS" width=3D"166"></a></div>
+</div>
+<!--[if mso]></td></tr></table><![endif]--></div>
+</div>
+<div>
+<div style=3D"background-color: #27313c;background: 52% 52%/cover no-repeat=
+ url(https://i1.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/emailheadertempl=
+atecopy1.jpg) #27313c;background-position: 52% 52%;background-image: url(ht=
+tps://i1.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/emailheadertemplatecopy=
+1.jpg);background-repeat: no-repeat;background-size: cover;">
+<div class=3D"layout one-col stack" style=3D"Margin: 0 auto;max-width: 600p=
+x;min-width: 320px; width: 320px;width: calc(28000% - 167400px);overflow-wr=
+ap: break-word;word-wrap: break-word;word-break: break-word;">
+<div class=3D"layout__inner" style=3D"border-collapse: collapse;display: ta=
+ble;width: 100%;">
+<!--[if mso]><table width=3D"100%" cellpadding=3D"0" cellspacing=3D"0" role=
+=3D"presentation"><tr class=3D"layout-full-width" style=3D"background: 52% =
+52%/cover no-repeat url(https://i1.cmail20.com/ei/d/A6/CC4/E90/221439/csfin=
+al/emailheadertemplatecopy1.jpg) #27313c;background-position: 52% 52%;backg=
+round-image: url(https://i1.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/emai=
+lheadertemplatecopy1.jpg);background-repeat: no-repeat;background-size: cov=
+er;background-color: #27313c;"><td class=3D"layout__edges">&nbsp;</td><td s=
+tyle=3D"width: 600px" class=3D"w560"><![endif]-->
+<div class=3D"column" style=3D"text-align: left;color: #808285;font-size: 1=
+4px;line-height: 21px;font-family: Open Sans,sans-serif;">
+<div style=3D"font-size: 12px;font-style: normal;font-weight: normal;line-h=
+eight: 19px;" align=3D"center">
+<img class=3D"gnd-corner-image gnd-corner-image-center gnd-corner-image-top=
+" style=3D"border: 0;display: block;height: auto;width: 100%;max-width: 728=
+px;" alt=3D"JERSEY EDITION" width=3D"600" src=3D"https://i1.cmail20.com/ei/=
+d/A6/CC4/E90/221439/csfinal/Arrow1-9900000000079e3c.png">
+</div>
+<div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-top: 20px;">
+<div style=3D"mso-line-height-rule: exactly;line-height: 879px;font-size: 1=
+px;">&nbsp;</div>
+</div>
+<div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-bottom: 24px;">
+<div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;vertical-a=
+lign: middle;">
+<p style=3D"Margin-top: 0;Margin-bottom: 0;text-align: right;"><span style=
+=3D"text-decoration: inherit;color: #faefdf;"><strong>Sunset over St Ouen=
+=E2=80=99s Bay.
+<em>(Christie Bailey)&nbsp;</em></strong>Click </span><a style=3D"text-deco=
+ration: underline;transition: opacity 0.1s ease-in;color: #27313c;" href=3D=
+"mailto:pictures@bailiwickexpress.com" data-emb-iscopy=3D"true"><span style=
+=3D"text-decoration: inherit;color: #faefdf;">HERE</span></a><span style=3D=
+"text-decoration: inherit;color: #faefdf;">&nbsp;to
+ send us your pictures</span></p>
+</div>
+</div>
+</div>
+<!--[if mso]></td><td class=3D"layout__edges">&nbsp;</td></tr></table><![en=
+dif]--></div>
+</div>
+</div>
+<div style=3D"mso-line-height-rule: exactly;line-height: 20px;font-size: 20=
+px;">&nbsp;</div>
+<div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 auto;max=
+-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px)=
+;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
+<div class=3D"layout__inner" style=3D"border-collapse: collapse;display: ta=
+ble;width: 100%;background-color: #27313c;">
+<!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" ro=
+le=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"background-co=
+lor: #27313c;"><td style=3D"width: 600px" class=3D"w560"><![endif]-->
+<div class=3D"column" style=3D"text-align: left;color: #808285;font-size: 1=
+4px;line-height: 21px;font-family: Open Sans,sans-serif;">
+<div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-top: 24px;Margin-=
+bottom: 24px;">
+<div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;vertical-a=
+lign: middle;">
+<p style=3D"Margin-top: 0;Margin-bottom: 0;line-height: 21px;text-align: le=
+ft;"><span style=3D"text-decoration: inherit;color: #ffffff;"><strong>Today=
+'s weather:</strong>&nbsp;15=C2=B0c, light rain</span><br>
+<span style=3D"text-decoration: inherit;color: #ffffff;"><strong>Tide: </st=
+rong>Low 14:14&nbsp;</span><span style=3D"text-decoration: inherit;color: #=
+f7faf8;">(2.1m)</span><span style=3D"text-decoration: inherit;color: #f7f8f=
+a;"> High 19:53 (10.3</span><span style=3D"text-decoration: inherit;color: =
+#f7faf8;">m)</span><br>
+<span style=3D"text-decoration: inherit;color: #ffffff;">Tuesday&nbsp;13&nb=
+sp;May&nbsp;2025</currentmonthname></currentday></currentdayname></span></p=
+>
+</div>
+</div>
+</div>
+<!--[if mso]></td></tr></table><![endif]--></div>
+</div>
+<div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 auto;max=
+-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px)=
+;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
+<div class=3D"layout__inner" style=3D"border-collapse: collapse;display: ta=
+ble;width: 100%;background-color: #ffffff;">
+<!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" ro=
+le=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"background-co=
+lor: #ffffff;"><td style=3D"width: 600px" class=3D"w560"><![endif]-->
+<div class=3D"column" style=3D"text-align: left;color: #808285;font-size: 1=
+4px;line-height: 21px;font-family: Open Sans,sans-serif;">
+<div style=3D"font-size: 12px;font-style: normal;font-weight: normal;line-h=
+eight: 19px;" align=3D"center">
+<a style=3D"text-decoration: underline;transition: opacity 0.1s ease-in;col=
+or: #27313c;" href=3D"https://allislandmedia.cmail20.com/t/d-l-shjidik-djll=
+niijl-y/"><img class=3D"gnd-corner-image gnd-corner-image-center gnd-corner=
+-image-top gnd-corner-image-bottom" style=3D"border: 0;display: block;heigh=
+t: auto;width: 100%;max-width: 900px;" alt=3D"" width=3D"600" src=3D"https:=
+//i2.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/DigitalJerseyTOPBANNERDJ1-9=
+900000000079e3c.gif"></a>
+</div>
+</div>
+<!--[if mso]></td></tr></table><![endif]--></div>
+</div>
+<div style=3D"mso-line-height-rule: exactly;line-height: 20px;font-size: 20=
+px;">&nbsp;</div>
+<div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 auto;max=
+-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px)=
+;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
+<div class=3D"layout__inner" style=3D"border-collapse: collapse;display: ta=
+ble;width: 100%;background-color: #ffffff;">
+<!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" ro=
+le=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"background-co=
+lor: #ffffff;"><td style=3D"width: 600px" class=3D"w560"><![endif]-->
+<div class=3D"column" style=3D"text-align: left;color: #808285;font-size: 1=
+4px;line-height: 21px;font-family: Open Sans,sans-serif;">
+<div style=3D"font-size: 12px;font-style: normal;font-weight: normal;line-h=
+eight: 19px;" align=3D"center">
+<img class=3D"gnd-corner-image gnd-corner-image- gnd-corner-image-top" styl=
+e=3D"border: 0;display: block;height: auto;width: 100%;max-width: 900px;" a=
+lt=3D"" width=3D"600" src=3D"https://i0.wp.com/www.bailiwickexpress.com/wp-=
+content/uploads/2025/03/pexels-artyom-kulakov-1190754-2265634-1-scaled.jpg?=
+resize=3D1200%2C900&amp;ssl=3D1">
+</div>
+<div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-top: 20px;">
+<div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;vertical-a=
+lign: middle;">
+<h1 style=3D"Margin-top: 0;Margin-bottom: 0;font-style: normal;font-weight:=
+ normal;color: #27313c;font-size: 17px;line-height: 26px;font-family: PT Sa=
+ns,Trebuchet MS,sans-serif;text-align: center;">
+Minister to seek sentencing review if new hit-and-run law passes</h1>
+<p style=3D"Margin-top: 20px;Margin-bottom: 20px;text-align: center;">A bac=
+kbencher=E2=80=99s bid to make failing to help after a serious or fatal cra=
+sh a standalone criminal offence has won the support of the Infrastructure =
+Minister, who wants to see deterrents increased.</p>
+</div>
+</div>
+<div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-bottom: 24px;">
+<div class=3D"btn fullwidth btn--shadow btn--medium" style=3D"text-align: c=
+enter;"><!--[if !mso]><!--><a style=3D"border-radius: 4px;display: block;fo=
+nt-size: 12px;font-weight: bold;line-height: 22px;padding: 10px 20px 11px 2=
+0px;text-align: center;text-decoration: none !important;transition: opacity=
+ 0.1s ease-in;color: #27313c !important;box-shadow: inset 0 -2px 0 0 rgba(0=
+, 0, 0, 0.2);background-color: #a6ce39;font-family: Open Sans, sans-serif;"=
+ href=3D"https://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-j/">Rea=
+d
+ more</a><!--<![endif]--><!--[if mso]><p style=3D"line-height:0;margin:0;">=
+&nbsp;</p><v:roundrect xmlns:v=3D"urn:schemas-microsoft-com:vml" href=3D"ht=
+tps://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-j/" style=3D"width=
+:420pt" arcsize=3D"10%" fillcolor=3D"#A6CE39" stroke=3D"f"><v:shadow on=3D"=
+t" color=3D"#85A52E" offset=3D"0,2px"></v:shadow><v:textbox style=3D"mso-fi=
+t-shape-to-text:t" inset=3D"0pt,6.75pt,0pt,6pt"><center style=3D"font-size:=
+12px;line-height:22px;color:#27313C;font-family:Open Sans,sans-serif;font-w=
+eight:bold;mso-line-height-rule:exactly;mso-text-raise:2px">Read more</cent=
+er></v:textbox></v:roundrect><![endif]-->
+</div>
+</div>
+</div>
+<!--[if mso]></td></tr></table><![endif]--></div>
+</div>
+<div style=3D"mso-line-height-rule: exactly;line-height: 20px;font-size: 20=
+px;">&nbsp;</div>
+<div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 auto;max=
+-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px)=
+;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
+<div class=3D"layout__inner" style=3D"border-collapse: collapse;display: ta=
+ble;width: 100%;background-color: #ffffff;">
+<!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" ro=
+le=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"background-co=
+lor: #ffffff;"><td style=3D"width: 600px" class=3D"w560"><![endif]-->
+<div class=3D"column" style=3D"text-align: left;color: #808285;font-size: 1=
+4px;line-height: 21px;font-family: Open Sans,sans-serif;">
+<div style=3D"font-size: 12px;font-style: normal;font-weight: normal;line-h=
+eight: 19px;" align=3D"center">
+<a style=3D"text-decoration: underline;transition: opacity 0.1s ease-in;col=
+or: #27313c;" href=3D"https://allislandmedia.cmail20.com/t/d-l-shjidik-djll=
+niijl-t/"><img class=3D"gnd-corner-image gnd-corner-image-center gnd-corner=
+-image-top gnd-corner-image-bottom" style=3D"border: 0;display: block;heigh=
+t: auto;width: 100%;max-width: 900px;" alt=3D"" width=3D"600" src=3D"https:=
+//i3.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/Dandara_Bailiwick-Email_6-P=
+ercent_728x180_11111111-9900000000079e3c.gif"></a>
+</div>
+</div>
+<!--[if mso]></td></tr></table><![endif]--></div>
+</div>
+<div style=3D"mso-line-height-rule: exactly;line-height: 20px;font-size: 20=
+px;">&nbsp;</div>
+<div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 auto;max=
+-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px)=
+;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
+<div class=3D"layout__inner" style=3D"border-collapse: collapse;display: ta=
+ble;width: 100%;background-color: #ffffff;">
+<!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" ro=
+le=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"background-co=
+lor: #ffffff;"><td style=3D"width: 600px" class=3D"w560"><![endif]-->
+<div class=3D"column" style=3D"text-align: left;color: #808285;font-size: 1=
+4px;line-height: 21px;font-family: Open Sans,sans-serif;">
+<div style=3D"font-size: 12px;font-style: normal;font-weight: normal;line-h=
+eight: 19px;" align=3D"center">
+<a style=3D"text-decoration: underline;transition: opacity 0.1s ease-in;col=
+or: #27313c;" href=3D"https://allislandmedia.cmail20.com/t/d-l-shjidik-djll=
+niijl-i/"><img class=3D"gnd-corner-image gnd-corner-image-center gnd-corner=
+-image-top gnd-corner-image-bottom" style=3D"border: 0;display: block;heigh=
+t: auto;width: 100%;max-width: 729px;" alt=3D"" width=3D"600" src=3D"https:=
+//i4.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/News-Header2-9900000000079e=
+3c.jpg"></a>
+</div>
+</div>
+<!--[if mso]></td></tr></table><![endif]--></div>
+</div>
+<div class=3D"layout fixed-width stack" style=3D"Margin: 0 auto;max-width: =
+600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px);overflo=
+w-wrap: break-word;word-wrap: break-word;word-break: break-word;">
+<div class=3D"layout__inner" style=3D"border-collapse: collapse;display: ta=
+ble;width: 100%;background-color: #ffffff;">
+<!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" ro=
+le=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"background-co=
+lor: #ffffff;"><td style=3D"width: 400px" valign=3D"top" class=3D"w360"><![=
+endif]-->
+<div class=3D"column wide" style=3D"text-align: left;color: #808285;font-si=
+ze: 14px;line-height: 21px;font-family: Open Sans,sans-serif;Float: left;ma=
+x-width: 400px;min-width: 320px; width: 320px;width: calc(8000% - 47600px);=
+">
+<div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-top: 24px;">
+<div style=3D"font-size: 12px;font-style: normal;font-weight: normal;line-h=
+eight: 19px;Margin-bottom: 20px;" align=3D"center">
+<img style=3D"border: 0;display: block;height: auto;width: 100%;max-width: =
+600px;" alt=3D"" width=3D"360" src=3D"https://i0.wp.com/www.bailiwickexpres=
+s.com/wp-content/uploads/2025/04/hospital-bed.jpg?resize=3D600%2C450&amp;ss=
+l=3D1">
+</div>
+</div>
+<div style=3D"Margin-left: 20px;Margin-right: 20px;">
+<div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;vertical-a=
+lign: middle;">
+<h1 style=3D"Margin-top: 0;Margin-bottom: 0;font-style: normal;font-weight:=
+ normal;color: #27313c;font-size: 17px;line-height: 26px;font-family: PT Sa=
+ns,Trebuchet MS,sans-serif;text-align: left;">
+Rise in racially motivated assaults on Health staff</h1>
+<p style=3D"Margin-top: 20px;Margin-bottom: 20px;">There has been a 480% ri=
+se in racially motivated assaults on health staff in the last five years, i=
+t has emerged.</p>
+</div>
+</div>
+<div style=3D"Margin-left: 20px;Margin-right: 20px;">
+<div class=3D"btn btn--shadow btn--medium" style=3D"Margin-bottom: 20px;tex=
+t-align: left;">
+<!--[if !mso]><!--><a style=3D"border-radius: 4px;display: inline-block;fon=
+t-size: 12px;font-weight: bold;line-height: 22px;padding: 10px 20px 11px 20=
+px;text-align: center;text-decoration: none !important;transition: opacity =
+0.1s ease-in;color: #27313c !important;box-shadow: inset 0 -2px 0 0 rgba(0,=
+ 0, 0, 0.2);background-color: #a6ce39;font-family: Open Sans, sans-serif;" =
+href=3D"https://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-d/">Read
+ more</a><!--<![endif]--><!--[if mso]><p style=3D"line-height:0;margin:0;">=
+&nbsp;</p><v:roundrect xmlns:v=3D"urn:schemas-microsoft-com:vml" href=3D"ht=
+tps://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-d/" style=3D"width=
+:78.75pt" arcsize=3D"10%" fillcolor=3D"#A6CE39" stroke=3D"f"><v:shadow on=
+=3D"t" color=3D"#85A52E" offset=3D"0,2px"></v:shadow><v:textbox style=3D"ms=
+o-fit-shape-to-text:t" inset=3D"0pt,6.75pt,0pt,6pt"><center style=3D"font-s=
+ize:12px;line-height:22px;color:#27313C;font-family:Open Sans,sans-serif;fo=
+nt-weight:bold;mso-line-height-rule:exactly;mso-text-raise:2px">Read more</=
+center></v:textbox></v:roundrect><![endif]-->
+</div>
+</div>
+<div style=3D"Margin-left: 20px;Margin-right: 20px;">
+<div style=3D"font-size: 12px;font-style: normal;font-weight: normal;line-h=
+eight: 19px;Margin-bottom: 20px;" align=3D"center">
+<img style=3D"border: 0;display: block;height: auto;width: 100%;max-width: =
+600px;" alt=3D"" width=3D"360" src=3D"https://i0.wp.com/www.bailiwickexpres=
+s.com/wp-content/uploads/2022/07/Quennevais.png?resize=3D768%2C446&amp;ssl=
+=3D1">
+</div>
+</div>
+<div style=3D"Margin-left: 20px;Margin-right: 20px;">
+<div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;vertical-a=
+lign: middle;">
+<h1 style=3D"Margin-top: 0;Margin-bottom: 0;font-style: normal;font-weight:=
+ normal;color: #27313c;font-size: 17px;line-height: 26px;font-family: PT Sa=
+ns,Trebuchet MS,sans-serif;text-align: left;">
+Dozens of children miss out on first choice school as Les Quennevais oversu=
+bscribed</h1>
+<p style=3D"Margin-top: 20px;Margin-bottom: 20px;">Nearly 30 children livin=
+g in the Les Quennevais catchment area have been denied a place at the scho=
+ol due to it being =E2=80=9Coversubscribed=E2=80=9D, it has emerged.</p>
+</div>
+</div>
+<div style=3D"Margin-left: 20px;Margin-right: 20px;">
+<div class=3D"btn btn--shadow btn--medium" style=3D"Margin-bottom: 20px;tex=
+t-align: left;">
+<!--[if !mso]><!--><a style=3D"border-radius: 4px;display: inline-block;fon=
+t-size: 12px;font-weight: bold;line-height: 22px;padding: 10px 20px 11px 20=
+px;text-align: center;text-decoration: none !important;transition: opacity =
+0.1s ease-in;color: #27313c !important;box-shadow: inset 0 -2px 0 0 rgba(0,=
+ 0, 0, 0.2);background-color: #a6ce39;font-family: Open Sans, sans-serif;" =
+href=3D"https://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-h/">Read
+ more</a><!--<![endif]--><!--[if mso]><p style=3D"line-height:0;margin:0;">=
+&nbsp;</p><v:roundrect xmlns:v=3D"urn:schemas-microsoft-com:vml" href=3D"ht=
+tps://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-h/" style=3D"width=
+:78.75pt" arcsize=3D"10%" fillcolor=3D"#A6CE39" stroke=3D"f"><v:shadow on=
+=3D"t" color=3D"#85A52E" offset=3D"0,2px"></v:shadow><v:textbox style=3D"ms=
+o-fit-shape-to-text:t" inset=3D"0pt,6.75pt,0pt,6pt"><center style=3D"font-s=
+ize:12px;line-height:22px;color:#27313C;font-family:Open Sans,sans-serif;fo=
+nt-weight:bold;mso-line-height-rule:exactly;mso-text-raise:2px">Read more</=
+center></v:textbox></v:roundrect><![endif]-->
+</div>
+</div>
+<div style=3D"Margin-left: 20px;Margin-right: 20px;">
+<div style=3D"font-size: 12px;font-style: normal;font-weight: normal;line-h=
+eight: 19px;Margin-bottom: 20px;" align=3D"center">
+<img style=3D"border: 0;display: block;height: auto;width: 100%;max-width: =
+600px;" alt=3D"" width=3D"360" src=3D"https://i0.wp.com/www.bailiwickexpres=
+s.com/wp-content/uploads/2025/05/Islands-ferry-on-its-way.jpg?resize=3D768%=
+2C465&amp;ssl=3D1">
+</div>
+</div>
+<div style=3D"Margin-left: 20px;Margin-right: 20px;">
+<div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;vertical-a=
+lign: middle;">
+<h1 style=3D"Margin-top: 0;Margin-bottom: 0;font-style: normal;font-weight:=
+ normal;color: #27313c;font-size: 17px;line-height: 26px;font-family: PT Sa=
+ns,Trebuchet MS,sans-serif;">
+Inter-island ferry en route to Channel Islands</h1>
+<p style=3D"Margin-top: 20px;Margin-bottom: 20px;">A 316-seat catamaran tha=
+t will be used to provide a new inter-island ferry service is due to arrive=
+ in local waters later this month.</p>
+</div>
+</div>
+<div style=3D"Margin-left: 20px;Margin-right: 20px;">
+<div class=3D"btn btn--shadow btn--medium" style=3D"Margin-bottom: 20px;tex=
+t-align: left;">
+<!--[if !mso]><!--><a style=3D"border-radius: 4px;display: inline-block;fon=
+t-size: 12px;font-weight: bold;line-height: 22px;padding: 10px 20px 11px 20=
+px;text-align: center;text-decoration: none !important;transition: opacity =
+0.1s ease-in;color: #27313c !important;box-shadow: inset 0 -2px 0 0 rgba(0,=
+ 0, 0, 0.2);background-color: #a6ce39;font-family: Open Sans, sans-serif;" =
+href=3D"https://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-k/">Read
+ more</a><!--<![endif]--><!--[if mso]><p style=3D"line-height:0;margin:0;">=
+&nbsp;</p><v:roundrect xmlns:v=3D"urn:schemas-microsoft-com:vml" href=3D"ht=
+tps://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-k/" style=3D"width=
+:78.75pt" arcsize=3D"10%" fillcolor=3D"#A6CE39" stroke=3D"f"><v:shadow on=
+=3D"t" color=3D"#85A52E" offset=3D"0,2px"></v:shadow><v:textbox style=3D"ms=
+o-fit-shape-to-text:t" inset=3D"0pt,6.75pt,0pt,6pt"><center style=3D"font-s=
+ize:12px;line-height:22px;color:#27313C;font-family:Open Sans,sans-serif;fo=
+nt-weight:bold;mso-line-height-rule:exactly;mso-text-raise:2px">Read more</=
+center></v:textbox></v:roundrect><![endif]-->
+</div>
+</div>
+<div style=3D"Margin-left: 20px;Margin-right: 20px;">
+<div style=3D"font-size: 12px;font-style: normal;font-weight: normal;line-h=
+eight: 19px;Margin-bottom: 20px;" align=3D"center">
+<img style=3D"border: 0;display: block;height: auto;width: 100%;max-width: =
+600px;" alt=3D"" width=3D"360" src=3D"https://i0.wp.com/www.bailiwickexpres=
+s.com/wp-content/uploads/2025/05/Shotbolt-scaled.jpg?resize=3D768%2C497&amp=
+;ssl=3D1">
+</div>
+</div>
+<div style=3D"Margin-left: 20px;Margin-right: 20px;">
+<div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;vertical-a=
+lign: middle;">
+<h1 style=3D"Margin-top: 0;Margin-bottom: 0;font-style: normal;font-weight:=
+ normal;color: #27313c;font-size: 17px;line-height: 26px;font-family: PT Sa=
+ns,Trebuchet MS,sans-serif;">
+Man jailed for three years after jealously-fuelled attack</h1>
+<p style=3D"Margin-top: 20px;Margin-bottom: 20px;">A 27-year-old man has be=
+en jailed for kicking down a woman=E2=80=99s front door in an =E2=80=9Cangr=
+y and jealous rage=E2=80=9D and attacking the man inside until he was uncon=
+scious.</p>
+</div>
+</div>
+<div style=3D"Margin-left: 20px;Margin-right: 20px;">
+<div class=3D"btn btn--shadow btn--medium" style=3D"Margin-bottom: 20px;tex=
+t-align: left;">
+<!--[if !mso]><!--><a style=3D"border-radius: 4px;display: inline-block;fon=
+t-size: 12px;font-weight: bold;line-height: 22px;padding: 10px 20px 11px 20=
+px;text-align: center;text-decoration: none !important;transition: opacity =
+0.1s ease-in;color: #27313c !important;box-shadow: inset 0 -2px 0 0 rgba(0,=
+ 0, 0, 0.2);background-color: #a6ce39;font-family: Open Sans, sans-serif;" =
+href=3D"https://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-u/">Read
+ more</a><!--<![endif]--><!--[if mso]><p style=3D"line-height:0;margin:0;">=
+&nbsp;</p><v:roundrect xmlns:v=3D"urn:schemas-microsoft-com:vml" href=3D"ht=
+tps://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-u/" style=3D"width=
+:78.75pt" arcsize=3D"10%" fillcolor=3D"#A6CE39" stroke=3D"f"><v:shadow on=
+=3D"t" color=3D"#85A52E" offset=3D"0,2px"></v:shadow><v:textbox style=3D"ms=
+o-fit-shape-to-text:t" inset=3D"0pt,6.75pt,0pt,6pt"><center style=3D"font-s=
+ize:12px;line-height:22px;color:#27313C;font-family:Open Sans,sans-serif;fo=
+nt-weight:bold;mso-line-height-rule:exactly;mso-text-raise:2px">Read more</=
+center></v:textbox></v:roundrect><![endif]-->
+</div>
+</div>
+<div style=3D"Margin-left: 20px;Margin-right: 20px;">
+<div style=3D"font-size: 12px;font-style: normal;font-weight: normal;line-h=
+eight: 19px;Margin-bottom: 20px;" align=3D"center">
+<img style=3D"border: 0;display: block;height: auto;width: 100%;max-width: =
+600px;" alt=3D"" width=3D"360" src=3D"https://i0.wp.com/www.bailiwickexpres=
+s.com/wp-content/uploads/2025/05/shields-scaled.jpg?resize=3D768%2C452&amp;=
+ssl=3D1">
+</div>
+</div>
+<div style=3D"Margin-left: 20px;Margin-right: 20px;">
+<div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;vertical-a=
+lign: middle;">
+<h1 style=3D"Margin-top: 0;Margin-bottom: 0;font-style: normal;font-weight:=
+ normal;color: #27313c;font-size: 17px;line-height: 26px;font-family: PT Sa=
+ns,Trebuchet MS,sans-serif;">
+Woman jailed for smuggling suspected drugs money out of Jersey</h1>
+<p style=3D"Margin-top: 20px;Margin-bottom: 20px;">A 43-year-old woman who =
+smuggled tens-of-thousands of pounds of suspected drug money out of Jersey =
+has been jailed for one year and nine months.&nbsp;</p>
+</div>
+</div>
+<div style=3D"Margin-left: 20px;Margin-right: 20px;">
+<div class=3D"btn btn--shadow btn--medium" style=3D"Margin-bottom: 20px;tex=
+t-align: left;">
+<!--[if !mso]><!--><a style=3D"border-radius: 4px;display: inline-block;fon=
+t-size: 12px;font-weight: bold;line-height: 22px;padding: 10px 20px 11px 20=
+px;text-align: center;text-decoration: none !important;transition: opacity =
+0.1s ease-in;color: #27313c !important;box-shadow: inset 0 -2px 0 0 rgba(0,=
+ 0, 0, 0.2);background-color: #a6ce39;font-family: Open Sans, sans-serif;" =
+href=3D"https://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-o/">Read
+ more</a><!--<![endif]--><!--[if mso]><p style=3D"line-height:0;margin:0;">=
+&nbsp;</p><v:roundrect xmlns:v=3D"urn:schemas-microsoft-com:vml" href=3D"ht=
+tps://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-o/" style=3D"width=
+:78.75pt" arcsize=3D"10%" fillcolor=3D"#A6CE39" stroke=3D"f"><v:shadow on=
+=3D"t" color=3D"#85A52E" offset=3D"0,2px"></v:shadow><v:textbox style=3D"ms=
+o-fit-shape-to-text:t" inset=3D"0pt,6.75pt,0pt,6pt"><center style=3D"font-s=
+ize:12px;line-height:22px;color:#27313C;font-family:Open Sans,sans-serif;fo=
+nt-weight:bold;mso-line-height-rule:exactly;mso-text-raise:2px">Read more</=
+center></v:textbox></v:roundrect><![endif]-->
+</div>
+</div>
+<div style=3D"Margin-left: 20px;Margin-right: 20px;">
+<div style=3D"font-size: 12px;font-style: normal;font-weight: normal;line-h=
+eight: 19px;Margin-bottom: 20px;" align=3D"center">
+<img style=3D"border: 0;display: block;height: auto;width: 100%;max-width: =
+400px;" alt=3D"" width=3D"360" src=3D"https://i0.wp.com/www.bailiwickexpres=
+s.com/wp-content/uploads/2024/07/Survey.jpg?resize=3D400%2C300&amp;ssl=3D1"=
+>
+</div>
+</div>
+<div style=3D"Margin-left: 20px;Margin-right: 20px;">
+<div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;vertical-a=
+lign: middle;">
+<h1 style=3D"Margin-top: 0;Margin-bottom: 0;font-style: normal;font-weight:=
+ normal;color: #27313c;font-size: 17px;line-height: 26px;font-family: PT Sa=
+ns,Trebuchet MS,sans-serif;">
+Less than a third of young people can name their elected States Members</h1=
+>
+<p style=3D"Margin-top: 20px;Margin-bottom: 20px;">Do the children and youn=
+g people in your family know who their elected representatives are? If the =
+answer is no, they are not alone.</p>
+</div>
+</div>
+<div style=3D"Margin-left: 20px;Margin-right: 20px;">
+<div class=3D"btn btn--shadow btn--medium" style=3D"Margin-bottom: 20px;tex=
+t-align: left;">
+<!--[if !mso]><!--><a style=3D"border-radius: 4px;display: inline-block;fon=
+t-size: 12px;font-weight: bold;line-height: 22px;padding: 10px 20px 11px 20=
+px;text-align: center;text-decoration: none !important;transition: opacity =
+0.1s ease-in;color: #27313c !important;box-shadow: inset 0 -2px 0 0 rgba(0,=
+ 0, 0, 0.2);background-color: #a6ce39;font-family: Open Sans, sans-serif;" =
+href=3D"https://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-b/">Read
+ more</a><!--<![endif]--><!--[if mso]><p style=3D"line-height:0;margin:0;">=
+&nbsp;</p><v:roundrect xmlns:v=3D"urn:schemas-microsoft-com:vml" href=3D"ht=
+tps://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-b/" style=3D"width=
+:78.75pt" arcsize=3D"10%" fillcolor=3D"#A6CE39" stroke=3D"f"><v:shadow on=
+=3D"t" color=3D"#85A52E" offset=3D"0,2px"></v:shadow><v:textbox style=3D"ms=
+o-fit-shape-to-text:t" inset=3D"0pt,6.75pt,0pt,6pt"><center style=3D"font-s=
+ize:12px;line-height:22px;color:#27313C;font-family:Open Sans,sans-serif;fo=
+nt-weight:bold;mso-line-height-rule:exactly;mso-text-raise:2px">Read more</=
+center></v:textbox></v:roundrect><![endif]-->
+</div>
+</div>
+<div style=3D"Margin-left: 20px;Margin-right: 20px;">
+<div style=3D"font-size: 12px;font-style: normal;font-weight: normal;line-h=
+eight: 19px;Margin-bottom: 20px;" align=3D"center">
+<img style=3D"border: 0;display: block;height: auto;width: 100%;max-width: =
+600px;" alt=3D"" width=3D"360" src=3D"https://i0.wp.com/www.bailiwickexpres=
+s.com/wp-content/uploads/2025/05/40353280.jpg?resize=3D768%2C512&amp;ssl=3D=
+1">
+</div>
+</div>
+<div style=3D"Margin-left: 20px;Margin-right: 20px;">
+<div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;vertical-a=
+lign: middle;">
+<h1 style=3D"Margin-top: 0;Margin-bottom: 0;font-style: normal;font-weight:=
+ normal;color: #27313c;font-size: 17px;line-height: 26px;font-family: PT Sa=
+ns,Trebuchet MS,sans-serif;text-align: left;">
+Red Cross praises Jersey=E2=80=99s transformation from wartime aid recipien=
+t to modern humanitarian donor</h1>
+<p style=3D"Margin-top: 20px;Margin-bottom: 20px;">Jersey=E2=80=99s transfo=
+rmation from a wartime aid recipient to a respected international donor has=
+ been praised by a senior British Red Cross official who visited the island=
+ last week to mark Liberation Day.</p>
+</div>
+</div>
+<div style=3D"Margin-left: 20px;Margin-right: 20px;">
+<div class=3D"btn btn--shadow btn--medium" style=3D"Margin-bottom: 20px;tex=
+t-align: left;">
+<!--[if !mso]><!--><a style=3D"border-radius: 4px;display: inline-block;fon=
+t-size: 12px;font-weight: bold;line-height: 22px;padding: 10px 20px 11px 20=
+px;text-align: center;text-decoration: none !important;transition: opacity =
+0.1s ease-in;color: #27313c !important;box-shadow: inset 0 -2px 0 0 rgba(0,=
+ 0, 0, 0.2);background-color: #a6ce39;font-family: Open Sans, sans-serif;" =
+href=3D"https://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-n/">Read
+ more</a><!--<![endif]--><!--[if mso]><p style=3D"line-height:0;margin:0;">=
+&nbsp;</p><v:roundrect xmlns:v=3D"urn:schemas-microsoft-com:vml" href=3D"ht=
+tps://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-n/" style=3D"width=
+:78.75pt" arcsize=3D"10%" fillcolor=3D"#A6CE39" stroke=3D"f"><v:shadow on=
+=3D"t" color=3D"#85A52E" offset=3D"0,2px"></v:shadow><v:textbox style=3D"ms=
+o-fit-shape-to-text:t" inset=3D"0pt,6.75pt,0pt,6pt"><center style=3D"font-s=
+ize:12px;line-height:22px;color:#27313C;font-family:Open Sans,sans-serif;fo=
+nt-weight:bold;mso-line-height-rule:exactly;mso-text-raise:2px">Read more</=
+center></v:textbox></v:roundrect><![endif]-->
+</div>
+</div>
+<div style=3D"Margin-left: 20px;Margin-right: 20px;">
+<div style=3D"font-size: 12px;font-style: normal;font-weight: normal;line-h=
+eight: 19px;Margin-bottom: 20px;" align=3D"center">
+<img style=3D"border: 0;display: block;height: auto;width: 100%;max-width: =
+600px;" alt=3D"" width=3D"360" src=3D"https://i0.wp.com/www.bailiwickexpres=
+s.com/wp-content/uploads/2025/05/lily-mcgarry.jpg?resize=3D768%2C452&amp;ss=
+l=3D1">
+</div>
+</div>
+<div style=3D"Margin-left: 20px;Margin-right: 20px;">
+<div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;vertical-a=
+lign: middle;">
+<h1 style=3D"Margin-top: 0;Margin-bottom: 0;font-style: normal;font-weight:=
+ normal;color: #27313c;font-size: 17px;line-height: 26px;font-family: PT Sa=
+ns,Trebuchet MS,sans-serif;text-align: left;">
+Young amputee inspires Jersey=E2=80=99s first limb difference support group=
+</h1>
+<p style=3D"Margin-top: 20px;Margin-bottom: 20px;">Jersey=E2=80=99s first l=
+imb difference support group has been launched following the inspiring stor=
+y of a young islander who recently became a quadruple amputee.</p>
+</div>
+</div>
+<div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-bottom: 24px;">
+<div class=3D"btn btn--shadow btn--medium" style=3D"text-align:left;"><!--[=
+if !mso]><!--><a style=3D"border-radius: 4px;display: inline-block;font-siz=
+e: 12px;font-weight: bold;line-height: 22px;padding: 10px 20px 11px 20px;te=
+xt-align: center;text-decoration: none !important;transition: opacity 0.1s =
+ease-in;color: #27313c !important;box-shadow: inset 0 -2px 0 0 rgba(0, 0, 0=
+, 0.2);background-color: #a6ce39;font-family: Open Sans, sans-serif;" href=
+=3D"https://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-p/">Read
+ more</a><!--<![endif]--><!--[if mso]><p style=3D"line-height:0;margin:0;">=
+&nbsp;</p><v:roundrect xmlns:v=3D"urn:schemas-microsoft-com:vml" href=3D"ht=
+tps://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-p/" style=3D"width=
+:78.75pt" arcsize=3D"10%" fillcolor=3D"#A6CE39" stroke=3D"f"><v:shadow on=
+=3D"t" color=3D"#85A52E" offset=3D"0,2px"></v:shadow><v:textbox style=3D"ms=
+o-fit-shape-to-text:t" inset=3D"0pt,6.75pt,0pt,6pt"><center style=3D"font-s=
+ize:12px;line-height:22px;color:#27313C;font-family:Open Sans,sans-serif;fo=
+nt-weight:bold;mso-line-height-rule:exactly;mso-text-raise:2px">Read more</=
+center></v:textbox></v:roundrect><![endif]-->
+</div>
+</div>
+</div>
+<!--[if mso]></td><td style=3D"width: 200px" valign=3D"top" class=3D"w160">=
+<![endif]-->
+<div class=3D"column narrow" style=3D"text-align: left;color: #808285;font-=
+size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;Float: left;=
+max-width: 320px;min-width: 200px; width: 320px;width: calc(72200px - 12000=
+%);">
+<div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-top: 24px;">
+<div class=3D"divider" style=3D"display: block;font-size: 2px;line-height: =
+2px;Margin-left: auto;Margin-right: auto;width: 40px;background-color: #000=
+;Margin-bottom: 20px;">
+&nbsp;</div>
+</div>
+<div style=3D"Margin-left: 20px;Margin-right: 20px;">
+<div style=3D"font-size: 12px;font-style: normal;font-weight: normal;line-h=
+eight: 19px;Margin-bottom: 20px;" align=3D"center">
+<a style=3D"text-decoration: underline;transition: opacity 0.1s ease-in;col=
+or: #27313c;" href=3D"https://allislandmedia.cmail20.com/t/d-l-shjidik-djll=
+niijl-x/"><img style=3D"border: 0;display: block;height: auto;width: 100%;m=
+ax-width: 480px;" alt=3D"" width=3D"160" src=3D"https://i5.cmail20.com/ei/d=
+/A6/CC4/E90/221439/csfinal/JTBailiwickAIM_160x600-990000079e01453c.png"></a=
+>
+</div>
+</div>
+<div style=3D"Margin-left: 20px;Margin-right: 20px;">
+<div class=3D"divider" style=3D"display: block;font-size: 2px;line-height: =
+2px;Margin-left: auto;Margin-right: auto;width: 40px;background-color: #000=
+;Margin-bottom: 20px;">
+&nbsp;</div>
+</div>
+<div style=3D"Margin-left: 20px;Margin-right: 20px;">
+<div style=3D"font-size: 12px;font-style: normal;font-weight: normal;line-h=
+eight: 19px;Margin-bottom: 20px;" align=3D"center">
+<a style=3D"text-decoration: underline;transition: opacity 0.1s ease-in;col=
+or: #27313c;" href=3D"https://allislandmedia.cmail20.com/t/d-l-shjidik-djll=
+niijl-m/"><img style=3D"border: 0;display: block;height: auto;width: 100%;m=
+ax-width: 160px;" alt=3D"" width=3D"160" src=3D"https://i6.cmail20.com/ei/d=
+/A6/CC4/E90/221439/csfinal/Ravenscroft160x600-990000079e01453c.gif"></a>
+</div>
+</div>
+<div style=3D"Margin-left: 20px;Margin-right: 20px;">
+<div class=3D"divider" style=3D"display: block;font-size: 2px;line-height: =
+2px;Margin-left: auto;Margin-right: auto;width: 40px;background-color: #000=
+;Margin-bottom: 20px;">
+&nbsp;</div>
+</div>
+<div style=3D"Margin-left: 20px;Margin-right: 20px;">
+<div style=3D"font-size: 12px;font-style: normal;font-weight: normal;line-h=
+eight: 19px;Margin-bottom: 20px;" align=3D"center">
+<a style=3D"text-decoration: underline;transition: opacity 0.1s ease-in;col=
+or: #27313c;" href=3D"https://allislandmedia.cmail20.com/t/d-l-shjidik-djll=
+niijl-c/"><img style=3D"border: 0;display: block;height: auto;width: 100%;m=
+ax-width: 160px;" alt=3D"" width=3D"160" src=3D"https://i7.cmail20.com/ei/d=
+/A6/CC4/E90/221439/csfinal/TMFEmail-Skyscraper2-990000079e01453c.gif"></a>
+</div>
+</div>
+<div style=3D"Margin-left: 20px;Margin-right: 20px;">
+<div class=3D"divider" style=3D"display: block;font-size: 2px;line-height: =
+2px;Margin-left: auto;Margin-right: auto;width: 40px;background-color: #000=
+;Margin-bottom: 20px;">
+&nbsp;</div>
+</div>
+<div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-bottom: 24px;">
+<div style=3D"font-size: 12px;font-style: normal;font-weight: normal;line-h=
+eight: 19px;" align=3D"center">
+<a style=3D"text-decoration: underline;transition: opacity 0.1s ease-in;col=
+or: #27313c;" href=3D"https://allislandmedia.cmail20.com/t/d-l-shjidik-djll=
+niijl-q/"><img style=3D"border: 0;display: block;height: auto;width: 100%;m=
+ax-width: 160px;" alt=3D"" width=3D"160" src=3D"https://i8.cmail20.com/ei/d=
+/A6/CC4/E90/221439/csfinal/ALEXANDER-DANIELS-SKYSCRAPER4-990000079e01453c.g=
+if"></a>
+</div>
+</div>
+</div>
+<!--[if mso]></td></tr></table><![endif]--></div>
+</div>
+<div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 auto;max=
+-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px)=
+;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
+<div class=3D"layout__inner" style=3D"border-collapse: collapse;display: ta=
+ble;width: 100%;background-color: #ffffff;">
+<!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" ro=
+le=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"background-co=
+lor: #ffffff;"><td style=3D"width: 600px" class=3D"w560"><![endif]-->
+<div class=3D"column" style=3D"text-align: left;color: #808285;font-size: 1=
+4px;line-height: 21px;font-family: Open Sans,sans-serif;">
+<div style=3D"font-size: 12px;font-style: normal;font-weight: normal;line-h=
+eight: 19px;" align=3D"center">
+<img class=3D"gnd-corner-image gnd-corner-image-center gnd-corner-image-top=
+ gnd-corner-image-bottom" style=3D"border: 0;display: block;height: auto;wi=
+dth: 100%;max-width: 900px;" alt=3D"" width=3D"600" src=3D"https://i9.cmail=
+20.com/ei/d/A6/CC4/E90/221439/csfinal/Blank-Reversed-Header-9900000000079e3=
+c1-9900000000079e3c.jpg">
+</div>
+</div>
+<!--[if mso]></td></tr></table><![endif]--></div>
+</div>
+<div style=3D"mso-line-height-rule: exactly;line-height: 35px;font-size: 35=
+px;">&nbsp;</div>
+<div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 auto;max=
+-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px)=
+;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
+<div class=3D"layout__inner" style=3D"border-collapse: collapse;display: ta=
+ble;width: 100%;background-color: #ffffff;">
+<!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" ro=
+le=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"background-co=
+lor: #ffffff;"><td style=3D"width: 600px" class=3D"w560"><![endif]-->
+<div class=3D"column" style=3D"text-align: left;color: #808285;font-size: 1=
+4px;line-height: 21px;font-family: Open Sans,sans-serif;">
+<div style=3D"font-size: 12px;font-style: normal;font-weight: normal;line-h=
+eight: 19px;" align=3D"center">
+<a style=3D"text-decoration: underline;transition: opacity 0.1s ease-in;col=
+or: #27313c;" href=3D"https://allislandmedia.cmail20.com/t/d-l-shjidik-djll=
+niijl-a/"><img class=3D"gnd-corner-image gnd-corner-image-center gnd-corner=
+-image-top gnd-corner-image-bottom" style=3D"border: 0;display: block;heigh=
+t: auto;width: 100%;max-width: 729px;" alt=3D"" width=3D"600" src=3D"https:=
+//i10.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/BHC-728x902-9900000000079e=
+3c.gif"></a>
+</div>
+</div>
+<!--[if mso]></td></tr></table><![endif]--></div>
+</div>
+<div style=3D"mso-line-height-rule: exactly;line-height: 20px;font-size: 20=
+px;">&nbsp;</div>
+<div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 auto;max=
+-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px)=
+;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
+<div class=3D"layout__inner" style=3D"border-collapse: collapse;display: ta=
+ble;width: 100%;background-color: #ffffff;">
+<!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" ro=
+le=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"background-co=
+lor: #ffffff;"><td style=3D"width: 600px" class=3D"w560"><![endif]-->
+<div class=3D"column" style=3D"text-align: left;color: #808285;font-size: 1=
+4px;line-height: 21px;font-family: Open Sans,sans-serif;">
+<div style=3D"font-size: 12px;font-style: normal;font-weight: normal;line-h=
+eight: 19px;" align=3D"center">
+<img class=3D"gnd-corner-image gnd-corner-image-center gnd-corner-image-top=
+ gnd-corner-image-bottom" style=3D"border: 0;display: block;height: auto;wi=
+dth: 100%;max-width: 900px;" alt=3D"" width=3D"600" src=3D"https://i1.cmail=
+20.com/ei/d/A6/CC4/E90/221439/csfinal/Opinion-Header5-9900000000079e3c.jpg"=
+>
+</div>
+</div>
+<!--[if mso]></td></tr></table><![endif]--></div>
+</div>
+<div class=3D"layout fixed-width stack" style=3D"Margin: 0 auto;max-width: =
+600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px);overflo=
+w-wrap: break-word;word-wrap: break-word;word-break: break-word;">
+<div class=3D"layout__inner" style=3D"border-collapse: collapse;display: ta=
+ble;width: 100%;background-color: #ffffff;">
+<!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" ro=
+le=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"background-co=
+lor: #ffffff;"><td style=3D"width: 200px" valign=3D"top" class=3D"w160"><![=
+endif]-->
+<div class=3D"column narrow" style=3D"text-align: left;color: #808285;font-=
+size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;Float: left;=
+max-width: 320px;min-width: 200px; width: 320px;width: calc(72200px - 12000=
+%);">
+<div style=3D"font-size: 12px;font-style: normal;font-weight: normal;line-h=
+eight: 19px;" align=3D"center">
+<img class=3D"gnd-corner-image gnd-corner-image-center gnd-corner-image-top=
+ gnd-corner-image-bottom" style=3D"border: 0;display: block;height: auto;wi=
+dth: 100%;max-width: 480px;" alt=3D"" width=3D"200" src=3D"https://i2.cmail=
+20.com/ei/d/A6/CC4/E90/221439/csfinal/CircleHappyThanksgivingProfilePhotoFr=
+ame1-9900000000028a3c.png">
+</div>
+</div>
+<!--[if mso]></td><td style=3D"width: 400px" valign=3D"top" class=3D"w360">=
+<![endif]-->
+<div class=3D"column wide" style=3D"text-align: left;color: #808285;font-si=
+ze: 14px;line-height: 21px;font-family: Open Sans,sans-serif;Float: left;ma=
+x-width: 400px;min-width: 320px; width: 320px;width: calc(8000% - 47600px);=
+">
+<div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-top: 24px;Margin-=
+bottom: 24px;">
+<div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;vertical-a=
+lign: middle;">
+<h1 style=3D"Margin-top: 0;Margin-bottom: 0;font-style: normal;font-weight:=
+ normal;color: #27313c;font-size: 17px;line-height: 26px;font-family: PT Sa=
+ns,Trebuchet MS,sans-serif;">
+<a style=3D"text-decoration: none;transition: opacity 0.1s ease-in;color: #=
+27313c;" href=3D"https://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl=
+-f/">Jersey Samaritans: Five things to improve mental health awareness in J=
+ersey</a></h1>
+<p style=3D"Margin-top: 20px;Margin-bottom: 0;"><a class=3D"no-underline" s=
+tyle=3D"text-decoration: none;transition: opacity 0.1s ease-in;color: #2731=
+3c;" href=3D"https://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-z/"=
+><span style=3D"text-decoration: inherit;color: #6b6b6b;">To
+ mark Mental Health Awareness Week,&nbsp;<em>Express</em>&nbsp;has been spe=
+aking to local charities and organisations about five things they believe c=
+ould be changed to promote better understanding of mental illness in Jersey=
+.</span></a></p>
+</div>
+</div>
+</div>
+<!--[if mso]></td></tr></table><![endif]--></div>
+</div>
+<div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 auto;max=
+-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px)=
+;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
+<div class=3D"layout__inner" style=3D"border-collapse: collapse;display: ta=
+ble;width: 100%;background-color: #ffffff;">
+<!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" ro=
+le=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"background-co=
+lor: #ffffff;"><td style=3D"width: 600px" class=3D"w560"><![endif]-->
+<div class=3D"column" style=3D"text-align: left;color: #808285;font-size: 1=
+4px;line-height: 21px;font-family: Open Sans,sans-serif;">
+<div style=3D"font-size: 12px;font-style: normal;font-weight: normal;line-h=
+eight: 19px;" align=3D"center">
+<img class=3D"gnd-corner-image gnd-corner-image-center gnd-corner-image-top=
+ gnd-corner-image-bottom" style=3D"border: 0;display: block;height: auto;wi=
+dth: 100%;max-width: 729px;" alt=3D"" width=3D"600" src=3D"https://i3.cmail=
+20.com/ei/d/A6/CC4/E90/221439/csfinal/Bottomcopy51-9900000000079e3c.jpg">
+</div>
+</div>
+<!--[if mso]></td></tr></table><![endif]--></div>
+</div>
+<div style=3D"mso-line-height-rule: exactly;line-height: 20px;font-size: 20=
+px;">&nbsp;</div>
+<div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 auto;max=
+-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px)=
+;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
+<div class=3D"layout__inner" style=3D"border-collapse: collapse;display: ta=
+ble;width: 100%;background-color: #ffffff;">
+<!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" ro=
+le=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"background-co=
+lor: #ffffff;"><td style=3D"width: 600px" class=3D"w560"><![endif]-->
+<div class=3D"column" style=3D"text-align: left;color: #808285;font-size: 1=
+4px;line-height: 21px;font-family: Open Sans,sans-serif;">
+<div style=3D"font-size: 12px;font-style: normal;font-weight: normal;line-h=
+eight: 19px;" align=3D"center">
+<a style=3D"text-decoration: underline;transition: opacity 0.1s ease-in;col=
+or: #27313c;" href=3D"https://allislandmedia.cmail20.com/t/d-l-shjidik-djll=
+niijl-v/"><img class=3D"gnd-corner-image gnd-corner-image-center gnd-corner=
+-image-top gnd-corner-image-bottom" style=3D"border: 0;display: block;heigh=
+t: auto;width: 100%;max-width: 728px;" alt=3D"" width=3D"600" src=3D"https:=
+//i4.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/JerseyArtsCentreContentBann=
+er-9900000000079e3c.jpg"></a>
+</div>
+</div>
+<!--[if mso]></td></tr></table><![endif]--></div>
+</div>
+<div style=3D"mso-line-height-rule: exactly;line-height: 20px;font-size: 20=
+px;">&nbsp;</div>
+<div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 auto;max=
+-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px)=
+;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
+<div class=3D"layout__inner" style=3D"border-collapse: collapse;display: ta=
+ble;width: 100%;background-color: #edd2b9;">
+<!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" ro=
+le=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"background-co=
+lor: #edd2b9;"><td style=3D"width: 600px" class=3D"w560"><![endif]-->
+<div class=3D"column" style=3D"text-align: left;color: #808285;font-size: 1=
+4px;line-height: 21px;font-family: Open Sans,sans-serif;">
+<div style=3D"font-size: 12px;font-style: normal;font-weight: normal;line-h=
+eight: 19px;" align=3D"center">
+<img class=3D"gnd-corner-image gnd-corner-image-center gnd-corner-image-top=
+ gnd-corner-image-bottom" style=3D"border: 0;display: block;height: auto;wi=
+dth: 100%;max-width: 729px;" alt=3D"" width=3D"600" src=3D"https://i5.cmail=
+20.com/ei/d/A6/CC4/E90/221439/csfinal/image1-9900000000079e3c-9900000000079=
+e3c.png">
+</div>
+</div>
+<!--[if mso]></td></tr></table><![endif]--></div>
+</div>
+<div class=3D"layout fixed-width stack" style=3D"Margin: 0 auto;max-width: =
+600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px);overflo=
+w-wrap: break-word;word-wrap: break-word;word-break: break-word;">
+<div class=3D"layout__inner" style=3D"border-collapse: collapse;display: ta=
+ble;width: 100%;background-color: #edd2b9;">
+<!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" ro=
+le=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"background-co=
+lor: #edd2b9;"><td style=3D"width: 400px" valign=3D"top" class=3D"w360"><![=
+endif]-->
+<div class=3D"column wide" style=3D"text-align: left;color: #808285;font-si=
+ze: 14px;line-height: 21px;font-family: Open Sans,sans-serif;Float: left;ma=
+x-width: 400px;min-width: 320px; width: 320px;width: calc(8000% - 47600px);=
+">
+<div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-top: 24px;">
+<div style=3D"font-size: 12px;font-style: normal;font-weight: normal;line-h=
+eight: 19px;Margin-bottom: 20px;" align=3D"center">
+<img style=3D"border: 0;display: block;height: auto;width: 100%;max-width: =
+600px;" alt=3D"" width=3D"360" src=3D"https://i0.wp.com/www.bailiwickexpres=
+s.com/wp-content/uploads/2025/05/Trinity-Living-Wage.jpg?resize=3D600%2C450=
+&amp;ssl=3D1">
+</div>
+</div>
+<div style=3D"Margin-left: 20px;Margin-right: 20px;">
+<div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;vertical-a=
+lign: middle;">
+<h1 style=3D"Margin-top: 0;Margin-bottom: 0;font-style: normal;font-weight:=
+ normal;color: #27313c;font-size: 17px;line-height: 26px;font-family: PT Sa=
+ns,Trebuchet MS,sans-serif;text-align: left;">
+Trinity becomes fourth parish to receive Jersey Living Wage employer accred=
+itation</h1>
+<p style=3D"Margin-top: 20px;Margin-bottom: 20px;text-align: left;">Trinity=
+ has received accreditation as a =E2=80=9CJersey Living Wage=E2=80=9D emplo=
+yer =E2=80=93 becoming the fourth parish to have done so =E2=80=93 with tho=
+se behind the campaign hoping the remaining eight parishes will follow.</p>
+</div>
+</div>
+<div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-bottom: 24px;">
+<div class=3D"btn btn--shadow btn--medium" style=3D"text-align:left;"><!--[=
+if !mso]><!--><a style=3D"border-radius: 4px;display: inline-block;font-siz=
+e: 12px;font-weight: bold;line-height: 22px;padding: 10px 20px 11px 20px;te=
+xt-align: center;text-decoration: none !important;transition: opacity 0.1s =
+ease-in;color: #27313c !important;box-shadow: inset 0 -2px 0 0 rgba(0, 0, 0=
+, 0.2);background-color: #a6ce39;font-family: Open Sans, sans-serif;" href=
+=3D"https://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-e/">Read
+ more</a><!--<![endif]--><!--[if mso]><p style=3D"line-height:0;margin:0;">=
+&nbsp;</p><v:roundrect xmlns:v=3D"urn:schemas-microsoft-com:vml" href=3D"ht=
+tps://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-e/" style=3D"width=
+:78.75pt" arcsize=3D"10%" fillcolor=3D"#A6CE39" stroke=3D"f"><v:shadow on=
+=3D"t" color=3D"#85A52E" offset=3D"0,2px"></v:shadow><v:textbox style=3D"ms=
+o-fit-shape-to-text:t" inset=3D"0pt,6.75pt,0pt,6pt"><center style=3D"font-s=
+ize:12px;line-height:22px;color:#27313C;font-family:Open Sans,sans-serif;fo=
+nt-weight:bold;mso-line-height-rule:exactly;mso-text-raise:2px">Read more</=
+center></v:textbox></v:roundrect><![endif]-->
+</div>
+</div>
+</div>
+<!--[if mso]></td><td style=3D"width: 200px" valign=3D"top" class=3D"w160">=
+<![endif]-->
+<div class=3D"column narrow" style=3D"text-align: left;color: #808285;font-=
+size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;Float: left;=
+max-width: 320px;min-width: 200px; width: 320px;width: calc(72200px - 12000=
+%);">
+<div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-top: 24px;">
+<div class=3D"divider" style=3D"display: block;font-size: 2px;line-height: =
+2px;Margin-left: auto;Margin-right: auto;width: 40px;background-color: #000=
+;Margin-bottom: 20px;">
+&nbsp;</div>
+</div>
+<div style=3D"Margin-left: 20px;Margin-right: 20px;">
+<div style=3D"font-size: 12px;font-style: normal;font-weight: normal;line-h=
+eight: 19px;Margin-bottom: 20px;" align=3D"center">
+<img style=3D"border: 0;display: block;height: auto;width: 100%;max-width: =
+372px;" alt=3D"" width=3D"160" src=3D"https://i6.cmail20.com/ei/d/A6/CC4/E9=
+0/221439/csfinal/Screenshot2025-04-23130356-990000079e01453c.png">
+</div>
+</div>
+<div style=3D"Margin-left: 20px;Margin-right: 20px;">
+<div class=3D"btn fullwidth btn--shadow btn--medium" style=3D"Margin-bottom=
+: 20px;text-align: center;">
+<!--[if !mso]><!--><a style=3D"border-radius: 4px;display: block;font-size:=
+ 12px;font-weight: bold;line-height: 22px;padding: 10px 20px 11px 20px;text=
+-align: center;text-decoration: none !important;transition: opacity 0.1s ea=
+se-in;color: #27313c !important;box-shadow: inset 0 -2px 0 0 rgba(0, 0, 0, =
+0.2);background-color: #ffffff;font-family: Open Sans, sans-serif;" href=3D=
+"https://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-s/">Read
+ online</a><!--<![endif]--><!--[if mso]><p style=3D"line-height:0;margin:0;=
+">&nbsp;</p><v:roundrect xmlns:v=3D"urn:schemas-microsoft-com:vml" href=3D"=
+https://allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-s/" style=3D"wid=
+th:120pt" arcsize=3D"10%" fillcolor=3D"#FFFFFF" stroke=3D"f"><v:shadow on=
+=3D"t" color=3D"#CCCCCC" offset=3D"0,2px"></v:shadow><v:textbox style=3D"ms=
+o-fit-shape-to-text:t" inset=3D"0pt,6.75pt,0pt,6pt"><center style=3D"font-s=
+ize:12px;line-height:22px;color:#27313C;font-family:Open Sans,sans-serif;fo=
+nt-weight:bold;mso-line-height-rule:exactly;mso-text-raise:2px">Read online=
+</center></v:textbox></v:roundrect><![endif]-->
+</div>
+</div>
+<div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-bottom: 24px;">
+<div class=3D"divider" style=3D"display: block;font-size: 2px;line-height: =
+2px;Margin-left: auto;Margin-right: auto;width: 40px;background-color: #000=
+;">
+&nbsp;</div>
+</div>
+</div>
+<!--[if mso]></td></tr></table><![endif]--></div>
+</div>
+<div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 auto;max=
+-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px)=
+;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
+<div class=3D"layout__inner" style=3D"border-collapse: collapse;display: ta=
+ble;width: 100%;background-color: #ffffff;">
+<!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" ro=
+le=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"background-co=
+lor: #ffffff;"><td style=3D"width: 600px" class=3D"w560"><![endif]-->
+<div class=3D"column" style=3D"text-align: left;color: #808285;font-size: 1=
+4px;line-height: 21px;font-family: Open Sans,sans-serif;">
+<div style=3D"font-size: 12px;font-style: normal;font-weight: normal;line-h=
+eight: 19px;" align=3D"center">
+<img style=3D"border: 0;display: block;height: auto;width: 100%;max-width: =
+600px;" alt=3D"" width=3D"600" src=3D"https://i7.cmail20.com/ei/d/A6/CC4/E9=
+0/221439/csfinal/image-2-9900000000079e3c.png">
+</div>
+</div>
+<!--[if mso]></td></tr></table><![endif]--></div>
+</div>
+<div style=3D"mso-line-height-rule: exactly;line-height: 20px;font-size: 20=
+px;">&nbsp;</div>
+<div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 auto;max=
+-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px)=
+;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
+<div class=3D"layout__inner" style=3D"border-collapse: collapse;display: ta=
+ble;width: 100%;background-color: #ffffff;">
+<!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" ro=
+le=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"background-co=
+lor: #ffffff;"><td style=3D"width: 600px" class=3D"w560"><![endif]-->
+<div class=3D"column" style=3D"text-align: left;color: #808285;font-size: 1=
+4px;line-height: 21px;font-family: Open Sans,sans-serif;">
+<div style=3D"font-size: 12px;font-style: normal;font-weight: normal;line-h=
+eight: 19px;" align=3D"center">
+<a style=3D"text-decoration: underline;transition: opacity 0.1s ease-in;col=
+or: #27313c;" href=3D"https://allislandmedia.cmail20.com/t/d-l-shjidik-djll=
+niijl-g/"><img class=3D"gnd-corner-image gnd-corner-image-center gnd-corner=
+-image-top gnd-corner-image-bottom" style=3D"border: 0;display: block;heigh=
+t: auto;width: 100%;max-width: 900px;" alt=3D"" width=3D"600" src=3D"https:=
+//i8.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/WiTPTop-Banner-GIF2-9900000=
+000079e3c.gif"></a>
+</div>
+</div>
+<!--[if mso]></td></tr></table><![endif]--></div>
+</div>
+<div style=3D"mso-line-height-rule: exactly;line-height: 20px;font-size: 20=
+px;">&nbsp;</div>
+<div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 auto;max=
+-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px)=
+;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
+<div class=3D"layout__inner" style=3D"border-collapse: collapse;display: ta=
+ble;width: 100%;background-color: #ffffff;">
+<!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" ro=
+le=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"background-co=
+lor: #ffffff;"><td style=3D"width: 600px" class=3D"w560"><![endif]-->
+<div class=3D"column" style=3D"text-align: left;color: #808285;font-size: 1=
+4px;line-height: 21px;font-family: Open Sans,sans-serif;">
+<div style=3D"font-size: 12px;font-style: normal;font-weight: normal;line-h=
+eight: 19px;" align=3D"center">
+<img class=3D"gnd-corner-image gnd-corner-image-center gnd-corner-image-top=
+ gnd-corner-image-bottom" style=3D"border: 0;display: block;height: auto;wi=
+dth: 100%;max-width: 729px;" alt=3D"" width=3D"600" src=3D"https://i9.cmail=
+20.com/ei/d/A6/CC4/E90/221439/csfinal/fn1-9900000000079e3c.jpg">
+</div>
+</div>
+<!--[if mso]></td></tr></table><![endif]--></div>
+</div>
+<div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 auto;max=
+-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px)=
+;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
+<div class=3D"layout__inner" style=3D"border-collapse: collapse;display: ta=
+ble;width: 100%;background-color: #ffffff;">
+<!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" ro=
+le=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"background-co=
+lor: #ffffff;"><td style=3D"width: 600px" class=3D"w560"><![endif]-->
+<div class=3D"column" style=3D"text-align: left;color: #808285;font-size: 1=
+4px;line-height: 21px;font-family: Open Sans,sans-serif;">
+<div style=3D"font-size: 12px;font-style: normal;font-weight: normal;line-h=
+eight: 19px;" align=3D"center">
+<img style=3D"border: 0;display: block;height: auto;width: 100%;max-width: =
+98px;" alt=3D"" width=3D"98" src=3D"https://i10.cmail20.com/ei/d/A6/CC4/E90=
+/221439/csfinal/DEATH-ICON1-d8a8c43cca1802af.jpg">
+</div>
+</div>
+<!--[if mso]></td></tr></table><![endif]--></div>
+</div>
+<div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 auto;max=
+-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px)=
+;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
+<div class=3D"layout__inner" style=3D"border-collapse: collapse;display: ta=
+ble;width: 100%;background-color: #ffffff;">
+<!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" ro=
+le=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"background-co=
+lor: #ffffff;"><td style=3D"width: 600px" class=3D"w560"><![endif]-->
+<div class=3D"column" style=3D"text-align: left;color: #808285;font-size: 1=
+4px;line-height: 21px;font-family: Open Sans,sans-serif;">
+<div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-top: 24px;Margin-=
+bottom: 24px;">
+<div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;vertical-a=
+lign: middle;">
+<p class=3D"size-17" style=3D"Margin-top: 0;Margin-bottom: 0;font-size: 17p=
+x;line-height: 26px;text-align: center;" lang=3D"x-size-17">
+<span style=3D"text-decoration: inherit;color: #000000;"><u><strong>DEATHS<=
+/strong></u></span></p>
+</div>
+</div>
+</div>
+<!--[if mso]></td></tr></table><![endif]--></div>
+</div>
+<div class=3D"layout two-col fixed-width stack" style=3D"Margin: 0 auto;max=
+-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px)=
+;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
+<div class=3D"layout__inner" style=3D"border-collapse: collapse;display: ta=
+ble;width: 100%;background-color: #ffffff;">
+<!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" ro=
+le=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"background-co=
+lor: #ffffff;"><td style=3D"width: 300px" valign=3D"top" class=3D"w260"><![=
+endif]-->
+<div class=3D"column" style=3D"text-align: left;color: #808285;font-size: 1=
+4px;line-height: 21px;font-family: Open Sans,sans-serif;max-width: 320px;mi=
+n-width: 300px; width: 320px;width: calc(12300px - 2000%);Float: left;">
+<div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-top: 24px;Margin-=
+bottom: 24px;">
+<div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;vertical-a=
+lign: middle;">
+<p style=3D"Margin-top: 0;Margin-bottom: 0;text-align: center;"><span style=
+=3D"text-decoration: inherit;color: #27313c;">Diane Marie Ahier (n=C3=A9e G=
+uise, formerly Collas)</span></p>
+<p style=3D"Margin-top: 20px;Margin-bottom: 0;text-align: center;"><span st=
+yle=3D"text-decoration: inherit;color: #808285;">Died: 25/04/25<br>
+Pitcher &amp; Le Quesne Funeral Directors</span></p>
+</div>
+</div>
+</div>
+<!--[if mso]></td><td style=3D"width: 300px" valign=3D"top" class=3D"w260">=
+<![endif]-->
+<div class=3D"column" style=3D"text-align: left;color: #808285;font-size: 1=
+4px;line-height: 21px;font-family: Open Sans,sans-serif;max-width: 320px;mi=
+n-width: 300px; width: 320px;width: calc(12300px - 2000%);Float: left;">
+<div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-top: 24px;Margin-=
+bottom: 24px;">
+<div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;vertical-a=
+lign: middle;">
+<p style=3D"Margin-top: 0;Margin-bottom: 0;text-align: center;"><span style=
+=3D"text-decoration: inherit;color: #27313c;">Ann Beryl Barrett</span></p>
+<p style=3D"Margin-top: 20px;Margin-bottom: 0;text-align: center;"><br>
+<span style=3D"text-decoration: inherit;color: #808285;">Died: 28/03/25</sp=
+an></p>
+</div>
+</div>
+</div>
+<!--[if mso]></td></tr></table><![endif]--></div>
+</div>
+<div class=3D"layout two-col fixed-width stack" style=3D"Margin: 0 auto;max=
+-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px)=
+;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
+<div class=3D"layout__inner" style=3D"border-collapse: collapse;display: ta=
+ble;width: 100%;background-color: #ffffff;">
+<!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" ro=
+le=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"background-co=
+lor: #ffffff;"><td style=3D"width: 300px" valign=3D"top" class=3D"w260"><![=
+endif]-->
+<div class=3D"column" style=3D"text-align: left;color: #808285;font-size: 1=
+4px;line-height: 21px;font-family: Open Sans,sans-serif;max-width: 320px;mi=
+n-width: 300px; width: 320px;width: calc(12300px - 2000%);Float: left;">
+<div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-top: 24px;Margin-=
+bottom: 24px;">
+<div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;vertical-a=
+lign: middle;">
+<p style=3D"Margin-top: 0;Margin-bottom: 0;text-align: center;"><span style=
+=3D"text-decoration: inherit;color: #27313c;">Audrey Eileen Murgatroyd</spa=
+n></p>
+<p style=3D"Margin-top: 20px;Margin-bottom: 0;text-align: center;"><br>
+<span style=3D"text-decoration: inherit;color: #808285;">Died: 05/04/25</sp=
+an><br>
+&nbsp;</p>
+</div>
+</div>
+</div>
+<!--[if mso]></td><td style=3D"width: 300px" valign=3D"top" class=3D"w260">=
+<![endif]-->
+<div class=3D"column" style=3D"text-align: left;color: #808285;font-size: 1=
+4px;line-height: 21px;font-family: Open Sans,sans-serif;max-width: 320px;mi=
+n-width: 300px; width: 320px;width: calc(12300px - 2000%);Float: left;">
+<div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-top: 24px;Margin-=
+bottom: 24px;">
+<div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;vertical-a=
+lign: middle;">
+<p style=3D"Margin-top: 0;Margin-bottom: 0;text-align: center;"><span style=
+=3D"text-decoration: inherit;color: #27313c;">Margaret Elizabeth Pirouet (n=
+=C3=A9e Dean)</span></p>
+<p style=3D"Margin-top: 20px;Margin-bottom: 0;text-align: center;"><br>
+<span style=3D"text-decoration: inherit;color: #808285;">Died: 12/04/25</sp=
+an><br>
+&nbsp;</p>
+</div>
+</div>
+</div>
+<!--[if mso]></td></tr></table><![endif]--></div>
+</div>
+<div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 auto;max=
+-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px)=
+;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
+<div class=3D"layout__inner" style=3D"border-collapse: collapse;display: ta=
+ble;width: 100%;background-color: #ffffff;">
+<!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" ro=
+le=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"background-co=
+lor: #ffffff;"><td style=3D"width: 600px" class=3D"w560"><![endif]-->
+<div class=3D"column" style=3D"text-align: left;color: #808285;font-size: 1=
+4px;line-height: 21px;font-family: Open Sans,sans-serif;">
+<div style=3D"font-size: 12px;font-style: normal;font-weight: normal;line-h=
+eight: 19px;" align=3D"center">
+<img class=3D"gnd-corner-image gnd-corner-image-center gnd-corner-image-top=
+ gnd-corner-image-bottom" style=3D"border: 0;display: block;height: auto;wi=
+dth: 100%;max-width: 729px;" alt=3D"" width=3D"600" src=3D"https://i1.cmail=
+20.com/ei/d/A6/CC4/E90/221439/csfinal/Bottomcopy5-9900000000079e3c.jpg">
+</div>
+</div>
+<!--[if mso]></td></tr></table><![endif]--></div>
+</div>
+<div style=3D"mso-line-height-rule: exactly;line-height: 20px;font-size: 20=
+px;">&nbsp;</div>
+<div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 auto;max=
+-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px)=
+;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
+<div class=3D"layout__inner" style=3D"border-collapse: collapse;display: ta=
+ble;width: 100%;background-color: #ffffff;">
+<!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" ro=
+le=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"background-co=
+lor: #ffffff;"><td style=3D"width: 600px" class=3D"w560"><![endif]-->
+<div class=3D"column" style=3D"text-align: left;color: #808285;font-size: 1=
+4px;line-height: 21px;font-family: Open Sans,sans-serif;">
+<div style=3D"font-size: 12px;font-style: normal;font-weight: normal;line-h=
+eight: 19px;" align=3D"center">
+<a style=3D"text-decoration: underline;transition: opacity 0.1s ease-in;col=
+or: #27313c;" href=3D"https://allislandmedia.cmail20.com/t/d-l-shjidik-djll=
+niijl-w/"><img class=3D"gnd-corner-image gnd-corner-image-center gnd-corner=
+-image-top gnd-corner-image-bottom" style=3D"border: 0;display: block;heigh=
+t: auto;width: 100%;max-width: 778px;" alt=3D"" width=3D"600" src=3D"https:=
+//i2.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/Radio-Banner-9900000000079e=
+3c.jpg"></a>
+</div>
+</div>
+<!--[if mso]></td></tr></table><![endif]--></div>
+</div>
+<div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 auto;max=
+-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px)=
+;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
+<div class=3D"layout__inner" style=3D"border-collapse: collapse;display: ta=
+ble;width: 100%;background-color: #ffffff;">
+<!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" ro=
+le=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"background-co=
+lor: #ffffff;"><td style=3D"width: 600px" class=3D"w560"><![endif]-->
+<div class=3D"column" style=3D"text-align: left;color: #808285;font-size: 1=
+4px;line-height: 21px;font-family: Open Sans,sans-serif;">
+<div style=3D"font-size: 12px;font-style: normal;font-weight: normal;line-h=
+eight: 19px;" align=3D"center">
+<img class=3D"gnd-corner-image gnd-corner-image-center gnd-corner-image-top=
+ gnd-corner-image-bottom" style=3D"border: 0;display: block;height: auto;wi=
+dth: 100%;max-width: 778px;" alt=3D"" width=3D"600" src=3D"https://i3.cmail=
+20.com/ei/d/A6/CC4/E90/221439/csfinal/Download-Banner1-9900000000079e3c.jpg=
+">
+</div>
+</div>
+<!--[if mso]></td></tr></table><![endif]--></div>
+</div>
+<div class=3D"layout two-col fixed-width stack" style=3D"Margin: 0 auto;max=
+-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px)=
+;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
+<div class=3D"layout__inner" style=3D"border-collapse: collapse;display: ta=
+ble;width: 100%;background-color: #ffffff;">
+<!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" ro=
+le=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"background-co=
+lor: #ffffff;"><td style=3D"width: 300px" valign=3D"top" class=3D"w260"><![=
+endif]-->
+<div class=3D"column" style=3D"text-align: left;color: #808285;font-size: 1=
+4px;line-height: 21px;font-family: Open Sans,sans-serif;max-width: 320px;mi=
+n-width: 300px; width: 320px;width: calc(12300px - 2000%);Float: left;">
+<div style=3D"font-size: 12px;font-style: normal;font-weight: normal;line-h=
+eight: 19px;" align=3D"center">
+<a style=3D"text-decoration: underline;transition: opacity 0.1s ease-in;col=
+or: #27313c;" href=3D"https://allislandmedia.cmail20.com/t/d-l-shjidik-djll=
+niijl-yd/"><img class=3D"gnd-corner-image gnd-corner-image-center gnd-corne=
+r-image-top gnd-corner-image-bottom" style=3D"border: 0;display: block;heig=
+ht: auto;width: 100%;max-width: 387px;" alt=3D"" width=3D"300" src=3D"https=
+://i4.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/Apple-Classics-99000000000=
+3cf3c.jpg"></a>
+</div>
+</div>
+<!--[if mso]></td><td style=3D"width: 300px" valign=3D"top" class=3D"w260">=
+<![endif]-->
+<div class=3D"column" style=3D"text-align: left;color: #808285;font-size: 1=
+4px;line-height: 21px;font-family: Open Sans,sans-serif;max-width: 320px;mi=
+n-width: 300px; width: 320px;width: calc(12300px - 2000%);Float: left;">
+<div style=3D"font-size: 12px;font-style: normal;font-weight: normal;line-h=
+eight: 19px;" align=3D"center">
+<a style=3D"text-decoration: underline;transition: opacity 0.1s ease-in;col=
+or: #27313c;" href=3D"https://allislandmedia.cmail20.com/t/d-l-shjidik-djll=
+niijl-yh/"><img class=3D"gnd-corner-image gnd-corner-image-center gnd-corne=
+r-image-top gnd-corner-image-bottom" style=3D"border: 0;display: block;heig=
+ht: auto;width: 100%;max-width: 387px;" alt=3D"" width=3D"300" src=3D"https=
+://i5.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/Apple-Hits-990000000003cf3=
+c.jpg"></a>
+</div>
+</div>
+<!--[if mso]></td></tr></table><![endif]--></div>
+</div>
+<div style=3D"mso-line-height-rule: exactly;line-height: 20px;font-size: 20=
+px;">&nbsp;</div>
+<div class=3D"layout two-col fixed-width stack" style=3D"Margin: 0 auto;max=
+-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px)=
+;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
+<div class=3D"layout__inner" style=3D"border-collapse: collapse;display: ta=
+ble;width: 100%;background-color: #ffffff;">
+<!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" ro=
+le=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"background-co=
+lor: #ffffff;"><td style=3D"width: 300px" valign=3D"top" class=3D"w260"><![=
+endif]-->
+<div class=3D"column" style=3D"text-align: left;color: #808285;font-size: 1=
+4px;line-height: 21px;font-family: Open Sans,sans-serif;max-width: 320px;mi=
+n-width: 300px; width: 320px;width: calc(12300px - 2000%);Float: left;">
+<div style=3D"font-size: 12px;font-style: normal;font-weight: normal;line-h=
+eight: 19px;" align=3D"center">
+<a style=3D"text-decoration: underline;transition: opacity 0.1s ease-in;col=
+or: #27313c;" href=3D"https://allislandmedia.cmail20.com/t/d-l-shjidik-djll=
+niijl-yk/"><img class=3D"gnd-corner-image gnd-corner-image-center gnd-corne=
+r-image-top gnd-corner-image-bottom" style=3D"border: 0;display: block;heig=
+ht: auto;width: 100%;max-width: 387px;" alt=3D"" width=3D"300" src=3D"https=
+://i6.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/Andriod-Classics-990000000=
+003cf3c.jpg"></a>
+</div>
+</div>
+<!--[if mso]></td><td style=3D"width: 300px" valign=3D"top" class=3D"w260">=
+<![endif]-->
+<div class=3D"column" style=3D"text-align: left;color: #808285;font-size: 1=
+4px;line-height: 21px;font-family: Open Sans,sans-serif;max-width: 320px;mi=
+n-width: 300px; width: 320px;width: calc(12300px - 2000%);Float: left;">
+<div style=3D"font-size: 12px;font-style: normal;font-weight: normal;line-h=
+eight: 19px;" align=3D"center">
+<a style=3D"text-decoration: underline;transition: opacity 0.1s ease-in;col=
+or: #27313c;" href=3D"https://allislandmedia.cmail20.com/t/d-l-shjidik-djll=
+niijl-yu/"><img class=3D"gnd-corner-image gnd-corner-image-center gnd-corne=
+r-image-top gnd-corner-image-bottom" style=3D"border: 0;display: block;heig=
+ht: auto;width: 100%;max-width: 387px;" alt=3D"" width=3D"300" src=3D"https=
+://i7.cmail20.com/ei/d/A6/CC4/E90/221439/csfinal/Andriod-Hits-990000000003c=
+f3c.jpg"></a>
+</div>
+</div>
+<!--[if mso]></td></tr></table><![endif]--></div>
+</div>
+<div style=3D"mso-line-height-rule: exactly;line-height: 20px;font-size: 20=
+px;">&nbsp;</div>
+<div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 auto;max=
+-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px)=
+;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
+<div class=3D"layout__inner" style=3D"border-collapse: collapse;display: ta=
+ble;width: 100%;background-color: #ffffff;">
+<!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" ro=
+le=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"background-co=
+lor: #ffffff;"><td style=3D"width: 600px" class=3D"w560"><![endif]-->
+<div class=3D"column" style=3D"text-align: left;color: #808285;font-size: 1=
+4px;line-height: 21px;font-family: Open Sans,sans-serif;">
+<div style=3D"font-size: 12px;font-style: normal;font-weight: normal;line-h=
+eight: 19px;" align=3D"center">
+<a style=3D"text-decoration: underline;transition: opacity 0.1s ease-in;col=
+or: #27313c;" href=3D"mailto:sales@bailiwickexpress.com"><img class=3D"gnd-=
+corner-image gnd-corner-image-center gnd-corner-image-top gnd-corner-image-=
+bottom" style=3D"border: 0;display: block;height: auto;width: 100%;max-widt=
+h: 778px;" alt=3D"" width=3D"600" src=3D"https://i8.cmail20.com/ei/d/A6/CC4=
+/E90/221439/csfinal/Email-Us-Banner-9900000000079e3c.jpg"></a>
+</div>
+</div>
+<!--[if mso]></td></tr></table><![endif]--></div>
+</div>
+<div style=3D"mso-line-height-rule: exactly;line-height: 20px;font-size: 20=
+px;">&nbsp;</div>
+<div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 auto;max=
+-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px)=
+;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
+<div class=3D"layout__inner" style=3D"border-collapse: collapse;display: ta=
+ble;width: 100%;background-color: #27313c;">
+<!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" ro=
+le=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"background-co=
+lor: #27313c;"><td style=3D"width: 600px" class=3D"w560"><![endif]-->
+<div class=3D"column" style=3D"text-align: left;color: #808285;font-size: 1=
+4px;line-height: 21px;font-family: Open Sans,sans-serif;">
+<div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-top: 24px;Margin-=
+bottom: 24px;">
+<div>
+<div style=3D"padding-top: 8px; text-align: left"><span style=3D"padding-ri=
+ght: 4px;"><a style=3D"text-decoration: underline;transition: opacity 0.1s =
+ease-in;color: #27313c;display: inline-block;border-radius: 50%;width: 24px=
+;height: 24px;max-height: 24px;background-color: #13181E;" href=3D"https://=
+allislandmedia.cmail20.com/t/d-l-shjidik-djllniijl-jl/"><img style=3D"borde=
+r: 0;" src=3D"https://i1.cmail20.com/static/eb/master/13-the-blueprint-3/im=
+ages/socialmedia/facebook-white-small.png" alt=3D"Facebook" height=3D"24" w=
+idth=3D"24" cm_dontimportimage=3D""></a></span><span style=3D"padding-right=
+: 4px;"><a style=3D"text-decoration: underline;transition: opacity 0.1s eas=
+e-in;color: #27313c;display: inline-block;border-radius: 50%;width: 24px;he=
+ight: 24px;max-height: 24px;background-color: #13181E;" href=3D"https://all=
+islandmedia.cmail20.com/t/d-l-shjidik-djllniijl-jr/"><img style=3D"border: =
+0;" src=3D"https://i4.cmail20.com/static/eb/master/13-the-blueprint-3/image=
+s/socialmedia/twitter-white-small.png" alt=3D"Twitter" height=3D"24" width=
+=3D"24" cm_dontimportimage=3D""></a></span><span style=3D"padding-right: 4p=
+x;"><a style=3D"text-decoration: underline;transition: opacity 0.1s ease-in=
+;color: #27313c;display: inline-block;border-radius: 50%;width: 24px;height=
+: 24px;max-height: 24px;background-color: #13181E;" href=3D"https://allisla=
+ndmedia.cmail20.com/t/d-l-shjidik-djllniijl-jy/"><img style=3D"border: 0;" =
+src=3D"https://i10.cmail20.com/static/eb/master/13-the-blueprint-3/images/s=
+ocialmedia/instagram-white-small.png" alt=3D"Instagram" height=3D"24" width=
+=3D"24" cm_dontimportimage=3D""></a></span><span style=3D"padding-right: 4p=
+x;"><a style=3D"text-decoration: underline;transition: opacity 0.1s ease-in=
+;color: #27313c;display: inline-block;border-radius: 50%;width: 24px;height=
+: 24px;max-height: 24px;background-color: #13181E;" href=3D"https://allisla=
+ndmedia.cmail20.com/t/d-l-shjidik-djllniijl-jj/"><img style=3D"border: 0;" =
+src=3D"https://i2.cmail20.com/static/eb/master/13-the-blueprint-3/images/so=
+cialmedia/linkedin-white-small.png" alt=3D"LinkedIn" height=3D"24" width=3D=
+"24" cm_dontimportimage=3D""></a></span><span style=3D"padding-right: 4px;"=
+><a style=3D"text-decoration: underline;transition: opacity 0.1s ease-in;co=
+lor: #27313c;display: inline-block;border-radius: 50%;width: 24px;height: 2=
+4px;max-height: 24px;background-color: #13181E;" href=3D"https://allislandm=
+edia.cmail20.com/t/d-l-shjidik-djllniijl-jt/"><img style=3D"border: 0;" src=
+=3D"https://i5.cmail20.com/static/eb/master/13-the-blueprint-3/images/socia=
+lmedia/website-white-small.png" alt=3D"Website" height=3D"24" width=3D"24" =
+cm_dontimportimage=3D""></a></span></div>
+</div>
+</div>
+</div>
+<!--[if mso]></td></tr></table><![endif]--></div>
+</div>
+</div>
+<div role=3D"contentinfo">
+<div style=3D"line-height:0px;font-size:0px;" id=3D"footer-top-spacing">&nb=
+sp;</div>
+<div class=3D"layout email-flexible-footer email-footer" style=3D"Margin: 0=
+ auto;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - =
+167400px);overflow-wrap: break-word;word-wrap: break-word;word-break: break=
+-word;" id=3D"footer-content">
+<div class=3D"layout__inner left-aligned-footer" style=3D"border-collapse: =
+collapse;display: table;width: 100%;">
+<!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" ro=
+le=3D"presentation"><tr class=3D"layout-email-footer"><![endif]--><!--[if m=
+so]><td><table cellpadding=3D"0" cellspacing=3D"0"><![endif]--><!--[if mso]=
+><td valign=3D"top"><![endif]-->
+<div class=3D"column" style=3D"text-align: left;font-size: 12px;line-height=
+: 19px;color: #fff;font-family: Open Sans,sans-serif;">
+<div class=3D"footer-logo emb-logo-margin-box" style=3D"font-size: 26px;lin=
+e-height: 32px;Margin-top: 8px;Margin-bottom: 12px;color: #7b663d;font-fami=
+ly: Roboto,Tahoma,sans-serif;" align=3D"center">
+<div style=3D"margin-right: 20px;" emb-flexible-footer-logo=3D"" align=3D"c=
+enter"><img style=3D"border: 0;display: block;height: auto;width: 100%;max-=
+width: 180px;" src=3D"https://i1.cmail20.com/ei/d/A6/CC4/E90/221438/csfinal=
+/logo-200pxwide-9900000000028a3c.png" alt=3D"" width=3D"180"></div>
+</div>
+</div>
+<!--[if mso]></td><![endif]--><!--[if mso]><td valign=3D"top"><![endif]-->
+<div class=3D"column" style=3D"text-align: left;font-size: 12px;line-height=
+: 19px;color: #fff;font-family: Open Sans,sans-serif;">
+<div style=3D"margin-left: 0;margin-right: 0;Margin-top: 10px;Margin-bottom=
+: 10px;">
+<div class=3D"footer__share-button">
+<div class=3D"flexible-footer__share-button__container" style=3D"Margin-bot=
+tom: 6px;mso-line-height-rule: exactly;margin-right: 20px;">
+<a class=3D"icon-white" style=3D"text-decoration: none;transition: opacity =
+0.1s ease-in;color: white;border-radius: 2px;display: inline-block;font-siz=
+e: 11px;font-weight: bold;line-height: 19px;text-align: left;border-style: =
+solid;border-width: 4px 0 4px 4px;mso-border-width-alt: 4px 8px 8px 8px;bac=
+kground-color: #14191e;border-color: #14191e;mso-border-color-alt: #14191e;=
+width: 81px;box-sizing: content-box;" href=3D"https://allislandmedia.cmail2=
+0.com/t/d-fb-shjidik-djllniijl-ty/">&nbsp;<img style=3D"border: 0;display: =
+inline-block;margin-right: 2px;vertical-align: -3px;" src=3D"https://i1.cma=
+il20.com//static/eb/master/13-the-blueprint-3/images/fblike-white-flex@2x.p=
+ng" width=3D"16" height=3D"16" border=3D"0" alt=3D"">
+<span style=3D"font-size: 11px;mso-text-raise: 3px;">Share&nbsp;</span> </a=
+></div>
+<div class=3D"flexible-footer__share-button__container" style=3D"Margin-bot=
+tom: 6px;mso-line-height-rule: exactly;margin-right: 20px;">
+<a class=3D"icon-white" style=3D"text-decoration: none;transition: opacity =
+0.1s ease-in;color: white;border-radius: 2px;display: inline-block;font-siz=
+e: 11px;font-weight: bold;line-height: 19px;text-align: left;border-style: =
+solid;border-width: 4px 0 4px 4px;mso-border-width-alt: 4px 8px 8px 8px;bac=
+kground-color: #14191e;border-color: #14191e;mso-border-color-alt: #14191e;=
+width: 81px;box-sizing: content-box;" href=3D"https://allislandmedia.cmail2=
+0.com/t/d-tw-shjidik-djllniijl-tj/">&nbsp;<img style=3D"border: 0;display: =
+inline-block;margin-right: 2px;vertical-align: -3px;" src=3D"https://i2.cma=
+il20.com//static/eb/master/13-the-blueprint-3/images/tweet-white-flex@2x.pn=
+g" width=3D"16" height=3D"16" border=3D"0" alt=3D"">
+<span style=3D"font-size: 11px;mso-text-raise: 3px;">Tweet&nbsp;</span> </a=
+></div>
+<div class=3D"flexible-footer__share-button__container" style=3D"Margin-bot=
+tom: 6px;mso-line-height-rule: exactly;margin-right: 20px;">
+<a class=3D"icon-white" style=3D"text-decoration: none;transition: opacity =
+0.1s ease-in;color: white;border-radius: 2px;display: inline-block;font-siz=
+e: 11px;font-weight: bold;line-height: 19px;text-align: left;border-style: =
+solid;border-width: 4px 0 4px 4px;mso-border-width-alt: 4px 8px 8px 8px;bac=
+kground-color: #14191e;border-color: #14191e;mso-border-color-alt: #14191e;=
+width: 81px;box-sizing: content-box;" href=3D"https://allislandmedia.cmail2=
+0.com/t/d-li-shjidik-djllniijl-tt/">&nbsp;<img style=3D"border: 0;display: =
+inline-block;margin-right: 2px;vertical-align: -3px;" src=3D"https://i3.cma=
+il20.com//static/eb/master/13-the-blueprint-3/images/linkedinshare-white-fl=
+ex@2x.png" width=3D"16" height=3D"16" border=3D"0" alt=3D"">
+<span style=3D"font-size: 11px;mso-text-raise: 3px;">Share&nbsp;</span> </a=
+></div>
+<div class=3D"flexible-footer__share-button__container" style=3D"Margin-bot=
+tom: 6px;mso-line-height-rule: exactly;margin-right: 20px;">
+<a class=3D"icon-white" style=3D"text-decoration: none;transition: opacity =
+0.1s ease-in;color: white;border-radius: 2px;display: inline-block;font-siz=
+e: 11px;font-weight: bold;line-height: 19px;text-align: left;border-style: =
+solid;border-width: 4px 0 4px 4px;mso-border-width-alt: 4px 8px 8px 8px;bac=
+kground-color: #14191e;border-color: #14191e;mso-border-color-alt: #14191e;=
+width: 81px;box-sizing: content-box;" href=3D"https://allislandmedia.forwar=
+dtomyfriend.com/d-djllniijl-A6AE339E-shjidik-l-ti" lang=3D"en-GB">&nbsp;<im=
+g style=3D"border: 0;display: inline-block;margin-right: 2px;vertical-align=
+: -3px;" src=3D"https://i4.cmail20.com//static/eb/master/13-the-blueprint-3=
+/images/forwardtoafriend-white-flex@2x.png" width=3D"16" height=3D"16" bord=
+er=3D"0" alt=3D"">
+<span style=3D"font-size: 11px;mso-text-raise: 3px;">Forward&nbsp;</span> <=
+/a></div>
+</div>
+</div>
+</div>
+<!--[if mso]></td><![endif]--><!--[if mso]><td valign=3D"top"><![endif]-->
+<table style=3D"border-collapse: collapse;table-layout: fixed;display: inli=
+ne-block;width: 295px;" cellpadding=3D"0" cellspacing=3D"0">
+<tbody>
+<tr>
+<td>
+<div class=3D"column js-footer-additional-info" style=3D"text-align: left;f=
+ont-size: 12px;line-height: 19px;color: #fff;font-family: Open Sans,sans-se=
+rif;width: 295px;">
+<div style=3D"margin-left: 0;margin-right: 0;Margin-top: 10px;Margin-bottom=
+: 10px;">
+<div class=3D"email-footer__additional-info" style=3D"font-size: 12px;line-=
+height: 19px;margin-bottom: 18px;margin-top: 0px;">
+<div bind-to=3D"address">Copyright =C2=A9 Bailiwick Express</div>
+</div>
+<div class=3D"email-footer__additional-info" style=3D"font-size: 12px;line-=
+height: 19px;margin-bottom: 15px;Margin-top: 18px;">
+<div bind-to=3D"permission">
+<p class=3D"email-flexible-footer__additionalinfo--center" style=3D"Margin-=
+top: 0;Margin-bottom: 0;">
+You have received this e-mail because you have subscribed to receive e-mail=
+s from Bailiwick Publishing, who publish Bailiwick Express and Connect.</p>
+<p class=3D"email-flexible-footer__additionalinfo--center" style=3D"Margin-=
+top: 0;Margin-bottom: 0;">
+&nbsp;</p>
+<p class=3D"email-flexible-footer__additionalinfo--center" style=3D"Margin-=
+top: 0;Margin-bottom: 0;">
+Unsubscribe to this <a style=3D"text-decoration: underline;transition: opac=
+ity 0.1s ease-in;color: #fff;" href=3D"https://allislandmedia.cmail20.com/t=
+/d-l-shjidik-djllniijl-ji/">
+newsletter</a></p>
+<p class=3D"email-flexible-footer__additionalinfo--center" style=3D"Margin-=
+top: 0;Margin-bottom: 0;">
+&nbsp;</p>
+<p class=3D"email-flexible-footer__additionalinfo--center" style=3D"Margin-=
+top:=20
+0;Margin-bottom: 0;">
+Unsubscribe from everything sent by Bailiwick Express and JEP</p>
+</div>
+</div>
+<div class=3D"email-footer__additional-info" style=3D"font-size: 12px;line-=
+height: 19px;margin-bottom: 15px;">
+<a style=3D"text-decoration: underline;transition: opacity 0.1s ease-in;col=
+or: #fff;" href=3D"https://allislandmedia.cmail20.com/t/d-u-shjidik-djllnii=
+jl-td/" lang=3D"en-GB">Unsubscribe</a>
+</div>
+<!--[if mso]>&nbsp;<![endif]--></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<!--[if mso]></table></td><![endif]--><!--[if mso]></td></tr></table><![end=
+if]--></div>
+</div>
+<div style=3D"line-height:0px;font-size:0px;" id=3D"footer-bottom-spacing">=
+&nbsp;</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<style type=3D"text/css">
+@media (max-width:619px){.email-flexible-footer .left-aligned-footer .colum=
+n,.email-flexible-footer .center-aligned-footer,.email-flexible-footer .rig=
+ht-aligned-footer .column{max-width:100% !important;text-align:center !impo=
+rtant;width:100% !important}.flexible-footer-logo{margin-left:0px !importan=
+t;margin-right:0px !important}.email-flexible-footer .left-aligned-footer .=
+flexible-footer__share-button__container,.email-flexible-footer .center-ali=
+gned-footer .flexible-footer__share-button__container,.email-flexible-foote=
+r .right-aligned-footer .flexible-footer__share-button__container{display:i=
+nline-block;margin-left:5px !important;margin-right:5px !important}.email-f=
+lexible-footer__additionalinfo--center{text-align:center !important}.email-=
+flexible-footer .left-aligned-footer table,.email-flexible-footer .center-a=
+ligned-footer table,.email-flexible-footer .right-aligned-footer=20
+table{display:table !important;width:100% !important}.email-flexible-footer=
+ .footer__share-button,.email-flexible-footer .email-footer__additional-inf=
+o{margin-left:20px;margin-right:20px}}
+</style><img style=3D"visibility: hidden !important; display: block !import=
+ant; height:1px !important; width:1px !important; border: 0 !important; mar=
+gin: 0 !important; padding: 0 !important" src=3D"https://allislandmedia.cma=
+il20.com/t/d-o-shjidik-djllniijl/o.gif" width=3D"1" height=3D"1" border=3D"=
+0" alt=3D"">
+</div>
+</body>
+</html>
+
+--_f1fbe956-8578-45df-a7f0-84c8d62a00ce_--
