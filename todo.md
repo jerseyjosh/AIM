@@ -1,5 +1,8 @@
 # TODO
 - email
+    - √ Fixed buggy campaign monitor rendering [1h 24/05/25]
+        - incline CSS causes issues
+        - Check works with different screens, different email clients etc.
     - √ landscape adverts [1h done 24/05/25]
         - add jinja templates to email
         - add landscape advert table to frontend
@@ -10,6 +13,8 @@
     - x new sections
         - opinion section
         - √ community section [1h done 14/05/25]
+            - x needs reformatting
+        - √ podcast section [1h 24/05/25]
         - need email templates to update jinja
         - where to get stories? new scrapers?
     - x BE Logo
