@@ -1,4 +1,5 @@
 <html style="margin: 0; padding: 0" xmlns="http://www.w3.org/1999/xhtml">
+  <!-- HEAD -->
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
@@ -1334,8 +1335,8 @@
     />
   </head>
   <!--[if mso]>
-<body class="mso">
-<![endif]-->
+    <body class="mso">
+  <![endif]-->
   <!--[if !mso]><!-->
   <body
     class="main full-padding"
@@ -1412,14 +1413,14 @@
                       emb-social="webversion"
                     >
                       No images?
-                      <a
+                      <webversion
                         style="
                           text-decoration: underline;
                           transition: opacity 0.1s ease-in;
                           color: #fff;
                         "
-                        href="https://allislandmedia.createsend1.com/t/d-e-striitd-djllokktk-jd/"
-                        >Click here</a
+                        href=""
+                        >Click here</webversion
                       >
                     </p>
                   </div>
@@ -1459,7 +1460,7 @@
                         transition: opacity 0.1s ease-in;
                         color: #c3ced9;
                       "
-                      href="https://allislandmedia.createsend1.com/t/d-l-striitd-djllokktk-r/"
+                      href="https://www.bailiwickexpress.com/"
                       ><img
                         style="
                           display: block;
@@ -1477,7 +1478,7 @@
                 <!--[if mso]></td></tr></table><![endif]-->
               </div>
             </div>
-        
+
             <div>
               <!-- TOP IMAGE -->
               <div
@@ -1653,6 +1654,7 @@
               </div>
 
               <!-- TOP ADVERT -->
+              {% if horizontal_adverts | length >= 1 %}
               <div
                 class="layout one-col fixed-width stack"
                 style="
@@ -1701,7 +1703,7 @@
                           transition: opacity 0.1s ease-in;
                           color: #27313c;
                         "
-                        href="https://allislandmedia.createsend1.com/t/d-l-striitd-djllokktk-j/"
+                        href="{{ horizontal_adverts[0].url }}"
                         ><img
                           class="gnd-corner-image gnd-corner-image-center gnd-corner-image-top gnd-corner-image-bottom"
                           style="
@@ -1713,13 +1715,14 @@
                           "
                           alt=""
                           width="600"
-                          src="https://i2.createsend1.com/ei/d/D1/8C6/E5E/221251/csfinal/Powerhouse24-MONTHS-FREE-BILLBOARD-9900000000079e3c.gif"
+                          src="{{horizontal_adverts[0].image_url }}"
                       /></a>
                     </div>
                   </div>
                   <!--[if mso]></td></tr></table><![endif]-->
                 </div>
               </div>
+              {% endif %}
 
               <!-- SEPARATOR -->
               <div
@@ -2377,6 +2380,7 @@
               </div>
 
               <!-- ADVERT BANNER NEWS TO SPORTS -->
+              {% if horizontal_adverts | length >= 2 %}
               <div
                 class="layout one-col fixed-width stack"
                 style="
@@ -2425,7 +2429,7 @@
                           transition: opacity 0.1s ease-in;
                           color: #27313c;
                         "
-                        href="https://allislandmedia.createsend1.com/t/d-l-striitd-djllokktk-f/"
+                        href="{{ horizontal_adverts[1].url }}"
                         ><img
                           class="gnd-corner-image gnd-corner-image-center gnd-corner-image-top gnd-corner-image-bottom"
                           style="
@@ -2437,13 +2441,14 @@
                           "
                           alt=""
                           width="600"
-                          src="https://i9.createsend1.com/ei/d/D1/8C6/E5E/221251/csfinal/BroadlandsBanner728x9032-9900000000079e3c.jpg"
+                          src="{{ horizontal_adverts[1].image_url }}"
                       /></a>
                     </div>
                   </div>
                   <!--[if mso]></td></tr></table><![endif]-->
                 </div>
               </div>
+              {% endif %}
 
               <!-- SEPARATOR -->
               <div
@@ -2686,7 +2691,6 @@
                       </div>
                     </div>
                     {% endfor %}
-
                   </div>
                   <!--[if mso]></td><td style="width: 200px" valign="top" class="w160"><![endif]-->
                   <div
@@ -2709,22 +2713,138 @@
               </div>
 
               <!-- SPORTS FOOTER -->
-              <div class="layout one-col fixed-width stack" style="Margin: 0 auto;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
-                <div class="layout__inner" style="border-collapse: collapse;display: table;width: 100%;background-color: #ffffff;">
-                <!--[if mso]><table align="center" cellpadding="0" cellspacing="0" role="presentation"><tr class="layout-fixed-width" style="background-color: #ffffff;"><td style="width: 600px" class="w560"><![endif]-->
-                  <div class="column" style="text-align: left;color: #808285;font-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;">
-                
-                <div style="font-size: 12px;font-style: normal;font-weight: normal;line-height: 19px;" align="center">
-                  <img class="gnd-corner-image gnd-corner-image-center gnd-corner-image-top gnd-corner-image-bottom" style="border: 0;display: block;height: auto;width: 100%;max-width: 729px;" alt="" width="600" src="https://i3.createsend1.com/ei/d/D7/935/2DB/005031/csfinal/Bottomcopy4-9900000000079e3c-9900000000079e3c.jpg">
-                </div>
-              
+              <div
+                class="layout one-col fixed-width stack"
+                style="
+                  margin: 0 auto;
+                  max-width: 600px;
+                  min-width: 320px;
+                  width: 320px;
+                  width: calc(28000% - 167400px);
+                  overflow-wrap: break-word;
+                  word-wrap: break-word;
+                  word-break: break-word;
+                "
+              >
+                <div
+                  class="layout__inner"
+                  style="
+                    border-collapse: collapse;
+                    display: table;
+                    width: 100%;
+                    background-color: #ffffff;
+                  "
+                >
+                  <!--[if mso]><table align="center" cellpadding="0" cellspacing="0" role="presentation"><tr class="layout-fixed-width" style="background-color: #ffffff;"><td style="width: 600px" class="w560"><![endif]-->
+                  <div
+                    class="column"
+                    style="
+                      text-align: left;
+                      color: #808285;
+                      font-size: 14px;
+                      line-height: 21px;
+                      font-family: Open Sans, sans-serif;
+                    "
+                  >
+                    <div
+                      style="
+                        font-size: 12px;
+                        font-style: normal;
+                        font-weight: normal;
+                        line-height: 19px;
+                      "
+                      align="center"
+                    >
+                      <img
+                        class="gnd-corner-image gnd-corner-image-center gnd-corner-image-top gnd-corner-image-bottom"
+                        style="
+                          border: 0;
+                          display: block;
+                          height: auto;
+                          width: 100%;
+                          max-width: 729px;
+                        "
+                        alt=""
+                        width="600"
+                        src="https://i3.createsend1.com/ei/d/D7/935/2DB/005031/csfinal/Bottomcopy4-9900000000079e3c-9900000000079e3c.jpg"
+                      />
+                    </div>
                   </div>
-                <!--[if mso]></td></tr></table><![endif]-->
+                  <!--[if mso]></td></tr></table><![endif]-->
                 </div>
               </div>
               {% endif %}
 
-              {% if community_stories|length > 0 %}
+              <!-- ADVERT BANNER SPORTS TO COMMUNITY -->
+              {% if horizontal_adverts | length >= 3 %}
+              <div
+                class="layout one-col fixed-width stack"
+                style="
+                  margin: 0 auto;
+                  max-width: 600px;
+                  min-width: 320px;
+                  width: 320px;
+                  width: calc(28000% - 167400px);
+                  overflow-wrap: break-word;
+                  word-wrap: break-word;
+                  word-break: break-word;
+                "
+              >
+                <div
+                  class="layout__inner"
+                  style="
+                    border-collapse: collapse;
+                    display: table;
+                    width: 100%;
+                    background-color: #ffffff;
+                  "
+                >
+                  <!--[if mso]><table align="center" cellpadding="0" cellspacing="0" role="presentation"><tr class="layout-fixed-width" style="background-color: #ffffff;"><td style="width: 600px" class="w560"><![endif]-->
+                  <div
+                    class="column"
+                    style="
+                      text-align: left;
+                      color: #808285;
+                      font-size: 14px;
+                      line-height: 21px;
+                      font-family: Open Sans, sans-serif;
+                    "
+                  >
+                    <div
+                      style="
+                        font-size: 12px;
+                        font-style: normal;
+                        font-weight: normal;
+                        line-height: 19px;
+                      "
+                      align="center"
+                    >
+                      <a
+                        style="
+                          text-decoration: underline;
+                          transition: opacity 0.1s ease-in;
+                          color: #27313c;
+                        "
+                        href="{{ horizontal_adverts[2].url }}"
+                        ><img
+                          class="gnd-corner-image gnd-corner-image-center gnd-corner-image-top gnd-corner-image-bottom"
+                          style="
+                            border: 0;
+                            display: block;
+                            height: auto;
+                            width: 100%;
+                            max-width: 728px;
+                          "
+                          alt=""
+                          width="600"
+                          src="{{ horizontal_adverts[2].image_url }}"
+                      /></a>
+                    </div>
+                  </div>
+                  <!--[if mso]></td></tr></table><![endif]-->
+                </div>
+              </div>
+              {% endif %} {% if community_stories|length > 0 %}
               <!-- COMMUNITY HEADER -->
               <div
                 class="layout one-col fixed-width stack"
@@ -2954,7 +3074,6 @@
                       </div>
                     </div>
                     {% endfor %}
-
                   </div>
                   <!--[if mso]></td><td style="width: 200px" valign="top" class="w160"><![endif]-->
                   <div
@@ -2977,22 +3096,67 @@
               </div>
 
               <!-- COMMUNITY FOOTER -->
-              <div class="layout one-col fixed-width stack" style="Margin: 0 auto;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
-                <div class="layout__inner" style="border-collapse: collapse;display: table;width: 100%;background-color: #ffffff;">
-                <!--[if mso]><table align="center" cellpadding="0" cellspacing="0" role="presentation"><tr class="layout-fixed-width" style="background-color: #ffffff;"><td style="width: 600px" class="w560"><![endif]-->
-                  <div class="column" style="text-align: left;color: #808285;font-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;">
-                
-                <div style="font-size: 12px;font-style: normal;font-weight: normal;line-height: 19px;" align="center">
-                  <img class="gnd-corner-image gnd-corner-image-center gnd-corner-image-top gnd-corner-image-bottom" style="border: 0;display: block;height: auto;width: 100%;max-width: 729px;" alt="" width="600" src="https://i3.createsend1.com/ei/d/D7/935/2DB/005031/csfinal/Bottomcopy4-9900000000079e3c-9900000000079e3c.jpg">
-                </div>
-              
+              <div
+                class="layout one-col fixed-width stack"
+                style="
+                  margin: 0 auto;
+                  max-width: 600px;
+                  min-width: 320px;
+                  width: 320px;
+                  width: calc(28000% - 167400px);
+                  overflow-wrap: break-word;
+                  word-wrap: break-word;
+                  word-break: break-word;
+                "
+              >
+                <div
+                  class="layout__inner"
+                  style="
+                    border-collapse: collapse;
+                    display: table;
+                    width: 100%;
+                    background-color: #ffffff;
+                  "
+                >
+                  <!--[if mso]><table align="center" cellpadding="0" cellspacing="0" role="presentation"><tr class="layout-fixed-width" style="background-color: #ffffff;"><td style="width: 600px" class="w560"><![endif]-->
+                  <div
+                    class="column"
+                    style="
+                      text-align: left;
+                      color: #808285;
+                      font-size: 14px;
+                      line-height: 21px;
+                      font-family: Open Sans, sans-serif;
+                    "
+                  >
+                    <div
+                      style="
+                        font-size: 12px;
+                        font-style: normal;
+                        font-weight: normal;
+                        line-height: 19px;
+                      "
+                      align="center"
+                    >
+                      <img
+                        class="gnd-corner-image gnd-corner-image-center gnd-corner-image-top gnd-corner-image-bottom"
+                        style="
+                          border: 0;
+                          display: block;
+                          height: auto;
+                          width: 100%;
+                          max-width: 729px;
+                        "
+                        alt=""
+                        width="600"
+                        src="https://i3.createsend1.com/ei/d/D7/935/2DB/005031/csfinal/Bottomcopy4-9900000000079e3c-9900000000079e3c.jpg"
+                      />
+                    </div>
                   </div>
-                <!--[if mso]></td></tr></table><![endif]-->
+                  <!--[if mso]></td></tr></table><![endif]-->
                 </div>
               </div>
-              {% endif %}
-
-              {% if business_stories|length > 0 %}
+              {% endif %} {% if business_stories|length > 0 %}
               <!-- BUSINESS HEADER -->
               <div
                 class="layout one-col fixed-width stack"
@@ -3226,7 +3390,7 @@
                   </div>
                   <!--[if mso]></td><td style="width: 200px" valign="top" class="w160"><![endif]-->
                   <!-- CONNECT COVER -->
-                    <div
+                  <div
                     class="column narrow"
                     style="
                       text-align: left;
@@ -3440,20 +3604,8 @@
                   <!--[if mso]></td></tr></table><![endif]-->
                 </div>
               </div>
-              {% endif %}
-
-              <!-- SEPARATOR -->
-              <div
-                style="
-                  mso-line-height-rule: exactly;
-                  line-height: 30px;
-                  font-size: 30px;
-                "
-              >
-                &nbsp;
-              </div>
-
-              <!-- HORIZONTAL ADVERT -->
+              {% endif %} {% if podcast_stories | length > 0 %}
+              <!-- PODCAST HEADER-->
               <div
                 class="layout one-col fixed-width stack"
                 style="
@@ -3496,30 +3648,292 @@
                       "
                       align="center"
                     >
-                      <a
+                      <img
+                        class="gnd-corner-image gnd-corner-image-center gnd-corner-image-top gnd-corner-image-bottom"
                         style="
-                          text-decoration: underline;
-                          transition: opacity 0.1s ease-in;
-                          color: #27313c;
+                          border: 0;
+                          display: block;
+                          height: auto;
+                          width: 100%;
+                          max-width: 729px;
                         "
-                        href="https://allislandmedia.createsend1.com/t/d-l-striitd-djllokktk-e/"
-                        ><img
-                          class="gnd-corner-image gnd-corner-image-center gnd-corner-image-top gnd-corner-image-bottom"
+                        alt=""
+                        width="600"
+                        src="https://i5.cmail20.com/ei/d/CB/F17/9A5/215248/csfinal/Podcast-Header-9900000000079e3c2-9900000000079e3c.jpg"
+                      />
+                    </div>
+                  </div>
+                  <!--[if mso]></td></tr></table><![endif]-->
+                </div>
+              </div>
+
+              <!-- PODCAST STORIES -->
+              {% for news_story in podcast_stories %}
+              <div
+                class="layout fixed-width stack"
+                style="
+                  margin: 0 auto;
+                  max-width: 600px;
+                  min-width: 320px;
+                  width: 320px;
+                  width: calc(28000% - 167400px);
+                  overflow-wrap: break-word;
+                  word-wrap: break-word;
+                  word-break: break-word;
+                "
+              >
+                <div
+                  class="layout__inner"
+                  style="
+                    border-collapse: collapse;
+                    display: table;
+                    width: 100%;
+                    background-color: #ffffff;
+                  "
+                >
+                  <!--[if mso]><table align="center" cellpadding="0" cellspacing="0" role="presentation"><tr class="layout-fixed-width" style="background-color: #ffffff;"><td style="width: 200px" valign="top" class="w160"><![endif]-->
+                  <div
+                    class="column narrow"
+                    style="
+                      text-align: left;
+                      color: #808285;
+                      font-size: 14px;
+                      line-height: 21px;
+                      font-family: Open Sans, sans-serif;
+                      float: left;
+                      max-width: 320px;
+                      min-width: 200px;
+                      width: 320px;
+                      width: calc(72200px - 12000%);
+                    "
+                  >
+                    <div
+                      style="
+                        margin-left: 20px;
+                        margin-right: 20px;
+                        margin-top: 24px;
+                        margin-bottom: 24px;
+                      "
+                    >
+                      <div
+                        style="
+                          font-size: 12px;
+                          font-style: normal;
+                          font-weight: normal;
+                          line-height: 19px;
+                        "
+                        align="center"
+                      >
+                        <img
                           style="
                             border: 0;
                             display: block;
                             height: auto;
                             width: 100%;
-                            max-width: 728px;
+                            max-width: 480px;
                           "
                           alt=""
-                          width="600"
-                          src="https://i3.createsend1.com/ei/d/D1/8C6/E5E/221251/csfinal/JerseyArtsCentreBailiwickCotentBanner-9900000000079e3c.jpg"
-                      /></a>
+                          width="160"
+                          src="{{ news_story.image_url }}"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <!--[if mso]></td><td style="width: 400px" valign="top" class="w360"><![endif]-->
+                  <div
+                    class="column wide"
+                    style="
+                      text-align: left;
+                      color: #808285;
+                      font-size: 14px;
+                      line-height: 21px;
+                      font-family: Open Sans, sans-serif;
+                      float: left;
+                      max-width: 400px;
+                      min-width: 320px;
+                      width: 320px;
+                      width: calc(8000% - 47600px);
+                    "
+                  >
+                    <div
+                      style="
+                        margin-left: 20px;
+                        margin-right: 20px;
+                        margin-top: 24px;
+                      "
+                    >
+                      <div
+                        style="
+                          mso-line-height-rule: exactly;
+                          mso-text-raise: 11px;
+                          vertical-align: middle;
+                        "
+                      >
+                        <p
+                          class="size-20"
+                          style="
+                            margin-top: 0;
+                            margin-bottom: 0;
+                            font-family: 'PT Sans', 'Trebuchet MS', sans-serif;
+                            font-size: 17px;
+                            line-height: 26px;
+                          "
+                          lang="x-size-20"
+                        >
+                          <span style="text-decoration: inherit; color: #000000"
+                            >{{ news_story.headline }}</span
+                          >
+                        </p>
+                        <p style="margin-top: 20px; margin-bottom: 20px">
+                          {{ news_story.text | first_sentence }}
+                        </p>
+                      </div>
+                    </div>
+                    <div
+                      style="
+                        margin-left: 20px;
+                        margin-right: 20px;
+                        margin-bottom: 24px;
+                      "
+                    >
+                      <div
+                        class="btn btn--shadow btn--medium"
+                        style="text-align: left"
+                      >
+                        <!--[if !mso
+                        ]><!--><a
+                          style="
+                            border-radius: 4px;
+                            display: inline-block;
+                            font-size: 12px;
+                            font-weight: bold;
+                            line-height: 22px;
+                            padding: 10px 20px 11px 20px;
+                            text-align: center;
+                            text-decoration: none !important;
+                            transition: opacity 0.1s ease-in;
+                            color: #27313c !important;
+                            box-shadow: inset 0 -2px 0 0 rgba(0, 0, 0, 0.2);
+                            background-color: #a6ce39;
+                            font-family: Open Sans, sans-serif;
+                          "
+                          href="{{ news_story.url }}"
+                          >Listen here</a
+                        ><!--<!
+                        [endif]--><!--[if mso
+                          ]><p style="line-height: 0; margin: 0">&nbsp;</p>
+                          <v:roundrect
+                            xmlns:v="urn:schemas-microsoft-com:vml"
+                            href="{{ news_story.url }}"
+                            style="width: 80.25pt"
+                            arcsize="10%"
+                            fillcolor="#A6CE39"
+                            stroke="f"
+                            ><v:shadow
+                              on="t"
+                              color="#85A52E"
+                              offset="0,2px"
+                            ></v:shadow
+                            ><v:textbox
+                              style="mso-fit-shape-to-text: t"
+                              inset="0pt,6.75pt,0pt,6pt"
+                              ><center
+                                style="
+                                  font-size: 12px;
+                                  line-height: 22px;
+                                  color: #27313c;
+                                  font-family: Open Sans, sans-serif;
+                                  font-weight: bold;
+                                  mso-line-height-rule: exactly;
+                                  mso-text-raise: 2px;
+                                "
+                              >
+                                Listen here
+                              </center></v:textbox
+                            ></v:roundrect
+                          ><!
+                        [endif]-->
+                      </div>
                     </div>
                   </div>
                   <!--[if mso]></td></tr></table><![endif]-->
                 </div>
+              </div>
+              {% endfor %}
+
+              <!-- PODCAST FOOTER -->
+              <div
+                class="layout one-col fixed-width stack"
+                style="
+                  margin: 0 auto;
+                  max-width: 600px;
+                  min-width: 320px;
+                  width: 320px;
+                  width: calc(28000% - 167400px);
+                  overflow-wrap: break-word;
+                  word-wrap: break-word;
+                  word-break: break-word;
+                "
+              >
+                <div
+                  class="layout__inner"
+                  style="
+                    border-collapse: collapse;
+                    display: table;
+                    width: 100%;
+                    background-color: #ffffff;
+                  "
+                >
+                  <!--[if mso]><table align="center" cellpadding="0" cellspacing="0" role="presentation"><tr class="layout-fixed-width" style="background-color: #ffffff;"><td style="width: 600px" class="w560"><![endif]-->
+                  <div
+                    class="column"
+                    style="
+                      text-align: left;
+                      color: #808285;
+                      font-size: 14px;
+                      line-height: 21px;
+                      font-family: Open Sans, sans-serif;
+                    "
+                  >
+                    <div
+                      style="
+                        font-size: 12px;
+                        font-style: normal;
+                        font-weight: normal;
+                        line-height: 19px;
+                      "
+                      align="center"
+                    >
+                      <img
+                        class="gnd-corner-image gnd-corner-image-center gnd-corner-image-top gnd-corner-image-bottom"
+                        style="
+                          border: 0;
+                          display: block;
+                          height: auto;
+                          width: 100%;
+                          max-width: 729px;
+                        "
+                        alt=""
+                        width="600"
+                        src="https://i3.createsend1.com/ei/d/D7/935/2DB/005031/csfinal/Bottomcopy4-9900000000079e3c-9900000000079e3c.jpg"
+                      />
+                    </div>
+                  </div>
+                  <!--[if mso]></td></tr></table><![endif]-->
+                </div>
+              </div>
+
+              {% endif %}
+
+              <!-- SEPARATOR -->
+              <div
+                style="
+                  mso-line-height-rule: exactly;
+                  line-height: 30px;
+                  font-size: 30px;
+                "
+              >
+                &nbsp;
               </div>
 
               <!-- SEPARATOR -->
@@ -3772,37 +4186,44 @@
                   <!--[if mso]></td></tr></table><![endif]-->
                 </div>
               </div>
-              
+
               <!-- DEATHS -->
               <div>
-                <table 
-                  border="0" 
-                  cellpadding="0" 
-                  cellspacing="0" 
-                  width="100%" 
-                  style="max-width:600px; margin: 0 auto; background-color: #ffffff;"
+                <table
+                  border="0"
+                  cellpadding="0"
+                  cellspacing="0"
+                  width="100%"
+                  style="
+                    max-width: 600px;
+                    margin: 0 auto;
+                    background-color: #ffffff;
+                  "
                 >
                   {% for row in family_notices|batch(2) %}
-                    <tr>
-                      {% for notice in row %}
-                        <td 
-                          valign="top" 
-                          style="
-                            width: 50%;
-                            padding: 20px;
-                            font-family: Open Sans, sans-serif;
-                            font-size: 14px;
-                            line-height: 21px;
-                            text-align: center;
-                            color: #808285;
-                          "
-                        >
-                          <a href="{{ notice.url }}" style="text-decoration: none; color: #27313c;">
-                            {{ notice.name }}
-                          </a>
-                        </td>
-                      {% endfor %}
-                    </tr>
+                  <tr>
+                    {% for notice in row %}
+                    <td
+                      valign="top"
+                      style="
+                        width: 50%;
+                        padding: 20px;
+                        font-family: Open Sans, sans-serif;
+                        font-size: 14px;
+                        line-height: 21px;
+                        text-align: center;
+                        color: #808285;
+                      "
+                    >
+                      <a
+                        href="{{ notice.url }}"
+                        style="text-decoration: none; color: #27313c"
+                      >
+                        {{ notice.name }}
+                      </a>
+                    </td>
+                    {% endfor %}
+                  </tr>
                   {% endfor %}
                 </table>
               </div>
@@ -3872,7 +4293,7 @@
                                 color: #27313c;
                               "
                               data-emb-iscopy="true"
-                              href="https://allislandmedia.createsend1.com/t/d-l-striitd-djllokktk-s/"
+                              href="https://familynotices.jerseyeveningpost.com/"
                               ><span
                                 style="text-decoration: inherit; color: #000000"
                                 >familynotices.je</span
@@ -3962,74 +4383,6 @@
 
               <!-- STATIC UNTIL END -->
               <div
-                class="layout one-col fixed-width stack"
-                style="
-                  margin: 0 auto;
-                  max-width: 600px;
-                  min-width: 320px;
-                  width: 320px;
-                  width: calc(28000% - 167400px);
-                  overflow-wrap: break-word;
-                  word-wrap: break-word;
-                  word-break: break-word;
-                "
-              >
-                <div
-                  class="layout__inner"
-                  style="
-                    border-collapse: collapse;
-                    display: table;
-                    width: 100%;
-                    background-color: #ffffff;
-                  "
-                >
-                  <!--[if mso]><table align="center" cellpadding="0" cellspacing="0" role="presentation"><tr class="layout-fixed-width" style="background-color: #ffffff;"><td style="width: 600px" class="w560"><![endif]-->
-                  <div
-                    class="column"
-                    style="
-                      text-align: left;
-                      color: #808285;
-                      font-size: 14px;
-                      line-height: 21px;
-                      font-family: Open Sans, sans-serif;
-                    "
-                  >
-                    <div
-                      style="
-                        font-size: 12px;
-                        font-style: normal;
-                        font-weight: normal;
-                        line-height: 19px;
-                      "
-                      align="center"
-                    >
-                      <a
-                        style="
-                          text-decoration: underline;
-                          transition: opacity 0.1s ease-in;
-                          color: #27313c;
-                        "
-                        href="https://allislandmedia.createsend1.com/t/d-l-striitd-djllokktk-g/"
-                        ><img
-                          class="gnd-corner-image gnd-corner-image-center gnd-corner-image-top gnd-corner-image-bottom"
-                          style="
-                            border: 0;
-                            display: block;
-                            height: auto;
-                            width: 100%;
-                            max-width: 728px;
-                          "
-                          alt=""
-                          width="600"
-                          src="https://i7.createsend1.com/ei/d/D1/8C6/E5E/221251/csfinal/StatesGreffe_JEA-Ad---728x90-9900000000079e3c.gif"
-                      /></a>
-                    </div>
-                  </div>
-                  <!--[if mso]></td></tr></table><![endif]-->
-                </div>
-              </div>
-
-              <div
                 style="
                   mso-line-height-rule: exactly;
                   line-height: 20px;
@@ -4087,7 +4440,7 @@
                           transition: opacity 0.1s ease-in;
                           color: #27313c;
                         "
-                        href="https://allislandmedia.createsend1.com/t/d-l-striitd-djllokktk-w/"
+                        href="https://www.bailiwickexpress.com/radio/"
                         ><img
                           class="gnd-corner-image gnd-corner-image-center gnd-corner-image-top gnd-corner-image-bottom"
                           style="
@@ -4221,7 +4574,7 @@
                           transition: opacity 0.1s ease-in;
                           color: #27313c;
                         "
-                        href="https://allislandmedia.createsend1.com/t/d-l-striitd-djllokktk-yd/"
+                        href="https://apps.apple.com/us/app/bailiwick-radio-classics/id1483571008?ls=1"
                         ><img
                           class="gnd-corner-image gnd-corner-image-center gnd-corner-image-top gnd-corner-image-bottom"
                           style="
@@ -4268,7 +4621,7 @@
                           transition: opacity 0.1s ease-in;
                           color: #27313c;
                         "
-                        href="https://allislandmedia.createsend1.com/t/d-l-striitd-djllokktk-yh/"
+                        href="https://apps.apple.com/us/app/bailiwick-radio-hits/id1483570852?ls=1"
                         ><img
                           class="gnd-corner-image gnd-corner-image-center gnd-corner-image-top gnd-corner-image-bottom"
                           style="
@@ -4351,7 +4704,7 @@
                           transition: opacity 0.1s ease-in;
                           color: #27313c;
                         "
-                        href="https://allislandmedia.createsend1.com/t/d-l-striitd-djllokktk-yk/"
+                        href="https://play.google.com/store/apps/details?id=com.radio.m5d8f4de80"
                         ><img
                           class="gnd-corner-image gnd-corner-image-center gnd-corner-image-top gnd-corner-image-bottom"
                           style="
@@ -4398,7 +4751,7 @@
                           transition: opacity 0.1s ease-in;
                           color: #27313c;
                         "
-                        href="https://allislandmedia.createsend1.com/t/d-l-striitd-djllokktk-yu/"
+                        href="https://play.google.com/store/apps/details?id=com.radio.mb7f06acb1"
                         ><img
                           class="gnd-corner-image gnd-corner-image-center gnd-corner-image-top gnd-corner-image-bottom"
                           style="
@@ -4562,7 +4915,7 @@
                                 max-height: 24px;
                                 background-color: #13181e;
                               "
-                              href="https://allislandmedia.createsend1.com/t/d-l-striitd-djllokktk-jl/"
+                              href="https://www.facebook.com/BailiwickExpress"
                               ><img
                                 style="border: 0"
                                 src="https://i1.createsend1.com/static/eb/beta/13-the-blueprint-3/images/socialmedia/facebook-white-small.png"
@@ -4583,7 +4936,7 @@
                                 max-height: 24px;
                                 background-color: #13181e;
                               "
-                              href="https://allislandmedia.createsend1.com/t/d-l-striitd-djllokktk-jr/"
+                              href="https://x.com/bailiwickxpress"
                               ><img
                                 style="border: 0"
                                 src="https://i4.createsend1.com/static/eb/beta/13-the-blueprint-3/images/socialmedia/twitter-white-small.png"
@@ -4604,7 +4957,7 @@
                                 max-height: 24px;
                                 background-color: #13181e;
                               "
-                              href="https://allislandmedia.createsend1.com/t/d-l-striitd-djllokktk-jy/"
+                              href="https://www.instagram.com/bailiwick_express/"
                               ><img
                                 style="border: 0"
                                 src="https://i10.createsend1.com/static/eb/beta/13-the-blueprint-3/images/socialmedia/instagram-white-small.png"
@@ -4625,7 +4978,7 @@
                                 max-height: 24px;
                                 background-color: #13181e;
                               "
-                              href="https://allislandmedia.createsend1.com/t/d-l-striitd-djllokktk-jj/"
+                              href="https://www.linkedin.com/company/bailiwick-express/"
                               ><img
                                 style="border: 0"
                                 src="https://i2.createsend1.com/static/eb/beta/13-the-blueprint-3/images/socialmedia/linkedin-white-small.png"
@@ -4646,7 +4999,7 @@
                                 max-height: 24px;
                                 background-color: #13181e;
                               "
-                              href="https://allislandmedia.createsend1.com/t/d-l-striitd-djllokktk-jt/"
+                              href="https://www.bailiwickexpress.com/"
                               ><img
                                 style="border: 0"
                                 src="https://i5.createsend1.com/static/eb/beta/13-the-blueprint-3/images/socialmedia/website-white-small.png"
@@ -5027,34 +5380,6 @@
                                   >
                                     &nbsp;
                                   </p>
-                                  <p
-                                    class="email-flexible-footer__additionalinfo--center"
-                                    style="margin-top: 0; margin-bottom: 0"
-                                  >
-                                    Unsubscribe to this
-                                    <a
-                                      style="
-                                        text-decoration: underline;
-                                        transition: opacity 0.1s ease-in;
-                                        color: #fff;
-                                      "
-                                      href="https://allislandmedia.createsend1.com/t/d-l-striitd-djllokktk-ji/"
-                                      >newsletter</a
-                                    >
-                                  </p>
-                                  <p
-                                    class="email-flexible-footer__additionalinfo--center"
-                                    style="margin-top: 0; margin-bottom: 0"
-                                  >
-                                    &nbsp;
-                                  </p>
-                                  <p
-                                    class="email-flexible-footer__additionalinfo--center"
-                                    style="margin-top: 0; margin-bottom: 0"
-                                  >
-                                    Unsubscribe from everything sent by
-                                    Bailiwick Express and JEP
-                                  </p>
                                 </div>
                               </div>
                               <div
@@ -5065,16 +5390,7 @@
                                   margin-bottom: 15px;
                                 "
                               >
-                                <a
-                                  style="
-                                    text-decoration: underline;
-                                    transition: opacity 0.1s ease-in;
-                                    color: #fff;
-                                  "
-                                  href="https://allislandmedia.createsend1.com/t/d-u-striitd-djllokktk-tr/"
-                                  lang="en-GB"
-                                  >Unsubscribe</a
-                                >
+                                <unsubscribe>Unsubscribe</unsubscribe>
                               </div>
                               <!--[if mso]>&nbsp;<![endif]-->
                             </div>
@@ -5141,5 +5457,4 @@
       }
     </style>
   </body>
-  <!-- <x0e81345e-03b0-48a7-83cf-3b7585131cd4></x0e81345e-03b0-48a7-83cf-3b7585131cd4> ?? weird token-->
 </html>

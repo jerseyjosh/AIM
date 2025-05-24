@@ -5,6 +5,7 @@ import logging
 import streamlit as st
 
 from dotenv import load_dotenv, find_dotenv
+load_dotenv(find_dotenv())
 
 logger = logging.getLogger(__name__)
 
@@ -34,7 +35,7 @@ def login():
                 st.session_state.logged_in = True
                 st.success("Logged in successfully.")
                 # Force a rerun so that the rest of your page can load
-                st.experimental_rerun()
+                st.rerun()
             else:
                 st.error("Invalid username or password.")
 

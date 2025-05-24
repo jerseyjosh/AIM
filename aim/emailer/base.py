@@ -7,13 +7,13 @@ import jinja2
 from dataclasses import dataclass
 from datetime import datetime
 
-from aim.news.news_scraper import BEScraper, JEPScraper
+from aim.news import BEScraper, JEPScraper
 from aim.weather.gov_je import GovJeWeather
 from aim.family_notices import FamilyNotices
 
 # Configure logging
 logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+logging.basicConfig(level=logging.INFO)
 
 TEMPLATES_DIR = os.path.join(os.path.dirname(__file__), "templates")
 
@@ -37,6 +37,7 @@ class Email:
             "business_stories": [],
             "sport_stories": [],
             "community_stories": [],
+            "podcast_stories": [],
             "weather": None,
             "family_notices": [],
             "top_image_url": "",
@@ -53,6 +54,7 @@ class Email:
             n_business: int,
             n_sports: int, 
             n_community: int,
+            n_podcast: int,
             deaths_start: datetime, 
             deaths_end: datetime
             ) -> Dict[str, Any]:
@@ -69,6 +71,7 @@ class Email:
             "business_stories": news_scraper.get_n_stories_for_region("jsy_business", n_business),
             "sport_stories": news_scraper.get_n_stories_for_region("jsy_sport", n_sports),
             "community_stories": news_scraper.get_n_stories_for_region("jsy_community", n_community),
+            "podcast_stories": news_scraper.get_n_stories_for_region("jsy_podcasts", n_podcast),
             "connect_cover_image": news_scraper.get_connect_cover(),
             "weather_soup": weather_scraper.get(),
             "family_notices": family_notices_scraper.get_notices(deaths_start, deaths_end),
@@ -91,7 +94,7 @@ class Email:
         for key, result in data.items():
             if isinstance(result, Exception):
                 logger.error(f"Failed to fetch {key}: {result}")
-                data[key] = [] if key in ["news_stories", "business_stories", "sport_stories", "family_notices", "community_stories"] else None
+                data[key] = [] if key in ["news_stories", "business_stories", "sport_stories", "family_notices", "community_stories", "podcast_stories"] else None
 
         return data
 
@@ -101,12 +104,13 @@ class Email:
             n_business: int,
             n_sports: int,
             n_community: int,
+            n_podcast: int,
             deaths_start: datetime,
             deaths_end: datetime, 
             site: str = "be") -> None:
         """Synchronously fetch data and update instance state."""
         try:
-            fetched_data = uvloop.run(self._get_data_wrapper(site, n_news, n_business, n_sports, n_community, deaths_start, deaths_end))
+            fetched_data = uvloop.run(self._get_data_wrapper(site, n_news, n_business, n_sports, n_community, n_podcast, deaths_start, deaths_end))
             self.data.update(fetched_data)
         except Exception as e:
             logger.error(f"Error in get_data: {e}")
@@ -124,7 +128,7 @@ class Email:
 
     @staticmethod
     def first_sentence(text: Optional[str]) -> str:
-        """Extract the first sentence from a string."""
+        """Extract the first sentence from a string, for passing to Jinja"""
         if not text:
             return ""
         first = text.split(".")[0]

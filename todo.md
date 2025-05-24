@@ -1,6 +1,6 @@
 # TODO
 - email
-    - x landscape adverts
+    - √ landscape adverts [1h done 24/05/25]
         - add jinja templates to email
         - add landscape advert table to frontend
     - x deaths

@@ -1,3 +1,5 @@
+""" Dataclasses for AIM objects """
+
 from dataclasses import dataclass
 
 @dataclass

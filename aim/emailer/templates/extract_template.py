@@ -1,9 +1,12 @@
 import os
 from email import policy
 from email.parser import BytesParser
+import sys
+
+filename = sys.argv[1]
 
 # load the .eml as bytes and parse it
-eml_path = os.path.join(os.path.dirname(__file__), 'base_email.eml')
+eml_path = os.path.join(os.path.dirname(__file__), f'{filename}.eml')
 with open(eml_path, 'rb') as f:
     msg = BytesParser(policy=policy.default).parse(f)
 
@@ -15,6 +18,6 @@ if not html_part:
 html_content = html_part.get_content()  # already decoded to a str
 
 # write it out
-out_path = os.path.join(os.path.dirname(__file__), 'base_email.html')
+out_path = os.path.join(os.path.dirname(__file__), f'{filename}.html')
 with open(out_path, 'w', encoding='utf-8') as f:
     f.write(html_content)

@@ -5,11 +5,10 @@ import asyncio
 import streamlit as st
 import pandas as pd
 from streamlit.components.v1 import html
-import aiohttp
 
 from aim.emailer.base import Email, Advert
 from aim.news.models import NewsStory
-from aim.news.news_scraper import BEScraper, JEPScraper
+from aim.news import BEScraper, JEPScraper
 
 
 logger = logging.getLogger(__name__)
@@ -33,12 +32,21 @@ if 'scrapers' not in st.session_state:
 
 if 'vertical_adverts_df' not in st.session_state:
     # cache path is working directory
-    cache_path = os.path.join(os.getcwd(), "vertical_adverts_cache.csv")
+    vert_cache_path = os.path.join(os.getcwd(), "vertical_adverts_cache.csv")
     try:
-        df = pd.read_csv(cache_path).astype(str)
+        df = pd.read_csv(vert_cache_path).astype(str)
     except Exception:
         df = pd.DataFrame([], columns=Advert.__annotations__.keys(), dtype=str)
     st.session_state['vertical_adverts_df'] = df
+
+if 'horizontal_adverts_df' not in st.session_state:
+    # cache path is working directory
+    horiz_cache_path = os.path.join(os.getcwd(), "horizontal_adverts_cache.csv")
+    try:
+        df = pd.read_csv(horiz_cache_path).astype(str)
+    except Exception:
+        df = pd.DataFrame([], columns=Advert.__annotations__.keys(), dtype=str)
+    st.session_state['horizontal_adverts_df'] = df
 
 # ---------------------------
 # Helper Functions
@@ -115,13 +123,14 @@ num_stories = st.number_input("Number of News Stories", min_value=1, max_value=2
 num_business_stories = st.number_input("Number of Business Stories", min_value=1, max_value=20, value=1, step=1)
 num_sports_stories = st.number_input("Number of Sports Stories", min_value=1, max_value=20, value=1, step=1)
 num_community_stories = st.number_input("Number of Community Stories", min_value=1, max_value=20, value=1, step=1)
+num_podcast_stories = st.number_input("Number of Podcast Stories", min_value=1, max_value=20, value=1, step=1)
 
 # Top image parameters
 top_image_url = st.text_input("Top Image URL")
 top_image_title = st.text_input("Top Image Title", key="top_image_title")
 top_image_author = st.text_input("Top Image Author", key="top_image_author")
 
-# NEW Use the cached DataFrame here
+# Vertical Adverts
 st.title("Vertical Adverts")
 vertical_adverts_df = st.data_editor(
     st.session_state['vertical_adverts_df'],
@@ -131,13 +140,29 @@ vertical_adverts_df = st.data_editor(
     hide_index=True,
 )
 
-# NEW: persist to cache on every run
-cache_path = os.path.join(os.getcwd(), "vertical_adverts_cache.csv")
+# Horizontal Adverts
+st.title("Horizontal Adverts")
+horizontal_adverts_df = st.data_editor(
+    st.session_state['horizontal_adverts_df'],
+    key="horizontal_adverts",
+    num_rows="dynamic",
+    use_container_width=True,
+    hide_index=True,
+)
+
+# persist to cache on every run
+vert_cache_path = os.path.join(os.getcwd(), "vertical_adverts_cache.csv")
 if len(vertical_adverts_df) > 0:
-    vertical_adverts_df.to_csv(cache_path, index=False)
+    vertical_adverts_df.to_csv(vert_cache_path, index=False)
 else:
     # If the DataFrame is empty, create an empty CSV file
-    pd.DataFrame([], columns=Advert.__annotations__.keys(), dtype=str).to_csv(cache_path, index=False)
+    pd.DataFrame([], columns=Advert.__annotations__.keys(), dtype=str).to_csv(vert_cache_path, index=False)
+horiz_cache_path = os.path.join(os.getcwd(), "horizontal_adverts_cache.csv")
+if len(horizontal_adverts_df) > 0:
+    horizontal_adverts_df.to_csv(horiz_cache_path, index=False)
+else:
+    # If the DataFrame is empty, create an empty CSV file
+    pd.DataFrame([], columns=Advert.__annotations__.keys(), dtype=str).to_csv(horiz_cache_path, index=False)
 
 # deaths start/end
 deaths_start = st.date_input("Deaths Start Date")
@@ -158,6 +183,7 @@ if st.button("Fetch Stories"):
             n_business=num_business_stories,
             n_sports=num_sports_stories,
             n_community=num_community_stories,
+            n_podcast=num_podcast_stories,
             deaths_start=deaths_start,
             deaths_end=deaths_end)
     st.success("Stories fetched successfully!")
@@ -168,7 +194,7 @@ if st.button("Fetch Stories"):
 st.title("Add Stories Manually")
 
 # Select which data editor to add to
-story_type = st.selectbox("Add to", ["news_stories", "business_stories", "sport_stories", "community_stories"], key="manual_url_type")
+story_type = st.selectbox("Add to", ["news_stories", "business_stories", "sport_stories", "community_stories", "podcast_stories"], key="manual_url_type")
 site = st.selectbox("Site", NEWS_SITES, key="manual_url_site")
 
 # Text area for URLs
@@ -238,6 +264,7 @@ news_stories_df = render_data_editor("news_stories")
 business_stories_df = render_data_editor("business_stories")
 sport_stories_df = render_data_editor("sport_stories")
 community_stories_df = render_data_editor("community_stories")
+podcast_stories_df = render_data_editor("podcast_stories")
 
 # ---------------------------
 # Render Email
@@ -248,10 +275,12 @@ if st.button("Render Email"):
     rendered_email.data['business_stories'] = sorted(business_stories_df.to_dict(orient='records'), key=lambda x: x['order'])
     rendered_email.data['sport_stories'] = sorted(sport_stories_df.to_dict(orient='records'), key=lambda x: x['order'])
     rendered_email.data['community_stories'] = sorted(community_stories_df.to_dict(orient='records'), key=lambda x: x['order'])
+    rendered_email.data['podcast_stories'] = sorted(podcast_stories_df.to_dict(orient='records'), key=lambda x: x['order'])
     rendered_email.data['top_image_url'] = top_image_url
     rendered_email.data['top_image_title'] = top_image_title
     rendered_email.data['top_image_author'] = top_image_author
     rendered_email.data['vertical_adverts'] = vertical_adverts_df.to_dict(orient='records')
+    rendered_email.data['horizontal_adverts'] = horizontal_adverts_df.to_dict(orient='records')
     rendered_email.data['weather'] = get_email().data['weather']
     rendered_email.data['family_notices'] = get_email().data['family_notices']
     rendered_email.data['connect_cover_image'] = get_email().data['connect_cover_image']
