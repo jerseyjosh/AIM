@@ -68,7 +68,7 @@ class BEScraper(BaseScraper):
                 seen.add(link)
         return news_urls
     
-    async def get_connect_cover(self) -> NewsStory:
+    async def get_connect_cover(self) -> str:
         """Get connect cover image link, have to use hacky chromedriver solution for iframe rendering."""
         options = webdriver.ChromeOptions()
         options.add_argument('--headless=new')

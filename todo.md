@@ -1,5 +1,8 @@
 # TODO
 - email
+    - x JEP email
+        - √ get template
+        - x add scrapers
     - √ Fixed buggy campaign monitor rendering [1h 24/05/25]
         - incline CSS causes issues
         - Check works with different screens, different email clients etc.

@@ -17,10 +17,69 @@ logging.basicConfig(level=logging.INFO)
 
 TEMPLATES_DIR = os.path.join(os.path.dirname(__file__), "templates")
 
+
 @dataclass
 class Advert:
     url: str
     image_url: str
+
+class JEPEmail:
+    def __init__(self, template_name: str = "jep_template.html"):
+        self.template_name = template_name
+        self.template_loader = jinja2.FileSystemLoader(TEMPLATES_DIR)
+        self.template_env = jinja2.Environment(loader=self.template_loader)
+        self.template_env.filters["first_sentence"] = self.first_sentence
+        self.template = self.template_env.get_template(self.template_name)
+
+        # Initialize data with default empty structures
+        self.data: Dict[str, Any] = {
+            "news_stories": [],
+            "date": datetime.today().strftime("%A %d %B %Y"),
+        }
+
+    async def _get_data_wrapper(
+            self, 
+            n_news: int,
+            ) -> Dict[str, Any]:
+        """Fetch data"""
+
+        news_scraper = JEPScraper()
+
+        stories = await news_scraper.get_n_stories_for_region("jsy", n_news)
+        await news_scraper.close()
+
+        return {"news_stories": stories if stories else []}
+
+    def get_data(
+            self, 
+            n_news: int
+            ) -> None:
+        """Synchronously fetch data and update instance state."""
+        try:
+            fetched_data = uvloop.run(self._get_data_wrapper(n_news))
+            self.data.update(fetched_data)
+        except Exception as e:
+            logger.error(f"Error in get_data: {e}")
+            raise
+
+    def update_data(self, key: str, value: Any) -> None:
+        """Update a specific key in the data dictionary."""
+        if key not in self.data:
+            raise KeyError(f"Key '{key}' not expected in email data")
+        self.data[key] = value
+
+    def render(self) -> str:
+        """Render the email template with the current data."""
+        return self.template.render(**self.data)
+
+    @staticmethod
+    def first_sentence(text: Optional[str]) -> str:
+        """Extract the first sentence from a string, for passing to Jinja"""
+        if not text:
+            return ""
+        first = text.split(".")[0]
+        return first + "." if first and not first.endswith(".") else first
+
 
 class Email:
     """Manages email template rendering and data fetching."""
@@ -62,7 +121,7 @@ class Email:
         if site not in ["be", "jep"]:
             raise ValueError("Site must be either 'be' or 'jep'")
 
-        news_scraper = BEScraper() if site == "be" else JEPScraper()
+        news_scraper = BEScraper()
         weather_scraper = GovJeWeather()
         family_notices_scraper = FamilyNotices()
 
@@ -133,3 +192,12 @@ class Email:
             return ""
         first = text.split(".")[0]
         return first + "." if first and not first.endswith(".") else first
+    
+
+if __name__ == "__main__":
+
+    email = JEPEmail()
+    email.get_data(n_news=5)
+    rendered_email = email.render()
+    with open("test_email.html", "w") as f:
+        f.write(rendered_email)

@@ -4,9 +4,12 @@
 import logging
 
 from bs4 import BeautifulSoup
+from selenium_driverless import webdriver
+from selenium_driverless.types.by import By
 
 from aim.news.models import NewsStory
 from aim.news.base_scraper import BaseScraper
+
 
 logger = logging.getLogger(__name__)
 
@@ -21,24 +24,12 @@ class JEPScraper(BaseScraper):
         "jsy_business": "https://jerseyeveningpost.com/category/business/",
     }
 
+    JEP_COVER = "https://app.jerseyeveningpost.com/t/storefront/magazine"
+
     def __init__(self):
         super().__init__()
-
-    def get_news_pattern(self, region: str):
-        """
-        Get the regex pattern for news urls for the given region.
-        """
-        region = region.lower()
-        if region == "jsy":
-            return r'/news/.+'
-        elif region == "jsy_business":
-            return r'/business/.+'
-        elif region == "jsy_sport":
-            return r'/sport/.+'
-        else:
-            raise ValueError(f"Invalid region {region}")
     
-    def get_story_urls_from_page(self, soup: BeautifulSoup, region: str) -> list[str]:
+    def get_story_urls_from_page(self, soup: BeautifulSoup) -> list[str]:
         """
         Extract the links to all news stories from the current page display.
         """
@@ -50,6 +41,9 @@ class JEPScraper(BaseScraper):
                 news_urls.append(link)
         return news_urls
     
+    async def get_jep_cover(self) -> str:
+        raise NotImplementedError("JEP cover page scraping is not implemented yet.")
+
     def parse_story(self, url: str, soup: BeautifulSoup) -> NewsStory:
         """
         Parse a news story from the given url.
@@ -74,7 +68,7 @@ class JEPScraper(BaseScraper):
         author = soup.find('span', class_='author').text
         # get image url
         try:
-            image_url = soup.find('figure', class_='wp-block-image').find('img').get('src')
+            image_url = soup.find('figure', class_='post-thumbnail').find('img').get('src')
         except Exception as e:
             logger.debug(f"Failed to get image url for {url}")
             image_url = None
@@ -86,3 +80,12 @@ class JEPScraper(BaseScraper):
             url=url,
             image_url=image_url
         )
+    
+if __name__ == "__main__":
+    async def main():
+        scraper = JEPScraper()
+        html = await scraper.get_jep_cover()
+        breakpoint()
+
+    import asyncio
+    asyncio.run(main())

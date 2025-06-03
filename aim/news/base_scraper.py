@@ -45,10 +45,12 @@ class BaseScraper(ABC):
             wait=wait_random_exponential(multiplier=0.5, max=5),
             before_sleep=before_sleep_log(logger, logging.INFO)
     )
-    async def fetch(self, url) -> BeautifulSoup:
+    async def fetch(self, url, headers=None) -> BeautifulSoup:
         """
         Scrape a url and return the BeautifulSoup object.
         """
+        if headers is None:
+            headers = HEADERS
         async with self.limiter:
             async with self.session.get(url, headers=HEADERS) as response:
                 response.raise_for_status()
