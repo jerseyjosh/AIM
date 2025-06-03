@@ -35,6 +35,7 @@ class JEPEmail:
         self.data: Dict[str, Any] = {
             "news_stories": [],
             "date": datetime.today().strftime("%A %d %B %Y"),
+            "jep_cover": None
         }
 
     async def _get_data_wrapper(
@@ -44,11 +45,19 @@ class JEPEmail:
         """Fetch data"""
 
         news_scraper = JEPScraper()
-
-        stories = await news_scraper.get_n_stories_for_region("jsy", n_news)
+        
+        tasks = {
+            "news_stories": news_scraper.get_n_stories_for_region("jsy", n_news),
+            "jep_cover": news_scraper.get_jep_cover(),
+        }
+        results = await asyncio.gather(*tasks.values(), return_exceptions=True)
         await news_scraper.close()
-
-        return {"news_stories": stories if stories else []}
+        data = dict(zip(tasks.keys(), results))
+        for key, result in data.items():
+            if isinstance(result, Exception):
+                logger.error(f"Failed to fetch {key}: {result}")
+                data[key] = [] if key == "news_stories" else None
+        return data
 
     def get_data(
             self, 

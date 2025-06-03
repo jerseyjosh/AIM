@@ -6,10 +6,12 @@ import logging
 from bs4 import BeautifulSoup
 from selenium_driverless import webdriver
 from selenium_driverless.types.by import By
+from tenacity import retry, stop_never, wait_random_exponential, before_sleep_log
+from urllib.parse import urljoin
+
 
 from aim.news.models import NewsStory
 from aim.news.base_scraper import BaseScraper
-
 
 logger = logging.getLogger(__name__)
 
@@ -42,7 +44,60 @@ class JEPScraper(BaseScraper):
         return news_urls
     
     async def get_jep_cover(self) -> str:
-        raise NotImplementedError("JEP cover page scraping is not implemented yet.")
+        """
+        Launches headless Chrome (selenium_driverless), navigates to JEP_COVER,
+        waits for the Bolt iframe to load, then uses a JS snippet to reach inside
+        the iframe’s document and return the `data-src` of <img.pp-widget-media__image>.
+        This function retries until it succeeds.
+        """
+        options = webdriver.ChromeOptions()
+        options.add_argument("--headless=new")
+        options.add_argument("--disable-gpu")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--window-size=1920,1080")
+
+        async with webdriver.Chrome(options=options) as driver:
+            logger.info("Navigating to JEP cover page...")
+            await driver.get(self.JEP_COVER, wait_load=True)
+
+            @retry(
+                stop=stop_never,
+                wait=wait_random_exponential(multiplier=1, max=10),
+                before_sleep=before_sleep_log(logger, logging.INFO),
+            )
+            async def _get_cover():
+                logger.info("Waiting for iframe to appear and load content...")
+                # give driver a change
+                await driver.sleep(1)
+                # verify that <iframe class="content"> exists in the DOM.
+                try:
+                    await driver.find_element(By.CSS_SELECTOR, "iframe.content", timeout=5)
+                except Exception:
+                    raise Exception("bolt iframe not yet in DOM")
+                # cursed javascript execution
+                js = """
+                  const frame = document.querySelector("iframe.content");
+                  if (!frame || !frame.contentWindow) {
+                    return null;
+                  }
+                  const doc = frame.contentWindow.document;
+                  // Look for the <img> with class 'pp-widget-media__image'
+                  const img = doc.querySelector("img.pp-widget-media__image");
+                  if (!img) {
+                    return null;
+                  }
+                  return img.getAttribute("data-src");
+                """
+                data_src = await driver.execute_script(js)
+                if not data_src:
+                    # If no data-src yet, it means either the iframe hasn’t rendered the <img>
+                    # or the JS inside the iframe hasn’t inserted it yet. Retry.
+                    raise Exception("Image not yet available inside iframe")
+
+                logger.info(f"Found data-src = {data_src}")
+                return data_src.split()[0]
+
+            return await _get_cover()
 
     def parse_story(self, url: str, soup: BeautifulSoup) -> NewsStory:
         """
@@ -82,10 +137,17 @@ class JEPScraper(BaseScraper):
         )
     
 if __name__ == "__main__":
+
+    logger = logging.getLogger(__name__)
+    logging.basicConfig(level=logging.DEBUG)
+    logging.getLogger('websockets').setLevel(logging.WARNING)
+
     async def main():
         scraper = JEPScraper()
-        html = await scraper.get_jep_cover()
+        cover = await scraper.get_jep_cover()
         breakpoint()
 
     import asyncio
     asyncio.run(main())
+
+    

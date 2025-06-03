@@ -179,7 +179,7 @@ if __name__ == "__main__":
 
     async def main():
         scraper = BEScraper()
-        stories = await scraper.get_n_stories_for_region('jsy_podcasts', 5)
+        cover = await scraper.get_connect_cover()
         breakpoint()
 
     asyncio.run(main())

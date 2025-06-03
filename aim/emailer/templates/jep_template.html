@@ -1406,7 +1406,7 @@
                       font-family: sans-serif;
                     "
                   >
-                    <p>No images? <webviewer>Click Here</webviewer></p>
+                    <p>No images? <webviewer></webviewer></p>
                   </div>
                   <!--[if mso]></td></tr></table><![endif]-->
                 </div>
@@ -1560,7 +1560,7 @@
                             "
                             alt=""
                             width="600"
-                            src="https://i1.createsend1.com/ei/d/20/9DC/FFB/195725/csfinal/EP0129MAY25-page-001copy-9900000000079e3c.jpg"
+                            src="{{ jep_cover }}"
                         /></a>
                       </div>
                     </div>
@@ -1845,7 +1845,7 @@
               </div>
 
               <!-- NEWS STORIES START -->
-               {% for story in news_stories %}
+              {% for story in news_stories %}
               <div
                 class="layout two-col fixed-width stack"
                 style="
@@ -1957,9 +1957,7 @@
                             line-height: 26px;
                           "
                         >
-                          <strong
-                            >{{ story.headline }}</strong
-                          >
+                          <strong>{{ story.headline }}</strong>
                         </h1>
                         <p style="margin-top: 20px; margin-bottom: 20px">
                           {{ story.text | first_sentence }}
@@ -2034,7 +2032,6 @@
               {% endfor %}
 
               <!-- NEWS STORIES END -->
-
 
               <div
                 class="layout two-col fixed-width stack"
@@ -3180,10 +3177,11 @@
                             text-align: center;
                           "
                         >
-                          <span style="text-decoration: inherit; color: #ffffff"
-                            >Unsubscribe to this
-                            <unsubscribe>newsletter</unsubscribe></span
+                          <span
+                            style="text-decoration: inherit; color: #ffffff"
                           >
+                            <unsubscribe></unsubscribe
+                          ></span>
                         </p>
                       </div>
                     </div>
