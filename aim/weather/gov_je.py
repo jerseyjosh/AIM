@@ -19,6 +19,7 @@ class GovJeWeather:
     def __init__(self):
         self.options = webdriver.ChromeOptions()
         self.options.add_argument('--headless')
+        self.options.add_argument('--no-sandbox')
         self.options.add_argument('--blink-settings=imagesEnabled=false')
 
     @retry(stop=stop_never, wait=wait_random_exponential(multiplier=0.5, max=5), before_sleep=before_sleep_log(logger, logging.INFO))
