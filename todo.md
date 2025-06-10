@@ -1,15 +1,16 @@
 # TODO
 - email
-    - x JEP email
+    - √ JEP email
         - √ get template
-        - x add scrapers
+        - √ add scrapers [1h 05/25]
+        - x need to add adverts
     - √ Fixed buggy campaign monitor rendering [1h 24/05/25]
         - incline CSS causes issues
         - Check works with different screens, different email clients etc.
     - √ landscape adverts [1h done 24/05/25]
         - add jinja templates to email
         - add landscape advert table to frontend
-    - x deaths
+    - √ deaths [1h 10/06/25]
         - update jinja template to have date of death + funeral director
         - add deaths table to manually add date of death + funeral director
         - maybe scrap scraping if not easy to parse?

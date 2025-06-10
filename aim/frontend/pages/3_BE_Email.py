@@ -9,6 +9,7 @@ from streamlit.components.v1 import html
 from aim.emailer.base import Email, Advert
 from aim.news.models import NewsStory
 from aim.news import BEScraper, JEPScraper
+from aim.family_notices.family_notices import FamilyNotice
 
 
 logger = logging.getLogger(__name__)
@@ -259,12 +260,22 @@ def render_data_editor(key):
         import traceback
         traceback.print_exc()
         raise e
+    
+def render_deaths_editor():
+    df = pd.DataFrame(get_email().data['family_notices'], columns=FamilyNotice.__annotations__.keys())
+    edited_df = st.data_editor(df, key='family_notices', num_rows='dynamic', use_container_width=True, hide_index=True)
+    if not edited_df.equals(df):
+        family_notices = [FamilyNotice(**row) for row in edited_df.to_dict(orient='records')]
+        update_email_data('family_notices', family_notices)
+        st.rerun()
+    return edited_df
 
 news_stories_df = render_data_editor("news_stories")
 business_stories_df = render_data_editor("business_stories")
 sport_stories_df = render_data_editor("sport_stories")
 community_stories_df = render_data_editor("community_stories")
 podcast_stories_df = render_data_editor("podcast_stories")
+family_notices_df = render_deaths_editor()
 
 # ---------------------------
 # Render Email

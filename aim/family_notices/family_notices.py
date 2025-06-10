@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
 from dataclasses import dataclass
 import re
+from typing import Optional
 
 HEADERS = {
     "Accept": "application/json, text/plain, */*",
@@ -28,6 +29,8 @@ class FamilyNotice:
 
     name: str
     url: str
+    funeral_director: str
+    additional_text: str = ''
 
     def __post_init__(self):
         self.name = self.format_name(self.name)
@@ -107,7 +110,7 @@ class FamilyNotices:
             "facets": "false",
             "theme_repeater": "notice-card.php",
             "taxonomy": "notice-category",
-            "taxonomy_terms": "deaths",
+            "taxonomy_terms": "in-sympathy",
             "taxonomy_operator": "IN",
             "taxonomy_include_children": "true",
             "day": f"{start_date} to {end_date}",
@@ -119,7 +122,8 @@ class FamilyNotices:
         # parse html response
         soup = BeautifulSoup(response_data["html"], "html.parser")
         # return parsed notices
-        return self.parse_notices(soup)
+        notices = self.parse_notices(soup)
+        return notices
     
     def parse_notices(self, soup: BeautifulSoup) -> list[FamilyNotice]:
         """Parse notices from the BeautifulSoup object."""
@@ -131,5 +135,27 @@ class FamilyNotices:
                 continue
             seen.add(name)
             url = notice.find('a').get('href')
-            notices.append(FamilyNotice(name=name, url=url))
+            # get funeral director
+            text = notice.text
+            funeral_director = ''
+            if 'Pitcher & Le Quesne' in text:
+                funeral_director = 'Pitcher & Le Quesne Funeral Directors'
+            elif 'Maillards' in text and 'maillard' not in name.lower():
+                funeral_director = 'Maillards Funeral Directors'
+            elif "De Gruchy's Funeral" in text and 'de gruchy' not in name.lower():
+                funeral_director = "De Gruchy's Funeral Care"
+            notices.append(FamilyNotice(name=name, url=url, funeral_director=funeral_director))
         return notices
+    
+
+if __name__ == "__main__":
+
+    async def main():
+        scraper = FamilyNotices()
+        results = await scraper.get_notices(
+            datetime(2025,6,1),
+            datetime(2025,6,10)
+        )
+
+    asyncio.run(main())
+
