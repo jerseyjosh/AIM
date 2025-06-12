@@ -92,7 +92,7 @@ class JEPEmail:
 
 class Email:
     """Manages email template rendering and data fetching."""
-    def __init__(self, template_name: str = "be_template.html"):
+    def __init__(self, template_name: str = "be_template_header_fix.html"):
         self.template_name = template_name
         self.template_loader = jinja2.FileSystemLoader(TEMPLATES_DIR)
         self.template_env = jinja2.Environment(loader=self.template_loader)
