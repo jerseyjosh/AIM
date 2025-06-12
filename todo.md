@@ -4,7 +4,7 @@
         - √ get template
         - √ add scrapers [1h 05/25]
         - x need to add adverts
-    - √ Fixed buggy campaign monitor rendering [1h 24/05/25]
+    - √ Fixed buggy campaign monitor rendering [1h 24/05/25] [1h 12/06/25]
         - incline CSS causes issues
         - Check works with different screens, different email clients etc.
     - √ landscape adverts [1h done 24/05/25]
