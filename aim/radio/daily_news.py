@@ -1,7 +1,7 @@
 import asyncio
 import logging
 
-from aim.news.news_scraper import BEScraper
+from aim.news.bailiwick_express_scraper import BEScraper
 from aim.news.models import NewsStory
 
 from aim.weather.gov_je import GovJeWeather

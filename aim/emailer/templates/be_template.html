@@ -1527,7 +1527,6 @@
                 </div>
               </div>
 
-
               <!-- SEPARATOR -->
               <div style="
                     mso-line-height-rule: exactly;
@@ -1537,7 +1536,7 @@
                   &nbsp;
               </div>
 
-              <!-- TOP ADVERT -->
+              <!-- HORIZONTAL ADVERT 1 -->
               {% if horizontal_adverts | length >= 1 %}
               <div
                 class="layout one-col fixed-width stack"
@@ -1875,6 +1874,7 @@
                 &nbsp;
               </div>
 
+              <!-- HORIZONTAL ADVERT 2 -->
               {% if horizontal_adverts | length >= 2 %}
               <div
                 class="layout one-col fixed-width stack"
@@ -2344,7 +2344,7 @@
                 &nbsp;
               </div>
 
-              <!-- ADVERT BANNER NEWS TO SPORTS -->
+              <!-- HORIZONTAL ADVERT 3 -->
               {% if horizontal_adverts | length >= 3 %}
               <div
                 class="layout one-col fixed-width stack"
@@ -2751,8 +2751,8 @@
                 &nbsp;
               </div>
 
-              <!-- ADVERT BANNER SPORTS TO COMMUNITY -->
-              {% if horizontal_adverts | length >= 3 %}
+              <!-- HORIZONTAL ADVERT 4 -->
+              {% if horizontal_adverts | length >= 4 %}
               <div
                 class="layout one-col fixed-width stack"
                 style="
@@ -2801,7 +2801,7 @@
                           transition: opacity 0.1s ease-in;
                           color: #27313c;
                         "
-                        href="{{ horizontal_adverts[2].url }}"
+                        href="{{ horizontal_adverts[3].url }}"
                         ><img
                           class="gnd-corner-image gnd-corner-image-center gnd-corner-image-top gnd-corner-image-bottom"
                           style="
@@ -2813,7 +2813,7 @@
                           "
                           alt=""
                           width="600"
-                          src="{{ horizontal_adverts[2].image_url }}"
+                          src="{{ horizontal_adverts[3].image_url }}"
                       /></a>
                     </div>
                   </div>
@@ -3146,6 +3146,99 @@
                 </div>
               </div>
 
+              <!-- SEPARATOR -->
+              <div
+                style="
+                  mso-line-height-rule: exactly;
+                  line-height: 30px;
+                  font-size: 30px;
+                "
+              >
+                &nbsp;
+              </div>
+
+              <!-- HORIZONTAL ADVERT -->
+              {% if horizontal_adverts | length >= 5 %}
+              <div
+                class="layout one-col fixed-width stack"
+                style="
+                  margin: 0 auto;
+                  max-width: 600px;
+                  min-width: 320px;
+                  width: 320px;
+                  width: calc(28000% - 167400px);
+                  overflow-wrap: break-word;
+                  word-wrap: break-word;
+                  word-break: break-word;
+                "
+              >
+                <div
+                  class="layout__inner"
+                  style="
+                    border-collapse: collapse;
+                    display: table;
+                    width: 100%;
+                    background-color: #ffffff;
+                  "
+                >
+                  <!--[if mso]><table align="center" cellpadding="0" cellspacing="0" role="presentation"><tr class="layout-fixed-width" style="background-color: #ffffff;"><td style="width: 600px" class="w560"><![endif]-->
+                  <div
+                    class="column"
+                    style="
+                      text-align: left;
+                      color: #808285;
+                      font-size: 14px;
+                      line-height: 21px;
+                      font-family: Open Sans, sans-serif;
+                    "
+                  >
+                    <div
+                      style="
+                        font-size: 12px;
+                        font-style: normal;
+                        font-weight: normal;
+                        line-height: 19px;
+                      "
+                      align="center"
+                    >
+                      <a
+                        style="
+                          text-decoration: underline;
+                          transition: opacity 0.1s ease-in;
+                          color: #27313c;
+                        "
+                        href="{{ horizontal_adverts[4].url }}"
+                        ><img
+                          class="gnd-corner-image gnd-corner-image-center gnd-corner-image-top gnd-corner-image-bottom"
+                          style="
+                            border: 0;
+                            display: block;
+                            height: auto;
+                            width: 100%;
+                            max-width: 728px;
+                          "
+                          alt=""
+                          width="600"
+                          src="{{ horizontal_adverts[4].image_url }}"
+                      /></a>
+                    </div>
+                  </div>
+                  <!--[if mso]></td></tr></table><![endif]-->
+                </div>
+              </div>
+              {% endif %} 
+
+               <!-- SEPARATOR -->
+              <div
+                style="
+                  mso-line-height-rule: exactly;
+                  line-height: 20px;
+                  font-size: 20px;
+                "
+              >
+                &nbsp;
+              </div>
+
               {% endif %} {% if business_stories|length > 0 %}
               <!-- BUSINESS HEADER -->
               <div
@@ -3377,6 +3470,7 @@
                       </div>
                     </div>
                     {% endfor %}
+
                   </div>
                   <!--[if mso]></td><td style="width: 200px" valign="top" class="w160"><![endif]-->
                   <!-- CONNECT COVER -->
@@ -3595,6 +3689,7 @@
                 </div>
               </div>
               {% endif %} {% if podcast_stories | length > 0 %}
+
               <!-- PODCAST HEADER-->
               <div
                 class="layout one-col fixed-width stack"
@@ -3925,6 +4020,77 @@
               >
                 &nbsp;
               </div>
+
+              <!-- HORIZONTAL ADVERT -->
+              {% if horizontal_adverts | length >= 6 %}
+              <div
+                class="layout one-col fixed-width stack"
+                style="
+                  margin: 0 auto;
+                  max-width: 600px;
+                  min-width: 320px;
+                  width: 320px;
+                  width: calc(28000% - 167400px);
+                  overflow-wrap: break-word;
+                  word-wrap: break-word;
+                  word-break: break-word;
+                "
+              >
+                <div
+                  class="layout__inner"
+                  style="
+                    border-collapse: collapse;
+                    display: table;
+                    width: 100%;
+                    background-color: #ffffff;
+                  "
+                >
+                  <!--[if mso]><table align="center" cellpadding="0" cellspacing="0" role="presentation"><tr class="layout-fixed-width" style="background-color: #ffffff;"><td style="width: 600px" class="w560"><![endif]-->
+                  <div
+                    class="column"
+                    style="
+                      text-align: left;
+                      color: #808285;
+                      font-size: 14px;
+                      line-height: 21px;
+                      font-family: Open Sans, sans-serif;
+                    "
+                  >
+                    <div
+                      style="
+                        font-size: 12px;
+                        font-style: normal;
+                        font-weight: normal;
+                        line-height: 19px;
+                      "
+                      align="center"
+                    >
+                      <a
+                        style="
+                          text-decoration: underline;
+                          transition: opacity 0.1s ease-in;
+                          color: #27313c;
+                        "
+                        href="{{ horizontal_adverts[5].url }}"
+                        ><img
+                          class="gnd-corner-image gnd-corner-image-center gnd-corner-image-top gnd-corner-image-bottom"
+                          style="
+                            border: 0;
+                            display: block;
+                            height: auto;
+                            width: 100%;
+                            max-width: 728px;
+                          "
+                          alt=""
+                          width="600"
+                          src="{{ horizontal_adverts[5].image_url }}"
+                      /></a>
+                    </div>
+                  </div>
+                  <!--[if mso]></td></tr></table><![endif]-->
+                </div>
+              </div>
+              {% endif %} 
 
               <!-- SEPARATOR -->
               <div

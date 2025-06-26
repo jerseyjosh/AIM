@@ -45,8 +45,8 @@ class BEScraper(BaseScraper):
             self.get_home_page_soup('gsy')
         )
         # parse for story urls
-        jsy_links = self.get_story_urls_from_page(jsy_soup, 'jsy')[:n_stories_per_region]
-        gsy_links = self.get_story_urls_from_page(gsy_soup, 'gsy')[:n_stories_per_region]
+        jsy_links = self.get_story_urls_from_page(jsy_soup,)[:n_stories_per_region]
+        gsy_links = self.get_story_urls_from_page(gsy_soup)[:n_stories_per_region]
         # fetch and parse stories concurrently
         jsy_stories, gsy_stories = await asyncio.gather(
             self.fetch_and_parse_stories(jsy_links),

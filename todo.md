@@ -4,26 +4,24 @@
         - √ get template
         - √ add scrapers [1h 05/25]
         - x need to add adverts
-    - √ Fixed buggy campaign monitor rendering [1h 24/05/25] [1h 12/06/25]
-        - incline CSS causes issues
-        - Check works with different screens, different email clients etc.
+    - ~ Fixed buggy campaign monitor rendering [1h 24/05/25] 
+        - √ Top image renders in outlook now [1h 12/06/25]
+        - √ fixed incline CSS campaign monitor import issues.
+        - ~ Check works with different screens, different email clients etc.
     - √ landscape adverts [1h done 24/05/25]
         - add jinja templates to email
         - add landscape advert table to frontend
     - √ deaths [1h 10/06/25]
         - update jinja template to have date of death + funeral director
         - add deaths table to manually add date of death + funeral director
-        - maybe scrap scraping if not easy to parse?
     - x new sections
         - opinion section
         - √ community section [1h done 14/05/25]
-            - x needs reformatting
+            - needs reformatting
         - √ podcast section [1h 24/05/25]
         - need email templates to update jinja
-        - where to get stories? new scrapers?
     - x BE Logo
         - get new assets
         - add selectbox for which asset 
     - √ Ad state [1h done 13/05/25]
-        - how to keep ads from previous emails?
-        - store ads dataframe to cache and reload on each run
+        - Ad state is remembered between sessions.
