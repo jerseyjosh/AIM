@@ -1,16 +1,19 @@
-# TODO
+# changelog
+- total: 9h = £540
 - email
     - √ JEP email
         - √ get template
         - √ add scrapers [1h 05/25]
         - x need to add adverts
     - ~ Fixed buggy campaign monitor rendering [1h 24/05/25] 
+        - √ Fixed advert rendering, added more ad slots, verified 
+            outlook classic, outlook new, mac mail rendering [1h 26/06/25]
         - √ Top image renders in outlook now [1h 12/06/25]
         - √ fixed incline CSS campaign monitor import issues.
         - ~ Check works with different screens, different email clients etc.
     - √ landscape adverts [1h done 24/05/25]
-        - add jinja templates to email
-        - add landscape advert table to frontend
+        - added jinja templates to email
+        - added landscape advert table to frontend
     - √ deaths [1h 10/06/25]
         - update jinja template to have date of death + funeral director
         - add deaths table to manually add date of death + funeral director
