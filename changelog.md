@@ -1,5 +1,4 @@
 # changelog
-- total: 9h = £540
 - email
     - √ JEP email
         - √ get template
