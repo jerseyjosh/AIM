@@ -11,6 +11,7 @@
         - √ fixed incline CSS campaign monitor import issues.
         - ~ Check works with different screens, different email clients etc.
         - √ Made MSOutlook conditional formatting changes [1h 13/07/25]
+        - √ Changed top image and deaths table rendering [1h 17/07/25]
     - √ landscape adverts [1h done 24/05/25]
         - added jinja templates to email
         - added landscape advert table to frontend
