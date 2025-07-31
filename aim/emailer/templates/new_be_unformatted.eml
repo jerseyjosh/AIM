@@ -1,0 +1,2543 @@
+Return-Path: <preview@cmail19.com>
+Authentication-Results:  kundenserver.de; dkim=pass header.i=info@allisland.media
+Authentication-Results:  kundenserver.de; dkim=pass header.i=@cmail3.com
+Received: from mx39.a.outbound.createsend.com ([203.55.21.39]) by
+ mx.kundenserver.de (mxeue102 [217.72.192.67]) with ESMTPS (Nemesis) id
+ 1MoMRC-1uJHB51hfc-00eVuR for <josh@hakuna.co.uk>; Thu, 31 Jul 2025 21:50:28
+ +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=cm; d=allisland.media;
+ h=Subject:From:To:Reply-To:Date:MIME-Version:Content-Type:List-Unsubscribe:
+ List-Unsubscribe-Post:Message-ID:from:to:subject:cc; i=info@allisland.media;
+ bh=ql4a9lGk7oIjOXB3darCB+bqBiTlQff5Bs4nE34jhtQ=;
+ b=mnY0beTQji8om0v6VcJFTBcheFyuqtkFELY7KNdamFE1C28pwy2FPazQKRl8OYFqmp35dVkjveDG
+   sMotmEyEJiQfd16GtqihYPl60xzGqY2HT44wN0BP6Y0dFVqz5J4QY6bRY7ge1/Jl6k21bwYzH/VR
+   tzLTJyZ+pNEKQawgBeM=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=cs2013; d=cmail3.com;
+ h=Subject:From:To:Reply-To:Date:MIME-Version:Content-Type:List-Unsubscribe:
+ List-Unsubscribe-Post:Message-ID;
+ bh=ql4a9lGk7oIjOXB3darCB+bqBiTlQff5Bs4nE34jhtQ=;
+ b=UJavELjNAqrrVTE/Rl1QsE4mpQ2BADw4IPDUX9cdapzmTn7eFePlcVsuyi5oGLwnkGl1/M1+k6fq
+   3i+rS85ylobF4SE8Zvlv1nBKBcRK7vWkN8WZs1E7ZAdq84ommgZhIrCjJUFqkSNkZjrv9/mEH01I
+   fCrgL5BbxoKN2TWfVww=
+Subject: [Test]
+From: "Bailiwick Express" <info@allisland.media> 
+To: "josh@hakuna.co.uk" <josh@hakuna.co.uk>
+Reply-To: info@allisland.media
+Date: Fri, 01 Aug 2025 05:50:25 +1000
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="_907b55e8-8f59-4bba-9478-34de081eec1b_"; charset=utf-8
+X-Mailer: Create Send
+X-Complaints-To: abuse@cmail19.com
+X-Feedback-ID: CA1-d-glradl:LI1-d-l:CL1-d-itttit:createSEND
+List-Unsubscribe: <https://unsub.cmail19.com/t/completeheader/d/glradl/l/c/>,
+ <mailto:unsubscribe-glradl2l2d-2AD73FFF@cmail19.com?subject=Unsubscribe>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+Message-ID: <cm.0550257787453.glradl.l.d@cmail19.com>
+Envelope-To: <josh@hakuna.co.uk>
+X-Spam-Flag: NO
+UI-InboundReport: notjunk:1;M01:P0:CftE0SARfDE=;sTcu6GbZb/xzgJoZrJ6tuNxLt5HZ
+ 3bHhZRDS2GwFNdiyvc3vXt6tGhaglYv92MTvvQ4jHA4sWn8gLAvfak5W+llftUWFr+AgG2i6Z
+ vfYe68nte6PQ0+8yQ7XJN4kuvol0OyUb+t3rLwoDUf+fCoLGc98KucxaWSZ+epQzl9RjWH7Gm
+ Eilnzczus0HGpIkwE1OANN1mSWq7MhPIkzSx/1IoEIaNu+6jsbBu539m2SFcjQVpH/PmzoRfH
+ c/olK3tr04pUoWy0uoTH8T9huxSKJelz8qlAcrQj4vXb6X2jqOaj9gYpnWNlWP5rUhYItIwvP
+ vh4ufESQn1nW6+pfNtFDQsb0u2wtm7CpiTZaO9KWXjSQpWBlG8tusISkBSp90blUNwJYGrmzU
+ nsnMiDOz57qzKzRycKR1OIlpD4s5pMgMptlZiam+cEfBNAHzcroDIG2tMhpmoAWdE1jNDfyrN
+ WFrZ74OvtAnh7s1Qyt/ysa5T5issSwPjigrGarN6WDaMI5QbmfwHQbt5NmURwJ7IQgnobf9mD
+ PotWVdXl0f5Vq2Cv0p74ueeDL4WxJHlhEMBoRkFmYH4e25lpCKL2A9BbnJjMItY/vlwDh/OWH
+ mwHMjKdfB9pq1xFQ31p8bsuGlpDAR/2V/BuVDt2ZvC/RBFOajukZcLSE23MbmnLaEL+mGBMmo
+ kkWHQx8ZHLqS0BnXImdIxmjNe7w+DFRXvVr+aZ27MXCqC4x9EVHi0sJTAy42i1RJ3WnFjkmXn
+ qxxfJyr3rWfYa1+vhRRTDWBdpvPRtJ6nOO+u4VFBx6noQgHcQkhCt5VxYn6FlqFBBgF1K6mmV
+ 6YMWUhMDGxDBXkqRNkX9M9KIwxGlfQrq28fdmI8HDY5wtcfCelUPO8SWLdW+OgS4I+2ya5DHl
+ Mhgi98u3zJ4r2/4ij97BCT6O27ptSBVTCQGU5XGZ53aly65kc/p/pBYdv5uLWcDdQzou7j63m
+ +q4kUwfNwEa5B6To0mkFuR4fvHPfEnJEiighkVK8QPPuqKqslawJmW6xtemV/Cx8jBULhShob
+ XkrZpts225/jIR4guVX2zy7vKv1SCGxvDBiCgDj57ekBkD4ZvGmGzFTvqPFrEuaxTDd2Yqso1
+ +lpjJf547mnxmUWth0NGj9SaRmkwOUqpkXfNxm6wfY9cbiqyDuR+J9vxNjMiexrke4aV3ziq2
+ JBI+S6P7/30aMwmnuOkaYqZwNL5X+sPITLHDt9QbihR/NwdVqiVBoCP469DwabvpH0uQY7Gr3
+ hm7u1Iq9/Wlytj602kH4u8xZfGvkdx17+xHZqPW6H+kaV33e56dwEiRJnG17x7CaX60QvxfIe
+ apU0UjwVMCYFsmTP9nX5LEneaKNFqdEWH0sDU1d/6s+Zl6tQk6y1+E0XpOz/4B9BA9EcFESsn
+ gla+6yvj/V2cLc+84zgPvgWkLNiLvEgYFOTOO84bQKiBd1ALLmWmHz59j6vuCkybGmzsxmtSI
+ mj20mvjkMqcYkPTuF6WE7Ag0sw3TqocL18MAkTFT/AeBKLdiHPt7fQd7imzw6PvlPBP0DM2CV
+ sS8hcGk+6JGzmM3EUmAxuMl+FQQKDbQMxZDUaDX3errfFRKKBbKr3BBPm50frkCjeZbtPG2xO
+ 0BbyFcHI1m31YGskz6qno1MHfDp/fvBjyNIyJqy1AVqQCspGmkzm7Tt9wP1h/zeAXParvmDTs
+ q0hLRqEYP3eR/+GdbeXcpucUfr4Rs7MLP4VhtQ5rJLHqDrFl4hBatRs8/XD00W0Twy0Wc4wg/
+ +/O2lk2o3TRmVnDyS5ouMwBA4kyIFbUhSFBwIPA+YxPP/eJg6ZpBSrlB8JQOnk2K40O02ONXR
+ zJyIYjJT0Wm9+kw4KD++VQrFie29QBZevOgEdnR8NQKMqhtXqNKto1VXvt7KIzAVFjzxOSgdE
+ pUXp5CogiBiz8nqdRViZIY5ZRAgegkNF0eEHUwbm4ChFEWcFZo757FUluL5KeEc/iiryGXXTZ
+ G5f6Zw+bBHjUjF6Lhax5ccE4oc0uH9l3IsqYFzt0/nnhAzhKJUf1bMjPEx1uORhzngLPKmEdq
+ 9i8ppGoC2cO5tt+/4J+XVGP4J9iU+ZIcTz2gvZvF01SFtpMAWRbyZHEoE1RQ6RLU9wyUqJ/NQ
+ Oeuqy4FK5/2VDKHucD/LAtpOAfQaRPSYuJQsyvEDLQqnPPommKg8V6OqKEibiq3AxrqM+4Do4
+ Fuk7OejFrSaye2tJ18BXGZIp6waS9JeY9TUwyxciuSwUQrG8AToPcRd05Lbr+LJEMSF69vpk1
+ oR05xP57iiIoEDXp2ZodCeTTf2gEAJDX3DniRbv/7FlrpVHFExy744eOJx84oOZNpoXrEzCSq
+ 3gvCMXM9kuIlU65kshcI5mIIw+ow91vHKQ1Yg1uIZ8eOQcF5a0ByIiCDWwhgkWFStTFEBNI1v
+ D4l83vVQZMiNIFJYOEhhof2oNnKck+mKBxfzldNkd8oEpZCpV/Dr22K/A9fHN940O69d5uoSv
+ uvoE2RZTUWZOx2pDz/TC1Ymeg+XXPbmqP2k/wh9pAJ1VyTb3BE0q2u2dF9Qfe5gMoUS/fD+Dg
+ 5qrSv8STtOb4eqy42WIeumNspBACux4DNGtAtE5syOnoJ7LiRtqD2DmVFdG/C/TTMdA6oLhf3
+ D0O8sZY3AzkBDaccgIMpUh8NR9VmZ82SDv21RAr1HSshOdzcusHC8ApGiZitGLmC00xqFjhS5
+ 8KXdNB4vYAq+GSawgJdZV1N59++8azLiwxwy+ytRtsvfNe8wIUpfDYmOAizICllRedCUtQRWQ
+ rkLrx1De1/JUs14iGAByOJkrc+c9iJbBDsPWDU+Ufjm9sqwNbw91DZ5Y48o93WM3LhG91jkft
+ BqBPsCe757DJcz+BY30iyL2aFSaVuaj/7o08ECtxwPADQkPtXJTuLALzjg277seoRFjUdvSC/
+ mBHir17/rKyCn8Z7sTj8SsSOCwEWEBua7jLg4lA5zf4YNS0E2oduLbfMMwO7vKri771wYAs1u
+ TaZXuJ5rioYlTPvmFcCESI3jKmyvONcksDXum4cNDAorQOisOYCOc4+mJuhUNnYVsDrSd5kCI
+ tzpKEMGpoBj8wHJDhignGxiQZFyVerp0JbnLmplRSxQNFN/0rATiMExNNPDzRDbQn+1oRfnnP
+ Dtor/rv+0EfgBumtuK5YhUlTRzoHLFKWLfsRLlsuZNxM3zKYIwUD/7OLNmucOk5DP7deNJpD0
+ tEqGXzHXtegL+YGfiTfR+SY55XJzgzMP4kSlGGl8QSrK3zdMOSi3bRxymg5tT4pkZyKLMNOEX
+ kVIipYVLzY9DW5S1UJlAC/wJ7HaFa4LYpn1tX38V3DGo96BlD9Yh6LF1693tmDXf6OaRvTUdH
+ NXcklkERYmvM1uK3iNsztvK5zB56dy35zy5JDsVJi0JzN5ug1bQBgkZU6c9adFpDoqD3RURKR
+ 5vhodE0K7Zh16KHzpzfSN7iEPD9JrkJqAtzM7j5h4ufwSq99MF0WZME9nW4eMI1Hy+fXpuO/7
+ rZ7mzUP2HIPF6knF2ofLYIwAlAhQ/LodFoNIOWJ0+39M8Epw/T9mx54VvhoPZDgwWpR20i/P+
+ A2QccSDsa6suYkIUoxEzR/uQaUm5EDTV3rjSAGcmKZlJwpV5I3UICyyzFcsYW0LNxT+LVVcas
+ v4MD+y0TChl4zWFn2spi1h36cF/oTaecZtpd9K3SEc6JpmDAE8Lj/9hRNSp1qpOsBCGaJAsQm
+ sGnOVY2o+ceHuFVjd+51FkiuoQCm8xr5ip7eHk8aam6O4p4/BWikWgWHLkxMqW46h/iuOY93b
+ mjiqhZY50tmaA+6Gzh68OyRzt2YBgJV6HGeQhWim9OWHK55ExdaPqC2VE6VweKwFkPiuK0nRH
+ Kc886yM5XRCkJzlcHlNe30ARBUTbB8hrJ1z4zTf81MVI9W+EgHVhT0argtcxUzspnNEfz3yXz
+ SWeH4cvpjbHmiajUPhevnc0lQRHbsmIHrkH4ckk9MgufLSrVqCeBWZ3Oh8VCJBf/QcYVjlcWB
+ XStlXWuG6t0iRsiCgFgEk7BXf80cGuqRN0YlHQTkZGutark8PcajcizwDKjrrWutDaR64EVFV
+ oOJAFxiaEtUYu+kJgeD9h8yxbCbl8r82CHHd45BGO1wIiEFFb61b7YKii6xgMOfhoBbX4Zbpe
+ rCKy9bUexKAwOEIn1bqanAzTFeT9qTPr/Pd9OW776fFAx/nnsxIn+ICTe+v9lT9vjQgFCQaHl
+ xXnjohgWV5ghPBbvYd42ErVhYSoWa+WkdPOLZOl1VLV8coyw==
+
+--_907b55e8-8f59-4bba-9478-34de081eec1b_
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+No images?  Click here https://allislandmedia.cmail20.com=
+/t/d-e=
+-glradl-l-ju/
+
+(Jacques Le Miere). Send us your pictures  HERE. [mailto:pictures@bailiwic=
+kexpress.com]
+
+Today's weather: 20=C2=B0c, light rain
+
+Tide: Low 17:44 (3.2m) High 23:25 (9m)
+
+Thursday 31 July 2025
+
+Minister absent as islander who claims life destroyed by vibration makes fo=
+rmal complaint
+
+A town resident who attributes her terminal illness to the stress and =E2=80=
+=9Cintolerable suffering=E2=80=9D caused by two electricity sub-stations cl=
+ose to her home presented her concerns about the government=E2=80=99s handl=
+ing of her case at a public hearing this morning.
+
+Read more [https://www.bailiwickexpress.com/news/minister-absent-as-island=
+er-who-claims-life-destroyed-by-vibration-makes-formal-complaint/]         =
+                               Firefighters tackle blaze near Holme Grown
+
+Emergency services are tackling a fire in the area of Holme Grown.
+
+Read more [https://www.bailiwickexpress.com/news/fire-at-holme-grown/]    =
+      DIGEST: What=E2=80=99s up and what=E2=80=99s down? Latest house price=
+s revealed
+
+What does Jersey=E2=80=99s housing market currently look like? The latest s=
+tats are out =E2=80=93 and for the first time show how many rental properti=
+es were bought and sold.
+
+Read more [https://www.bailiwickexpress.com/news/digest-whats-up-and-whats=
+-down-latest-house-prices-revealed/]          Future of Jersey=E2=80=99s Sa=
+maritans branch unclear
+
+The future of Jersey=E2=80=99s Samaritans branch is unclear, amid plans fro=
+m the charity to overhaul their entire frontline service following warnings=
+ that the current model of 200 local branches is =E2=80=9Cnot sustainable=E2=
+=80=9D.
+
+Read more [https://www.bailiwickexpress.com/news/future-of-jerseys-samarit=
+ans-branch-unclear/]          =E2=80=9CWe can=E2=80=99t afford to carry on =
+into next year if all the toys are stolen this summer=E2=80=9D
+
+The founders of an eco-friendly initiative that provides free beach toys fo=
+r children and families have called on the public to =E2=80=9Ctake responsi=
+bility=E2=80=9D and prevent theft.
+
+Read more [https://www.bailiwickexpress.com/news/we-cant-afford-to-carry-o=
+n-into-next-year-if-all-the-toys-are-stolen-this-summer/]          Cimandis=
+ almost saved by potential buyer
+
+Food service provider Cimandis=E2=80=99s Guernsey operations came close to =
+being saved by a potential buyer, it has emerged.
+
+Read more [https://www.bailiwickexpress.com/news-ge/cimandis-almost-saved-=
+by-a-potential-buyer/]          Guernsey=E2=80=99s Chief Minister calls on =
+Prime Minister over ongoing Gaza crisis
+
+Guernsey=E2=80=99s Chief Minister has followed Jersey in formally writing t=
+o the UK government to convey the island=E2=80=99s deep concern over the on=
+going Gaza crisis.
+
+Read more [https://www.bailiwickexpress.com/news-ge/guernseys-chief-minist=
+er-calls-on-sir-keir-over-ongoing-gaza-crisis/]          VOTE: Flower power=
+! Which shop should win the battle before Battle?
+
+Before the first float rolls, another battle of flowers is already heating =
+up =E2=80=93 and it=E2=80=99s time for islanders to decide who will win.
+
+Read more [https://www.bailiwickexpress.com/news/vote-flower-power-which-s=
+hop-should-win-the-battle-before-battle/]                                  =
+                                  Sarah Jordan, Project Linus: =E2=80=9CI e=
+njoy my volunteering =E2=80=98work=E2=80=99 even more than my previous paid=
+ work=E2=80=9D
+
+Each week, Express hears from a charity leader on their biggest challenges =
+and successes, what leadership and wellbeing truly mean in the third sector=
+, and their hopes for the future. Next up is Project Linus UK =E2=80=93 Jer=
+sey, Channel Islands =E2=80=93 a charity dedicated to providing handmade bl=
+ankets and quilts to children in need of comfort and security.
+
+Read more [https://www.bailiwickexpress.com/news/sarah-jordan-project-linu=
+s-i-enjoy-my-volunteering-work-even-more-than-my-previous-paid-work/]      =
+                                  =E2=80=9CAs soon as we opened the contain=
+er of this crab, we were transported to the sea=E2=80=9D
+
+The husband-and-wife team behind a local seafood, fishing and processing bu=
+siness are celebrating winning a key industry accolade for their =E2=80=9Ce=
+xemplary=E2=80=9D handpicked crab.
+
+Read more [https://www.bailiwickexpress.com/business/as-soon-as-we-opened-=
+the-container-of-this-crab-we-were-transported-to-the-sea/]                =
+ Read online [https://online.fliphtml5.com/ktlu/azqh/]
+
+DEATHS
+
+Anita Peggy Noel (n=C3=A9e Little)
+
+Died: 28/07/25
+
+Maillards Funeral Directors
+
+For more information, head to our partner site,  familynotices.je [https:/=
+/familynotices.jerseyeveningpost.com/]
+
+[http://www.bailiwickexpress.com]                       Share   https://al=
+lislandmedia.cmail20.com=
+/t/d-fb-glradl-l-tl/       Tweet   http=
+s://allislandmedia.cmail20.com=
+/t/d-tw-glradl-l-tr/       Share =
+  [https://allislandmedia.cmail20.com=
+/t/d-li-glradl-l-jd/]    =
+   Forward   https://allislandmedia.forwardtomyfriend.com/d-=
+l-2AD73FFF-glradl-l-ty        Copyright =C2=A9 Bailiwick Expre=
+ss
+
+You have received this e-mail because you have subscribed to receive e-mail=
+s from Bailiwick Publishing, who publish Bailiwick Express and Connect.
+
+Unsubscribe to this  newsletter [https://account.bailiwickexpress.com/unsu=
+bscribe?email=3D=
+josh@hakuna.co.uk=
+&token=3D[Token]&partyid=3D[PartyI=
+D]&newslettercode=3DBEJerDailyNews]
+
+Unsubscribe from everything sent by Bailiwick Express and JEP
+
+Unsubscribe https://allislandmedia.cmail20.com=
+/t/d-u-glradl-l-t=
+j/
+
+--_907b55e8-8f59-4bba-9478-34de081eec1b_
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www=
+=2Ew3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html style=3D"margin: 0;pad=
+ding: 0;" xmlns=3D"http://www.w3.org/1999/xhtml"><head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title></title>
+    <!--[if !mso]><!--><meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3D=
+edge"><!--<![endif]-->
+    <meta name=3D"viewport" content=3D"width=3Ddevice-width"><style type=3D=
+"text/css">
+@media only screen and (min-width: 620px){.column{}.wrapper{min-width:600px=
+ !important}.wrapper h1{}.wrapper h1{font-size:20px !important;line-height:=
+28px !important}.wrapper h2{}.wrapper h2{font-size:20px !important;line-hei=
+ght:28px !important}.wrapper h3{}.wrapper .size-8,.wrapper .size-8-m,.wrapp=
+er .size-8-l{font-size:8px !important;line-height:14px !important}.wrapper =
+=2Esize-8-m{line-height:16px !important}.wrapper .size-8-l{line-height:24px !=
+important}.wrapper .size-9,.wrapper .size-9-m,.wrapper .size-9-l{font-size:=
+9px !important;line-height:16px !important}.wrapper .size-9-m{line-height:1=
+8px !important}.wrapper .size-9-l{line-height:27px !important}.wrapper .siz=
+e-10,.wrapper .size-10-m,.wrapper .size-10-l{font-size:10px !important;line=
+-height:18px !important}.wrapper .size-10-m{line-height:20px !important}.wr=
+apper .size-10-l{line-height:30px !important}.wrapper .size-11,.wrapper=20
+=2Esize-11-m,.wrapper .size-11-l{font-size:11px !important;line-height:19px !=
+important}.wrapper .size-11-m{line-height:22px !important}.wrapper .size-11=
+-l{line-height:33px !important}.wrapper .size-12,.wrapper .size-12-m,.wrapp=
+er .size-12-l{font-size:12px !important;line-height:19px !important}.wrappe=
+r .size-12-m{line-height:24px !important}.wrapper .size-12-l{line-height:36=
+px !important}.wrapper .size-13,.wrapper .size-13-m,.wrapper .size-13-l{fon=
+t-size:13px !important;line-height:21px !important}.wrapper .size-13-m{line=
+-height:26px !important}.wrapper .size-13-l{line-height:39px !important}.wr=
+apper .size-14,.wrapper .size-14-m,.wrapper .size-14-l{font-size:14px !impo=
+rtant;line-height:21px !important}.wrapper .size-14-m{line-height:28px !imp=
+ortant}.wrapper .size-14-l{line-height:42px !important}.wrapper .size-15,.w=
+rapper .size-15-m,.wrapper .size-15-l{font-size:15px=20
+!important;line-height:23px !important}.wrapper .size-15-m{line-height:30px=
+ !important}.wrapper .size-15-l{line-height:45px !important}.wrapper .size-=
+16,.wrapper .size-16-m,.wrapper .size-16-l{font-size:16px !important;line-h=
+eight:24px !important}.wrapper .size-16-m{line-height:32px !important}.wrap=
+per .size-16-l{line-height:48px !important}.wrapper .size-17,.wrapper .size=
+-17-m,.wrapper .size-17-l{font-size:17px !important;line-height:26px !impor=
+tant}.wrapper .size-17-m{line-height:34px !important}.wrapper .size-17-l{li=
+ne-height:51px !important}.wrapper .size-18,.wrapper .size-18-m,.wrapper .s=
+ize-18-l{font-size:18px !important;line-height:26px !important}.wrapper .si=
+ze-18-m{line-height:36px !important}.wrapper .size-18-l{line-height:54px !i=
+mportant}.wrapper .size-20,.wrapper .size-20-m,.wrapper .size-20-l{font-siz=
+e:20px !important;line-height:28px !important}.wrapper=20
+=2Esize-20-m{line-height:40px !important}.wrapper .size-20-l{line-height:60px=
+ !important}.wrapper .size-22,.wrapper .size-22-m,.wrapper .size-22-l{font-=
+size:22px !important;line-height:31px !important}.wrapper .size-22-m{line-h=
+eight:44px !important}.wrapper .size-22-l{line-height:66px !important}.wrap=
+per .size-24,.wrapper .size-24-m,.wrapper .size-24-l{font-size:24px !import=
+ant;line-height:32px !important}.wrapper .size-24-m{line-height:48px !impor=
+tant}.wrapper .size-24-l{line-height:72px !important}.wrapper .size-26,.wra=
+pper .size-26-m,.wrapper .size-26-l{font-size:26px !important;line-height:3=
+4px !important}.wrapper .size-26-m{line-height:52px !important}.wrapper .si=
+ze-26-l{line-height:78px !important}.wrapper .size-28,.wrapper .size-28-m,.=
+wrapper .size-28-l{font-size:28px !important;line-height:36px !important}.w=
+rapper .size-28-m{line-height:56px !important}.wrapper=20
+=2Esize-28-l{line-height:84px !important}.wrapper .size-30,.wrapper .size-30-=
+m,.wrapper .size-30-l{font-size:30px !important;line-height:38px !important=
+}.wrapper .size-30-m{line-height:60px !important}.wrapper .size-30-l{line-h=
+eight:90px !important}.wrapper .size-32,.wrapper .size-32-m,.wrapper .size-=
+32-l{font-size:32px !important;line-height:40px !important}.wrapper .size-3=
+2-m{line-height:64px !important}.wrapper .size-32-l{line-height:96px !impor=
+tant}.wrapper .size-34,.wrapper .size-34-m,.wrapper .size-34-l{font-size:34=
+px !important;line-height:43px !important}.wrapper .size-34-m{line-height:6=
+8px !important}.wrapper .size-34-l{line-height:102px !important}.wrapper .s=
+ize-36,.wrapper .size-36-m,.wrapper .size-36-l{font-size:36px !important;li=
+ne-height:43px !important}.wrapper .size-36-m{line-height:72px !important}.=
+wrapper .size-36-l{line-height:108px !important}.wrapper .size-40,.wrapper=20
+=2Esize-40-m,.wrapper .size-40-l{font-size:40px !important;line-height:47px !=
+important}.wrapper .size-40-m{line-height:80px !important}.wrapper .size-40=
+-l{line-height:120px !important}.wrapper .size-44,.wrapper .size-44-m,.wrap=
+per .size-44-l{font-size:44px !important;line-height:50px !important}.wrapp=
+er .size-44-m{line-height:88px !important}.wrapper .size-44-l{line-height:1=
+32px !important}.wrapper .size-48,.wrapper .size-48-m,.wrapper .size-48-l{f=
+ont-size:48px !important;line-height:54px !important}.wrapper .size-48-m{li=
+ne-height:96px !important}.wrapper .size-48-l{line-height:144px !important}=
+=2Ewrapper .size-56,.wrapper .size-56-m,.wrapper .size-56-l{font-size:56px !i=
+mportant;line-height:60px !important}.wrapper .size-56-m{line-height:112px =
+!important}.wrapper .size-56-l{line-height:168px !important}.wrapper .size-=
+64,.wrapper .size-64-m,.wrapper .size-64-l{font-size:64px=20
+!important;line-height:68px !important}.wrapper .size-64-m{line-height:128p=
+x !important}.wrapper .size-64-l{line-height:192px !important}.wrapper .siz=
+e-72,.wrapper .size-72-m,.wrapper .size-72-l{font-size:72px !important;line=
+-height:76px !important}.wrapper .size-72-m{line-height:144px !important}.w=
+rapper .size-72-l{line-height:216px !important}.wrapper .size-80,.wrapper .=
+size-80-m,.wrapper .size-80-l{font-size:80px !important;line-height:84px !i=
+mportant}.wrapper .size-80-m{line-height:160px !important}.wrapper .size-80=
+-l{line-height:240px !important}.wrapper .size-96,.wrapper .size-96-m,.wrap=
+per .size-96-l{font-size:96px !important;line-height:100px !important}.wrap=
+per .size-96-m{line-height:192px !important}.wrapper .size-96-l{line-height=
+:288px !important}.wrapper .size-112,.wrapper .size-112-m,.wrapper .size-11=
+2-l{font-size:112px !important;line-height:116px !important}.wrapper=20
+=2Esize-112-m{line-height:224px !important}.wrapper .size-112-l{line-height:3=
+36px !important}.wrapper .size-128,.wrapper .size-128-m,.wrapper .size-128-=
+l{font-size:128px !important;line-height:132px !important}.wrapper .size-12=
+8-m{line-height:256px !important}.wrapper .size-128-l{line-height:384px !im=
+portant}.wrapper .size-144,.wrapper .size-144-m,.wrapper .size-144-l{font-s=
+ize:144px !important;line-height:148px !important}.wrapper .size-144-m{line=
+-height:288px !important}.wrapper .size-144-l{line-height:432px !important}=
+}
+</style>
+    <meta name=3D"x-apple-disable-message-reformatting">
+    <style type=3D"text/css">
+=2Emain, .mso {
+  margin: 0;
+  padding: 0;
+}
+table {
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+* {
+  line-height: inherit;
+}
+[x-apple-data-detectors] {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+=2Ewrapper .footer__share-button a:hover,
+=2Ewrapper .footer__share-button a:focus {
+  color: #ffffff !important;
+}
+=2Ewrapper .footer__share-button a.icon-white:hover,
+=2Ewrapper .footer__share-button a.icon-white:focus {
+  color: #ffffff !important;
+}
+=2Ewrapper .footer__share-button a.icon-black:hover,
+=2Ewrapper .footer__share-button a.icon-black:focus {
+  color: #000000 !important;
+}
+=2Ebtn a:hover,
+=2Ebtn a:focus,
+=2Efooter__share-button a:hover,
+=2Efooter__share-button a:focus,
+=2Eemail-footer__links a:hover,
+=2Eemail-footer__links a:focus {
+  opacity: 0.8;
+}
+=2Epreheader,
+=2Eheader,
+=2Elayout,
+=2Ecolumn {
+  transition: width 0.25s ease-in-out, max-width 0.25s ease-in-out;
+}
+=2Epreheader td {
+  padding-bottom: 8px;
+}
+=2Elayout,
+div.header {
+  max-width: 400px !important;
+  -fallback-width: 95% !important;
+  width: calc(100% - 20px) !important;
+}
+div.preheader {
+  max-width: 360px !important;
+  -fallback-width: 90% !important;
+  width: calc(100% - 60px) !important;
+}
+=2Esnippet,
+=2Ewebversion {
+  Float: none !important;
+}
+=2Estack .column {
+  max-width: 400px !important;
+  width: 100% !important;
+}
+=2Efixed-width.has-border {
+  max-width: 402px !important;
+}
+=2Efixed-width.has-border .layout__inner {
+  box-sizing: border-box;
+}
+=2Esnippet,
+=2Ewebversion {
+  width: 50% !important;
+}
+=2Emso .layout__edges {
+  font-size: 0;
+}
+=2Elayout-fixed-width,
+=2Emso .layout-full-width {
+  background-color: #ffffff;
+}
+@media only screen and (min-width: 620px) {
+  .column,
+  .gutter {
+    display: table-cell;
+    Float: none !important;
+    vertical-align: top;
+  }
+  div.preheader,
+  .email-footer {
+    max-width: 560px !important;
+    width: 560px !important;
+  }
+  .snippet,
+  .webversion {
+    width: 280px !important;
+  }
+  div.header,
+  .layout,
+  .one-col .column {
+    max-width: 600px !important;
+    width: 600px !important;
+  }
+  .fixed-width.has-border,
+  .fixed-width.x_has-border,
+  .has-gutter.has-border,
+  .has-gutter.x_has-border {
+    max-width: 602px !important;
+    width: 602px !important;
+  }
+  .two-col .column {
+    max-width: 300px !important;
+    width: 300px !important;
+  }
+  .three-col .column,
+  .column.narrow,
+  .column.x_narrow {
+    max-width: 200px !important;
+    width: 200px !important;
+  }
+  .column.wide,
+  .column.x_wide {
+    width: 400px !important;
+  }
+  .two-col.has-gutter .column,
+  .two-col.x_has-gutter .column {
+    max-width: 290px !important;
+    width: 290px !important;
+  }
+  .three-col.has-gutter .column,
+  .three-col.x_has-gutter .column,
+  .has-gutter .narrow {
+    max-width: 188px !important;
+    width: 188px !important;
+  }
+  .has-gutter .wide {
+    max-width: 394px !important;
+    width: 394px !important;
+  }
+  .two-col.has-gutter.has-border .column,
+  .two-col.x_has-gutter.x_has-border .column {
+    max-width: 292px !important;
+    width: 292px !important;
+  }
+  .three-col.has-gutter.has-border .column,
+  .three-col.x_has-gutter.x_has-border .column,
+  .has-gutter.has-border .narrow,
+  .has-gutter.x_has-border .narrow {
+    max-width: 190px !important;
+    width: 190px !important;
+  }
+  .has-gutter.has-border .wide,
+  .has-gutter.x_has-border .wide {
+    max-width: 396px !important;
+    width: 396px !important;
+  }
+}
+@supports (display: flex) {
+  @media only screen and (min-width: 620px) {
+    .fixed-width.has-border .layout__inner {
+      display: flex !important;
+    }
+  }
+}
+/***
+* Mobile Styles
+*
+* 1. Overriding inline styles
+*/
+@media(max-width: 619px) {
+  .email-flexible-footer .left-aligned-footer .column,
+  .email-flexible-footer .center-aligned-footer,
+  .email-flexible-footer .right-aligned-footer .column {
+    max-width: 100% !important; /* [1] */
+    text-align: center !important; /* [1] */
+    width: 100% !important; /* [1] */
+  }
+  .flexible-footer-logo {
+    margin-left: 0px !important; /* [1] */
+    margin-right: 0px !important; /* [1] */
+  }
+  .email-flexible-footer .left-aligned-footer .flexible-footer__share-butto=
+n__container,
+  .email-flexible-footer .center-aligned-footer .flexible-footer__share-but=
+ton__container,
+  .email-flexible-footer .right-aligned-footer .flexible-footer__share-butt=
+on__container {
+    display: inline-block;
+    margin-left: 5px !important; /* [1] */
+    margin-right: 5px !important; /* [1] */
+  }
+  .email-flexible-footer__additionalinfo--center {
+    text-align: center !important; /* [1] */
+  }
+ =20
+  .email-flexible-footer .left-aligned-footer table,
+  .email-flexible-footer .center-aligned-footer table,
+  .email-flexible-footer .right-aligned-footer table {
+    display: table !important; /* [1] */
+    width: 100% !important; /* [1] */
+  }
+  .email-flexible-footer .footer__share-button,
+  .email-flexible-footer .email-footer__additional-info {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and=
+ (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-rat=
+io: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min=
+-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  .fblike {
+    background-image: url(https=
+://i7.cmail20.com=
+/static/eb/master/13-the-blueprint-3/images/fblike@2x.png) !important;
+  }
+  .tweet {
+    background-image: url(https=
+://i8.cmail20.com=
+/static/eb/master/13-the-blueprint-3/images/tweet@2x.png) !important;
+  }
+  .linkedinshare {
+    background-image: url(https=
+://i9.cmail20.com=
+/static/eb/master/13-the-blueprint-3/images/lishare@2x.png) !important=
+;
+  }
+  .forwardtoafriend {
+    background-image: url(https=
+://i10.cmail20.com=
+/static/eb/master/13-the-blueprint-3/images/forward@2x.png) !importan=
+t;
+  }
+}
+@media (max-width: 321px) {
+  .fixed-width.has-border .layout__inner {
+    border-width: 1px 0 !important;
+  }
+  .layout,
+  .stack .column {
+    min-width: 320px !important;
+    width: 320px !important;
+  }
+  .border {
+    display: none;
+  }
+  .has-gutter .border {
+    display: table-cell;
+  }
+}
+=2Ecmctbl--inline table {
+  border-collapse: collapse;
+}
+</style>
+   =20
+    <!--[if mso]><xml>
+      <w:WordDocument xmlns:w=3D"urn:schemas-microsoft-com:office:word">
+        <w:DontUseAdvancedTypographyReadingMail/>
+      </w:WordDocument>
+    </xml><![endif]-->
+  <!--[if !mso]><!--><style type=3D"text/css">
+@import url(https://fonts.googleapis.com/css?family=3DOpen+Sans:400italic,7=
+00italic,700,400|PT+Sans:400,700,400italic,700italic);
+</style><link href=3D"https://fonts.googleapis.com/css?family=3DOpen+Sans:4=
+00italic,700italic,700,400|PT+Sans:400,700,400italic,700italic" rel=3D"styl=
+esheet" type=3D"text/css"><!--<![endif]--><style type=3D"text/css">
+=2Emain,.mso{background-color:#27313c}.logo a:hover,.logo a:focus{color:#fff =
+!important}.footer-logo a:hover,.footer-logo a:focus{color:#b59b69 !importa=
+nt}.mso .layout-has-border{border-top:1px solid #000;border-bottom:1px soli=
+d #000}.mso .layout-has-bottom-border{border-bottom:1px solid #000}.mso .bo=
+rder{background-color:#000}.mso h1{}.mso h1{font-size:20px !important;line-=
+height:28px !important}.mso h2{}.mso h2{font-size:20px !important;line-heig=
+ht:28px !important}.mso h3{}.mso .layout__inner{}.mso .footer__share-button=
+ p{}.mso .footer__share-button p{font-family:Open Sans,sans-serif}
+</style><!--[if mso]><style type=3D"text/css" emb-not-inline>
+=2Emso div{border:0 none white !important}.mso .w560 .divider{}.mso .w560 .di=
+vider{Margin-left:260px !important;Margin-right:260px !important}.mso .w360=
+ .divider{}.mso .w360 .divider{Margin-left:160px !important;Margin-right:16=
+0px !important}.mso .w260 .divider{}.mso .w260 .divider{Margin-left:110px !=
+important;Margin-right:110px !important}.mso .w160 .divider{}.mso .w160 .di=
+vider{Margin-left:60px !important;Margin-right:60px !important}.mso .w60 .d=
+ivider{}.mso .w60 .divider{Margin-left:10px !important;Margin-right:10px !i=
+mportant}.mso .w354 .divider{}.mso .w354 .divider{Margin-left:157px !import=
+ant;Margin-right:157px !important}.mso .w250 .divider{}.mso .w250 .divider{=
+Margin-left:105px !important;Margin-right:105px !important}.mso .w148 .divi=
+der{}.mso .w148 .divider{Margin-left:54px !important;Margin-right:54px !imp=
+ortant}.mso .size-8,.mso .size-8-m,.mso .size-8-l{font-size:8px=20
+!important;line-height:14px !important}.mso .size-8-m{line-height:16px !imp=
+ortant}.mso .size-8-l{line-height:24px !important}.mso .size-9,.mso .size-9=
+-m,.mso .size-9-l{font-size:9px !important;line-height:16px !important}.mso=
+ .size-9-m{line-height:18px !important}.mso .size-9-l{line-height:27px !imp=
+ortant}.mso .size-10,.mso .size-10-m,.mso .size-10-l{font-size:10px !import=
+ant;line-height:18px !important}.mso .size-10-m{line-height:20px !important=
+}.mso .size-10-l{line-height:30px !important}.mso .size-11,.mso .size-11-m,=
+=2Emso .size-11-l{font-size:11px !important;line-height:19px !important}.mso =
+=2Esize-11-m{line-height:22px !important}.mso .size-11-l{line-height:33px !im=
+portant}.mso .size-12,.mso .size-12-m,.mso .size-12-l{font-size:12px !impor=
+tant;line-height:19px !important}.mso .size-12-m{line-height:24px !importan=
+t}.mso .size-12-l{line-height:36px !important}.mso .size-13,.mso=20
+=2Esize-13-m,.mso .size-13-l{font-size:13px !important;line-height:21px !impo=
+rtant}.mso .size-13-m{line-height:26px !important}.mso .size-13-l{line-heig=
+ht:39px !important}.mso .size-14,.mso .size-14-m,.mso .size-14-l{font-size:=
+14px !important;line-height:21px !important}.mso .size-14-m{line-height:28p=
+x !important}.mso .size-14-l{line-height:42px !important}.mso .size-15,.mso=
+ .size-15-m,.mso .size-15-l{font-size:15px !important;line-height:23px !imp=
+ortant}.mso .size-15-m{line-height:30px !important}.mso .size-15-l{line-hei=
+ght:45px !important}.mso .size-16,.mso .size-16-m,.mso .size-16-l{font-size=
+:16px !important;line-height:24px !important}.mso .size-16-m{line-height:32=
+px !important}.mso .size-16-l{line-height:48px !important}.mso .size-17,.ms=
+o .size-17-m,.mso .size-17-l{font-size:17px !important;line-height:26px !im=
+portant}.mso .size-17-m{line-height:34px !important}.mso=20
+=2Esize-17-l{line-height:51px !important}.mso .size-18,.mso .size-18-m,.mso .=
+size-18-l{font-size:18px !important;line-height:26px !important}.mso .size-=
+18-m{line-height:36px !important}.mso .size-18-l{line-height:54px !importan=
+t}.mso .size-20,.mso .size-20-m,.mso .size-20-l{font-size:20px !important;l=
+ine-height:28px !important}.mso .size-20-m{line-height:40px !important}.mso=
+ .size-20-l{line-height:60px !important}.mso .size-22,.mso .size-22-m,.mso =
+=2Esize-22-l{font-size:22px !important;line-height:31px !important}.mso .size=
+-22-m{line-height:44px !important}.mso .size-22-l{line-height:66px !importa=
+nt}.mso .size-24,.mso .size-24-m,.mso .size-24-l{font-size:24px !important;=
+line-height:32px !important}.mso .size-24-m{line-height:48px !important}.ms=
+o .size-24-l{line-height:72px !important}.mso .size-26,.mso .size-26-m,.mso=
+ .size-26-l{font-size:26px !important;line-height:34px !important}.mso=20
+=2Esize-26-m{line-height:52px !important}.mso .size-26-l{line-height:78px !im=
+portant}.mso .size-28,.mso .size-28-m,.mso .size-28-l{font-size:28px !impor=
+tant;line-height:36px !important}.mso .size-28-m{line-height:56px !importan=
+t}.mso .size-28-l{line-height:84px !important}.mso .size-30,.mso .size-30-m=
+,.mso .size-30-l{font-size:30px !important;line-height:38px !important}.mso=
+ .size-30-m{line-height:60px !important}.mso .size-30-l{line-height:90px !i=
+mportant}.mso .size-32,.mso .size-32-m,.mso .size-32-l{font-size:32px !impo=
+rtant;line-height:40px !important}.mso .size-32-m{line-height:64px !importa=
+nt}.mso .size-32-l{line-height:96px !important}.mso .size-34,.mso .size-34-=
+m,.mso .size-34-l{font-size:34px !important;line-height:43px !important}.ms=
+o .size-34-m{line-height:68px !important}.mso .size-34-l{line-height:102px =
+!important}.mso .size-36,.mso .size-36-m,.mso .size-36-l{font-size:36px=20
+!important;line-height:43px !important}.mso .size-36-m{line-height:72px !im=
+portant}.mso .size-36-l{line-height:108px !important}.mso .size-40,.mso .si=
+ze-40-m,.mso .size-40-l{font-size:40px !important;line-height:47px !importa=
+nt}.mso .size-40-m{line-height:80px !important}.mso .size-40-l{line-height:=
+120px !important}.mso .size-44,.mso .size-44-m,.mso .size-44-l{font-size:44=
+px !important;line-height:50px !important}.mso .size-44-m{line-height:88px =
+!important}.mso .size-44-l{line-height:132px !important}.mso .size-48,.mso =
+=2Esize-48-m,.mso .size-48-l{font-size:48px !important;line-height:54px !impo=
+rtant}.mso .size-48-m{line-height:96px !important}.mso .size-48-l{line-heig=
+ht:144px !important}.mso .size-56,.mso .size-56-m,.mso .size-56-l{font-size=
+:56px !important;line-height:60px !important}.mso .size-56-m{line-height:11=
+2px !important}.mso .size-56-l{line-height:168px !important}.mso=20
+=2Esize-64,.mso .size-64-m,.mso .size-64-l{font-size:64px !important;line-hei=
+ght:68px !important}.mso .size-64-m{line-height:128px !important}.mso .size=
+-64-l{line-height:192px !important}.mso .size-72,.mso .size-72-m,.mso .size=
+-72-l{font-size:72px !important;line-height:76px !important}.mso .size-72-m=
+{line-height:144px !important}.mso .size-72-l{line-height:216px !important}=
+=2Emso .size-80,.mso .size-80-m,.mso .size-80-l{font-size:80px !important;lin=
+e-height:84px !important}.mso .size-80-m{line-height:160px !important}.mso =
+=2Esize-80-l{line-height:240px !important}.mso .size-96,.mso .size-96-m,.mso =
+=2Esize-96-l{font-size:96px !important;line-height:100px !important}.mso .siz=
+e-96-m{line-height:192px !important}.mso .size-96-l{line-height:288px !impo=
+rtant}.mso .size-112,.mso .size-112-m,.mso .size-112-l{font-size:112px !imp=
+ortant;line-height:116px !important}.mso .size-112-m{line-height:224px=20
+!important}.mso .size-112-l{line-height:336px !important}.mso .size-128,.ms=
+o .size-128-m,.mso .size-128-l{font-size:128px !important;line-height:132px=
+ !important}.mso .size-128-m{line-height:256px !important}.mso .size-128-l{=
+line-height:384px !important}.mso .size-144,.mso .size-144-m,.mso .size-144=
+-l{font-size:144px !important;line-height:148px !important}.mso .size-144-m=
+{line-height:288px !important}.mso .size-144-l{line-height:432px !important=
+}.mso .cmctbl table td,.mso .cmctbl table th{Margin-left:20px !important;Ma=
+rgin-right:20px !important}.mso .cmctbl- -inline,.mso .cmctbl{padding-left:=
+20px !important;padding-right:20px !important}.mso .cmctbl- -inline table,.=
+mso .cmctbl=20
+table{mso-table-lspace:0pt;mso-table-rspace:0pt;mso-line-height-rule:exactl=
+y}.size-8,.size-9{mso-text-raise:9px}.size-34,h1{mso-text-raise:13px}.size-=
+36{mso-text-raise:14px}.size-40{mso-text-raise:16px}.size-44{mso-text-raise=
+:17px}.size-48{mso-text-raise:18px}.size-56{mso-text-raise:22px}.size-64{ms=
+o-text-raise:25px}.size-72{mso-text-raise:28px}.size-80{mso-text-raise:32px=
+}.size-96{mso-text-raise:40px}.size-112{mso-text-raise:46px}.size-128{mso-t=
+ext-raise:54px}.size-144{mso-text-raise:58px}.size-11-m,.size-12-m{mso-text=
+-raise:6px}.size-13-m,.size-14-m{mso-text-raise:7px}.size-15-m,.size-16-m,.=
+size-8-l{mso-text-raise:8px}.size-17-m,.size-18-m{mso-text-raise:9px}.size-=
+20-m,.size-10-l{mso-text-raise:10px}.size-22-m,.size-11-l{mso-text-raise:11=
+px}.size-24-m,.size-12-l{mso-text-raise:12px}.size-26-m,.size-13-l{mso-text=
+-raise:13px}.size-28-m,.size-14-l{mso-text-raise:14px}.size-30-m,.size-15-l=
+{mso-text-raise:15px}.size-32-m,.size-16-l{mso-text-raise:16px}.size-34-m,.=
+size-17-l{mso-text-raise:17px}.size-36-m,.size-18-l{mso-text-raise:18px}.si=
+ze-40-m,.size-20-l{mso-text-raise:20px}.size-44-m,.size-22-l{mso-text-raise=
+:22px}.size-48-m,.size-24-l{mso-text-raise:24px}.size-26-l{mso-text-raise:2=
+6px}.size-56-m,.size-28-l{mso-text-raise:28px}.size-30-l{mso-text-raise:30p=
+x}.size-64-m,.size-32-l{mso-text-raise:32px}.size-34-l{mso-text-raise:34px}=
+=2Esize-72-m,.size-36-l{mso-text-raise:36px}.size-80-m,.size-40-l{mso-text-ra=
+ise:40px}.size-44-l{mso-text-raise:44px}.size-96-m,.size-48-l{mso-text-rais=
+e:48px}.size-112-m,.size-56-l{mso-text-raise:56px}.size-128-m,.size-64-l{ms=
+o-text-raise:64px}.size-144-m,.size-72-l{mso-text-raise:72px}.size-80-l{mso=
+-text-raise:80px}.size-96-l{mso-text-raise:96px}.size-112-l{mso-text-raise:=
+112px}.size-128-l{mso-text-raise:128px}.size-144-l{mso-text-raise:144px}=0D
+</style><![endif]--></head>
+<!--[if mso]>
+  <body class=3D"mso">
+<![endif]-->
+<!--[if !mso]><!-->
+  <body class=3D"main full-padding" style=3D"margin: 0;padding: 0;-webkit-t=
+ext-size-adjust: 100%;">
+<!--<![endif]-->
+    <table class=3D"wrapper" style=3D"border-collapse: collapse;table-layou=
+t: fixed;min-width: 320px;width: 100%;background-color: #27313c;" cellpaddi=
+ng=3D"0" cellspacing=3D"0" role=3D"presentation"><tbody><tr><td>
+      <div role=3D"banner">
+        <div class=3D"preheader" style=3D"Margin: 0 auto;max-width: 560px;m=
+in-width: 280px; width: 280px;width: calc(28000% - 167440px);">
+          <div style=3D"border-collapse: collapse;display: table;width: 100=
+%;">
+          <!--[if mso]><table align=3D"center" class=3D"preheader" cellpad=
+ding=3D"0" cellspacing=3D"0" role=3D"presentation"><tr><td style=3D"width: =
+280px" valign=3D"top"><![endif]-->
+            <div class=3D"snippet" style=3D"display: table-cell;Float: left=
+;font-size: 12px;line-height: 19px;max-width: 280px;min-width: 140px; width=
+: 140px;width: calc(14000% - 78120px);padding: 10px 0 5px 0;color: #fff;fon=
+t-family: Open Sans,sans-serif;">
+             =20
+            </div>
+          <!--[if mso]></td><td style=3D"width: 280px" valign=3D"top"><![=
+endif]-->
+            <div class=3D"webversion" style=3D"display: table-cell;Float: l=
+eft;font-size: 12px;line-height: 19px;max-width: 280px;min-width: 139px; wi=
+dth: 139px;width: calc(14100% - 78680px);padding: 10px 0 5px 0;text-align: =
+right;color: #fff;font-family: Open Sans,sans-serif;">
+              <p style=3D"Margin-top: 0;Margin-bottom: 0;" emb-social=3D"we=
+bversion">No images? <a style=3D"text-decoration: underline;transition: opa=
+city 0.1s ease-in;color: #fff;" href=3D"https://allislandmedia.=
+cmail20.com=
+/t/d-e-glradl-l-jj/">Click here</a></p>
+            </div>
+          <!--[if mso]></td></tr></table><![endif]-->
+          </div>
+        </div>
+        <div class=3D"header" style=3D"Margin: 0 auto;max-width: 600px;min-=
+width: 320px; width: 320px;width: calc(28000% - 167400px);" id=3D"emb-email=
+-header-container">
+        <!--[if mso]><table align=3D"center" class=3D"header" cellpadding=3D=
+"0" cellspacing=3D"0" role=3D"presentation"><tr><td style=3D"width: 600px">=
+<![endif]-->
+          <div class=3D"logo emb-logo-margin-box" style=3D"font-size: 26px;=
+line-height: 32px;Margin-top: 8px;Margin-bottom: 12px;color: #c3ced9;font-f=
+amily: Roboto,Tahoma,sans-serif;Margin-left: 20px;Margin-right: 20px;" alig=
+n=3D"center">
+            <div class=3D"logo-center" align=3D"center" id=3D"emb-email-hea=
+der"><a style=3D"text-decoration: none;transition: opacity 0.1s ease-in;col=
+or: #c3ced9;" href=3D"https://allislandmedia.cmail20.com=
+/t/d-i-=
+glradl-l-r/"><img style=3D"display: block;height: auto;width: 100%;border: =
+0;max-width: 166px;" src=3D"https=
+://i1.cmail20.com=
+/ei/d/AD/1FB/249/055019/csfinal/BE-header-Logo2.png" alt=3D"BAILIWIC=
+K EXPRESS" width=3D"166"></a></div>
+          </div>
+        <!--[if mso]></td></tr></table><![endif]-->
+        </div>
+      </div>
+      <div>
+      <div style=3D"background-color: #27313c;background: 100% 100%/cover n=
+o-repeat url(https=
+://i1.cmail20.com=
+/ei/d/AD=
+/1FB/249/055019/csfinal/emailheadertemplate3copy.jpg) #27313c;background-po=
+sition: 100% 100%;background-image: url(https=
+://i1.=
+cmail20.com=
+/ei/d/AD/1FB/249/055019/csfinal/emailheadertemplate3copy=
+=2Ejpg);background-repeat: no-repeat;background-size: cover;">
+        <div class=3D"layout one-col stack" style=3D"Margin: 0 auto;max-wid=
+th: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px);ove=
+rflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
+          <div class=3D"layout__inner" style=3D"border-collapse: collapse;d=
+isplay: table;width: 100%;">
+          <!--[if mso]><table width=3D"100%" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation"><tr class=3D"layout-full-width" style=3D"backg=
+round: 100% 100%/cover no-repeat url(https=
+://i1.=
+cmail20.com=
+/ei/d/AD/1FB/249/055019/csfinal/emailheadertemplate3copy.jp=
+g) #27313c;background-position: 100% 100%;background-image: url(=
+https=
+://i1.cmail20.com=
+/ei/d/AD/1FB/249/055019/csfinal/=
+emailheadertemplate3copy.jpg);background-repeat: no-repeat;background-size:=
+ cover;background-color: #27313c;"><td class=3D"layout__edges">&nbsp;</td><=
+td style=3D"width: 600px" class=3D"w560"><![endif]-->
+            <div class=3D"column" style=3D"text-align: left;color: #808285;=
+font-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;">
+           =20
+        <div style=3D"font-size: 12px;font-style: normal;font-weight: norma=
+l;line-height: 19px;" align=3D"center">
+          <img class=3D"gnd-corner-image gnd-corner-image-center gnd-corner=
+-image-top" style=3D"border: 0;display: block;height: auto;width: 100%;max-=
+width: 728px;" alt=3D"JERSEY EDITION" width=3D"600" src=3D"https=
+=
+://i1.cmail20.com=
+/ei/d/AD/1FB/249/055019/csfinal/Arrow=
+1-9900000000079e3c.png">
+        </div>
+     =20
+              <div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-top=
+: 20px;">
+      <div style=3D"mso-line-height-rule: exactly;line-height: 879px;font-s=
+ize: 1px;">&nbsp;</div>
+    </div>
+           =20
+              <div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-bot=
+tom: 24px;">
+      <div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;vert=
+ical-align: middle;">
+        <p style=3D"Margin-top: 0;Margin-bottom: 0;text-align: right;"><em>=
+<span style=3D"text-decoration: inherit;color: #ffffff;"><strong>(Jacques L=
+e Miere).&nbsp;</strong></span></em><span style=3D"text-decoration: inherit=
+;color: #f5f5f5;">Send us your pictures<strong><em>&nbsp;</em></strong></sp=
+an><a style=3D"text-decoration: underline;transition: opacity 0.1s ease-in;=
+color: #27313c;" data-emb-iscopy=3D"true" href=3D"mailto:pictures@bailiwick=
+express.com"><span style=3D"text-decoration: inherit;color: #f5f5f5;">HERE.=
+</span></a></p>
+      </div>
+    </div>
+           =20
+            </div>
+          <!--[if mso]></td><td class=3D"layout__edges">&nbsp;</td></tr></=
+table><![endif]-->
+          </div>
+        </div>
+      </div>
+ =20
+      <div style=3D"mso-line-height-rule: exactly;line-height: 20px;font-si=
+ze: 20px;">&nbsp;</div>
+ =20
+      <div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 au=
+to;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167=
+400px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-wo=
+rd;">
+        <div class=3D"layout__inner" style=3D"border-collapse: collapse;dis=
+play: table;width: 100%;background-color: #27313c;">
+        <!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"back=
+ground-color: #27313c;"><td style=3D"width: 600px" class=3D"w560"><![endif=
+]-->
+          <div class=3D"column" style=3D"text-align: left;color: #808285;fo=
+nt-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;">
+       =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-top: =
+24px;Margin-bottom: 24px;">
+      <div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;vert=
+ical-align: middle;">
+        <p style=3D"Margin-top: 0;Margin-bottom: 0;line-height: 21px;text-a=
+lign: left;"><span style=3D"text-decoration: inherit;color: #ffffff;"><stro=
+ng>Today's weather:</strong>&nbsp;20&#176;c, light rain</span><br>
+<span style=3D"text-decoration: inherit;color: #ffffff;"><strong>Tide: </st=
+rong>Low 17:44 (3.2</span><span style=3D"text-decoration: inherit;color: #f=
+7faf8;">m)</span><span style=3D"text-decoration: inherit;color: #f7f8fa;"> =
+High 23:25 (9</span><span style=3D"text-decoration: inherit;color: #f7faf8;=
+">m)</span><br>
+<span style=3D"text-decoration: inherit;color: #ffffff;">Thursday&nbsp;31&n=
+bsp;July&nbsp;2025</currentmonthname></currentday></currentdayname></span><=
+/p>
+      </div>
+    </div>
+       =20
+          </div>
+        <!--[if mso]></td></tr></table><![endif]-->
+        </div>
+      </div>
+ =20
+      <div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 au=
+to;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167=
+400px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-wo=
+rd;">
+        <div class=3D"layout__inner" style=3D"border-collapse: collapse;dis=
+play: table;width: 100%;background-color: #ffffff;">
+        <!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"back=
+ground-color: #ffffff;"><td style=3D"width: 600px" class=3D"w560"><![endif=
+]-->
+          <div class=3D"column" style=3D"text-align: left;color: #808285;fo=
+nt-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;">
+       =20
+        <div style=3D"font-size: 12px;font-style: normal;font-weight: norma=
+l;line-height: 19px;" align=3D"center">
+          <a style=3D"text-decoration: underline;transition: opacity 0.1s e=
+ase-in;color: #27313c;" href=3D"https://allislandmedia.cmail20.com=
+/t/d-i-glradl-l-y/"><img class=3D"gnd-corner-image gnd-corner-image-cent=
+er gnd-corner-image-top gnd-corner-image-bottom" style=3D"border: 0;display=
+: block;height: auto;width: 100%;max-width: 728px;" alt=3D"" width=3D"600" =
+src=3D"https=
+://i2.cmail20.com=
+/ei/d/AD/1FB/2=
+49/055019/csfinal/RETO-FINANCE-TOPBANNER-02-9900000000079e3c.gif"></a>
+        </div>
+     =20
+          </div>
+        <!--[if mso]></td></tr></table><![endif]-->
+        </div>
+      </div>
+ =20
+      <div style=3D"mso-line-height-rule: exactly;line-height: 20px;font-si=
+ze: 20px;">&nbsp;</div>
+ =20
+      <div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 au=
+to;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167=
+400px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-wo=
+rd;">
+        <div class=3D"layout__inner" style=3D"border-collapse: collapse;dis=
+play: table;width: 100%;background-color: #ffffff;">
+        <!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"back=
+ground-color: #ffffff;"><td style=3D"width: 600px" class=3D"w560"><![endif=
+]-->
+          <div class=3D"column" style=3D"text-align: left;color: #808285;fo=
+nt-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;">
+       =20
+        <div style=3D"font-size: 12px;font-style: normal;font-weight: norma=
+l;line-height: 19px;" align=3D"center">
+          <img class=3D"gnd-corner-image gnd-corner-image- gnd-corner-image=
+-top" style=3D"border: 0;display: block;height: auto;width: 100%;max-width:=
+ 768px;" alt=3D"" width=3D"600" src=3D"https://i0.wp.com/www.bailiwickexpre=
+ss.com/wp-content/uploads/2024/05/Michel_le_Cornu_Drury_Lane_.jpg?resize=3D=
+768%2C512&ssl=3D1">
+        </div>
+     =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-top: =
+20px;">
+      <div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;vert=
+ical-align: middle;">
+        <h1 style=3D"Margin-top: 0;Margin-bottom: 0;font-style: normal;font=
+-weight: normal;color: #27313c;font-size: 17px;line-height: 26px;font-famil=
+y: PT Sans,Trebuchet MS,sans-serif;text-align: center;">Minister absent as =
+islander who claims life destroyed by vibration makes formal complaint</h1>=
+<p style=3D"Margin-top: 20px;Margin-bottom: 20px;text-align: center;">A tow=
+n resident who attributes her terminal illness to the stress and &#8220;int=
+olerable suffering&#8221; caused by two electricity sub-stations close to h=
+er home presented her concerns about the government&#8217;s handling of her=
+ case at a public hearing this morning.</p>
+      </div>
+    </div>
+       =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-botto=
+m: 24px;">
+      <div class=3D"btn fullwidth btn--shadow btn--medium" style=3D"text-al=
+ign: center;">
+        <!--[if !mso]><!--><a style=3D"border-radius: 4px;display: block;f=
+ont-size: 12px;font-weight: bold;line-height: 22px;padding: 10px 20px 11px =
+20px;text-align: center;text-decoration: none !important;transition: opacit=
+y 0.1s ease-in;color: #27313c !important;box-shadow: inset 0 -2px 0 0 rgba(=
+0, 0, 0, 0.2);background-color: #a6ce39;font-family: Open Sans, sans-serif;=
+" href=3D"https://allislandmedia.cmail20.com=
+/t/d-i-glradl-l-j/"=
+>Read more</a><!--<![endif]-->
+      <!--[if mso]><p style=3D"line-height:0;margin:0;">&nbsp;</p><v:round=
+rect xmlns:v=3D"urn:schemas-microsoft-com:vml" href=3D"https://allislandmed=
+ia.cmail20.com=
+/t/d-i-glradl-l-j/" style=3D"width:420pt" arcsize=
+=3D"10%" fillcolor=3D"#A6CE39" stroke=3D"f"><v:shadow on=3D"t" color=3D"#85=
+A52E" offset=3D"0,2px"></v:shadow><v:textbox style=3D"mso-fit-shape-to-text=
+:t" inset=3D"0pt,6.75pt,0pt,6pt"><center style=3D"font-size:12px;line-heigh=
+t:22px;color:#27313C;font-family:Open Sans,sans-serif;font-weight:bold;mso-=
+line-height-rule:exactly;mso-text-raise:2px">Read more</center></v:textbox>=
+</v:roundrect><![endif]--></div>
+    </div>
+       =20
+          </div>
+        <!--[if mso]></td></tr></table><![endif]-->
+        </div>
+      </div>
+ =20
+      <div style=3D"mso-line-height-rule: exactly;line-height: 20px;font-si=
+ze: 20px;">&nbsp;</div>
+ =20
+      <div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 au=
+to;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167=
+400px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-wo=
+rd;">
+        <div class=3D"layout__inner" style=3D"border-collapse: collapse;dis=
+play: table;width: 100%;background-color: #ffffff;">
+        <!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"back=
+ground-color: #ffffff;"><td style=3D"width: 600px" class=3D"w560"><![endif=
+]-->
+          <div class=3D"column" style=3D"text-align: left;color: #808285;fo=
+nt-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;">
+       =20
+        <div style=3D"font-size: 12px;font-style: normal;font-weight: norma=
+l;line-height: 19px;" align=3D"center">
+          <a style=3D"text-decoration: underline;transition: opacity 0.1s e=
+ase-in;color: #27313c;" href=3D"https://allislandmedia.cmail20.com=
+/t/d-i-glradl-l-t/"><img class=3D"gnd-corner-image gnd-corner-image-cent=
+er gnd-corner-image-top gnd-corner-image-bottom" style=3D"border: 0;display=
+: block;height: auto;width: 100%;max-width: 900px;" alt=3D"" width=3D"600" =
+src=3D"https=
+://i3.cmail20.com=
+/ei/d/AD/1FB/2=
+49/055019/csfinal/Dandara_6-Percent_Apr-25_728x90_122111-9900000000079e3c.g=
+if"></a>
+        </div>
+     =20
+          </div>
+        <!--[if mso]></td></tr></table><![endif]-->
+        </div>
+      </div>
+ =20
+      <div style=3D"mso-line-height-rule: exactly;line-height: 20px;font-si=
+ze: 20px;">&nbsp;</div>
+ =20
+      <div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 au=
+to;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167=
+400px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-wo=
+rd;">
+        <div class=3D"layout__inner" style=3D"border-collapse: collapse;dis=
+play: table;width: 100%;background-color: #ffffff;">
+        <!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"back=
+ground-color: #ffffff;"><td style=3D"width: 600px" class=3D"w560"><![endif=
+]-->
+          <div class=3D"column" style=3D"text-align: left;color: #808285;fo=
+nt-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;">
+       =20
+        <div style=3D"font-size: 12px;font-style: normal;font-weight: norma=
+l;line-height: 19px;" align=3D"center">
+          <a style=3D"text-decoration: underline;transition: opacity 0.1s e=
+ase-in;color: #27313c;" href=3D"https://allislandmedia.cmail20.com=
+/t/d-i-glradl-l-i/"><img class=3D"gnd-corner-image gnd-corner-image-cent=
+er gnd-corner-image-top gnd-corner-image-bottom" style=3D"border: 0;display=
+: block;height: auto;width: 100%;max-width: 729px;" alt=3D"" width=3D"600" =
+src=3D"https=
+://i4.cmail20.com=
+/ei/d/AD/1FB/2=
+49/055019/csfinal/News-Header2-9900000000079e3c.jpg"></a>
+        </div>
+     =20
+          </div>
+        <!--[if mso]></td></tr></table><![endif]-->
+        </div>
+      </div>
+ =20
+      <div class=3D"layout fixed-width stack" style=3D"Margin: 0 auto;max-w=
+idth: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px);o=
+verflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
+        <div class=3D"layout__inner" style=3D"border-collapse: collapse;dis=
+play: table;width: 100%;background-color: #ffffff;">
+        <!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"back=
+ground-color: #ffffff;"><td style=3D"width: 400px" valign=3D"top" class=3D"=
+w360"><![endif]-->
+          <div class=3D"column wide" style=3D"text-align: left;color: #8082=
+85;font-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;Floa=
+t: left;max-width: 400px;min-width: 320px; width: 320px;width: calc(8000% -=
+ 47600px);">
+         =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-top: =
+24px;">
+        <div style=3D"font-size: 12px;font-style: normal;font-weight: norma=
+l;line-height: 19px;Margin-bottom: 20px;" align=3D"center">
+          <img style=3D"border: 0;display: block;height: auto;width: 100%;m=
+ax-width: 600px;" alt=3D"" width=3D"360" src=3D"https://i0.wp.com/www.baili=
+wickexpress.com/wp-content/uploads/2025/07/att.DOWewJQwSF8ZbvWeaqKgxCSkHaIn=
+2D_Scm1QgXlJ9LU.jpg?resize=3D780%2C585&ssl=3D1">
+        </div>
+      </div>
+         =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;">
+      <div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;vert=
+ical-align: middle;">
+        <h1 style=3D"Margin-top: 0;Margin-bottom: 0;font-style: normal;font=
+-weight: normal;color: #27313c;font-size: 17px;line-height: 26px;font-famil=
+y: PT Sans,Trebuchet MS,sans-serif;text-align: left;">Firefighters tackle b=
+laze near Holme Grown</h1><p style=3D"Margin-top: 20px;Margin-bottom: 20px;=
+text-align: left;">Emergency services are tackling a fire in the area of Ho=
+lme Grown.</p>
+      </div>
+    </div>
+         =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;">
+      <div class=3D"btn btn--shadow btn--medium" style=3D"Margin-bottom: 20=
+px;text-align: left;">
+        <!--[if !mso]><!--><a style=3D"border-radius: 4px;display: inline-=
+block;font-size: 12px;font-weight: bold;line-height: 22px;padding: 10px 20p=
+x 11px 20px;text-align: center;text-decoration: none !important;transition:=
+ opacity 0.1s ease-in;color: #27313c !important;box-shadow: inset 0 -2px 0 =
+0 rgba(0, 0, 0, 0.2);background-color: #a6ce39;font-family: Open Sans, sans=
+-serif;" href=3D"https://allislandmedia.cmail20.com=
+/t/d-i-glrad=
+l-l-d/">Read more</a><!--<![endif]-->
+      <!--[if mso]><p style=3D"line-height:0;margin:0;">&nbsp;</p><v:round=
+rect xmlns:v=3D"urn:schemas-microsoft-com:vml" href=3D"https://allislandmed=
+ia.cmail20.com=
+/t/d-i-glradl-l-d/" style=3D"width:78.75pt" arcsi=
+ze=3D"10%" fillcolor=3D"#A6CE39" stroke=3D"f"><v:shadow on=3D"t" color=3D"#=
+85A52E" offset=3D"0,2px"></v:shadow><v:textbox style=3D"mso-fit-shape-to-te=
+xt:t" inset=3D"0pt,6.75pt,0pt,6pt"><center style=3D"font-size:12px;line-hei=
+ght:22px;color:#27313C;font-family:Open Sans,sans-serif;font-weight:bold;ms=
+o-line-height-rule:exactly;mso-text-raise:2px">Read more</center></v:textbo=
+x></v:roundrect><![endif]--></div>
+    </div>
+         =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;">
+        <div style=3D"font-size: 12px;font-style: normal;font-weight: norma=
+l;line-height: 19px;Margin-bottom: 20px;" align=3D"center">
+          <img style=3D"border: 0;display: block;height: auto;width: 100%;m=
+ax-width: 600px;" alt=3D"" width=3D"360" src=3D"https://i0.wp.com/www.baili=
+wickexpress.com/wp-content/uploads/2021/11/HOUSES_PROPERTY.jpg?resize=3D600=
+%2C450&ssl=3D1">
+        </div>
+      </div>
+         =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;">
+      <div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;vert=
+ical-align: middle;">
+        <h1 style=3D"Margin-top: 0;Margin-bottom: 0;font-style: normal;font=
+-weight: normal;color: #27313c;font-size: 17px;line-height: 26px;font-famil=
+y: PT Sans,Trebuchet MS,sans-serif;text-align: left;">DIGEST: What&#8217;s =
+up and what&#8217;s down? Latest house prices revealed</h1><p style=3D"Marg=
+in-top: 20px;Margin-bottom: 20px;text-align: left;">What does Jersey&#8217;=
+s housing market currently look like? The latest stats are out &#8211;&nbsp=
+;and for the first time show how many rental properties were bought and sol=
+d.</p>
+      </div>
+    </div>
+         =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;">
+      <div class=3D"btn btn--shadow btn--medium" style=3D"Margin-bottom: 20=
+px;text-align: left;">
+        <!--[if !mso]><!--><a style=3D"border-radius: 4px;display: inline-=
+block;font-size: 12px;font-weight: bold;line-height: 22px;padding: 10px 20p=
+x 11px 20px;text-align: center;text-decoration: none !important;transition:=
+ opacity 0.1s ease-in;color: #27313c !important;box-shadow: inset 0 -2px 0 =
+0 rgba(0, 0, 0, 0.2);background-color: #a6ce39;font-family: Open Sans, sans=
+-serif;" href=3D"https://allislandmedia.cmail20.com=
+/t/d-i-glrad=
+l-l-h/">Read more</a><!--<![endif]-->
+      <!--[if mso]><p style=3D"line-height:0;margin:0;">&nbsp;</p><v:round=
+rect xmlns:v=3D"urn:schemas-microsoft-com:vml" href=3D"https://allislandmed=
+ia.cmail20.com=
+/t/d-i-glradl-l-h/" style=3D"width:78.75pt" arcsi=
+ze=3D"10%" fillcolor=3D"#A6CE39" stroke=3D"f"><v:shadow on=3D"t" color=3D"#=
+85A52E" offset=3D"0,2px"></v:shadow><v:textbox style=3D"mso-fit-shape-to-te=
+xt:t" inset=3D"0pt,6.75pt,0pt,6pt"><center style=3D"font-size:12px;line-hei=
+ght:22px;color:#27313C;font-family:Open Sans,sans-serif;font-weight:bold;ms=
+o-line-height-rule:exactly;mso-text-raise:2px">Read more</center></v:textbo=
+x></v:roundrect><![endif]--></div>
+    </div>
+         =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;">
+        <div style=3D"font-size: 12px;font-style: normal;font-weight: norma=
+l;line-height: 19px;Margin-bottom: 20px;" align=3D"center">
+          <img style=3D"border: 0;display: block;height: auto;width: 100%;m=
+ax-width: 600px;" alt=3D"" width=3D"360" src=3D"https://i0.wp.com/www.baili=
+wickexpress.com/wp-content/uploads/2023/09/shutterstock_1933077158.jpg?resi=
+ze=3D768%2C512&ssl=3D1">
+        </div>
+      </div>
+         =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;">
+      <div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;vert=
+ical-align: middle;">
+        <h1 style=3D"Margin-top: 0;Margin-bottom: 0;font-style: normal;font=
+-weight: normal;color: #27313c;font-size: 17px;line-height: 26px;font-famil=
+y: PT Sans,Trebuchet MS,sans-serif;text-align: left;">Future of Jersey&#821=
+7;s Samaritans branch unclear</h1><p style=3D"Margin-top: 20px;Margin-botto=
+m: 20px;text-align: left;">The future of Jersey&#8217;s Samaritans branch i=
+s unclear, amid plans from the charity to overhaul their entire frontline s=
+ervice following warnings that the current model of 200 local branches is &=
+#8220;not sustainable&#8221;.</p>
+      </div>
+    </div>
+         =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;">
+      <div class=3D"btn btn--shadow btn--medium" style=3D"Margin-bottom: 20=
+px;text-align: left;">
+        <!--[if !mso]><!--><a style=3D"border-radius: 4px;display: inline-=
+block;font-size: 12px;font-weight: bold;line-height: 22px;padding: 10px 20p=
+x 11px 20px;text-align: center;text-decoration: none !important;transition:=
+ opacity 0.1s ease-in;color: #27313c !important;box-shadow: inset 0 -2px 0 =
+0 rgba(0, 0, 0, 0.2);background-color: #a6ce39;font-family: Open Sans, sans=
+-serif;" href=3D"https://allislandmedia.cmail20.com=
+/t/d-i-glrad=
+l-l-k/">Read more</a><!--<![endif]-->
+      <!--[if mso]><p style=3D"line-height:0;margin:0;">&nbsp;</p><v:round=
+rect xmlns:v=3D"urn:schemas-microsoft-com:vml" href=3D"https://allislandmed=
+ia.cmail20.com=
+/t/d-i-glradl-l-k/" style=3D"width:78.75pt" arcsi=
+ze=3D"10%" fillcolor=3D"#A6CE39" stroke=3D"f"><v:shadow on=3D"t" color=3D"#=
+85A52E" offset=3D"0,2px"></v:shadow><v:textbox style=3D"mso-fit-shape-to-te=
+xt:t" inset=3D"0pt,6.75pt,0pt,6pt"><center style=3D"font-size:12px;line-hei=
+ght:22px;color:#27313C;font-family:Open Sans,sans-serif;font-weight:bold;ms=
+o-line-height-rule:exactly;mso-text-raise:2px">Read more</center></v:textbo=
+x></v:roundrect><![endif]--></div>
+    </div>
+         =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;">
+        <div style=3D"font-size: 12px;font-style: normal;font-weight: norma=
+l;line-height: 19px;Margin-bottom: 20px;" align=3D"center">
+          <img style=3D"border: 0;display: block;height: auto;width: 100%;m=
+ax-width: 600px;" alt=3D"" width=3D"360" src=3D"https://i0.wp.com/www.baili=
+wickexpress.com/wp-content/uploads/2025/07/collage-2025-07-31T094807.151-sc=
+aled.jpg?resize=3D1200%2C900&ssl=3D1">
+        </div>
+      </div>
+         =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;">
+      <div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;vert=
+ical-align: middle;">
+        <h1 style=3D"Margin-top: 0;Margin-bottom: 0;font-style: normal;font=
+-weight: normal;color: #27313c;font-size: 17px;line-height: 26px;font-famil=
+y: PT Sans,Trebuchet MS,sans-serif;text-align: left;">&#8220;We can&#8217;t=
+ afford to carry on into next year if all the toys are stolen this summer&#=
+8221;</h1><p style=3D"Margin-top: 20px;Margin-bottom: 20px;text-align: left=
+;">The founders of an eco-friendly initiative that provides free beach toys=
+ for children and families have called on the public to &#8220;take respons=
+ibility&#8221; and prevent theft.</p>
+      </div>
+    </div>
+         =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;">
+      <div class=3D"btn btn--shadow btn--medium" style=3D"Margin-bottom: 20=
+px;text-align: left;">
+        <!--[if !mso]><!--><a style=3D"border-radius: 4px;display: inline-=
+block;font-size: 12px;font-weight: bold;line-height: 22px;padding: 10px 20p=
+x 11px 20px;text-align: center;text-decoration: none !important;transition:=
+ opacity 0.1s ease-in;color: #27313c !important;box-shadow: inset 0 -2px 0 =
+0 rgba(0, 0, 0, 0.2);background-color: #a6ce39;font-family: Open Sans, sans=
+-serif;" href=3D"https://allislandmedia.cmail20.com=
+/t/d-i-glrad=
+l-l-u/">Read more</a><!--<![endif]-->
+      <!--[if mso]><p style=3D"line-height:0;margin:0;">&nbsp;</p><v:round=
+rect xmlns:v=3D"urn:schemas-microsoft-com:vml" href=3D"https://allislandmed=
+ia.cmail20.com=
+/t/d-i-glradl-l-u/" style=3D"width:78.75pt" arcsi=
+ze=3D"10%" fillcolor=3D"#A6CE39" stroke=3D"f"><v:shadow on=3D"t" color=3D"#=
+85A52E" offset=3D"0,2px"></v:shadow><v:textbox style=3D"mso-fit-shape-to-te=
+xt:t" inset=3D"0pt,6.75pt,0pt,6pt"><center style=3D"font-size:12px;line-hei=
+ght:22px;color:#27313C;font-family:Open Sans,sans-serif;font-weight:bold;ms=
+o-line-height-rule:exactly;mso-text-raise:2px">Read more</center></v:textbo=
+x></v:roundrect><![endif]--></div>
+    </div>
+         =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;">
+        <div style=3D"font-size: 12px;font-style: normal;font-weight: norma=
+l;line-height: 19px;Margin-bottom: 20px;" align=3D"center">
+          <img style=3D"border: 0;display: block;height: auto;width: 100%;m=
+ax-width: 600px;" alt=3D"" width=3D"360" src=3D"https://i0.wp.com/www.baili=
+wickexpress.com/wp-content/uploads/2025/07/Cimandis-Closure.jpg?resize=3D12=
+00%2C900&ssl=3D1">
+        </div>
+      </div>
+         =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;">
+      <div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;vert=
+ical-align: middle;">
+        <h1 style=3D"Margin-top: 0;Margin-bottom: 0;font-style: normal;font=
+-weight: normal;color: #27313c;font-size: 17px;line-height: 26px;font-famil=
+y: PT Sans,Trebuchet MS,sans-serif;">Cimandis almost saved by potential buy=
+er</h1><p style=3D"Margin-top: 20px;Margin-bottom: 20px;">Food service prov=
+ider Cimandis&#8217;s Guernsey operations came close to being saved by a po=
+tential buyer, it has emerged.</p>
+      </div>
+    </div>
+         =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;">
+      <div class=3D"btn btn--shadow btn--medium" style=3D"Margin-bottom: 20=
+px;text-align: left;">
+        <!--[if !mso]><!--><a style=3D"border-radius: 4px;display: inline-=
+block;font-size: 12px;font-weight: bold;line-height: 22px;padding: 10px 20p=
+x 11px 20px;text-align: center;text-decoration: none !important;transition:=
+ opacity 0.1s ease-in;color: #27313c !important;box-shadow: inset 0 -2px 0 =
+0 rgba(0, 0, 0, 0.2);background-color: #a6ce39;font-family: Open Sans, sans=
+-serif;" href=3D"https://allislandmedia.cmail20.com=
+/t/d-i-glrad=
+l-l-o/">Read more</a><!--<![endif]-->
+      <!--[if mso]><p style=3D"line-height:0;margin:0;">&nbsp;</p><v:round=
+rect xmlns:v=3D"urn:schemas-microsoft-com:vml" href=3D"https://allislandmed=
+ia.cmail20.com=
+/t/d-i-glradl-l-o/" style=3D"width:78.75pt" arcsi=
+ze=3D"10%" fillcolor=3D"#A6CE39" stroke=3D"f"><v:shadow on=3D"t" color=3D"#=
+85A52E" offset=3D"0,2px"></v:shadow><v:textbox style=3D"mso-fit-shape-to-te=
+xt:t" inset=3D"0pt,6.75pt,0pt,6pt"><center style=3D"font-size:12px;line-hei=
+ght:22px;color:#27313C;font-family:Open Sans,sans-serif;font-weight:bold;ms=
+o-line-height-rule:exactly;mso-text-raise:2px">Read more</center></v:textbo=
+x></v:roundrect><![endif]--></div>
+    </div>
+         =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;">
+        <div style=3D"font-size: 12px;font-style: normal;font-weight: norma=
+l;line-height: 19px;Margin-bottom: 20px;" align=3D"center">
+          <img style=3D"border: 0;display: block;height: auto;width: 100%;m=
+ax-width: 600px;" alt=3D"" width=3D"360" src=3D"https://i0.wp.com/www.baili=
+wickexpress.com/wp-content/uploads/2025/07/Deputy-de-Sausmarez-Sir-Keir.png=
+?resize=3D1024%2C681&ssl=3D1">
+        </div>
+      </div>
+         =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;">
+      <div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;vert=
+ical-align: middle;">
+        <h1 style=3D"Margin-top: 0;Margin-bottom: 0;font-style: normal;font=
+-weight: normal;color: #27313c;font-size: 17px;line-height: 26px;font-famil=
+y: PT Sans,Trebuchet MS,sans-serif;text-align: left;">Guernsey&#8217;s Chie=
+f Minister calls on Prime Minister over ongoing Gaza crisis</h1><p style=3D=
+"Margin-top: 20px;Margin-bottom: 20px;">Guernsey&#8217;s Chief Minister has=
+ followed Jersey in formally writing to the UK government to convey the isl=
+and&#8217;s deep concern over the ongoing Gaza crisis.</p>
+      </div>
+    </div>
+         =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;">
+      <div class=3D"btn btn--shadow btn--medium" style=3D"Margin-bottom: 20=
+px;text-align: left;">
+        <!--[if !mso]><!--><a style=3D"border-radius: 4px;display: inline-=
+block;font-size: 12px;font-weight: bold;line-height: 22px;padding: 10px 20p=
+x 11px 20px;text-align: center;text-decoration: none !important;transition:=
+ opacity 0.1s ease-in;color: #27313c !important;box-shadow: inset 0 -2px 0 =
+0 rgba(0, 0, 0, 0.2);background-color: #a6ce39;font-family: Open Sans, sans=
+-serif;" href=3D"https://allislandmedia.cmail20.com=
+/t/d-i-glrad=
+l-l-b/">Read more</a><!--<![endif]-->
+      <!--[if mso]><p style=3D"line-height:0;margin:0;">&nbsp;</p><v:round=
+rect xmlns:v=3D"urn:schemas-microsoft-com:vml" href=3D"https://allislandmed=
+ia.cmail20.com=
+/t/d-i-glradl-l-b/" style=3D"width:78.75pt" arcsi=
+ze=3D"10%" fillcolor=3D"#A6CE39" stroke=3D"f"><v:shadow on=3D"t" color=3D"#=
+85A52E" offset=3D"0,2px"></v:shadow><v:textbox style=3D"mso-fit-shape-to-te=
+xt:t" inset=3D"0pt,6.75pt,0pt,6pt"><center style=3D"font-size:12px;line-hei=
+ght:22px;color:#27313C;font-family:Open Sans,sans-serif;font-weight:bold;ms=
+o-line-height-rule:exactly;mso-text-raise:2px">Read more</center></v:textbo=
+x></v:roundrect><![endif]--></div>
+    </div>
+         =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;">
+        <div style=3D"font-size: 12px;font-style: normal;font-weight: norma=
+l;line-height: 19px;Margin-bottom: 20px;" align=3D"center">
+          <img style=3D"border: 0;display: block;height: auto;width: 100%;m=
+ax-width: 600px;" alt=3D"" width=3D"360" src=3D"https://i0.wp.com/www.baili=
+wickexpress.com/wp-content/uploads/2025/07/DSC02630-1-scaled.jpg?resize=3D2=
+000%2C1333&ssl=3D1">
+        </div>
+      </div>
+         =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;">
+      <div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;vert=
+ical-align: middle;">
+        <h1 style=3D"Margin-top: 0;Margin-bottom: 0;font-style: normal;font=
+-weight: normal;color: #27313c;font-size: 17px;line-height: 26px;font-famil=
+y: PT Sans,Trebuchet MS,sans-serif;text-align: left;">VOTE: Flower power! W=
+hich shop should win the battle before Battle?</h1><p style=3D"Margin-top: =
+20px;Margin-bottom: 20px;">Before the first float rolls, another battle of =
+flowers is already heating up &#8211; and it&#8217;s time for islanders to =
+decide who will win.</p>
+      </div>
+    </div>
+         =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-botto=
+m: 24px;">
+      <div class=3D"btn btn--shadow btn--medium" style=3D"text-align:left;"=
+>
+        <!--[if !mso]><!--><a style=3D"border-radius: 4px;display: inline-=
+block;font-size: 12px;font-weight: bold;line-height: 22px;padding: 10px 20p=
+x 11px 20px;text-align: center;text-decoration: none !important;transition:=
+ opacity 0.1s ease-in;color: #27313c !important;box-shadow: inset 0 -2px 0 =
+0 rgba(0, 0, 0, 0.2);background-color: #a6ce39;font-family: Open Sans, sans=
+-serif;" href=3D"https://allislandmedia.cmail20.com=
+/t/d-i-glrad=
+l-l-n/">Read more</a><!--<![endif]-->
+      <!--[if mso]><p style=3D"line-height:0;margin:0;">&nbsp;</p><v:round=
+rect xmlns:v=3D"urn:schemas-microsoft-com:vml" href=3D"https://allislandmed=
+ia.cmail20.com=
+/t/d-i-glradl-l-n/" style=3D"width:78.75pt" arcsi=
+ze=3D"10%" fillcolor=3D"#A6CE39" stroke=3D"f"><v:shadow on=3D"t" color=3D"#=
+85A52E" offset=3D"0,2px"></v:shadow><v:textbox style=3D"mso-fit-shape-to-te=
+xt:t" inset=3D"0pt,6.75pt,0pt,6pt"><center style=3D"font-size:12px;line-hei=
+ght:22px;color:#27313C;font-family:Open Sans,sans-serif;font-weight:bold;ms=
+o-line-height-rule:exactly;mso-text-raise:2px">Read more</center></v:textbo=
+x></v:roundrect><![endif]--></div>
+    </div>
+         =20
+          </div>
+        <!--[if mso]></td><td style=3D"width: 200px" valign=3D"top" class=3D=
+"w160"><![endif]-->
+          <div class=3D"column narrow" style=3D"text-align: left;color: #80=
+8285;font-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;Fl=
+oat: left;max-width: 320px;min-width: 200px; width: 320px;width: calc(72200=
+px - 12000%);">
+         =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-top: =
+24px;">
+        <div style=3D"font-size: 12px;font-style: normal;font-weight: norma=
+l;line-height: 19px;Margin-bottom: 20px;" align=3D"center">
+          <a style=3D"text-decoration: underline;transition: opacity 0.1s e=
+ase-in;color: #27313c;" href=3D"https://allislandmedia.cmail20.com=
+/t/d-i-glradl-l-p/"><img style=3D"border: 0;display: block;height: auto;=
+width: 100%;max-width: 160px;" alt=3D"" width=3D"160" src=3D"=
+https=
+://i5.cmail20.com=
+/ei/d/AD/1FB/249/055019/csfinal/Hig=
+hlands_CoinHoardLaunch-Sky-990000079e01453c.gif"></a>
+        </div>
+      </div>
+         =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;">
+      <div class=3D"divider" style=3D"display: block;font-size: 2px;line-he=
+ight: 2px;Margin-left: auto;Margin-right: auto;width: 40px;background-color=
+: #000;Margin-bottom: 20px;">&nbsp;</div>
+    </div>
+         =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;">
+        <div style=3D"font-size: 12px;font-style: normal;font-weight: norma=
+l;line-height: 19px;Margin-bottom: 20px;" align=3D"center">
+          <a style=3D"text-decoration: underline;transition: opacity 0.1s e=
+ase-in;color: #27313c;" href=3D"https://allislandmedia.cmail20.com=
+/t/d-i-glradl-l-x/"><img style=3D"border: 0;display: block;height: auto;=
+width: 100%;max-width: 180px;" alt=3D"" width=3D"160" src=3D"=
+https=
+://i6.cmail20.com=
+/ei/d/AD/1FB/249/055019/csfinal/Sky=
+scraperNo1Loungesthumbnail_2025-Jersey-D.Ads-Ba-990000079e01453c.jpg"></a>
+        </div>
+      </div>
+         =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-botto=
+m: 24px;">
+      <div class=3D"divider" style=3D"display: block;font-size: 2px;line-he=
+ight: 2px;Margin-left: auto;Margin-right: auto;width: 40px;background-color=
+: #000;">&nbsp;</div>
+    </div>
+         =20
+          </div>
+        <!--[if mso]></td></tr></table><![endif]-->
+        </div>
+      </div>
+ =20
+      <div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 au=
+to;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167=
+400px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-wo=
+rd;">
+        <div class=3D"layout__inner" style=3D"border-collapse: collapse;dis=
+play: table;width: 100%;background-color: #ffffff;">
+        <!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"back=
+ground-color: #ffffff;"><td style=3D"width: 600px" class=3D"w560"><![endif=
+]-->
+          <div class=3D"column" style=3D"text-align: left;color: #808285;fo=
+nt-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;">
+       =20
+        <div style=3D"font-size: 12px;font-style: normal;font-weight: norma=
+l;line-height: 19px;" align=3D"center">
+          <img class=3D"gnd-corner-image gnd-corner-image-center gnd-corner=
+-image-top gnd-corner-image-bottom" style=3D"border: 0;display: block;heigh=
+t: auto;width: 100%;max-width: 900px;" alt=3D"" width=3D"600" src=3D"=
+https=
+://i7.cmail20.com=
+/ei/d/AD/1FB/249/055019/csf=
+inal/Blank-Reversed-Header-9900000000079e3c1-9900000000079e3c.jpg">
+        </div>
+     =20
+          </div>
+        <!--[if mso]></td></tr></table><![endif]-->
+        </div>
+      </div>
+ =20
+      <div style=3D"mso-line-height-rule: exactly;line-height: 35px;font-si=
+ze: 35px;">&nbsp;</div>
+ =20
+      <div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 au=
+to;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167=
+400px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-wo=
+rd;">
+        <div class=3D"layout__inner" style=3D"border-collapse: collapse;dis=
+play: table;width: 100%;background-color: #ffffff;">
+        <!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"back=
+ground-color: #ffffff;"><td style=3D"width: 600px" class=3D"w560"><![endif=
+]-->
+          <div class=3D"column" style=3D"text-align: left;color: #808285;fo=
+nt-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;">
+       =20
+        <div style=3D"font-size: 12px;font-style: normal;font-weight: norma=
+l;line-height: 19px;" align=3D"center">
+          <a style=3D"text-decoration: underline;transition: opacity 0.1s e=
+ase-in;color: #27313c;" href=3D"https://allislandmedia.cmail20.com=
+/t/d-i-glradl-l-m/"><img class=3D"gnd-corner-image gnd-corner-image-cent=
+er gnd-corner-image-top gnd-corner-image-bottom" style=3D"border: 0;display=
+: block;height: auto;width: 100%;max-width: 728px;" alt=3D"" width=3D"600" =
+src=3D"https=
+://i8.cmail20.com=
+/ei/d/AD/1FB/2=
+49/055019/csfinal/BroadlandsBanner728x90311111111112-9900000000079e3c.jpg">=
+</a>
+        </div>
+     =20
+          </div>
+        <!--[if mso]></td></tr></table><![endif]-->
+        </div>
+      </div>
+ =20
+      <div style=3D"mso-line-height-rule: exactly;line-height: 20px;font-si=
+ze: 20px;">&nbsp;</div>
+ =20
+      <div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 au=
+to;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167=
+400px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-wo=
+rd;">
+        <div class=3D"layout__inner" style=3D"border-collapse: collapse;dis=
+play: table;width: 100%;background-color: #ffffff;">
+        <!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"back=
+ground-color: #ffffff;"><td style=3D"width: 600px" class=3D"w560"><![endif=
+]-->
+          <div class=3D"column" style=3D"text-align: left;color: #808285;fo=
+nt-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;">
+       =20
+        <div style=3D"font-size: 12px;font-style: normal;font-weight: norma=
+l;line-height: 19px;" align=3D"center">
+          <img class=3D"gnd-corner-image gnd-corner-image-center gnd-corner=
+-image-top gnd-corner-image-bottom" style=3D"border: 0;display: block;heigh=
+t: auto;width: 100%;max-width: 729px;" alt=3D"" width=3D"600" src=3D"=
+https=
+://i9.cmail20.com=
+/ei/d/AD/1FB/249/055019/csf=
+inal/charityspotlightheader-9900000000079e3c.jpg">
+        </div>
+     =20
+          </div>
+        <!--[if mso]></td></tr></table><![endif]-->
+        </div>
+      </div>
+ =20
+      <div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 au=
+to;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167=
+400px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-wo=
+rd;">
+        <div class=3D"layout__inner" style=3D"border-collapse: collapse;dis=
+play: table;width: 100%;background-color: #ffffff;">
+        <!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"back=
+ground-color: #ffffff;"><td style=3D"width: 600px" class=3D"w560"><![endif=
+]-->
+          <div class=3D"column" style=3D"text-align: left;color: #808285;fo=
+nt-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;">
+       =20
+        <div style=3D"font-size: 12px;font-style: normal;font-weight: norma=
+l;line-height: 19px;" align=3D"center">
+          <img class=3D"gnd-corner-image gnd-corner-image-center gnd-corner=
+-image-top" style=3D"border: 0;display: block;height: auto;width: 100%;max-=
+width: 768px;" alt=3D"" width=3D"600" src=3D"https://i0.wp.com/www.bailiwic=
+kexpress.com/wp-content/uploads/2025/07/Charity-Spotlight-Series-Project-Li=
+nus-scaled.jpg?resize=3D768%2C384&ssl=3D1">
+        </div>
+     =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-top: =
+20px;">
+      <div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;vert=
+ical-align: middle;">
+        <h1 style=3D"Margin-top: 0;Margin-bottom: 0;font-style: normal;font=
+-weight: normal;color: #27313c;font-size: 17px;line-height: 26px;font-famil=
+y: PT Sans,Trebuchet MS,sans-serif;text-align: center;">Sarah Jordan, Proje=
+ct Linus: &#8220;I enjoy my volunteering &#8216;work&#8217; even more than =
+my previous paid work&#8221;</h1><p style=3D"Margin-top: 20px;Margin-bottom=
+: 20px;text-align: center;">Each week,&nbsp;<em>Express</em>&nbsp;hears fro=
+m a charity leader on their biggest challenges and successes, what leadersh=
+ip and wellbeing truly mean in the third sector, and their hopes for the fu=
+ture.&nbsp;Next up is Project Linus UK &#8211; Jersey, Channel Islands &#82=
+11; a charity dedicated to providing handmade blankets and quilts to childr=
+en in need of comfort and security.</p>
+      </div>
+    </div>
+       =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;">
+      <div class=3D"btn fullwidth btn--shadow btn--medium" style=3D"Margin-=
+bottom: 20px;text-align: center;">
+        <!--[if !mso]><!--><a style=3D"border-radius: 4px;display: block;f=
+ont-size: 12px;font-weight: bold;line-height: 22px;padding: 10px 20px 11px =
+20px;text-align: center;text-decoration: none !important;transition: opacit=
+y 0.1s ease-in;color: #27313c !important;box-shadow: inset 0 -2px 0 0 rgba(=
+0, 0, 0, 0.2);background-color: #a6ce39;font-family: Open Sans, sans-serif;=
+" href=3D"https://allislandmedia.cmail20.com=
+/t/d-i-glradl-l-c/"=
+>Read more</a><!--<![endif]-->
+      <!--[if mso]><p style=3D"line-height:0;margin:0;">&nbsp;</p><v:round=
+rect xmlns:v=3D"urn:schemas-microsoft-com:vml" href=3D"https://allislandmed=
+ia.cmail20.com=
+/t/d-i-glradl-l-c/" style=3D"width:420pt" arcsize=
+=3D"10%" fillcolor=3D"#A6CE39" stroke=3D"f"><v:shadow on=3D"t" color=3D"#85=
+A52E" offset=3D"0,2px"></v:shadow><v:textbox style=3D"mso-fit-shape-to-text=
+:t" inset=3D"0pt,6.75pt,0pt,6pt"><center style=3D"font-size:12px;line-heigh=
+t:22px;color:#27313C;font-family:Open Sans,sans-serif;font-weight:bold;mso-=
+line-height-rule:exactly;mso-text-raise:2px">Read more</center></v:textbox>=
+</v:roundrect><![endif]--></div>
+    </div>
+       =20
+        <div style=3D"font-size: 12px;font-style: normal;font-weight: norma=
+l;line-height: 19px;" align=3D"center">
+          <img class=3D"gnd-corner-image gnd-corner-image-center gnd-corner=
+-image-bottom" style=3D"border: 0;display: block;height: auto;width: 100%;m=
+ax-width: 729px;" alt=3D"" width=3D"600" src=3D"https=
+:/=
+/i10.cmail20.com=
+/ei/d/AD/1FB/249/055019/csfinal/Bottomcopy5-990=
+0000000079e3c.jpg">
+        </div>
+     =20
+          </div>
+        <!--[if mso]></td></tr></table><![endif]-->
+        </div>
+      </div>
+ =20
+      <div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 au=
+to;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167=
+400px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-wo=
+rd;">
+        <div class=3D"layout__inner" style=3D"border-collapse: collapse;dis=
+play: table;width: 100%;background-color: #ffffff;">
+        <!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"back=
+ground-color: #ffffff;"><td style=3D"width: 600px" class=3D"w560"><![endif=
+]-->
+          <div class=3D"column" style=3D"text-align: left;color: #808285;fo=
+nt-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;">
+       =20
+        <div style=3D"font-size: 12px;font-style: normal;font-weight: norma=
+l;line-height: 19px;" align=3D"center">
+          <a style=3D"text-decoration: underline;transition: opacity 0.1s e=
+ase-in;color: #27313c;" href=3D"https://allislandmedia.cmail20.com=
+/t/d-i-glradl-l-q/"><img class=3D"gnd-corner-image gnd-corner-image-cent=
+er gnd-corner-image-top gnd-corner-image-bottom" style=3D"border: 0;display=
+: block;height: auto;width: 100%;max-width: 728px;" alt=3D"" width=3D"600" =
+src=3D"https=
+://i1.cmail20.com=
+/ei/d/AD/1FB/2=
+49/055019/csfinal/Leader-Board-JMCO4-9900000000079e3c.gif"></a>
+        </div>
+     =20
+          </div>
+        <!--[if mso]></td></tr></table><![endif]-->
+        </div>
+      </div>
+ =20
+      <div style=3D"mso-line-height-rule: exactly;line-height: 20px;font-si=
+ze: 20px;">&nbsp;</div>
+ =20
+      <div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 au=
+to;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167=
+400px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-wo=
+rd;">
+        <div class=3D"layout__inner" style=3D"border-collapse: collapse;dis=
+play: table;width: 100%;background-color: #edd2b9;">
+        <!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"back=
+ground-color: #edd2b9;"><td style=3D"width: 600px" class=3D"w560"><![endif=
+]-->
+          <div class=3D"column" style=3D"text-align: left;color: #808285;fo=
+nt-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;">
+       =20
+        <div style=3D"font-size: 12px;font-style: normal;font-weight: norma=
+l;line-height: 19px;" align=3D"center">
+          <img class=3D"gnd-corner-image gnd-corner-image-center gnd-corner=
+-image-top gnd-corner-image-bottom" style=3D"border: 0;display: block;heigh=
+t: auto;width: 100%;max-width: 729px;" alt=3D"" width=3D"600" src=3D"=
+https=
+://i2.cmail20.com=
+/ei/d/AD/1FB/249/055019/csf=
+inal/image1-9900000000079e3c-9900000000079e3c.png">
+        </div>
+     =20
+          </div>
+        <!--[if mso]></td></tr></table><![endif]-->
+        </div>
+      </div>
+ =20
+      <div class=3D"layout fixed-width stack" style=3D"Margin: 0 auto;max-w=
+idth: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px);o=
+verflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
+        <div class=3D"layout__inner" style=3D"border-collapse: collapse;dis=
+play: table;width: 100%;background-color: #edd2b9;">
+        <!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"back=
+ground-color: #edd2b9;"><td style=3D"width: 400px" valign=3D"top" class=3D"=
+w360"><![endif]-->
+          <div class=3D"column wide" style=3D"text-align: left;color: #8082=
+85;font-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;Floa=
+t: left;max-width: 400px;min-width: 320px; width: 320px;width: calc(8000% -=
+ 47600px);">
+         =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-top: =
+24px;">
+        <div style=3D"font-size: 12px;font-style: normal;font-weight: norma=
+l;line-height: 19px;Margin-bottom: 20px;" align=3D"center">
+          <img style=3D"border: 0;display: block;height: auto;width: 100%;m=
+ax-width: 600px;" alt=3D"" width=3D"360" src=3D"https://i0.wp.com/www.baili=
+wickexpress.com/wp-content/uploads/2025/07/Jersey-Seafoods-hand-picked-crab=
+-meat.jpg?resize=3D800%2C600&ssl=3D1">
+        </div>
+      </div>
+         =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;">
+      <div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;vert=
+ical-align: middle;">
+        <h1 style=3D"Margin-top: 0;Margin-bottom: 0;font-style: normal;font=
+-weight: normal;color: #27313c;font-size: 17px;line-height: 26px;font-famil=
+y: PT Sans,Trebuchet MS,sans-serif;">&#8220;As soon as we opened the contai=
+ner of this crab, we were transported to the sea&#8221;</h1><p style=3D"Mar=
+gin-top: 20px;Margin-bottom: 20px;">The husband-and-wife team behind a loca=
+l seafood, fishing and processing business are celebrating winning a key in=
+dustry accolade for their &#8220;exemplary&#8221; handpicked crab.</p>
+      </div>
+    </div>
+         =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-botto=
+m: 24px;">
+      <div class=3D"btn btn--shadow btn--medium" style=3D"text-align:left;"=
+>
+        <!--[if !mso]><!--><a style=3D"border-radius: 4px;display: inline-=
+block;font-size: 12px;font-weight: bold;line-height: 22px;padding: 10px 20p=
+x 11px 20px;text-align: center;text-decoration: none !important;transition:=
+ opacity 0.1s ease-in;color: #27313c !important;box-shadow: inset 0 -2px 0 =
+0 rgba(0, 0, 0, 0.2);background-color: #a6ce39;font-family: Open Sans, sans=
+-serif;" href=3D"https://allislandmedia.cmail20.com=
+/t/d-i-glrad=
+l-l-a/">Read more</a><!--<![endif]-->
+      <!--[if mso]><p style=3D"line-height:0;margin:0;">&nbsp;</p><v:round=
+rect xmlns:v=3D"urn:schemas-microsoft-com:vml" href=3D"https://allislandmed=
+ia.cmail20.com=
+/t/d-i-glradl-l-a/" style=3D"width:78.75pt" arcsi=
+ze=3D"10%" fillcolor=3D"#A6CE39" stroke=3D"f"><v:shadow on=3D"t" color=3D"#=
+85A52E" offset=3D"0,2px"></v:shadow><v:textbox style=3D"mso-fit-shape-to-te=
+xt:t" inset=3D"0pt,6.75pt,0pt,6pt"><center style=3D"font-size:12px;line-hei=
+ght:22px;color:#27313C;font-family:Open Sans,sans-serif;font-weight:bold;ms=
+o-line-height-rule:exactly;mso-text-raise:2px">Read more</center></v:textbo=
+x></v:roundrect><![endif]--></div>
+    </div>
+         =20
+          </div>
+        <!--[if mso]></td><td style=3D"width: 200px" valign=3D"top" class=3D=
+"w160"><![endif]-->
+          <div class=3D"column narrow" style=3D"text-align: left;color: #80=
+8285;font-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;Fl=
+oat: left;max-width: 320px;min-width: 200px; width: 320px;width: calc(72200=
+px - 12000%);">
+         =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-top: =
+24px;">
+      <div class=3D"divider" style=3D"display: block;font-size: 2px;line-he=
+ight: 2px;Margin-left: auto;Margin-right: auto;width: 40px;background-color=
+: #000;Margin-bottom: 20px;">&nbsp;</div>
+    </div>
+         =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;">
+        <div style=3D"font-size: 12px;font-style: normal;font-weight: norma=
+l;line-height: 19px;Margin-bottom: 20px;" align=3D"center">
+          <img style=3D"border: 0;display: block;height: auto;width: 100%;m=
+ax-width: 480px;" alt=3D"" width=3D"160" src=3D"https=
+:/=
+/i3.cmail20.com=
+/ei/d/AD/1FB/249/055019/csfinal/Screenshot2025-0=
+7-02130749-990000079e01453c.png">
+        </div>
+      </div>
+         =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;">
+      <div class=3D"btn fullwidth btn--shadow btn--medium" style=3D"Margin-=
+bottom: 20px;text-align: center;">
+        <!--[if !mso]><!--><a style=3D"border-radius: 4px;display: block;f=
+ont-size: 12px;font-weight: bold;line-height: 22px;padding: 10px 20px 11px =
+20px;text-align: center;text-decoration: none !important;transition: opacit=
+y 0.1s ease-in;color: #27313c !important;box-shadow: inset 0 -2px 0 0 rgba(=
+0, 0, 0, 0.2);background-color: #ffffff;font-family: Open Sans, sans-serif;=
+" href=3D"https://allislandmedia.cmail20.com=
+/t/d-i-glradl-l-f/"=
+>Read online</a><!--<![endif]-->
+      <!--[if mso]><p style=3D"line-height:0;margin:0;">&nbsp;</p><v:round=
+rect xmlns:v=3D"urn:schemas-microsoft-com:vml" href=3D"https://allislandmed=
+ia.cmail20.com=
+/t/d-i-glradl-l-f/" style=3D"width:120pt" arcsize=
+=3D"10%" fillcolor=3D"#FFFFFF" stroke=3D"f"><v:shadow on=3D"t" color=3D"#CC=
+CCCC" offset=3D"0,2px"></v:shadow><v:textbox style=3D"mso-fit-shape-to-text=
+:t" inset=3D"0pt,6.75pt,0pt,6pt"><center style=3D"font-size:12px;line-heigh=
+t:22px;color:#27313C;font-family:Open Sans,sans-serif;font-weight:bold;mso-=
+line-height-rule:exactly;mso-text-raise:2px">Read online</center></v:textbo=
+x></v:roundrect><![endif]--></div>
+    </div>
+         =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-botto=
+m: 24px;">
+      <div class=3D"divider" style=3D"display: block;font-size: 2px;line-he=
+ight: 2px;Margin-left: auto;Margin-right: auto;width: 40px;background-color=
+: #000;">&nbsp;</div>
+    </div>
+         =20
+          </div>
+        <!--[if mso]></td></tr></table><![endif]-->
+        </div>
+      </div>
+ =20
+      <div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 au=
+to;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167=
+400px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-wo=
+rd;">
+        <div class=3D"layout__inner" style=3D"border-collapse: collapse;dis=
+play: table;width: 100%;background-color: #ffffff;">
+        <!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"back=
+ground-color: #ffffff;"><td style=3D"width: 600px" class=3D"w560"><![endif=
+]-->
+          <div class=3D"column" style=3D"text-align: left;color: #808285;fo=
+nt-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;">
+       =20
+        <div style=3D"font-size: 12px;font-style: normal;font-weight: norma=
+l;line-height: 19px;" align=3D"center">
+          <img style=3D"border: 0;display: block;height: auto;width: 100%;m=
+ax-width: 600px;" alt=3D"" width=3D"600" src=3D"https=
+:/=
+/i4.cmail20.com=
+/ei/d/AD/1FB/249/055019/csfinal/image-2-99000000=
+00079e3c.png">
+        </div>
+     =20
+          </div>
+        <!--[if mso]></td></tr></table><![endif]-->
+        </div>
+      </div>
+ =20
+      <div style=3D"mso-line-height-rule: exactly;line-height: 20px;font-si=
+ze: 20px;">&nbsp;</div>
+ =20
+      <div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 au=
+to;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167=
+400px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-wo=
+rd;">
+        <div class=3D"layout__inner" style=3D"border-collapse: collapse;dis=
+play: table;width: 100%;background-color: #ffffff;">
+        <!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"back=
+ground-color: #ffffff;"><td style=3D"width: 600px" class=3D"w560"><![endif=
+]-->
+          <div class=3D"column" style=3D"text-align: left;color: #808285;fo=
+nt-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;">
+       =20
+        <div style=3D"font-size: 12px;font-style: normal;font-weight: norma=
+l;line-height: 19px;" align=3D"center">
+          <a style=3D"text-decoration: underline;transition: opacity 0.1s e=
+ase-in;color: #27313c;" href=3D"https://allislandmedia.cmail20.com=
+/t/d-i-glradl-l-z/"><img class=3D"gnd-corner-image gnd-corner-image-cent=
+er gnd-corner-image-top gnd-corner-image-bottom" style=3D"border: 0;display=
+: block;height: auto;width: 100%;max-width: 900px;" alt=3D"" width=3D"600" =
+src=3D"https=
+://i5.cmail20.com=
+/ei/d/AD/1FB/2=
+49/055019/csfinal/HorizonJDC-PropertyEmail-Banner-728x90-1-9900000000079e3c=
+=2Egif"></a>
+        </div>
+     =20
+          </div>
+        <!--[if mso]></td></tr></table><![endif]-->
+        </div>
+      </div>
+ =20
+      <div style=3D"mso-line-height-rule: exactly;line-height: 20px;font-si=
+ze: 20px;">&nbsp;</div>
+ =20
+      <div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 au=
+to;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167=
+400px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-wo=
+rd;">
+        <div class=3D"layout__inner" style=3D"border-collapse: collapse;dis=
+play: table;width: 100%;background-color: #ffffff;">
+        <!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"back=
+ground-color: #ffffff;"><td style=3D"width: 600px" class=3D"w560"><![endif=
+]-->
+          <div class=3D"column" style=3D"text-align: left;color: #808285;fo=
+nt-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;">
+       =20
+        <div style=3D"font-size: 12px;font-style: normal;font-weight: norma=
+l;line-height: 19px;" align=3D"center">
+          <img class=3D"gnd-corner-image gnd-corner-image-center gnd-corner=
+-image-top gnd-corner-image-bottom" style=3D"border: 0;display: block;heigh=
+t: auto;width: 100%;max-width: 729px;" alt=3D"" width=3D"600" src=3D"=
+https=
+://i6.cmail20.com=
+/ei/d/AD/1FB/249/055019/csf=
+inal/fn2-9900000000079e3c.jpg">
+        </div>
+     =20
+          </div>
+        <!--[if mso]></td></tr></table><![endif]-->
+        </div>
+      </div>
+ =20
+      <div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 au=
+to;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167=
+400px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-wo=
+rd;">
+        <div class=3D"layout__inner" style=3D"border-collapse: collapse;dis=
+play: table;width: 100%;background-color: #ffffff;">
+        <!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"back=
+ground-color: #ffffff;"><td style=3D"width: 600px" class=3D"w560"><![endif=
+]-->
+          <div class=3D"column" style=3D"text-align: left;color: #808285;fo=
+nt-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;">
+       =20
+        <div style=3D"font-size: 12px;font-style: normal;font-weight: norma=
+l;line-height: 19px;" align=3D"center">
+          <img style=3D"border: 0;display: block;height: auto;width: 100%;m=
+ax-width: 98px;" alt=3D"" width=3D"98" src=3D"https=
+://i=
+7.cmail20.com=
+/ei/d/AD/1FB/249/055019/csfinal/DEATH-ICON21-d8a79=
+4355a1802af.jpg">
+        </div>
+     =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-top: =
+20px;Margin-bottom: 24px;">
+      <div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;vert=
+ical-align: middle;">
+        <p class=3D"size-18" style=3D"Margin-top: 0;Margin-bottom: 0;font-s=
+ize: 17px;line-height: 26px;text-align: center;" lang=3D"x-size-18"><span s=
+tyle=3D"text-decoration: inherit;color: #000000;"><u><strong>DEATHS</strong=
+></u></span></p>
+      </div>
+    </div>
+       =20
+          </div>
+        <!--[if mso]></td></tr></table><![endif]-->
+        </div>
+      </div>
+ =20
+      <div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 au=
+to;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167=
+400px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-wo=
+rd;">
+        <div class=3D"layout__inner" style=3D"border-collapse: collapse;dis=
+play: table;width: 100%;background-color: #ffffff;">
+        <!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"back=
+ground-color: #ffffff;"><td style=3D"width: 600px" class=3D"w560"><![endif=
+]-->
+          <div class=3D"column" style=3D"text-align: left;color: #808285;fo=
+nt-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;">
+       =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-top: =
+24px;Margin-bottom: 24px;">
+      <div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;vert=
+ical-align: middle;">
+        <p style=3D"Margin-top: 0;Margin-bottom: 0;text-align: center;"><sp=
+an style=3D"text-decoration: inherit;color: #27313c;">Anita Peggy Noel (n&#=
+233;e Little)</span><br>
+<br>
+Died: 28/07/25<br>
+Maillards Funeral Directors</p>
+      </div>
+    </div>
+       =20
+          </div>
+        <!--[if mso]></td></tr></table><![endif]-->
+        </div>
+      </div>
+ =20
+      <div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 au=
+to;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167=
+400px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-wo=
+rd;">
+        <div class=3D"layout__inner" style=3D"border-collapse: collapse;dis=
+play: table;width: 100%;background-color: #ffffff;">
+        <!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"back=
+ground-color: #ffffff;"><td style=3D"width: 600px" class=3D"w560"><![endif=
+]-->
+          <div class=3D"column" style=3D"text-align: left;color: #808285;fo=
+nt-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;">
+       =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-top: =
+24px;Margin-bottom: 24px;">
+      <div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;vert=
+ical-align: middle;">
+        <p style=3D"Margin-top: 0;Margin-bottom: 0;text-align: center;"><em=
+>For more information, head to our partner site,&nbsp;<a style=3D"text-deco=
+ration: underline;transition: opacity 0.1s ease-in;color: #27313c;" data-em=
+b-iscopy=3D"true" href=3D"https://allislandmedia.cmail20.com=
+/t/=
+d-i-glradl-l-v/">familynotices.je</a></em></p>
+      </div>
+    </div>
+       =20
+          </div>
+        <!--[if mso]></td></tr></table><![endif]-->
+        </div>
+      </div>
+ =20
+      <div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 au=
+to;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167=
+400px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-wo=
+rd;">
+        <div class=3D"layout__inner" style=3D"border-collapse: collapse;dis=
+play: table;width: 100%;background-color: #ffffff;">
+        <!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"back=
+ground-color: #ffffff;"><td style=3D"width: 600px" class=3D"w560"><![endif=
+]-->
+          <div class=3D"column" style=3D"text-align: left;color: #808285;fo=
+nt-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;">
+       =20
+        <div style=3D"font-size: 12px;font-style: normal;font-weight: norma=
+l;line-height: 19px;" align=3D"center">
+          <img class=3D"gnd-corner-image gnd-corner-image-center gnd-corner=
+-image-top gnd-corner-image-bottom" style=3D"border: 0;display: block;heigh=
+t: auto;width: 100%;max-width: 729px;" alt=3D"" width=3D"600" src=3D"=
+https=
+://i8.cmail20.com=
+/ei/d/AD/1FB/249/055019/csf=
+inal/Bottomcopy511-9900000000079e3c.jpg">
+        </div>
+     =20
+          </div>
+        <!--[if mso]></td></tr></table><![endif]-->
+        </div>
+      </div>
+ =20
+      <div style=3D"mso-line-height-rule: exactly;line-height: 20px;font-si=
+ze: 20px;">&nbsp;</div>
+ =20
+      <div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 au=
+to;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167=
+400px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-wo=
+rd;">
+        <div class=3D"layout__inner" style=3D"border-collapse: collapse;dis=
+play: table;width: 100%;background-color: #ffffff;">
+        <!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"back=
+ground-color: #ffffff;"><td style=3D"width: 600px" class=3D"w560"><![endif=
+]-->
+          <div class=3D"column" style=3D"text-align: left;color: #808285;fo=
+nt-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;">
+       =20
+        <div style=3D"font-size: 12px;font-style: normal;font-weight: norma=
+l;line-height: 19px;" align=3D"center">
+          <a style=3D"text-decoration: underline;transition: opacity 0.1s e=
+ase-in;color: #27313c;" href=3D"https://allislandmedia.cmail20.com=
+/t/d-i-glradl-l-e/"><img class=3D"gnd-corner-image gnd-corner-image-cent=
+er gnd-corner-image-top gnd-corner-image-bottom" style=3D"border: 0;display=
+: block;height: auto;width: 100%;max-width: 778px;" alt=3D"" width=3D"600" =
+src=3D"https=
+://i9.cmail20.com=
+/ei/d/AD/1FB/2=
+49/055019/csfinal/Radio-Banner-9900000000079e3c.jpg"></a>
+        </div>
+     =20
+          </div>
+        <!--[if mso]></td></tr></table><![endif]-->
+        </div>
+      </div>
+ =20
+      <div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 au=
+to;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167=
+400px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-wo=
+rd;">
+        <div class=3D"layout__inner" style=3D"border-collapse: collapse;dis=
+play: table;width: 100%;background-color: #ffffff;">
+        <!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"back=
+ground-color: #ffffff;"><td style=3D"width: 600px" class=3D"w560"><![endif=
+]-->
+          <div class=3D"column" style=3D"text-align: left;color: #808285;fo=
+nt-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;">
+       =20
+        <div style=3D"font-size: 12px;font-style: normal;font-weight: norma=
+l;line-height: 19px;" align=3D"center">
+          <img class=3D"gnd-corner-image gnd-corner-image-center gnd-corner=
+-image-top gnd-corner-image-bottom" style=3D"border: 0;display: block;heigh=
+t: auto;width: 100%;max-width: 778px;" alt=3D"" width=3D"600" src=3D"=
+https=
+://i10.cmail20.com=
+/ei/d/AD/1FB/249/055019/cs=
+final/Download-Banner1-9900000000079e3c.jpg">
+        </div>
+     =20
+          </div>
+        <!--[if mso]></td></tr></table><![endif]-->
+        </div>
+      </div>
+ =20
+      <div class=3D"layout two-col fixed-width stack" style=3D"Margin: 0 au=
+to;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167=
+400px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-wo=
+rd;">
+        <div class=3D"layout__inner" style=3D"border-collapse: collapse;dis=
+play: table;width: 100%;background-color: #ffffff;">
+        <!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"back=
+ground-color: #ffffff;"><td style=3D"width: 300px" valign=3D"top" class=3D"=
+w260"><![endif]-->
+          <div class=3D"column" style=3D"text-align: left;color: #808285;fo=
+nt-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;max-width=
+: 320px;min-width: 300px; width: 320px;width: calc(12300px - 2000%);Float: =
+left;">
+         =20
+        <div style=3D"font-size: 12px;font-style: normal;font-weight: norma=
+l;line-height: 19px;" align=3D"center">
+          <a style=3D"text-decoration: underline;transition: opacity 0.1s e=
+ase-in;color: #27313c;" href=3D"https://allislandmedia.cmail20.com=
+/t/d-i-glradl-l-s/"><img class=3D"gnd-corner-image gnd-corner-image-cent=
+er gnd-corner-image-top gnd-corner-image-bottom" style=3D"border: 0;display=
+: block;height: auto;width: 100%;max-width: 387px;" alt=3D"" width=3D"300" =
+src=3D"https=
+://i1.cmail20.com=
+/ei/d/AD/1FB/2=
+49/055019/csfinal/Apple-Classics-990000000003cf3c.jpg"></a>
+        </div>
+     =20
+          </div>
+        <!--[if mso]></td><td style=3D"width: 300px" valign=3D"top" class=3D=
+"w260"><![endif]-->
+          <div class=3D"column" style=3D"text-align: left;color: #808285;fo=
+nt-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;max-width=
+: 320px;min-width: 300px; width: 320px;width: calc(12300px - 2000%);Float: =
+left;">
+         =20
+        <div style=3D"font-size: 12px;font-style: normal;font-weight: norma=
+l;line-height: 19px;" align=3D"center">
+          <a style=3D"text-decoration: underline;transition: opacity 0.1s e=
+ase-in;color: #27313c;" href=3D"https://allislandmedia.cmail20.com=
+/t/d-i-glradl-l-g/"><img class=3D"gnd-corner-image gnd-corner-image-cent=
+er gnd-corner-image-top gnd-corner-image-bottom" style=3D"border: 0;display=
+: block;height: auto;width: 100%;max-width: 387px;" alt=3D"" width=3D"300" =
+src=3D"https=
+://i2.cmail20.com=
+/ei/d/AD/1FB/2=
+49/055019/csfinal/Apple-Hits-990000000003cf3c.jpg"></a>
+        </div>
+     =20
+          </div>
+        <!--[if mso]></td></tr></table><![endif]-->
+        </div>
+      </div>
+ =20
+      <div style=3D"mso-line-height-rule: exactly;line-height: 20px;font-si=
+ze: 20px;">&nbsp;</div>
+ =20
+      <div class=3D"layout two-col fixed-width stack" style=3D"Margin: 0 au=
+to;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167=
+400px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-wo=
+rd;">
+        <div class=3D"layout__inner" style=3D"border-collapse: collapse;dis=
+play: table;width: 100%;background-color: #ffffff;">
+        <!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"back=
+ground-color: #ffffff;"><td style=3D"width: 300px" valign=3D"top" class=3D"=
+w260"><![endif]-->
+          <div class=3D"column" style=3D"text-align: left;color: #808285;fo=
+nt-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;max-width=
+: 320px;min-width: 300px; width: 320px;width: calc(12300px - 2000%);Float: =
+left;">
+         =20
+        <div style=3D"font-size: 12px;font-style: normal;font-weight: norma=
+l;line-height: 19px;" align=3D"center">
+          <a style=3D"text-decoration: underline;transition: opacity 0.1s e=
+ase-in;color: #27313c;" href=3D"https://allislandmedia.cmail20.com=
+/t/d-i-glradl-l-w/"><img class=3D"gnd-corner-image gnd-corner-image-cent=
+er gnd-corner-image-top gnd-corner-image-bottom" style=3D"border: 0;display=
+: block;height: auto;width: 100%;max-width: 387px;" alt=3D"" width=3D"300" =
+src=3D"https=
+://i3.cmail20.com=
+/ei/d/AD/1FB/2=
+49/055019/csfinal/Andriod-Classics-990000000003cf3c.jpg"></a>
+        </div>
+     =20
+          </div>
+        <!--[if mso]></td><td style=3D"width: 300px" valign=3D"top" class=3D=
+"w260"><![endif]-->
+          <div class=3D"column" style=3D"text-align: left;color: #808285;fo=
+nt-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;max-width=
+: 320px;min-width: 300px; width: 320px;width: calc(12300px - 2000%);Float: =
+left;">
+         =20
+        <div style=3D"font-size: 12px;font-style: normal;font-weight: norma=
+l;line-height: 19px;" align=3D"center">
+          <a style=3D"text-decoration: underline;transition: opacity 0.1s e=
+ase-in;color: #27313c;" href=3D"https://allislandmedia.cmail20.com=
+/t/d-i-glradl-l-yd/"><img class=3D"gnd-corner-image gnd-corner-image-cen=
+ter gnd-corner-image-top gnd-corner-image-bottom" style=3D"border: 0;displa=
+y: block;height: auto;width: 100%;max-width: 387px;" alt=3D"" width=3D"300"=
+ src=3D"https=
+://i4.cmail20.com=
+/ei/d/AD/1FB/=
+249/055019/csfinal/Andriod-Hits-990000000003cf3c.jpg"></a>
+        </div>
+     =20
+          </div>
+        <!--[if mso]></td></tr></table><![endif]-->
+        </div>
+      </div>
+ =20
+      <div style=3D"mso-line-height-rule: exactly;line-height: 20px;font-si=
+ze: 20px;">&nbsp;</div>
+ =20
+      <div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 au=
+to;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167=
+400px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-wo=
+rd;">
+        <div class=3D"layout__inner" style=3D"border-collapse: collapse;dis=
+play: table;width: 100%;background-color: #ffffff;">
+        <!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"back=
+ground-color: #ffffff;"><td style=3D"width: 600px" class=3D"w560"><![endif=
+]-->
+          <div class=3D"column" style=3D"text-align: left;color: #808285;fo=
+nt-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;">
+       =20
+        <div style=3D"font-size: 12px;font-style: normal;font-weight: norma=
+l;line-height: 19px;" align=3D"center">
+          <a style=3D"text-decoration: underline;transition: opacity 0.1s e=
+ase-in;color: #27313c;" href=3D"mailto:sales@bailiwickexpress.com"><img cla=
+ss=3D"gnd-corner-image gnd-corner-image-center gnd-corner-image-top gnd-cor=
+ner-image-bottom" style=3D"border: 0;display: block;height: auto;width: 100=
+%;max-width: 778px;" alt=3D"" width=3D"600" src=3D"https=
+://i5.cmail20.com=
+/ei/d/AD/1FB/249/055019/csfinal/Email-Us-Bann=
+er-9900000000079e3c.jpg"></a>
+        </div>
+     =20
+          </div>
+        <!--[if mso]></td></tr></table><![endif]-->
+        </div>
+      </div>
+ =20
+      <div style=3D"mso-line-height-rule: exactly;line-height: 20px;font-si=
+ze: 20px;">&nbsp;</div>
+ =20
+      <div class=3D"layout one-col fixed-width stack" style=3D"Margin: 0 au=
+to;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167=
+400px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-wo=
+rd;">
+        <div class=3D"layout__inner" style=3D"border-collapse: collapse;dis=
+play: table;width: 100%;background-color: #27313c;">
+        <!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation"><tr class=3D"layout-fixed-width" style=3D"back=
+ground-color: #27313c;"><td style=3D"width: 600px" class=3D"w560"><![endif=
+]-->
+          <div class=3D"column" style=3D"text-align: left;color: #808285;fo=
+nt-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;">
+       =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-top: =
+24px;Margin-bottom: 24px;">
+      <div>
+        <div style=3D"padding-top: 8px; text-align: left"><span style=3D"pa=
+dding-right: 4px;"><a style=3D"text-decoration: underline;transition: opaci=
+ty 0.1s ease-in;color: #27313c;display: inline-block;border-radius: 50%;wid=
+th: 24px;height: 24px;max-height: 24px;background-color: #13181E;" href=3D"=
+https://allislandmedia.cmail20.com=
+/t/d-i-glradl-l-yh/"><img sty=
+le=3D"border: 0;" src=3D"https=
+://i1.cmail20.com=
+/static/eb/master/13-the-blueprint-3/images/socialmedia/facebook-white-=
+small.png" alt=3D"Facebook" height=3D"24" width=3D"24" cm_dontimportimage><=
+/a></span><span style=3D"padding-right: 4px;"><a style=3D"text-decoration: =
+underline;transition: opacity 0.1s ease-in;color: #27313c;display: inline-b=
+lock;border-radius: 50%;width: 24px;height: 24px;max-height: 24px;backgroun=
+d-color: #13181E;"=20
+href=3D"https://allislandmedia.cmail20.com=
+/t/d-i-glradl-l-yk/">=
+<img style=3D"border: 0;" src=3D"https=
+://i4.=
+cmail20.com=
+/static/eb/master/13-the-blueprint-3/images/socialmedia/twitter=
+-white-small.png" alt=3D"Twitter" height=3D"24" width=3D"24" cm_dontimporti=
+mage></a></span><span style=3D"padding-right: 4px;"><a style=3D"text-decora=
+tion: underline;transition: opacity 0.1s ease-in;color: #27313c;display: in=
+line-block;border-radius: 50%;width: 24px;height: 24px;max-height: 24px;bac=
+kground-color: #13181E;" href=3D"https://allislandmedia.cmail20.com=
+/t/d-i-glradl-l-yu/"><img style=3D"border: 0;" src=3D"https=
+://i10.cmail20.com=
+/static/eb/master/13-the-blueprint-3/=
+images/socialmedia/instagram-white-small.png" alt=3D"Instagram" height=3D"2=
+4" width=3D"24" cm_dontimportimage></a></span><span style=3D"padding-right:=
+ 4px;"><a=20
+style=3D"text-decoration: underline;transition: opacity 0.1s ease-in;color:=
+ #27313c;display: inline-block;border-radius: 50%;width: 24px;height: 24px;=
+max-height: 24px;background-color: #13181E;" href=3D"https://allislandmedia=
+=2Ecmail20.com=
+/t/d-i-glradl-l-jl/"><img style=3D"border: 0;" src=3D=
+"https=
+://i2.cmail20.com=
+/static/eb/master/13=
+-the-blueprint-3/images/socialmedia/linkedin-white-small.png" alt=3D"Linked=
+In" height=3D"24" width=3D"24" cm_dontimportimage></a></span><span style=3D=
+"padding-right: 4px;"><a style=3D"text-decoration: underline;transition: op=
+acity 0.1s ease-in;color: #27313c;display: inline-block;border-radius: 50%;=
+width: 24px;height: 24px;max-height: 24px;background-color: #13181E;" href=3D=
+"https://allislandmedia.cmail20.com=
+/t/d-i-glradl-l-jr/"><img st=
+yle=3D"border: 0;"=20
+src=3D"https=
+://i5.cmail20.com=
+/static/eb/mas=
+ter/13-the-blueprint-3/images/socialmedia/website-white-small.png" alt=3D"W=
+ebsite" height=3D"24" width=3D"24" cm_dontimportimage></a></span></div>
+      </div>
+    </div>
+       =20
+          </div>
+        <!--[if mso]></td></tr></table><![endif]-->
+        </div>
+      </div>
+ =20
+      </div>
+      <div role=3D"contentinfo"><div style=3D"line-height:0px;font-size:0px=
+;" id=3D"footer-top-spacing">&nbsp;</div><div class=3D"layout email-flexibl=
+e-footer email-footer" style=3D"Margin: 0 auto;max-width: 600px;min-width: =
+320px; width: 320px;width: calc(28000% - 167400px);overflow-wrap: break-wor=
+d;word-wrap: break-word;word-break: break-word;" id=3D"footer-content">
+      <div class=3D"layout__inner left-aligned-footer" style=3D"border-coll=
+apse: collapse;display: table;width: 100%;">
+        <!--[if mso]><table align=3D"center" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation"><tr class=3D"layout-email-footer"><![endif]--=
+>
+        <!--[if mso]><td><table cellpadding=3D"0" cellspacing=3D"0"><![en=
+dif]-->
+        <!--[if mso]><td valign=3D"top"><![endif]-->
+          <div class=3D"column" style=3D"text-align: left;font-size: 12px;l=
+ine-height: 19px;color: #fff;font-family: Open Sans,sans-serif;">
+      <div class=3D"footer-logo emb-logo-margin-box" style=3D"font-size: 26=
+px;line-height: 32px;Margin-top: 8px;Margin-bottom: 12px;color: #7b663d;fon=
+t-family: Roboto,Tahoma,sans-serif;" align=3D"center">
+        <div style=3D"margin-right: 20px;" emb-flexible-footer-logo align=3D=
+"center"><img style=3D"border: 0;display: block;height: auto;width: 100%;ma=
+x-width: 180px;" src=3D"https=
+://i1.cmail20.com=
+/ei/d/AD/1FB/249/055019/csfinal/logo-200pxwide-9900000000028a3c.png" alt=
+=3D"" width=3D"180"></div>
+      </div>
+    </div>
+        <!--[if mso]></td><![endif]-->
+        <!--[if mso]><td valign=3D"top"><![endif]-->
+          <div class=3D"column" style=3D"text-align: left;font-size: 12px;l=
+ine-height: 19px;color: #fff;font-family: Open Sans,sans-serif;">
+      <div style=3D"margin-left: 0;margin-right: 0;Margin-top: 10px;Margin-=
+bottom: 10px;">
+        <div class=3D"footer__share-button">
+          <div class=3D"flexible-footer__share-button__container" style=3D"=
+Margin-bottom: 6px;mso-line-height-rule: exactly;margin-right: 20px;">
+            <a class=3D"icon-white" style=3D"text-decoration: none;transiti=
+on: opacity 0.1s ease-in;color: white;border-radius: 2px;display: inline-bl=
+ock;font-size: 11px;font-weight: bold;line-height: 19px;text-align: left;bo=
+rder-style: solid;border-width: 4px 0 4px 4px;mso-border-width-alt: 4px 8px=
+ 8px 8px;background-color: #14191e;border-color: #14191e;mso-border-color-a=
+lt: #14191e;width: 81px;box-sizing: content-box;" href=3D"https://allisland=
+media.cmail20.com=
+/t/d-fb-glradl-l-jt/">
+              &nbsp;<img style=3D"border: 0;display: inline-block;margin-ri=
+ght: 2px;vertical-align: -3px;" src=3D"https=
+://i1.=
+cmail20.com=
+//static/eb/master/13-the-blueprint-3/images/fblike-white=
+-flex@2x.png" width=3D"16" height=3D"16" border=3D"0" alt=3D"">
+              <span style=3D"font-size: 11px;mso-text-raise: 3px;">Share&nb=
+sp;</span>
+            </a>
+          </div>
+          <div class=3D"flexible-footer__share-button__container" style=3D"=
+Margin-bottom: 6px;mso-line-height-rule: exactly;margin-right: 20px;">
+            <a class=3D"icon-white" style=3D"text-decoration: none;transiti=
+on: opacity 0.1s ease-in;color: white;border-radius: 2px;display: inline-bl=
+ock;font-size: 11px;font-weight: bold;line-height: 19px;text-align: left;bo=
+rder-style: solid;border-width: 4px 0 4px 4px;mso-border-width-alt: 4px 8px=
+ 8px 8px;background-color: #14191e;border-color: #14191e;mso-border-color-a=
+lt: #14191e;width: 81px;box-sizing: content-box;" href=3D"https://allisland=
+media.cmail20.com=
+/t/d-tw-glradl-l-ji/">
+              &nbsp;<img style=3D"border: 0;display: inline-block;margin-ri=
+ght: 2px;vertical-align: -3px;" src=3D"https=
+://i2.=
+cmail20.com=
+//static/eb/master/13-the-blueprint-3/images/tweet-white-=
+flex@2x.png" width=3D"16" height=3D"16" border=3D"0" alt=3D"">
+              <span style=3D"font-size: 11px;mso-text-raise: 3px;">Tweet&nb=
+sp;</span>
+            </a>
+          </div>
+          <div class=3D"flexible-footer__share-button__container" style=3D"=
+Margin-bottom: 6px;mso-line-height-rule: exactly;margin-right: 20px;">
+            <a class=3D"icon-white" style=3D"text-decoration: none;transiti=
+on: opacity 0.1s ease-in;color: white;border-radius: 2px;display: inline-bl=
+ock;font-size: 11px;font-weight: bold;line-height: 19px;text-align: left;bo=
+rder-style: solid;border-width: 4px 0 4px 4px;mso-border-width-alt: 4px 8px=
+ 8px 8px;background-color: #14191e;border-color: #14191e;mso-border-color-a=
+lt: #14191e;width: 81px;box-sizing: content-box;" href=3D"https://allisland=
+media.cmail20.com=
+/t/d-li-glradl-l-jd/">
+              &nbsp;<img style=3D"border: 0;display: inline-block;margin-ri=
+ght: 2px;vertical-align: -3px;" src=3D"https=
+://i3.=
+cmail20.com=
+//static/eb/master/13-the-blueprint-3/images/linkedinshar=
+e-white-flex@2x.png" width=3D"16" height=3D"16" border=3D"0" alt=3D"">
+              <span style=3D"font-size: 11px;mso-text-raise: 3px;">Share&nb=
+sp;</span>
+            </a>
+          </div>
+          <div class=3D"flexible-footer__share-button__container" style=3D"=
+Margin-bottom: 6px;mso-line-height-rule: exactly;margin-right: 20px;">
+            <a class=3D"icon-white" style=3D"text-decoration: none;transiti=
+on: opacity 0.1s ease-in;color: white;border-radius: 2px;display: inline-bl=
+ock;font-size: 11px;font-weight: bold;line-height: 19px;text-align: left;bo=
+rder-style: solid;border-width: 4px 0 4px 4px;mso-border-width-alt: 4px 8px=
+ 8px 8px;background-color: #14191e;border-color: #14191e;mso-border-color-a=
+lt: #14191e;width: 81px;box-sizing: content-box;" href=3D"https://allisland=
+media.forwardtomyfriend.com/d-l-2AD73FFF-glradl=
+-l-jh" lang=3D"en-GB">
+              &nbsp;<img style=3D"border: 0;display: inline-block;margin-ri=
+ght: 2px;vertical-align: -3px;" src=3D"https=
+://i4.=
+cmail20.com=
+//static/eb/master/13-the-blueprint-3/images/forwardtoafr=
+iend-white-flex@2x.png" width=3D"16" height=3D"16" border=3D"0" alt=3D"">
+              <span style=3D"font-size: 11px;mso-text-raise: 3px;">Forward&=
+nbsp;</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+        <!--[if mso]></td><![endif]-->
+        <!--[if mso]><td valign=3D"top"><![endif]-->
+          <table style=3D"border-collapse: collapse;table-layout: fixed;dis=
+play: inline-block;width: 295px;" cellpadding=3D"0" cellspacing=3D"0"><tbod=
+y><tr><td><div class=3D"column js-footer-additional-info" style=3D"text-ali=
+gn: left;font-size: 12px;line-height: 19px;color: #fff;font-family: Open Sa=
+ns,sans-serif;width: 295px;">
+      <div style=3D"margin-left: 0;margin-right: 0;Margin-top: 10px;Margin-=
+bottom: 10px;">
+        <div class=3D"email-footer__additional-info" style=3D"font-size: 12=
+px;line-height: 19px;margin-bottom: 18px;margin-top: 0px;">
+          <div bind-to=3D"address">Copyright &#169; Bailiwick Express</div>
+        </div>
+       =20
+        <div class=3D"email-footer__additional-info" style=3D"font-size: 12=
+px;line-height: 19px;margin-bottom: 15px;Margin-top: 18px;">
+          <div bind-to=3D"permission"><p class=3D"email-flexible-footer__ad=
+ditionalinfo--center" style=3D"Margin-top: 0;Margin-bottom: 0;">You have re=
+ceived this e-mail because you have subscribed to receive e-mails from Bail=
+iwick Publishing, who publish Bailiwick Express and Connect.</p><p class=3D=
+"email-flexible-footer__additionalinfo--center" style=3D"Margin-top: 0;Marg=
+in-bottom: 0;">&nbsp;</p><p class=3D"email-flexible-footer__additionalinfo-=
+-center" style=3D"Margin-top: 0;Margin-bottom: 0;">Unsubscribe to this <a s=
+tyle=3D"text-decoration: underline;transition: opacity 0.1s ease-in;color: =
+#fff;" href=3D"https://allislandmedia.cmail20.com=
+/t/d-i-glradl-=
+l-jy/">newsletter</a></p><p class=3D"email-flexible-footer__additionalinfo-=
+-center" style=3D"Margin-top: 0;Margin-bottom: 0;">&nbsp;</p><p class=3D"em=
+ail-flexible-footer__additionalinfo--center" style=3D"Margin-top:=20
+0;Margin-bottom: 0;">Unsubscribe from everything sent by Bailiwick Express =
+and JEP</p></div>
+        </div>
+        <div class=3D"email-footer__additional-info" style=3D"font-size: 12=
+px;line-height: 19px;margin-bottom: 15px;">
+          <a style=3D"text-decoration: underline;transition: opacity 0.1s e=
+ase-in;color: #fff;" href=3D"https://allislandmedia.cmail20.com=
+=
+/t/d-u-glradl-l-jk/" lang=3D"en-GB">Unsubscribe</a>
+        </div>
+        <!--[if mso]>&nbsp;<![endif]-->
+      </div>
+    </div></td></tr></tbody></table>
+        <!--[if mso]></table></td><![endif]-->
+        <!--[if mso]></td></tr></table><![endif]-->
+      </div>
+    </div><div style=3D"line-height:0px;font-size:0px;" id=3D"footer-bottom=
+-spacing">&nbsp;</div></div>
+     =20
+    </td></tr></tbody></table>
+  <style type=3D"text/css">
+@media (max-width:619px){.email-flexible-footer .left-aligned-footer .colum=
+n,.email-flexible-footer .center-aligned-footer,.email-flexible-footer .rig=
+ht-aligned-footer .column{max-width:100% !important;text-align:center !impo=
+rtant;width:100% !important}.flexible-footer-logo{margin-left:0px !importan=
+t;margin-right:0px !important}.email-flexible-footer .left-aligned-footer .=
+flexible-footer__share-button__container,.email-flexible-footer .center-ali=
+gned-footer .flexible-footer__share-button__container,.email-flexible-foote=
+r .right-aligned-footer .flexible-footer__share-button__container{display:i=
+nline-block;margin-left:5px !important;margin-right:5px !important}.email-f=
+lexible-footer__additionalinfo--center{text-align:center !important}.email-=
+flexible-footer .left-aligned-footer table,.email-flexible-footer .center-a=
+ligned-footer table,.email-flexible-footer .right-aligned-footer=20
+table{display:table !important;width:100% !important}.email-flexible-footer=
+ .footer__share-button,.email-flexible-footer .email-footer__additional-inf=
+o{margin-left:20px;margin-right:20px}}
+</style><img style=3D"visibility: hidden !important; display: block !import=
+ant; height:1px !important; width:1px !important; border: 0 !important; mar=
+gin: 0 !important; padding: 0 !important" src=3D"https://allislandmedia.=
+cmail20.com=
+/t/d-o-glradl-l/o.gif" width=3D"1" height=3D"1" border=3D=
+"0" alt=3D"">
+</body></html>
+
+
+
+--_907b55e8-8f59-4bba-9478-34de081eec1b_--
