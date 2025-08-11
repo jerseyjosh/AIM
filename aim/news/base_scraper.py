@@ -43,7 +43,7 @@ class BaseScraper(ABC):
     @retry(
             stop=stop_never, 
             wait=wait_random_exponential(multiplier=0.5, max=5),
-            before_sleep=before_sleep_log(logger, logging.INFO)
+           before_sleep=before_sleep_log(logger, logging.INFO)
     )
     async def fetch(self, url, headers=None) -> BeautifulSoup:
         """
