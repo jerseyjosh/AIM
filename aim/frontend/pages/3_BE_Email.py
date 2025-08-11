@@ -36,6 +36,7 @@ if 'vertical_adverts_df' not in st.session_state:
     vert_cache_path = os.path.join(os.getcwd(), "vertical_adverts_cache.csv")
     try:
         df = pd.read_csv(vert_cache_path).astype(str)
+        df.dropna(inplace=True, how='all')
     except Exception:
         df = pd.DataFrame([], columns=Advert.__annotations__.keys(), dtype=str)
     st.session_state['vertical_adverts_df'] = df

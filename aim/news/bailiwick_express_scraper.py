@@ -138,8 +138,8 @@ class BEScraper(BaseScraper):
                     except:
                         logger.error("Could not get page source for debugging")
                     raise
-                
-            return await _get_cover()
+            result = await _get_cover()
+        return result
         
     def parse_story(self, url, soup: BeautifulSoup) -> NewsStory:
         """
