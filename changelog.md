@@ -1,7 +1,7 @@
 # changelog
 
 - In progress
-    - Added headers to avoid story caching, try to force sites to return newest page [1h 14/08/25]
+    - Added new headers to fetch methods, added random query string to force no cache [1h 14/08/25]
 
 - PAID 14/08/25
     - √ JEP email
