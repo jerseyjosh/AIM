@@ -1,5 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Union
+from urllib.parse import urlencode, urlsplit, urlunsplit, parse_qsl
+import time
 
 import logging
 import asyncio
@@ -45,14 +47,20 @@ class BaseScraper(ABC):
             wait=wait_random_exponential(multiplier=0.5, max=5),
            before_sleep=before_sleep_log(logger, logging.INFO)
     )
-    async def fetch(self, url, headers=None) -> BeautifulSoup:
+    async def fetch(self, url, headers=None, randomize: bool = True) -> BeautifulSoup:
         """
         Scrape a url and return the BeautifulSoup object.
         """
+        if randomize:
+            # add a random query to the url to not get a cached result
+            u = urlsplit(url)
+            q = dict(parse_qsl(u.query, keep_blank_values=True))
+            q["_"] = str(int(time.time()*1000))
+            url = urlunsplit((u.scheme, u.netloc, u.path, urlencode(q), u.fragment))
         if headers is None:
             headers = HEADERS
         async with self.limiter:
-            async with self.session.get(url, headers=HEADERS) as response:
+            async with self.session.get(url, headers=headers) as response:
                 response.raise_for_status()
                 html = await response.text()
                 return html

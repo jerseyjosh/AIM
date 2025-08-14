@@ -1,5 +1,9 @@
 # changelog
-- email
+
+- In progress
+    - Added headers to avoid story caching, try to force sites to return newest page [1h 14/08/25]
+
+- PAID 14/08/25
     - √ JEP email
         - √ get template
         - √ add scrapers [1h 05/25]
