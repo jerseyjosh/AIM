@@ -11,7 +11,6 @@ from aim.news.models import NewsStory
 from aim.news import BEScraper, JEPScraper
 from aim.family_notices.family_notices import FamilyNotice
 
-
 logger = logging.getLogger(__name__)
 
 TITLE = "News Email"
@@ -31,8 +30,8 @@ if 'email' not in st.session_state:
 if 'scrapers' not in st.session_state:
     st.session_state['scrapers'] = {}
 
+# read adverts cache once at launch
 if 'vertical_adverts_df' not in st.session_state:
-    # cache path is working directory
     vert_cache_path = os.path.join(os.getcwd(), "vertical_adverts_cache.csv")
     try:
         df = pd.read_csv(vert_cache_path).astype(str)
@@ -42,7 +41,6 @@ if 'vertical_adverts_df' not in st.session_state:
     st.session_state['vertical_adverts_df'] = df
 
 if 'horizontal_adverts_df' not in st.session_state:
-    # cache path is working directory
     horiz_cache_path = os.path.join(os.getcwd(), "horizontal_adverts_cache.csv")
     try:
         df = pd.read_csv(horiz_cache_path).astype(str)
@@ -82,6 +80,38 @@ async def process_urls(urls, site):
     
     return stories
 
+def _normalized(df: pd.DataFrame, cols: list[str]) -> pd.DataFrame:
+    # Ensure same column order/types and no NaNs for stable equality
+    if df is None:
+        df = pd.DataFrame([], columns=cols, dtype=str)
+    if len(df) == 0:
+        df = pd.DataFrame([], columns=cols, dtype=str)
+    df = df.astype(str).reindex(columns=cols, fill_value="")
+    return df.fillna("")
+
+def _csv_equals_df(path: str, df: pd.DataFrame, cols: list[str]) -> bool:
+    try:
+        on_disk = pd.read_csv(path).astype(str)
+    except Exception:
+        # File missing or unreadable => treat as different
+        return False
+    on_disk = _normalized(on_disk, cols)
+    current = _normalized(df, cols)
+    return on_disk.equals(current)
+
+def save_df_if_changed(path: str, df: pd.DataFrame, cols: list[str]) -> bool:
+    """Write CSV only if content differs. Uses atomic replace."""
+    df_norm = _normalized(df, cols)
+    # If same as on-disk, bail out early
+    if os.path.exists(path) and _csv_equals_df(path, df_norm, cols):
+        return False
+    # Atomic write: write to temp then replace
+    tmp = path + ".tmp"
+    df_norm.to_csv(tmp, index=False)
+    os.replace(tmp, path)
+    return True
+
+
 # ---------------------------
 # Load Secrets
 # ---------------------------
@@ -99,6 +129,7 @@ try:
 except Exception as e:
     logger.error(f"Failed to load secrets: {e}")
 
+
 # ---------------------------
 # Login
 # ---------------------------
@@ -114,6 +145,7 @@ if not st.session_state["logged_in"]:
         else:
             st.error("Invalid username or password")
     st.stop()
+
 
 # ---------------------------
 # Main Page Layout
@@ -152,19 +184,15 @@ horizontal_adverts_df = st.data_editor(
     hide_index=True,
 )
 
-# persist to cache on every run
+# ---------------------------
+# Ad persistence logic
+# ---------------------------
 vert_cache_path = os.path.join(os.getcwd(), "vertical_adverts_cache.csv")
-if len(vertical_adverts_df) > 0:
-    vertical_adverts_df.to_csv(vert_cache_path, index=False)
-else:
-    # If the DataFrame is empty, create an empty CSV file
-    pd.DataFrame([], columns=Advert.__annotations__.keys(), dtype=str).to_csv(vert_cache_path, index=False)
 horiz_cache_path = os.path.join(os.getcwd(), "horizontal_adverts_cache.csv")
-if len(horizontal_adverts_df) > 0:
-    horizontal_adverts_df.to_csv(horiz_cache_path, index=False)
-else:
-    # If the DataFrame is empty, create an empty CSV file
-    pd.DataFrame([], columns=Advert.__annotations__.keys(), dtype=str).to_csv(horiz_cache_path, index=False)
+advert_cols = list(Advert.__annotations__.keys())
+
+save_df_if_changed(vert_cache_path, vertical_adverts_df, advert_cols)
+save_df_if_changed(horiz_cache_path, horizontal_adverts_df, advert_cols)
 
 # deaths start/end
 deaths_start = st.date_input("Deaths Start Date")
