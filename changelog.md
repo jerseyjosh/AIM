@@ -2,6 +2,7 @@
 
 - In progress
     - Added new headers to fetch methods, added random query string to force no cache [1h 14/08/25]
+    - Fixed advert cache memory leak issues, rebooted crashed droplet and restart aim-streamlit service [1.5h 18/08/25]
 
 - PAID 14/08/25
     - √ JEP email
