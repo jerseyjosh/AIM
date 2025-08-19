@@ -1,6 +1,7 @@
 import os
 import logging
 import asyncio
+import subprocess
 
 import streamlit as st
 import pandas as pd
@@ -121,6 +122,7 @@ try:
         load_dotenv(find_dotenv())
         STREAMLIT_USER = os.getenv("STREAMLIT_USER")
         STREAMLIT_PASSWORD = os.getenv("STREAMLIT_PASSWORD")
+        PROD = os.getenv('PROD', False)
         logger.debug("Secrets loaded from .env file")
     except Exception:
         STREAMLIT_USER = st.secrets["STREAMLIT_USER"]
@@ -128,6 +130,7 @@ try:
         logger.debug("Secrets loaded from Streamlit Secrets")
 except Exception as e:
     logger.error(f"Failed to load secrets: {e}")
+
 
 
 # ---------------------------
@@ -207,6 +210,9 @@ st.info("""
     - Fetch stories must still be clicked to render connect cover.
 """)
 if st.button("Fetch Stories"):
+    if PROD:
+        logger.debug(f'Killing all chrome processes')
+        subprocess.run(['killall', 'chrome'])
     with st.spinner("Fetching Stories..."):
         get_email().get_data(
             n_news=num_stories,
