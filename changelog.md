@@ -3,6 +3,8 @@
 - In progress
     - Added new headers to fetch methods, added random query string to force no cache [1h 14/08/25]
     - Fixed advert cache memory leak issues, rebooted crashed droplet and restart aim-streamlit service [1.5h 18/08/25]
+    - Added spacer to podcast section, force quit chrome before all requests to stop processed growing [1h 19/08/25]
+    - Added extra ad slots, removed family notices if no notices, added hyperlink to top image, found sentence split error [1.5h 21/08/25]
 
 - PAID 14/08/25
     - √ JEP email

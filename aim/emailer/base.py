@@ -111,6 +111,7 @@ class Email:
             "top_image_url": "",
             "top_image_title": "",
             "top_image_author": "",
+            "top_image_link": None,
             "vertical_adverts": [],
             "connect_cover_image": None,
         }

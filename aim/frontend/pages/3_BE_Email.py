@@ -166,6 +166,7 @@ num_podcast_stories = st.number_input("Number of Podcast Stories", min_value=1, 
 top_image_url = st.text_input("Top Image URL")
 top_image_title = st.text_input("Top Image Title", key="top_image_title")
 top_image_author = st.text_input("Top Image Author", key="top_image_author")
+top_image_link = st.text_input("Top Image Link (Leave Blank if None)", key="top_image_link")
 
 # Vertical Adverts
 st.title("Vertical Adverts")
@@ -325,11 +326,13 @@ if st.button("Render Email"):
     rendered_email.data['top_image_url'] = top_image_url
     rendered_email.data['top_image_title'] = top_image_title
     rendered_email.data['top_image_author'] = top_image_author
+    rendered_email.data['top_image_link'] = top_image_link if top_image_link else None
     rendered_email.data['vertical_adverts'] = vertical_adverts_df.to_dict(orient='records')
     rendered_email.data['horizontal_adverts'] = horizontal_adverts_df.to_dict(orient='records')
     rendered_email.data['weather'] = get_email().data['weather']
     rendered_email.data['family_notices'] = get_email().data['family_notices']
     rendered_email.data['connect_cover_image'] = get_email().data['connect_cover_image']
+    print(rendered_email.data['family_notices'])
 
     rendered_html = rendered_email.render()
     html(rendered_html, height=800, scrolling=True)
