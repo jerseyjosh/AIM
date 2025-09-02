@@ -2,6 +2,7 @@
 # TODO! remove region dependencies as done in BEScraper
 
 import logging
+from enum import Enum
 
 from bs4 import BeautifulSoup
 from selenium_driverless import webdriver
@@ -26,7 +27,10 @@ class JEPScraper(BaseScraper):
         "jsy_business": "https://jerseyeveningpost.com/category/business/",
     }
 
-    JEP_COVER = "https://app.jerseyeveningpost.com/t/storefront/magazine"
+    class JEPCoverSource(Enum):
+        Jep = "https://app.jerseyeveningpost.com/t/storefront/magazine"
+        Homelife = "https://app.jerseyeveningpost.com/t/storefront/homelife"
+        More = "https://app.jerseyeveningpost.com/t/storefront/more_supplements"
 
     def __init__(self):
         super().__init__()
@@ -43,7 +47,7 @@ class JEPScraper(BaseScraper):
                 news_urls.append(link)
         return news_urls
     
-    async def get_jep_cover(self) -> str:
+    async def get_cover(self, source: JEPCoverSource) -> str:
         """
         Launches headless Chrome (selenium_driverless), navigates to JEP_COVER,
         waits for the Bolt iframe to load, then uses a JS snippet to reach inside
@@ -58,7 +62,7 @@ class JEPScraper(BaseScraper):
 
         async with webdriver.Chrome(options=options) as driver:
             logger.info("Navigating to JEP cover page...")
-            await driver.get(self.JEP_COVER, wait_load=True)
+            await driver.get(source.value, wait_load=True)
 
             @retry(
                 stop=stop_never,

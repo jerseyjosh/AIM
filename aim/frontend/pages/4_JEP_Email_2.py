@@ -92,16 +92,20 @@ async def get_jep_email_data(
         num_news: int,
         num_business: int,
         num_sports: int,
+        publication: JEPScraper.JEPCoverSource
 ) -> JEPEmailData:
     scraper = JEPScraper()
     tasks = {
         "news_stories": scraper.get_n_stories_for_region("jsy_news", num_news),
         "business_stories": scraper.get_n_stories_for_region("jsy_business", num_business),
         "sports_stories": scraper.get_n_stories_for_region("jsy_sport", num_sports),
-        "jep_cover": scraper.get_jep_cover(),
+        "jep_cover": scraper.get_cover(JEPScraper.JEPCoverSource.Jep),
+        "publication": scraper.get_cover(publication)
     }
     values = await asyncio.gather(*tasks.values())
     results = dict(zip(tasks.keys(), values))
+    results['news_stories'].extend(results.pop('business_stories'))
+    results['news_stories'].extend(results.pop('sports_stories'))
     results['date'] = datetime.today().date().strftime("%A %-d %B %Y")
     await scraper.close()
     return JEPEmailData(**results)
@@ -109,22 +113,28 @@ async def get_jep_email_data(
 # ---------------------------
 # Main Page Layout
 # ---------------------------
+
 st.title(TITLE)
 
 # Input boxes for email parameters
 num_stories = st.number_input("Number of News Stories", min_value=1, max_value=20, value=7, step=1)
 num_business_stories = st.number_input("Number of Business Stories", min_value=1, max_value=20, value=1, step=1)
 num_sports_stories = st.number_input("Number of Sports Stories", min_value=1, max_value=20, value=1, step=1)
+publication = st.selectbox("Select publication section source", options=[x for x in JEPScraper.JEPCoverSource])
 
 stories = []
 if st.button("Fetch"):
     with st.spinner("Fetching stories"):
-        jep_email_data = asyncio.run(get_jep_email_data(num_stories, num_business_stories, num_sports_stories))
+        jep_email_data = asyncio.run(get_jep_email_data(num_stories, num_business_stories, num_sports_stories, publication))
         st.session_state['jep_email_data'] = jep_email_data
 
 news_df = st.data_editor(stories_to_dataframe(st.session_state['jep_email_data'].news_stories), key="news_stories")
-business_df = st.data_editor(stories_to_dataframe(st.session_state['jep_email_data'].business_stories), key="business_stories")
-sports_df = st.data_editor(stories_to_dataframe(st.session_state['jep_email_data'].sports_stories), key="sports_stories")
+# business_df = st.data_editor(stories_to_dataframe(st.session_state['jep_email_data'].business_stories), key="business_stories")
+# sports_df = st.data_editor(stories_to_dataframe(st.session_state['jep_email_data'].sports_stories), key="sports_stories")
+st.session_state[EMAIL_DATA_KEY].news_stories = df_to_stories(news_df)
 
 rendered_html = JEPEmail().render(st.session_state[EMAIL_DATA_KEY])
 st.html(rendered_html)
+
+if st.download_button("Save Email", rendered_html, file_name="email.html", mime="text/html"):
+    st.success("Email saved successfully")

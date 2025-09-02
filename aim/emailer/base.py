@@ -27,10 +27,11 @@ class Advert:
 @dataclass
 class JEPEmailData:
     news_stories: list[NewsStory] = field(default_factory=list)
-    business_stories: list[NewsStory] = field(default_factory=list)
-    sports_stories: list[NewsStory] = field(default_factory=list)
+    # business_stories: list[NewsStory] = field(default_factory=list)
+    # sports_stories: list[NewsStory] = field(default_factory=list)
     jep_cover: str = field(default="")
     date: str = field(default="")
+    publication: str = field(default="")
 
 class JEPEmail:
     def __init__(self, template_name: str = "jep_template.html"):
