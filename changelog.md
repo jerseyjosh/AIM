@@ -1,6 +1,7 @@
 # changelog
 
 - In progress
+    - JEP news email migration to update with new email [2h 02/09/25]
     - Added new headers to fetch methods, added random query string to force no cache [1h 14/08/25]
     - Fixed advert cache memory leak issues, rebooted crashed droplet and restart aim-streamlit service [1.5h 18/08/25]
     - Added spacer to podcast section, force quit chrome before all requests to stop processed growing [1h 19/08/25]

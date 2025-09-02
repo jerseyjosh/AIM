@@ -1569,6 +1569,7 @@
                 </div>
               </div>
 
+              <!-- SEPARATOR -->
               <div
                 style="
                   mso-line-height-rule: exactly;
@@ -1695,6 +1696,7 @@
                 </div>
               </div>
 
+              <!-- SEPARATOR -->
               <div
                 style="
                   mso-line-height-rule: exactly;
@@ -1705,6 +1707,7 @@
                 &nbsp;
               </div>
 
+              {% if horizontal_adverts | length >= 1 %}
               <div
                 class="layout one-col fixed-width stack"
                 style="
@@ -1753,7 +1756,7 @@
                           transition: opacity 0.1s ease-in;
                           color: #57a607;
                         "
-                        href="https://allislandmedia.createsend1.com/t/d-l-shujkyd-djllojlly-j/"
+                        href="{{ horizontal_adverts[0].url }}"
                         ><img
                           class="gnd-corner-image gnd-corner-image-center gnd-corner-image-top gnd-corner-image-bottom"
                           style="
@@ -1765,14 +1768,16 @@
                           "
                           alt=""
                           width="600"
-                          src="https://i2.createsend1.com/ei/d/20/9DC/FFB/195725/csfinal/J006373_NWI-Mortgage_Q2_DLB-970x250_JSY-9900000000079e3c.gif"
+                          src="{{ horizontal_adverts[0].image_url }}"
                       /></a>
                     </div>
                   </div>
                   <!--[if mso]></td></tr></table><![endif]-->
                 </div>
               </div>
+              {% endif %}
 
+              <!-- SEPARATOR -->
               <div
                 style="
                   mso-line-height-rule: exactly;
@@ -1783,6 +1788,7 @@
                 &nbsp;
               </div>
 
+              <!-- NEWS HEADER -->
               <div
                 class="layout one-col fixed-width stack"
                 style="
@@ -2030,9 +2036,9 @@
                 </div>
               </div>
               {% endfor %}
-
               <!-- NEWS STORIES END -->
 
+              {% if horizontal_adverts | length >= 2 %}
               <div
                 class="layout two-col fixed-width stack"
                 style="
@@ -2168,7 +2174,9 @@
                   <!--[if mso]></td></tr></table><![endif]-->
                 </div>
               </div>
+              {% endif %}
 
+              <!-- RED LINE SEPARATOR -->
               <div
                 class="layout one-col fixed-width stack"
                 style="
@@ -2230,6 +2238,7 @@
                 </div>
               </div>
 
+              <!-- SEPARATOR -->
               <div
                 style="
                   mso-line-height-rule: exactly;

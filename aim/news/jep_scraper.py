@@ -21,7 +21,7 @@ class JEPScraper(BaseScraper):
     """
 
     URLS = {
-        "jsy": "https://jerseyeveningpost.com/category/news/",
+        "jsy_news": "https://jerseyeveningpost.com/category/news/",
         "jsy_sport": "https://jerseyeveningpost.com/category/sport/",
         "jsy_business": "https://jerseyeveningpost.com/category/business/",
     }

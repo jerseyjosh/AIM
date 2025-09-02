@@ -4,10 +4,11 @@ import asyncio
 import uvloop
 import logging
 import jinja2
-from dataclasses import dataclass
+from dataclasses import dataclass, field, asdict
 from datetime import datetime
 
 from aim.news import BEScraper, JEPScraper
+from aim.news.models import NewsStory
 from aim.weather.gov_je import GovJeWeather
 from aim.family_notices import FamilyNotices
 
@@ -23,6 +24,14 @@ class Advert:
     url: str
     image_url: str
 
+@dataclass
+class JEPEmailData:
+    news_stories: list[NewsStory] = field(default_factory=list)
+    business_stories: list[NewsStory] = field(default_factory=list)
+    sports_stories: list[NewsStory] = field(default_factory=list)
+    jep_cover: str = field(default="")
+    date: str = field(default="")
+
 class JEPEmail:
     def __init__(self, template_name: str = "jep_template.html"):
         self.template_name = template_name
@@ -31,55 +40,9 @@ class JEPEmail:
         self.template_env.filters["first_sentence"] = self.first_sentence
         self.template = self.template_env.get_template(self.template_name)
 
-        # Initialize data with default empty structures
-        self.data: Dict[str, Any] = {
-            "news_stories": [],
-            "date": datetime.today().strftime("%A %d %B %Y"),
-            "jep_cover": None
-        }
-
-    async def _get_data_wrapper(
-            self, 
-            n_news: int,
-            ) -> Dict[str, Any]:
-        """Fetch data"""
-
-        news_scraper = JEPScraper()
-        
-        tasks = {
-            "news_stories": news_scraper.get_n_stories_for_region("jsy", n_news),
-            "jep_cover": news_scraper.get_jep_cover(),
-        }
-        results = await asyncio.gather(*tasks.values(), return_exceptions=True)
-        await news_scraper.close()
-        data = dict(zip(tasks.keys(), results))
-        for key, result in data.items():
-            if isinstance(result, Exception):
-                logger.error(f"Failed to fetch {key}: {result}")
-                data[key] = [] if key == "news_stories" else None
-        return data
-
-    def get_data(
-            self, 
-            n_news: int
-            ) -> None:
-        """Synchronously fetch data and update instance state."""
-        try:
-            fetched_data = uvloop.run(self._get_data_wrapper(n_news))
-            self.data.update(fetched_data)
-        except Exception as e:
-            logger.error(f"Error in get_data: {e}")
-            raise
-
-    def update_data(self, key: str, value: Any) -> None:
-        """Update a specific key in the data dictionary."""
-        if key not in self.data:
-            raise KeyError(f"Key '{key}' not expected in email data")
-        self.data[key] = value
-
-    def render(self) -> str:
+    def render(self, data: JEPEmailData) -> str:
         """Render the email template with the current data."""
-        return self.template.render(**self.data)
+        return self.template.render(asdict(data))
 
     @staticmethod
     def first_sentence(text: Optional[str]) -> str:
