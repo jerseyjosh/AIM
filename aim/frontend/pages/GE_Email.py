@@ -73,7 +73,7 @@ class GEEmailData:
     community_stories: list[NewsStory] = field(default_factory=list)
     podcast_stories: list[NewsStory] = field(default_factory=list)
     weather: str = ""
-    top_image: TopImage = field(default=TopImage())
+    top_image: TopImage = field(default_factory = lambda: TopImage())
     horizontal_adverts: list[Advert] = field(default_factory=list)
     vertical_adverts: list[Advert] = field(default_factory=list)
     connect_cover_image: str = ""

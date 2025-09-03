@@ -74,7 +74,7 @@ class BEEmailData:
     podcast_stories: list[NewsStory] = field(default_factory=list)
     weather: str = ""
     family_notices: list[FamilyNotice] = field(default_factory=list)
-    top_image: TopImage = field(default=TopImage())
+    top_image: TopImage = field(default_factory = lambda: TopImage())
     horizontal_adverts: list[Advert] = field(default_factory=list)
     vertical_adverts: list[Advert] = field(default_factory=list)
     connect_cover_image: str = ""
@@ -159,7 +159,7 @@ async def get_email_data(
         "sports_stories": news_scraper.get_n_stories_for_region("jsy_sport", num_sports),
         "community_stories": news_scraper.get_n_stories_for_region("jsy_community", num_community),
         "podcast_stories": news_scraper.get_n_stories_for_region("jsy_podcasts", num_podcast),
-        "connect_cover_image": news_scraper.get_connect_cover(),
+        "connect_cover_image": news_scraper.get_connect_cover("jsy"),
         "weather": weather_scraper.get_to_email(),
         "family_notices": deaths_scraper.get_notices(deaths_start, deaths_end)
     }

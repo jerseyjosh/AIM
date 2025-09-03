@@ -1,0 +1,17 @@
+[project]
+name = "aim"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "aiohttp>=3.12.15",
+    "aiolimiter>=1.2.1",
+    "bs4>=0.0.2",
+    "elevenlabs>=2.13.0",
+    "pandas>=2.3.2",
+    "python-dotenv>=1.1.1",
+    "selenium-driverless>=1.9.4",
+    "streamlit>=1.49.1",
+    "uvloop>=0.21.0",
+]
