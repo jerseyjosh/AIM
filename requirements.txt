@@ -1,4 +1,3 @@
--e file:///Users/josh/Documents/Portfolio/AIM
 aiofiles==24.1.0
 aiohappyeyeballs==2.4.0
 aiohttp==3.10.5
