@@ -16,7 +16,7 @@ from aim.emailer.base import EmailBuilder
 
 logger = logging.getLogger(__name__)
 
-TITLE = "BE Email"
+TITLE = "GE Email"
 EMAIL_DATA_KEY = "email_data"
 LOGGED_IN_KEY = "logged_in"
 HA_CACHE_PATH = os.path.join(os.getcwd(), "ha_cache.csv")
