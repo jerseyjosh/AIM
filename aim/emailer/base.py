@@ -18,7 +18,6 @@ logging.basicConfig(level=logging.INFO)
 
 TEMPLATES_DIR = os.path.join(os.path.dirname(__file__), "templates")
 
-
 class EmailBuilder:
 
     @classmethod

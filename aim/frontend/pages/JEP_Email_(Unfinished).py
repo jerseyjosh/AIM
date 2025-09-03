@@ -10,7 +10,7 @@ from streamlit.components.v1 import html
 
 from aim.news.jep_scraper import JEPScraper
 from aim.news.models import NewsStory
-from aim.emailer.base import JEPEmailData, JEPEmail
+from aim.emailer.base import EmailBuilder
 
 logger = logging.getLogger(__name__)
 
