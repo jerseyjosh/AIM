@@ -7,6 +7,8 @@ from dataclasses import dataclass
 import re
 from typing import Optional
 
+from aim.news.models import FamilyNotice
+
 HEADERS = {
     "Accept": "application/json, text/plain, */*",
     "Accept-Language": "en-US,en;q=0.9",
@@ -23,47 +25,6 @@ HEADERS = {
 }
 
 BASE_URL = "https://familynotices.jerseyeveningpost.com/wp-admin/admin-ajax.php"
-
-@dataclass
-class FamilyNotice:
-
-    name: str
-    url: str
-    funeral_director: str
-    additional_text: str = ''
-
-    def __post_init__(self):
-        self.name = self.format_name(self.name)
-        self.url = self.url.strip()
-
-    def __str__(self):
-        return self.name
-    
-    @staticmethod
-    def format_name(name: str) -> str:
-        """
-        Formats a name from 'Last, First (Extra1) (Extra2)' to 'First Last (Extra1) (Extra2)'.
-        Handles multiple parenthetical parts.
-        """
-        # Extract all bracketed parts
-        bracketed_parts = re.findall(r"\(.*?\)", name)
-        
-        # Remove bracketed parts from the main name
-        name_without_brackets = re.sub(r"\(.*?\)", "", name).strip()
-        
-        # Handle "Last, First" format
-        if "," in name_without_brackets:
-            last, first = [part.strip() for part in name_without_brackets.split(",", 1)]
-            formatted_name = f"{first} {last}"
-        else:
-            formatted_name = name_without_brackets  # If no comma, assume already correct
-
-        # Append all extracted bracketed parts at the end
-        if bracketed_parts:
-            formatted_name = f"{formatted_name} {' '.join(bracketed_parts)}"
-
-        # Capitalize first letter of each word, except for 'née'
-        return formatted_name.title().replace('Née', 'née')
 
 # Asynchronous Scraper Class
 class FamilyNotices:

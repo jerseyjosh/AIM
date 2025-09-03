@@ -7,7 +7,7 @@ import streamlit as st
 import pandas as pd
 from streamlit.components.v1 import html
 
-from aim.emailer.base import Email, Advert
+from aim.emailer.base import EmailBuilder, Email, Advert
 from aim.news.models import NewsStory
 from aim.news import BEScraper, JEPScraper
 from aim.family_notices.family_notices import FamilyNotice
@@ -25,7 +25,7 @@ if "logged_in" not in st.session_state:
     st.session_state["logged_in"] = False
 
 if 'email' not in st.session_state:
-    st.session_state['email'] = Email()
+    st.session_state['email'] = EmailBuilder.BE()
 
 # Don't initialize scrapers at module load time
 if 'scrapers' not in st.session_state:
@@ -58,7 +58,7 @@ def get_email():
 
 def update_email_data(key, value):
     email: Email = st.session_state['email']
-    email.data[key] = value
+    setattr(email.data, key, value)
     st.session_state['email'] = email
 
 async def process_urls(urls, site):

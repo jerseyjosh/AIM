@@ -12,9 +12,9 @@ from aim import HEADERS
 
 logger = logging.getLogger(__name__)
 
-class GovJeWeather:
+class GovGeWeather:
 
-    BASE_URL = "https://www.gov.je/weather/"
+    BASE_URL = "https://www.gov.je/weather/guernsey-forecast/"
 
     def __init__(self):
         self.options = webdriver.ChromeOptions()

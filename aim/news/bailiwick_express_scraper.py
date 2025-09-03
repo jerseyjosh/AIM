@@ -29,10 +29,12 @@ class BEScraper(BaseScraper):
         "jsy_sport": "https://www.bailiwickexpress.com/jsy-sport/",
         "gsy_sport": "https://www.bailiwickexpress.com/gsy-sport/",
         "jsy_community": "https://www.bailiwickexpress.com/jsy-community/",
+        "gsy_community": "https://www.bailiwickexpress.com/gsy-community/",
         "jsy_podcasts": "https://www.bailiwickexpress.com/jsy-radio-podcasts/"
     }
 
-    CONNECT_COVER = "https://www.bailiwickexpress.com/jsy-connect/"
+    JSY_CONNECT_COVER = "https://www.bailiwickexpress.com/jsy-connect/"
+    GSY_CONNECT_COVER = "https://www.bailiwickexpress.com/gsy-connect/"
 
     def __init__(self):
         super().__init__()
@@ -68,8 +70,14 @@ class BEScraper(BaseScraper):
                 seen.add(link)
         return news_urls
     
-    async def get_connect_cover(self) -> str:
+    async def get_connect_cover(self, region: str) -> str:
         """Get connect cover image link, have to use hacky chromedriver solution for iframe rendering."""
+        if region.lower() == "jsy":
+            url = self.JSY_CONNECT_COVER
+        elif region.lower() == "gsy":
+            url = self.GSY_CONNECT_COVER
+        else:
+            raise ValueError(f"Unrecognised connect region: {region}")
         options = webdriver.ChromeOptions()
         options.add_argument('--headless=new')
         options.add_argument('--no-sandbox')  # Required for some cloud environments
@@ -79,7 +87,7 @@ class BEScraper(BaseScraper):
         async with webdriver.Chrome(options=options) as driver:
             # Initial page load with very generous timeout
             logger.info("Starting to load connect cover page...")
-            await driver.get(self.CONNECT_COVER, wait_load=True)
+            await driver.get(url, wait_load=True)
             
             @retry(
                 stop=stop_never, 
@@ -179,7 +187,7 @@ if __name__ == "__main__":
 
     async def main():
         scraper = BEScraper()
-        cover = await scraper.get_connect_cover()
+        cover = await scraper.get_connect_cover("jsy")
         breakpoint()
 
     asyncio.run(main())

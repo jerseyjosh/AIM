@@ -15,7 +15,7 @@ from aim.emailer.base import JEPEmailData, JEPEmail
 logger = logging.getLogger(__name__)
 
 TITLE = "JEP Email"
-EMAIL_DATA_KEY = "jep_email_data"
+EMAIL_DATA_KEY = "email_data"
 LOGGED_IN_KEY = "logged_in"
 
 if LOGGED_IN_KEY not in st.session_state:
