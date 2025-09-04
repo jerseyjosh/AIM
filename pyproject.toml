@@ -10,8 +10,11 @@ dependencies = [
     "bs4>=0.0.2",
     "elevenlabs>=2.13.0",
     "pandas>=2.3.2",
+    "pytest>=8.4.1",
+    "pytest-asyncio>=1.1.0",
     "python-dotenv>=1.1.1",
     "selenium-driverless>=1.9.4",
+    "standard-imghdr>=3.13.0",
     "streamlit>=1.49.1",
     "uvloop>=0.21.0",
 ]

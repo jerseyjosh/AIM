@@ -107,39 +107,46 @@ class JEPScraper(BaseScraper):
         """
         Parse a news story from the given url.
         """
-        # get headline
-        headline = soup.find('h1', class_='entry-title').text.strip()
-        # get article text
-        entry_content = soup.find('div', class_='entry-content')
-        p_tags = entry_content.find_all('p')
-        text = '\n'.join([p.text.strip() for p in p_tags])
-        # capitalize first word of text, JEP defaults to all caps first word
-        words = text.split()
-        if words[0].lower() == 'a':
-            words[0] = words[0].capitalize()
-            words[1] = words[1].lower()
-        else:
-            words[0] = words[0].capitalize()
-        text = ' '.join(words)
-        # get date
-        date = soup.find('time').text
-        # get author
-        author = soup.find('span', class_='author').text
-        # get image url
         try:
-            image_url = soup.find('figure', class_='post-thumbnail').find('img').get('src')
+            # get headline
+            headline = soup.find('h1', class_='entry-title').text.strip()
+            # get article text
+            entry_content = soup.find('div', class_='entry-content')
+            p_tags = entry_content.find_all('p')
+            text = '\n'.join([p.text.strip() for p in p_tags])
+            # capitalize first word of text, JEP defaults to all caps first word
+            words = text.split()
+            if words[0].lower() == 'a':
+                words[0] = words[0].capitalize()
+                words[1] = words[1].lower()
+            else:
+                words[0] = words[0].capitalize()
+            text = ' '.join(words)
+            # get date
+            date = soup.find('time').text
+            # get author
+            author = soup.find('span', class_='byline').text or "Jersey Evening Post"
+            author = author.replace('\n', ' ').strip()
+            if author.lower().startswith("by "):
+                author = author[3:]
+            # get image url
+            try:
+                image_url = soup.find('figure', class_='post-thumbnail').find('img').get('src')
+            except Exception as e:
+                logger.debug(f"Failed to get image url for {url}")
+                image_url = None
+            return NewsStory(
+                headline=headline,
+                text=text,
+                date=date,
+                author=author,
+                url=url,
+                image_url=image_url
+            )
         except Exception as e:
-            logger.debug(f"Failed to get image url for {url}")
-            image_url = None
-        return NewsStory(
-            headline=headline,
-            text=text,
-            date=date,
-            author=author,
-            url=url,
-            image_url=image_url
-        )
-    
+            logger.error(f'URL {url} raised error: {e}')
+            raise e
+        
 if __name__ == "__main__":
 
     logger = logging.getLogger(__name__)
@@ -148,7 +155,9 @@ if __name__ == "__main__":
 
     async def main():
         scraper = JEPScraper()
-        cover = await scraper.get_jep_cover()
+        soup = await scraper.get_home_page_soup("jsy_sport")
+        links = scraper.get_story_urls_from_page(soup)[:5]
+        stories = await scraper.fetch_and_parse_stories(links)
         breakpoint()
 
     import asyncio
