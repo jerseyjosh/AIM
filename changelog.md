@@ -1,6 +1,7 @@
 # changelog
 
 - In progress
+    - Fixed JEP sports scraper inconsistent author byline tags for scraper [20min 04/09/25]
     - Reformatted Emails to new streamlit, Gsy Express Email, JEP Email, fixed intersystem dependency issues with uv migration [4h 03/09/25]
     - JEP news email migration to update with new email [3h 02/09/25]
     - Added new headers to fetch methods, added random query string to force no cache [1h 14/08/25]

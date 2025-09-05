@@ -11,7 +11,6 @@ from aim.radio.voice import VoiceGenerator
 logger = logging.getLogger(__name__)
 
 # Set valid speakers
-VALID_SPEAKERS = ['aim_christie', 'aim_jodie', 'aim_jodie_2']
 TITLE = "Daily News Podcast"
 
 # Load Secrets
@@ -50,6 +49,12 @@ if st.session_state['logged_in'] is False:
             st.error("Invalid username or password")
 
 else:
+
+    # initialize voice generator
+    if 'voice_generator' not in st.session_state:
+        st.session_state['voice_generator'] = VoiceGenerator(ELEVENLABS_API_KEY)
+    voice_generator: VoiceGenerator = st.session_state['voice_generator']
+
     # Function to generate the script
     def generate_script(speaker: str):
         async def _generate_script(speaker: str):
@@ -67,7 +72,7 @@ else:
     # Dropdown Menu for settings
     speaker_selection = st.selectbox(
         "Select a speaker:", 
-        VALID_SPEAKERS, 
+        list(voice_generator.voice_to_id.keys()), 
         help="Select the setting for the script generation"
     )
 
@@ -81,8 +86,6 @@ else:
     # Editable text box populated with the generated script
     script_text = st.text_area("Script Editor", value=st.session_state.get('script', ''), height=300)
 
-    # initialize voice generator
-    voice_generator = VoiceGenerator(ELEVENLABS_API_KEY)
     # Show remaining credits
     user = voice_generator.client.user.get()
     used_characters_pct = f'{user.subscription.character_count / user.subscription.character_limit:.2%}'
