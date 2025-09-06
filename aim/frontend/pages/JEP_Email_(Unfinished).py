@@ -67,6 +67,9 @@ if not st.session_state["logged_in"]:
 class JEPEmailData:
     news_stories: list[NewsStory] = field(default_factory=list)
     adverts: list[Advert] = field(default_factory=list)
+    jep_cover: str = ""
+    publication: str = ""
+    date: str = datetime.today().date().strftime("%A %-d %B %Y")
 
 if EMAIL_DATA_KEY not in st.session_state:
     st.session_state[EMAIL_DATA_KEY] = JEPEmailData()
@@ -221,7 +224,7 @@ with col1:
 with col2:
     
     rendered_html = EmailBuilder.JEP().render(st.session_state[EMAIL_DATA_KEY])
-    html(rendered_html, scrolling=True, height=2000)
+    html(rendered_html, scrolling=True, height=1000)
 
     if st.download_button("Save Email", rendered_html, file_name="email.html", mime="text/html"):
         st.success("Email saved successfully")
