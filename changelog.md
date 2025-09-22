@@ -1,6 +1,10 @@
 # changelog
 
 - In progress [-2h paid monthly subscription]
+    - Fixed scraper for new connect cover site, location of cover moved from js iframe to JEP format [1h 22/09/25]
+    - Fixed family notices section being too wide in resized email [0.5h 22/09/25]
+
+- PAID 22/09/25 [-2h paid monthly subscription]
     - Fixed JEP sports scraper inconsistent author byline tags for scraper [20min 04/09/25]
     - Reformatted Emails to new streamlit, Gsy Express Email, JEP Email, fixed intersystem dependency issues with uv migration [4h 03/09/25]
     - JEP news email migration to update with new email [3h 02/09/25]
