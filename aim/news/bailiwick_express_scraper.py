@@ -33,7 +33,7 @@ class BEScraper(BaseScraper):
         "jsy_podcasts": "https://www.bailiwickexpress.com/jsy-radio-podcasts/"
     }
 
-    JSY_CONNECT_COVER = "https://www.bailiwickexpress.com/jsy-connect/"
+    JSY_CONNECT_COVER = "https://app.bailiwickexpress.com/t/storefront/storefront"
     GSY_CONNECT_COVER = "https://www.bailiwickexpress.com/gsy-connect/"
 
     def __init__(self):
@@ -70,7 +70,7 @@ class BEScraper(BaseScraper):
                 seen.add(link)
         return news_urls
     
-    async def get_connect_cover(self, region: str) -> str:
+    async def get_gsy_connect_cover(self, region: str) -> str:
         """Get connect cover image link, have to use hacky chromedriver solution for iframe rendering."""
         if region.lower() == "jsy":
             url = self.JSY_CONNECT_COVER
@@ -149,6 +149,61 @@ class BEScraper(BaseScraper):
             result = await _get_cover()
         return result
         
+    async def get_jsy_connect_cover(self) -> str:
+        """
+        Launches headless Chrome (selenium_driverless), navigates to JEP_COVER,
+        waits for the Bolt iframe to load, then uses a JS snippet to reach inside
+        the iframe’s document and return the `data-src` of <img.pp-widget-media__image>.
+        This function retries until it succeeds.
+        """
+        options = webdriver.ChromeOptions()
+        options.add_argument("--headless=new")
+        options.add_argument("--disable-gpu")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--window-size=1920,1080")
+
+        async with webdriver.Chrome(options=options) as driver:
+            logger.info("Navigating to JEP cover page...")
+            await driver.get(self.JSY_CONNECT_COVER, wait_load=True)
+            @retry(
+                stop=stop_never,
+                wait=wait_random_exponential(multiplier=1, max=10),
+                before_sleep=before_sleep_log(logger, logging.INFO),
+            )
+            async def _get_cover():
+                logger.info("Waiting for iframe to appear and load content...")
+                # give driver a change
+                await driver.sleep(1)
+                # verify that <iframe class="content"> exists in the DOM.
+                try:
+                    await driver.find_element(By.CSS_SELECTOR, "iframe.content", timeout=5)
+                except Exception:
+                    raise Exception("bolt iframe not yet in DOM")
+                # cursed javascript execution
+                js = """
+                  const frame = document.querySelector("iframe.content");
+                  if (!frame || !frame.contentWindow) {
+                    return null;
+                  }
+                  const doc = frame.contentWindow.document;
+                  // Look for the <img> with class 'pp-widget-media__image'
+                  const img = doc.querySelector("img.pp-widget-media__image");
+                  if (!img) {
+                    return null;
+                  }
+                  return img.getAttribute("data-src");
+                """
+                data_src = await driver.execute_script(js)
+                if not data_src:
+                    # If no data-src yet, it means either the iframe hasn’t rendered the <img>
+                    # or the JS inside the iframe hasn’t inserted it yet. Retry.
+                    raise Exception("Image not yet available inside iframe")
+
+                logger.info(f"Found data-src = {data_src}")
+                return data_src.split()[0]
+
+            return await _get_cover()
+
     def parse_story(self, url, soup: BeautifulSoup) -> NewsStory:
         """
         Parse a news story from the given url.
@@ -185,9 +240,11 @@ class BEScraper(BaseScraper):
     
 if __name__ == "__main__":
 
+    logging.basicConfig(level=logging.DEBUG)
+
     async def main():
         scraper = BEScraper()
-        cover = await scraper.get_connect_cover("jsy")
+        cover = await scraper.get_connect_cover()
         breakpoint()
 
     asyncio.run(main())

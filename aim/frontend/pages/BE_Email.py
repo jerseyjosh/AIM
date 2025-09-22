@@ -159,7 +159,7 @@ async def get_email_data(
         "sports_stories": news_scraper.get_n_stories_for_region("jsy_sport", num_sports),
         "community_stories": news_scraper.get_n_stories_for_region("jsy_community", num_community),
         "podcast_stories": news_scraper.get_n_stories_for_region("jsy_podcasts", num_podcast),
-        "connect_cover_image": news_scraper.get_connect_cover("jsy"),
+        "connect_cover_image": news_scraper.get_jsy_connect_cover(),
         "weather": weather_scraper.get_to_email(),
         "family_notices": deaths_scraper.get_notices(deaths_start, deaths_end)
     }
