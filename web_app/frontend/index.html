@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BE Email Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row py-2">
+            <div class="col-12">
+                <h2 class="text-center mb-0">BE Email Generator</h2>
+            </div>
+        </div>
+
+        <!-- Login Modal -->
+        <div class="modal fade" id="loginModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Login Required</h5>
+                    </div>
+                    <div class="modal-body">
+                        <form id="loginForm">
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Username</label>
+                                <input type="text" class="form-control" id="username" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" required>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="login()">Login</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div id="mainContent" style="display: none;">
+            <div class="row" style="height: calc(100vh - 80px);">
+                <!-- Left Column: Controls -->
+                <div class="col-md-6 left-column">
+                <!-- Email Type Selection -->
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <h5 class="mb-0">Email Type</h5>
+                    </div>
+                    <div class="card-body">
+                        <select id="emailTypeSelect" class="form-select" onchange="switchEmailType()">
+                            <option value="be" selected>Bailiwick Express (Jersey)</option>
+                            <option value="ge">Guernsey Express (Guernsey)</option>
+                            <option value="jep">Jersey Evening Post (JEP)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5>Email Parameters</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="emailParams">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="numNews" class="form-label">Number of News Stories</label>
+                                        <input type="number" class="form-control" id="numNews" min="1" max="20" value="7">
+                                        <div class="form-text jep-only">For JEP: This includes all story types combined</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="numBusiness" class="form-label">Number of Business Stories</label>
+                                        <input type="number" class="form-control" id="numBusiness" min="1" max="20" value="1">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="numSports" class="form-label">Number of Sports Stories</label>
+                                        <input type="number" class="form-control" id="numSports" min="1" max="20" value="1">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3 be-ge-only">
+                                        <label for="numCommunity" class="form-label">Number of Community Stories</label>
+                                        <input type="number" class="form-control" id="numCommunity" min="1" max="20" value="1">
+                                    </div>
+                                    <div class="mb-3 be-ge-only">
+                                        <label for="numPodcast" class="form-label">Number of Podcast Stories</label>
+                                        <input type="number" class="form-control" id="numPodcast" min="1" max="20" value="1">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Deaths dates - only shown for BE emails -->
+                            <div class="row" id="deathsSection">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="deathsStart" class="form-label">Deaths Start Date</label>
+                                        <input type="date" class="form-control" id="deathsStart">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="deathsEnd" class="form-label">Deaths End Date</label>
+                                        <input type="date" class="form-control" id="deathsEnd">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- JEP-specific fields -->
+                            <div class="row" id="jepSection" style="display: none;">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="jepCover" class="form-label">JEP Cover URL</label>
+                                        <input type="url" class="form-control" id="jepCover">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="jepPublication" class="form-label">Publication URL</label>
+                                        <input type="url" class="form-control" id="jepPublication">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="button" class="btn btn-primary" onclick="fetchData()">
+                                <span id="fetchSpinner" class="spinner-border spinner-border-sm d-none" role="status"></span>
+                                Fetch Data
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Top Image Section - BE/GE only -->
+                <div class="card mb-4" id="topImageCard">
+                    <div class="card-header">
+                        <h5>Top Image</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="topImageUrl" class="form-label">Image URL</label>
+                            <input type="url" class="form-control" id="topImageUrl">
+                        </div>
+                        <div class="mb-3">
+                            <label for="topImageTitle" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="topImageTitle">
+                        </div>
+                        <div class="mb-3">
+                            <label for="topImageAuthor" class="form-label">Author</label>
+                            <input type="text" class="form-control" id="topImageAuthor">
+                        </div>
+                        <div class="mb-3">
+                            <label for="topImageLink" class="form-label">Link (optional)</label>
+                            <input type="url" class="form-control" id="topImageLink">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Adverts Section - BE/GE only -->
+                <div class="card mb-4 be-ge-only" id="advertsCard">
+                    <div class="card-header">
+                        <h5>Adverts Management</h5>
+                    </div>
+                    <div class="card-body">
+                        <!-- Vertical Adverts -->
+                        <div class="mb-4">
+                            <h6>Vertical Adverts <span class="jep-only">(JEP Adverts)</span></h6>
+                            <div class="table-responsive">
+                                <table class="table table-sm" id="verticalAdvertsTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Order</th>
+                                            <th>URL</th>
+                                            <th>Image URL</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                            <button type="button" class="btn btn-sm btn-outline-primary" onclick="addAdvert('vertical')">Add Vertical Advert</button>
+                        </div>
+
+                        <!-- Horizontal Adverts - BE/GE only -->
+                        <div class="mb-4 be-ge-only">
+                            <h6>Horizontal Adverts</h6>
+                            <div class="table-responsive">
+                                <table class="table table-sm" id="horizontalAdvertsTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Order</th>
+                                            <th>URL</th>
+                                            <th>Image URL</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                            <button type="button" class="btn btn-sm btn-outline-primary" onclick="addAdvert('horizontal')">Add Horizontal Advert</button>
+                        </div>
+
+                        <!-- Adverts Actions -->
+                        <div class="d-flex gap-2">
+                            <button type="button" class="btn btn-success" onclick="event.preventDefault(); saveAdverts(); return false;">
+                                <span id="saveAdvertsSpinner" class="spinner-border spinner-border-sm d-none" role="status"></span>
+                                Save Adverts
+                            </button>
+                            <button type="button" class="btn btn-info" onclick="event.preventDefault(); loadAdverts(); return false;">
+                                <span id="loadAdvertsSpinner" class="spinner-border spinner-border-sm d-none" role="status"></span>
+                                Load Adverts
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Manual URLs Section -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5>Add Stories Manually</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="storyType" class="form-label">Add to</label>
+                            <select class="form-select" id="storyType">
+                                <option value="news_stories">News Stories</option>
+                                <option value="business_stories">Business Stories</option>
+                                <option value="sports_stories">Sports Stories</option>
+                                <option value="community_stories">Community Stories</option>
+                                <option value="podcast_stories">Podcast Stories</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="manualUrls" class="form-label">URLs (one per line)</label>
+                            <textarea class="form-control" id="manualUrls" rows="4"></textarea>
+                        </div>
+                        <button type="button" class="btn btn-secondary" onclick="processManualUrls()">
+                            <span id="urlSpinner" class="spinner-border spinner-border-sm d-none" role="status"></span>
+                            Process URLs
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Stories & Data Section -->
+                <div class="card mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5>Stories & Data</h5>
+                        <button type="button" class="btn btn-sm btn-outline-primary" onclick="updatePreview()">
+                            Update Preview
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <!-- Tabs for different story types -->
+                        <ul class="nav nav-tabs" id="storyTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="news-tab" data-bs-toggle="tab" data-bs-target="#news" type="button" role="tab">News</button>
+                            </li>
+                            <li class="nav-item be-ge-only" role="presentation">
+                                <button class="nav-link" id="business-tab" data-bs-toggle="tab" data-bs-target="#business" type="button" role="tab">Business</button>
+                            </li>
+                            <li class="nav-item be-ge-only" role="presentation">
+                                <button class="nav-link" id="sports-tab" data-bs-toggle="tab" data-bs-target="#sports" type="button" role="tab">Sports</button>
+                            </li>
+                            <li class="nav-item be-ge-only" role="presentation">
+                                <button class="nav-link" id="community-tab" data-bs-toggle="tab" data-bs-target="#community" type="button" role="tab">Community</button>
+                            </li>
+                            <li class="nav-item be-ge-only" role="presentation">
+                                <button class="nav-link" id="podcast-tab" data-bs-toggle="tab" data-bs-target="#podcast" type="button" role="tab">Podcast</button>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content" id="storyTabsContent">
+                            <!-- News Stories Tab -->
+                            <div class="tab-pane fade show active" id="news" role="tabpanel">
+                                <div class="table-responsive">
+                                    <table class="table table-sm" id="newsTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Order</th>
+                                                <th>Headline</th>
+                                                <th>Author</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- Business Stories Tab -->
+                            <div class="tab-pane fade be-ge-only" id="business" role="tabpanel">
+                                <div class="table-responsive">
+                                    <table class="table table-sm" id="businessTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Order</th>
+                                                <th>Headline</th>
+                                                <th>Author</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- Sports Stories Tab -->
+                            <div class="tab-pane fade be-ge-only" id="sports" role="tabpanel">
+                                <div class="table-responsive">
+                                    <table class="table table-sm" id="sportsTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Order</th>
+                                                <th>Headline</th>
+                                                <th>Author</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- Community Stories Tab -->
+                            <div class="tab-pane fade be-ge-only" id="community" role="tabpanel">
+                                <div class="table-responsive">
+                                    <table class="table table-sm" id="communityTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Order</th>
+                                                <th>Headline</th>
+                                                <th>Author</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- Podcast Stories Tab -->
+                            <div class="tab-pane fade be-ge-only" id="podcast" role="tabpanel">
+                                <div class="table-responsive">
+                                    <table class="table table-sm" id="podcastTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Order</th>
+                                                <th>Headline</th>
+                                                <th>Author</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Family Notices - BE only -->
+                <div class="card mb-4" id="familyNoticesCard">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5>Family Notices</h5>
+                        <button class="btn btn-sm btn-outline-primary" onclick="editFamilyNotice()">Edit</button>
+                    </div>
+                    <div class="card-body">
+                        <div id="familyNotices">
+                            <p class="text-muted">No family notices loaded</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- JEP Adverts - JEP only -->
+                <div class="card mb-4 jep-only" id="jepAdvertsCard">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5>Adverts</h5>
+                        <button class="btn btn-sm btn-outline-primary" onclick="addJEPAdvert()">Add Advert</button>
+                    </div>
+                    <div class="card-body">
+                        <div id="jepAdverts">
+                            <p class="text-muted">No adverts loaded</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Weather - BE/GE only -->
+                <div class="card mb-4" id="weatherCard">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5>Weather</h5>
+                        <button class="btn btn-sm btn-outline-primary" onclick="editWeather()">Edit</button>
+                    </div>
+                    <div class="card-body">
+                        <div id="weather">
+                            <p class="text-muted">No weather data loaded</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Generate Email Button -->
+                <div class="d-grid">
+                    <button type="button" class="btn btn-success btn-lg" onclick="generateFinalEmail()">
+                        <span id="finalSpinner" class="spinner-border spinner-border-sm d-none" role="status"></span>
+                        Generate Final Email
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Column - Live Preview -->
+            <div class="col-md-6 right-column">
+                <div class="card preview-card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5>Live Preview</h5>
+                        <div>
+                            <span id="previewSpinner" class="spinner-border spinner-border-sm d-none me-2" role="status"></span>
+                            <button type="button" class="btn btn-sm btn-success" onclick="generateFinalEmail()">
+                                <span id="finalSpinner" class="spinner-border spinner-border-sm d-none" role="status"></span>
+                                Generate Final
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <iframe id="livePreview"></iframe>
+                    </div>
+                </div>
+            </div>
+            </div> <!-- End row -->
+        </div> <!-- End mainContent -->
+
+        <!-- Edit Modals -->
+        
+        <!-- Story Edit Modal -->
+        <div class="modal fade" id="storyEditModal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Story</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="storyEditForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="editOrder" class="form-label">Order</label>
+                                        <input type="number" class="form-control" id="editOrder">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="editAuthor" class="form-label">Author</label>
+                                        <input type="text" class="form-control" id="editAuthor">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="editUrl" class="form-label">URL</label>
+                                        <input type="url" class="form-control" id="editUrl">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="editImageUrl" class="form-label">Image URL</label>
+                                        <input type="url" class="form-control" id="editImageUrl">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="editHeadline" class="form-label">Headline</label>
+                                        <input type="text" class="form-control" id="editHeadline">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="editText" class="form-label">Text</label>
+                                        <textarea class="form-control" id="editText" rows="8"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" id="editStoryType">
+                            <input type="hidden" id="editStoryIndex">
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" onclick="saveStoryEdit()">Save Changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Family Notice Edit Modal -->
+        <div class="modal fade" id="familyNoticeEditModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Family Notice</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="familyNoticeEditForm">
+                            <div class="mb-3">
+                                <label for="editNoticeName" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="editNoticeName">
+                            </div>
+                            <div class="mb-3">
+                                <label for="editNoticeDirector" class="form-label">Funeral Director</label>
+                                <input type="text" class="form-control" id="editNoticeDirector">
+                            </div>
+                            <div class="mb-3">
+                                <label for="editNoticeText" class="form-label">Additional Text</label>
+                                <textarea class="form-control" id="editNoticeText" rows="3"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editNoticeUrl" class="form-label">URL</label>
+                                <input type="url" class="form-control" id="editNoticeUrl">
+                            </div>
+                            <input type="hidden" id="editNoticeIndex">
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" onclick="saveFamilyNoticeEdit()">Save Changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weather Edit Modal -->
+        <div class="modal fade" id="weatherEditModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Weather</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="weatherEditForm">
+                            <div class="mb-3">
+                                <label for="editWeatherToday" class="form-label">Today's Weather</label>
+                                <input type="text" class="form-control" id="editWeatherToday" placeholder="e.g., 6°c, few clouds">
+                            </div>
+                            <div class="mb-3">
+                                <label for="editWeatherTides" class="form-label">Tides</label>
+                                <input type="text" class="form-control" id="editWeatherTides" placeholder="e.g., Low 13:14 (1.7m) High 18:51 (10.3m)">
+                            </div>
+                            <div class="mb-3">
+                                <label for="editWeatherDate" class="form-label">Date</label>
+                                <input type="text" class="form-control" id="editWeatherDate" placeholder="e.g., Wednesday 12 February 2025">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" onclick="saveWeatherEdit()">Save Changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Advert Edit Modal -->
+        <div class="modal fade" id="advertEditModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Advert</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="advertEditForm">
+                            <div class="mb-3">
+                                <label for="editAdvertOrder" class="form-label">Order</label>
+                                <input type="number" class="form-control" id="editAdvertOrder" min="1">
+                            </div>
+                            <div class="mb-3">
+                                <label for="editAdvertUrl" class="form-label">URL</label>
+                                <input type="url" class="form-control" id="editAdvertUrl" placeholder="https://example.com">
+                            </div>
+                            <div class="mb-3">
+                                <label for="editAdvertImageUrl" class="form-label">Image URL</label>
+                                <input type="url" class="form-control" id="editAdvertImageUrl" placeholder="https://example.com/image.jpg">
+                            </div>
+                        </form>
+                        <input type="hidden" id="editAdvertType" value="">
+                        <input type="hidden" id="editAdvertIndex" value="">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" onclick="saveAdvertEdit()">Save Changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!-- Email Preview Modal -->
+    <div class="modal fade" id="emailPreviewModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Final Email</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <iframe id="emailPreview" style="width: 100%; height: 70vh; border: none;"></iframe>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="downloadEmail()">Download HTML</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="static/app.js"></script>
+</body>
+</html>

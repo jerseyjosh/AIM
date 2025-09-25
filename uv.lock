@@ -10,6 +10,7 @@ dependencies = [
     { name = "aiolimiter" },
     { name = "bs4" },
     { name = "elevenlabs" },
+    { name = "fastapi" },
     { name = "pandas" },
     { name = "pytest" },
     { name = "pytest-asyncio" },
@@ -17,6 +18,7 @@ dependencies = [
     { name = "selenium-driverless" },
     { name = "standard-imghdr" },
     { name = "streamlit" },
+    { name = "uvicorn" },
     { name = "uvloop" },
 ]
 
@@ -26,6 +28,7 @@ requires-dist = [
     { name = "aiolimiter", specifier = ">=1.2.1" },
     { name = "bs4", specifier = ">=0.0.2" },
     { name = "elevenlabs", specifier = ">=2.13.0" },
+    { name = "fastapi", specifier = ">=0.117.1" },
     { name = "pandas", specifier = ">=2.3.2" },
     { name = "pytest", specifier = ">=8.4.1" },
     { name = "pytest-asyncio", specifier = ">=1.1.0" },
@@ -33,6 +36,7 @@ requires-dist = [
     { name = "selenium-driverless", specifier = ">=1.9.4" },
     { name = "standard-imghdr", specifier = ">=3.13.0" },
     { name = "streamlit", specifier = ">=1.49.1" },
+    { name = "uvicorn", specifier = ">=0.36.0" },
     { name = "uvloop", specifier = ">=0.21.0" },
 ]
 
@@ -299,6 +303,20 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/69/13/55402b275dc8265004d324869e93f81f660e223ee071af6a101ebbca76ac/elevenlabs-2.13.0.tar.gz", hash = "sha256:1d7df140ac5ee8b94e5e213e6d322bec4b88470efb320d754d8f03d124111ab3", size = 302391 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/d3/2e/b22579723dbeb55bb9731329f17b1dd2ede97bda061938ae8de6d31f5376/elevenlabs-2.13.0-py3-none-any.whl", hash = "sha256:e98e9e50516966fa2dce8a6a88320ca0f749ffdfb77fec24e679308518aa6752", size = 858682 },
+]
+
+[[package]]
+name = "fastapi"
+version = "0.117.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "pydantic" },
+    { name = "starlette" },
+    { name = "typing-extensions" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/7e/7e/d9788300deaf416178f61fb3c2ceb16b7d0dc9f82a08fdb87a5e64ee3cc7/fastapi-0.117.1.tar.gz", hash = "sha256:fb2d42082d22b185f904ca0ecad2e195b851030bd6c5e4c032d1c981240c631a", size = 307155 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/6d/45/d9d3e8eeefbe93be1c50060a9d9a9f366dba66f288bb518a9566a23a8631/fastapi-0.117.1-py3-none-any.whl", hash = "sha256:33c51a0d21cab2b9722d4e56dbb9316f3687155be6b276191790d8da03507552", size = 95959 },
 ]
 
 [[package]]
@@ -1196,6 +1214,18 @@ wheels = [
 ]
 
 [[package]]
+name = "starlette"
+version = "0.48.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "anyio" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/a7/a5/d6f429d43394057b67a6b5bbe6eae2f77a6bf7459d961fdb224bf206eee6/starlette-0.48.0.tar.gz", hash = "sha256:7e8cee469a8ab2352911528110ce9088fdc6a37d9876926e73da7ce4aa4c7a46", size = 2652949 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/be/72/2db2f49247d0a18b4f1bb9a5a39a0162869acf235f3a96418363947b3d46/starlette-0.48.0-py3-none-any.whl", hash = "sha256:0764ca97b097582558ecb498132ed0c7d942f233f365b86ba37770e026510659", size = 73736 },
+]
+
+[[package]]
 name = "streamlit"
 version = "1.49.1"
 source = { registry = "https://pypi.org/simple" }
@@ -1334,6 +1364,19 @@ wheels = [
 [package.optional-dependencies]
 socks = [
     { name = "pysocks" },
+]
+
+[[package]]
+name = "uvicorn"
+version = "0.36.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "click" },
+    { name = "h11" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/ef/5e/f0cd46063a02fd8515f0e880c37d2657845b7306c16ce6c4ffc44afd9036/uvicorn-0.36.0.tar.gz", hash = "sha256:527dc68d77819919d90a6b267be55f0e76704dca829d34aea9480be831a9b9d9", size = 80032 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/96/06/5cc0542b47c0338c1cb676b348e24a1c29acabc81000bced518231dded6f/uvicorn-0.36.0-py3-none-any.whl", hash = "sha256:6bb4ba67f16024883af8adf13aba3a9919e415358604ce46780d3f9bdc36d731", size = 67675 },
 ]
 
 [[package]]
