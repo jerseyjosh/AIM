@@ -25,6 +25,7 @@ class JEPScraper(BaseScraper):
         "jsy_news": "https://jerseyeveningpost.com/category/news/",
         "jsy_sport": "https://jerseyeveningpost.com/category/sport/",
         "jsy_business": "https://jerseyeveningpost.com/category/business/",
+        "jsy_premium": "https://jerseyeveningpost.com/tag/premium/"
     }
 
     class JEPCoverSource(Enum):
@@ -155,7 +156,7 @@ if __name__ == "__main__":
 
     async def main():
         scraper = JEPScraper()
-        soup = await scraper.get_home_page_soup("jsy_sport")
+        soup = await scraper.get_home_page_soup("jsy_premium")
         links = scraper.get_story_urls_from_page(soup)[:5]
         stories = await scraper.fetch_and_parse_stories(links)
         breakpoint()

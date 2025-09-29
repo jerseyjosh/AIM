@@ -32,6 +32,10 @@ class EmailBuilder:
     def Gsy(cls):
         return Email(template_name="ge_template.html")
     
+    @classmethod
+    def AIMPremium(cls):
+        return Email(template_name="aim_premium_template.html")
+    
 class Email:
     def __init__(self, template_name: str):
         self.template_name = template_name
