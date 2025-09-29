@@ -69,7 +69,7 @@ if not st.session_state["logged_in"]:
 class BEEmailData:
     news_stories: list[NewsStory] = field(default_factory=list)
     business_stories: list[NewsStory] = field(default_factory=list)
-    sports_stories: list[NewsStory] = field(default_factory=list)
+    sport_stories: list[NewsStory] = field(default_factory=list)
     community_stories: list[NewsStory] = field(default_factory=list)
     podcast_stories: list[NewsStory] = field(default_factory=list)
     weather: str = ""
@@ -115,14 +115,13 @@ def df_to_stories(df: pd.DataFrame) -> list[NewsStory]:
         ))
     return stories
 
-def adverts_to_dataframe(adverts: list[Advert]) -> pd.DataFrame:
-    # Always create dataframe with proper columns, even if empty
+def vertical_adverts_to_dataframe(adverts: list[Advert]) -> pd.DataFrame:
+    # Old-style structure for vertical adverts (dynamic rows)
     columns = ['order', 'url', 'image_url']
     
     if len(adverts) == 0:
-        # Create empty dataframe with correct columns and types
         df = pd.DataFrame(columns=columns)
-        df = df.astype({'order': 'Int64', 'url': 'str', 'image_url': 'str'})  # Use nullable Int64
+        df = df.astype({'order': 'Int64', 'url': 'str', 'image_url': 'str'})
         return df
     
     data = []
@@ -134,32 +133,86 @@ def adverts_to_dataframe(adverts: list[Advert]) -> pd.DataFrame:
         })
     df = pd.DataFrame(data)
     if len(df) > 0 and 'order' in df.columns:
-        df['order'] = df['order'].fillna(0).astype('Int64')  # Use nullable Int64
+        df['order'] = df['order'].fillna(0).astype('Int64')
         df = df.sort_values('order').reset_index(drop=True)
+    return df
+
+def vertical_df_to_adverts(df: pd.DataFrame) -> list[Advert]:
+    # Old-style processing for vertical adverts
+    adverts = []
+    if len(df) == 0:
+        return adverts
+    
+    df = df.copy()
+    if 'order' not in df.columns:
+        df['order'] = 0
+    df['order'] = df['order'].fillna(0)
+    
+    for _, row in df.sort_values('order').iterrows():
+        # Skip rows where url or image_url is NaN/empty
+        if pd.isna(row['url']) or pd.isna(row['image_url']) or row['url'] == '' or row['image_url'] == '':
+            continue
+            
+        adverts.append(Advert(
+            url=str(row['url']),
+            image_url=str(row['image_url']),
+            order=int(row.get('order', 0))
+        ))
+    return adverts
+
+def adverts_to_dataframe(adverts: list[Advert]) -> pd.DataFrame:
+    # Define the 7 horizontal advert positions and their descriptions
+    position_descriptions = [
+        "After Weather",
+        "After Headline Story", 
+        "After News Stories",
+        "After Sports Stories", 
+        "After Community Stories",
+        "After Business Stories",
+        "After Podcast Stories"
+    ]
+    
+    # Create base structure with all positions
+    data = []
+    for i, description in enumerate(position_descriptions):
+        # Try to find existing advert for this position
+        advert_for_position = None
+        if i < len(adverts):
+            advert_for_position = adverts[i]
+        
+        data.append({
+            'position': f"{i+1}. {description}",
+            'url': advert_for_position.url if advert_for_position else "",
+            'image_url': advert_for_position.image_url if advert_for_position else "",
+            'order': i + 1  # Position order
+        })
+    
+    df = pd.DataFrame(data)
     return df
 
 def df_to_adverts(df: pd.DataFrame) -> list[Advert]:
     adverts = []
     if len(df) == 0:
         return adverts
-    if 'order' not in df.columns:
-        df['order'] = 0
     
-    # Fill NaN values in order column with 0
-    df = df.copy()
-    df['order'] = df['order'].fillna(0)
-    
-    for _,row in df.sort_values('order').iterrows():
-        # Skip rows where url or image_url is NaN/empty
-        if pd.isna(row['url']) or pd.isna(row['image_url']) or row['url'] == '' or row['image_url'] == '':
-            continue
-            
+    # Process each row in order (should be 7 rows for the 7 positions)
+    for _, row in df.iterrows():
+        # Create advert even if empty - empty ones won't render in template
+        url = str(row.get('url', '')) if not pd.isna(row.get('url', '')) else ''
+        image_url = str(row.get('image_url', '')) if not pd.isna(row.get('image_url', '')) else ''
+        order = int(row.get('order', len(adverts) + 1))
+        
         adverts.append(Advert(
-            url = str(row['url']),
-            image_url = str(row['image_url']),
-            order = int(row.get('order', 0))
+            url=url,
+            image_url=image_url,
+            order=order
         ))
-    return adverts
+    
+    # Ensure we always have exactly 7 adverts (pad if needed)
+    while len(adverts) < 7:
+        adverts.append(Advert(url="", image_url="", order=len(adverts) + 1))
+    
+    return adverts[:7]  # Limit to 7
 
 async def get_email_data(
         num_news: int,
@@ -178,7 +231,7 @@ async def get_email_data(
     tasks = {
         "news_stories": news_scraper.get_n_stories_for_region("jsy", num_news),
         "business_stories": news_scraper.get_n_stories_for_region("jsy_business", num_business),
-        "sports_stories": news_scraper.get_n_stories_for_region("jsy_sport", num_sports),
+        "sport_stories": news_scraper.get_n_stories_for_region("jsy_sport", num_sports),
         "community_stories": news_scraper.get_n_stories_for_region("jsy_community", num_community),
         "podcast_stories": news_scraper.get_n_stories_for_region("jsy_podcasts", num_podcast),
         "connect_cover_image": news_scraper.get_jsy_connect_cover(),
@@ -229,18 +282,26 @@ with col1:
     top_image_author = st.text_input("Top Image Author", key="top_image_author")
     top_image_link = st.text_input("Top Image Link (Leave Blank if None)", key="top_image_link")
 
-    # Initialize dataframe keys in session state if they don't exist
+        # Initialize dataframe keys in session state if they don't exist
     if "vertical_adverts_df" not in st.session_state:
-        st.session_state["vertical_adverts_df"] = adverts_to_dataframe(st.session_state[EMAIL_DATA_KEY].vertical_adverts)
+        st.session_state["vertical_adverts_df"] = vertical_adverts_to_dataframe(st.session_state[EMAIL_DATA_KEY].vertical_adverts)
     if "horizontal_adverts_df" not in st.session_state:
         st.session_state["horizontal_adverts_df"] = adverts_to_dataframe(st.session_state[EMAIL_DATA_KEY].horizontal_adverts)
     
     # Ensure dataframes always have the correct columns
-    required_columns = ['order', 'url', 'image_url']
-    for df_key in ["vertical_adverts_df", "horizontal_adverts_df"]:
-        if st.session_state[df_key].empty or not all(col in st.session_state[df_key].columns for col in required_columns):
-            # Reset to empty dataframe with correct structure
-            st.session_state[df_key] = adverts_to_dataframe([])
+    # Vertical adverts keep the old structure (dynamic rows)
+    vertical_required_columns = ['order', 'url', 'image_url']
+    if st.session_state["vertical_adverts_df"].empty or not all(col in st.session_state["vertical_adverts_df"].columns for col in vertical_required_columns):
+        # Create old-style vertical adverts dataframe
+        columns = ['order', 'url', 'image_url']
+        df = pd.DataFrame(columns=columns)
+        df = df.astype({'order': 'Int64', 'url': 'str', 'image_url': 'str'})
+        st.session_state["vertical_adverts_df"] = df
+    
+    # Horizontal adverts use new structure (fixed 7 rows with position descriptions)
+    horizontal_required_columns = ['position', 'url', 'image_url', 'order']
+    if st.session_state["horizontal_adverts_df"].empty or not all(col in st.session_state["horizontal_adverts_df"].columns for col in horizontal_required_columns):
+        st.session_state["horizontal_adverts_df"] = adverts_to_dataframe([])
 
     # advert tables
     st.subheader("Vertical Adverts")
@@ -251,13 +312,33 @@ with col1:
         width='stretch',
         hide_index=True,
     )
-    st.subheader("Horizontal Adverts")
+    
+    st.subheader("Horizontal Adverts (Leave URL and Image URL blank to skip a position)")
     horizontal_adverts_df = st.data_editor(
         st.session_state["horizontal_adverts_df"],
         key="horizontal_adverts",
-        num_rows="dynamic",
+        num_rows="fixed",  # Fixed rows, no adding/deleting
         width='stretch',
         hide_index=True,
+        column_config={
+            "position": st.column_config.TextColumn(
+                "Position",
+                help="Where this advert will appear in the email",
+                disabled=True,  # Make read-only
+                width="large"
+            ),
+            "url": st.column_config.TextColumn(
+                "URL",
+                help="Link when advert is clicked (leave blank to skip this position)",
+                width="medium"
+            ),
+            "image_url": st.column_config.TextColumn(
+                "Image URL", 
+                help="Image to display (leave blank to skip this position)",
+                width="medium"
+            ),
+            "order": None  # Hide the order column
+        }
     )
 
     subcol1, subcol2, subcol3 = st.columns(3)
@@ -273,8 +354,15 @@ with col1:
                 print("FOUND HA CACHE")
                 try:
                     hdf = pd.read_csv(HA_CACHE_PATH)
-                    st.session_state[EMAIL_DATA_KEY].horizontal_adverts = df_to_adverts(hdf)
-                    st.session_state["horizontal_adverts_df"] = hdf.reset_index(drop=True)
+                    # Check if it's the new format (has 'position' column) or old format
+                    if 'position' in hdf.columns:
+                        st.session_state[EMAIL_DATA_KEY].horizontal_adverts = df_to_adverts(hdf)
+                        st.session_state["horizontal_adverts_df"] = hdf.reset_index(drop=True)
+                    else:
+                        # Old format - convert to new format
+                        old_adverts = vertical_df_to_adverts(hdf)  # Use old parser
+                        st.session_state[EMAIL_DATA_KEY].horizontal_adverts = old_adverts
+                        st.session_state["horizontal_adverts_df"] = adverts_to_dataframe(old_adverts)
                 except Exception as e:
                     st.error(f"Couldn't load horizontal adverts cache: {e}")
             else:
@@ -283,7 +371,7 @@ with col1:
                 print("FOUND VA CACHE")
                 try:
                     vdf = pd.read_csv(VA_CACHE_PATH)
-                    st.session_state[EMAIL_DATA_KEY].vertical_adverts = df_to_adverts(vdf)
+                    st.session_state[EMAIL_DATA_KEY].vertical_adverts = vertical_df_to_adverts(vdf)
                     st.session_state["vertical_adverts_df"] = vdf.reset_index(drop=True)
                 except Exception as e:
                     st.error(f"Couldn't load vertical adverts cache: {e}")
@@ -326,14 +414,14 @@ with col1:
     # edit story dataframes
     news_df = st.data_editor(stories_to_dataframe(st.session_state[EMAIL_DATA_KEY].news_stories), key="news_stories", hide_index=True, num_rows='dynamic')
     business_df = st.data_editor(stories_to_dataframe(st.session_state[EMAIL_DATA_KEY].business_stories), key="business_stories", hide_index=True, num_rows='dynamic')
-    sports_df = st.data_editor(stories_to_dataframe(st.session_state[EMAIL_DATA_KEY].sports_stories), key="sports_stories", hide_index=True, num_rows='dynamic')
+    sports_df = st.data_editor(stories_to_dataframe(st.session_state[EMAIL_DATA_KEY].sport_stories), key="sports_stories", hide_index=True, num_rows='dynamic')
     community_df = st.data_editor(stories_to_dataframe(st.session_state[EMAIL_DATA_KEY].community_stories), key="community_stories", hide_index=True, num_rows='dynamic')
     podcast_df = st.data_editor(stories_to_dataframe(st.session_state[EMAIL_DATA_KEY].podcast_stories), key="podcast_stories", hide_index=True, num_rows='dynamic')
 
     # update email data state
     st.session_state[EMAIL_DATA_KEY].news_stories = df_to_stories(news_df)
     st.session_state[EMAIL_DATA_KEY].business_stories = df_to_stories(business_df)
-    st.session_state[EMAIL_DATA_KEY].sports_stories = df_to_stories(sports_df)
+    st.session_state[EMAIL_DATA_KEY].sport_stories = df_to_stories(sports_df)
     st.session_state[EMAIL_DATA_KEY].community_stories = df_to_stories(community_df)
     st.session_state[EMAIL_DATA_KEY].podcast_stories = df_to_stories(podcast_df)
     st.session_state[EMAIL_DATA_KEY].top_image = TopImage(
@@ -345,7 +433,7 @@ with col1:
     
     # Only update adverts data if the dataframes have actually changed
     if not vertical_adverts_df.equals(st.session_state.get("vertical_adverts_df", pd.DataFrame())):
-        st.session_state[EMAIL_DATA_KEY].vertical_adverts = df_to_adverts(vertical_adverts_df)
+        st.session_state[EMAIL_DATA_KEY].vertical_adverts = vertical_df_to_adverts(vertical_adverts_df)
         st.session_state["vertical_adverts_df"] = vertical_adverts_df.reset_index(drop=True)
     
     if not horizontal_adverts_df.equals(st.session_state.get("horizontal_adverts_df", pd.DataFrame())):
@@ -354,7 +442,7 @@ with col1:
 
     # Manual URL Input Section
     st.title("Add Stories Manually")
-    story_type = st.selectbox("Add to", ["news_stories", "business_stories", "sports_stories", "community_stories", "podcast_stories"], key="manual_url_type")
+    story_type = st.selectbox("Add to", ["news_stories", "business_stories", "sport_stories", "community_stories", "podcast_stories"], key="manual_url_type")
     manual_urls = st.text_area("Enter URLs (one per line)", key="manual_urls")
     if st.button("Process URLs") and manual_urls:
         urls = [url.strip() for url in manual_urls.split("\n") if url.strip()]

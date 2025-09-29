@@ -4,6 +4,7 @@
     - Fixed scraper for new connect cover site, location of cover moved from js iframe to JEP format [1h 22/09/25]
     - Fixed family notices section being too wide in resized email [0.5h 22/09/25]
     - Experimental js/html/fastapi setup moving from streamlit [1h 22/09/25]
+    - Changed advert ordering logic, fixed news story rows not deleting [1h 29/09/25]
 
 - PAID 22/09/25 [-2h paid monthly subscription]
     - Fixed JEP sports scraper inconsistent author byline tags for scraper [20min 04/09/25]
