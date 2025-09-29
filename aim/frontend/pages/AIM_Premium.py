@@ -184,7 +184,7 @@ with col1:
     
     foreword_text = st.text_area(
         "Foreword Text",
-        value="Welcome to AIM Premium - your essential weekend reading from the best of our journalism.\n\nThis week's selection showcases the depth and quality of reporting that makes our islands unique.",
+        value="",
         height=150,
         key="foreword_text"
     )
