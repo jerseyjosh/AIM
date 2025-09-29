@@ -116,26 +116,48 @@ def df_to_stories(df: pd.DataFrame) -> list[NewsStory]:
     return stories
 
 def adverts_to_dataframe(adverts: list[Advert]) -> pd.DataFrame:
+    # Always create dataframe with proper columns, even if empty
+    columns = ['order', 'url', 'image_url']
+    
+    if len(adverts) == 0:
+        # Create empty dataframe with correct columns and types
+        df = pd.DataFrame(columns=columns)
+        df = df.astype({'order': 'Int64', 'url': 'str', 'image_url': 'str'})  # Use nullable Int64
+        return df
+    
     data = []
     for a in adverts:
         data.append({
-            'order': a.order,
+            'order': a.order if a.order is not None else 0,
             "url": a.url,
             "image_url": a.image_url
         })
-    df = pd.DataFrame(data, columns=Advert.__annotations__)
-    if 'order' in df.columns:
-        df.sort_values('order', inplace=True)
+    df = pd.DataFrame(data)
+    if len(df) > 0 and 'order' in df.columns:
+        df['order'] = df['order'].fillna(0).astype('Int64')  # Use nullable Int64
+        df = df.sort_values('order').reset_index(drop=True)
     return df
 
 def df_to_adverts(df: pd.DataFrame) -> list[Advert]:
     adverts = []
+    if len(df) == 0:
+        return adverts
     if 'order' not in df.columns:
         df['order'] = 0
+    
+    # Fill NaN values in order column with 0
+    df = df.copy()
+    df['order'] = df['order'].fillna(0)
+    
     for _,row in df.sort_values('order').iterrows():
+        # Skip rows where url or image_url is NaN/empty
+        if pd.isna(row['url']) or pd.isna(row['image_url']) or row['url'] == '' or row['image_url'] == '':
+            continue
+            
         adverts.append(Advert(
-            url = row['url'],
-            image_url = row['image_url']
+            url = str(row['url']),
+            image_url = str(row['image_url']),
+            order = int(row.get('order', 0))
         ))
     return adverts
 
@@ -185,10 +207,13 @@ async def manually_scrape_urls(urls: list[str]):
 # ---------------------------
 # Main Page Layout
 # ---------------------------
-
 st.title(TITLE)
 
 col1, col2 = st.columns(2)
+
+# ---------------------------
+# Left column data input
+# ---------------------------
 with col1:
         
     # Input boxes for email parameters
@@ -204,29 +229,44 @@ with col1:
     top_image_author = st.text_input("Top Image Author", key="top_image_author")
     top_image_link = st.text_input("Top Image Link (Leave Blank if None)", key="top_image_link")
 
+    # Initialize dataframe keys in session state if they don't exist
+    if "vertical_adverts_df" not in st.session_state:
+        st.session_state["vertical_adverts_df"] = adverts_to_dataframe(st.session_state[EMAIL_DATA_KEY].vertical_adverts)
+    if "horizontal_adverts_df" not in st.session_state:
+        st.session_state["horizontal_adverts_df"] = adverts_to_dataframe(st.session_state[EMAIL_DATA_KEY].horizontal_adverts)
+    
+    # Ensure dataframes always have the correct columns
+    required_columns = ['order', 'url', 'image_url']
+    for df_key in ["vertical_adverts_df", "horizontal_adverts_df"]:
+        if st.session_state[df_key].empty or not all(col in st.session_state[df_key].columns for col in required_columns):
+            # Reset to empty dataframe with correct structure
+            st.session_state[df_key] = adverts_to_dataframe([])
+
     # advert tables
     st.subheader("Vertical Adverts")
     vertical_adverts_df = st.data_editor(
-        adverts_to_dataframe(st.session_state[EMAIL_DATA_KEY].vertical_adverts),
+        st.session_state["vertical_adverts_df"],
         key="vertical_adverts",
         num_rows="dynamic",
         width='stretch',
-        hide_index=True
+        hide_index=True,
     )
     st.subheader("Horizontal Adverts")
     horizontal_adverts_df = st.data_editor(
-        adverts_to_dataframe(st.session_state[EMAIL_DATA_KEY].horizontal_adverts),
+        st.session_state["horizontal_adverts_df"],
         key="horizontal_adverts",
         num_rows="dynamic",
         width='stretch',
-        hide_index=True
+        hide_index=True,
     )
+
     subcol1, subcol2, subcol3 = st.columns(3)
     with subcol1:
         if st.button("Save Adverts"):
-            vertical_adverts_df.to_csv(VA_CACHE_PATH)
-            horizontal_adverts_df.to_csv(HA_CACHE_PATH)
+            vertical_adverts_df.to_csv(VA_CACHE_PATH, index=False)
+            horizontal_adverts_df.to_csv(HA_CACHE_PATH, index=False)
             st.success("Saved Adverts Cache")
+
     with subcol2:
         if st.button("Load Adverts"):
             if os.path.exists(HA_CACHE_PATH):
@@ -234,8 +274,9 @@ with col1:
                 try:
                     hdf = pd.read_csv(HA_CACHE_PATH)
                     st.session_state[EMAIL_DATA_KEY].horizontal_adverts = df_to_adverts(hdf)
-                except:
-                    st.error("Couldn't load adverts cache - please report issue to josh@hakuna.co.uk")
+                    st.session_state["horizontal_adverts_df"] = hdf.reset_index(drop=True)
+                except Exception as e:
+                    st.error(f"Couldn't load horizontal adverts cache: {e}")
             else:
                 st.error("No horizontal adverts cache found")
             if os.path.exists(VA_CACHE_PATH):
@@ -243,8 +284,9 @@ with col1:
                 try:
                     vdf = pd.read_csv(VA_CACHE_PATH)
                     st.session_state[EMAIL_DATA_KEY].vertical_adverts = df_to_adverts(vdf)
-                except:
-                    st.error("Couldn't load adverts cache - please report issue to josh@hakuna.co.uk")
+                    st.session_state["vertical_adverts_df"] = vdf.reset_index(drop=True)
+                except Exception as e:
+                    st.error(f"Couldn't load vertical adverts cache: {e}")
             else:
                 st.error("No vertical adverts cache found")
             st.rerun()
@@ -272,14 +314,21 @@ with col1:
                 deaths_start = deaths_start,
                 deaths_end = deaths_end
             ))
+            
+            # Preserve existing adverts data
+            email_data.vertical_adverts = st.session_state[EMAIL_DATA_KEY].vertical_adverts
+            email_data.horizontal_adverts = st.session_state[EMAIL_DATA_KEY].horizontal_adverts
+            
             st.session_state[EMAIL_DATA_KEY] = email_data
+            # Don't reset advert dataframes - keep the existing ones
+            st.rerun()
 
     # edit story dataframes
-    news_df = st.data_editor(stories_to_dataframe(st.session_state[EMAIL_DATA_KEY].news_stories), key="news_stories", hide_index=True)
-    business_df = st.data_editor(stories_to_dataframe(st.session_state[EMAIL_DATA_KEY].business_stories), key="business_stories", hide_index=True)
-    sports_df = st.data_editor(stories_to_dataframe(st.session_state[EMAIL_DATA_KEY].sports_stories), key="sports_stories", hide_index=True)
-    community_df = st.data_editor(stories_to_dataframe(st.session_state[EMAIL_DATA_KEY].community_stories), key="community_stories", hide_index=True)
-    podcast_df = st.data_editor(stories_to_dataframe(st.session_state[EMAIL_DATA_KEY].podcast_stories), key="podcast_stories", hide_index=True)
+    news_df = st.data_editor(stories_to_dataframe(st.session_state[EMAIL_DATA_KEY].news_stories), key="news_stories", hide_index=True, num_rows='dynamic')
+    business_df = st.data_editor(stories_to_dataframe(st.session_state[EMAIL_DATA_KEY].business_stories), key="business_stories", hide_index=True, num_rows='dynamic')
+    sports_df = st.data_editor(stories_to_dataframe(st.session_state[EMAIL_DATA_KEY].sports_stories), key="sports_stories", hide_index=True, num_rows='dynamic')
+    community_df = st.data_editor(stories_to_dataframe(st.session_state[EMAIL_DATA_KEY].community_stories), key="community_stories", hide_index=True, num_rows='dynamic')
+    podcast_df = st.data_editor(stories_to_dataframe(st.session_state[EMAIL_DATA_KEY].podcast_stories), key="podcast_stories", hide_index=True, num_rows='dynamic')
 
     # update email data state
     st.session_state[EMAIL_DATA_KEY].news_stories = df_to_stories(news_df)
@@ -293,8 +342,15 @@ with col1:
         author = top_image_author,
         link = top_image_link
     )
-    st.session_state[EMAIL_DATA_KEY].vertical_adverts = df_to_adverts(vertical_adverts_df)
-    st.session_state[EMAIL_DATA_KEY].horizontal_adverts = df_to_adverts(horizontal_adverts_df)
+    
+    # Only update adverts data if the dataframes have actually changed
+    if not vertical_adverts_df.equals(st.session_state.get("vertical_adverts_df", pd.DataFrame())):
+        st.session_state[EMAIL_DATA_KEY].vertical_adverts = df_to_adverts(vertical_adverts_df)
+        st.session_state["vertical_adverts_df"] = vertical_adverts_df.reset_index(drop=True)
+    
+    if not horizontal_adverts_df.equals(st.session_state.get("horizontal_adverts_df", pd.DataFrame())):
+        st.session_state[EMAIL_DATA_KEY].horizontal_adverts = df_to_adverts(horizontal_adverts_df)
+        st.session_state["horizontal_adverts_df"] = horizontal_adverts_df.reset_index(drop=True)
 
     # Manual URL Input Section
     st.title("Add Stories Manually")
@@ -313,6 +369,9 @@ with col1:
             st.success(f"Added {len(stories)} stories to {story_type}")
             st.rerun()
 
+# ---------------------------
+# Right column html rendering
+# ---------------------------
 with col2:
 
     if len(st.session_state[EMAIL_DATA_KEY].news_stories) > 0:

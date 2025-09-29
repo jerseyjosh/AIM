@@ -224,7 +224,7 @@ async def fetch_email_data(
                 "sports_stories": news_scraper.get_n_stories_for_region("gsy_sport", request.num_sports),
                 "community_stories": news_scraper.get_n_stories_for_region("gsy_community", request.num_community),
                 "podcast_stories": news_scraper.get_n_stories_for_region("jsy_podcasts", request.num_podcast),
-                "connect_cover_image": news_scraper.get_connect_cover("gsy"),
+                "connect_cover_image": news_scraper.get_gsy_connect_cover(),
                 "weather": weather_scraper.get_to_email(),
             }
             

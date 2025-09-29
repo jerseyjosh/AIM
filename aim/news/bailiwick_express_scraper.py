@@ -70,14 +70,9 @@ class BEScraper(BaseScraper):
                 seen.add(link)
         return news_urls
     
-    async def get_gsy_connect_cover(self, region: str) -> str:
-        """Get connect cover image link, have to use hacky chromedriver solution for iframe rendering."""
-        if region.lower() == "jsy":
-            url = self.JSY_CONNECT_COVER
-        elif region.lower() == "gsy":
-            url = self.GSY_CONNECT_COVER
-        else:
-            raise ValueError(f"Unrecognised connect region: {region}")
+    async def get_gsy_connect_cover(self) -> str:
+        """Get connect cover image link for Guernsey, have to use hacky chromedriver solution for iframe rendering."""
+        url = self.GSY_CONNECT_COVER
         options = webdriver.ChromeOptions()
         options.add_argument('--headless=new')
         options.add_argument('--no-sandbox')  # Required for some cloud environments
