@@ -115,6 +115,21 @@ def df_to_stories(df: pd.DataFrame) -> list[NewsStory]:
         ))
     return stories
 
+def update_horizontal_adverts():
+    """Callback function to update horizontal adverts when data editor changes"""
+    if "horizontal_adverts" in st.session_state:
+        st.session_state[EMAIL_DATA_KEY].horizontal_adverts = df_to_adverts(st.session_state["horizontal_adverts"])
+
+def update_vertical_adverts():
+    """Callback function to update vertical adverts when data editor changes"""
+    if "vertical_adverts" in st.session_state:
+        st.session_state[EMAIL_DATA_KEY].vertical_adverts = vertical_df_to_adverts(st.session_state["vertical_adverts"])
+
+def update_family_notices():
+    """Callback function to update family notices when data editor changes"""
+    # Don't use the callback parameter, instead sync after the data editor
+    pass
+
 def vertical_adverts_to_dataframe(adverts: list[Advert]) -> pd.DataFrame:
     # Old-style structure for vertical adverts (dynamic rows)
     columns = ['order', 'url', 'image_url']
@@ -161,14 +176,14 @@ def vertical_df_to_adverts(df: pd.DataFrame) -> list[Advert]:
     return adverts
 
 def adverts_to_dataframe(adverts: list[Advert]) -> pd.DataFrame:
-    # Define the 7 horizontal advert positions and their descriptions
+    # Define the 7 horizontal advert positions and their descriptions to match the template
     position_descriptions = [
         "After Weather",
         "After Headline Story", 
         "After News Stories",
+        "After Business Stories",
         "After Sports Stories", 
         "After Community Stories",
-        "After Business Stories",
         "After Podcast Stories"
     ]
     
@@ -213,6 +228,53 @@ def df_to_adverts(df: pd.DataFrame) -> list[Advert]:
         adverts.append(Advert(url="", image_url="", order=len(adverts) + 1))
     
     return adverts[:7]  # Limit to 7
+
+def family_notices_to_dataframe(notices: list[FamilyNotice]) -> pd.DataFrame:
+    """Convert family notices to editable dataframe"""
+    if not notices:
+        return pd.DataFrame(columns=['name', 'url', 'funeral_director', 'additional_text'])
+    
+    data = []
+    for notice in notices:
+        data.append({
+            'name': notice.name,
+            'url': notice.url,
+            'funeral_director': notice.funeral_director,
+            'additional_text': notice.additional_text
+        })
+    
+    return pd.DataFrame(data)
+
+def df_to_family_notices(df: pd.DataFrame) -> list[FamilyNotice]:
+    """Convert dataframe back to family notices"""
+    notices = []
+    
+    # Handle case where df might not be a DataFrame
+    if not isinstance(df, pd.DataFrame):
+        return notices
+        
+    if len(df) == 0:
+        return notices
+    
+    for _, row in df.iterrows():
+        # Skip rows where name is empty/NaN
+        if pd.isna(row.get('name', '')) or str(row.get('name', '')).strip() == '':
+            continue
+        
+        # Helper function to safely convert values to strings, handling None/NaN
+        def safe_str(value):
+            if pd.isna(value) or value is None:
+                return ''
+            return str(value).strip()
+            
+        notices.append(FamilyNotice(
+            name=safe_str(row.get('name', '')),
+            url=safe_str(row.get('url', '')),
+            funeral_director=safe_str(row.get('funeral_director', '')),
+            additional_text=safe_str(row.get('additional_text', ''))
+        ))
+    
+    return notices
 
 async def get_email_data(
         num_news: int,
@@ -282,16 +344,19 @@ with col1:
     top_image_author = st.text_input("Top Image Author", key="top_image_author")
     top_image_link = st.text_input("Top Image Link (Leave Blank if None)", key="top_image_link")
 
-        # Initialize dataframe keys in session state if they don't exist
+    # Initialize dataframe keys in session state if they don't exist
     if "vertical_adverts_df" not in st.session_state:
         st.session_state["vertical_adverts_df"] = vertical_adverts_to_dataframe(st.session_state[EMAIL_DATA_KEY].vertical_adverts)
     if "horizontal_adverts_df" not in st.session_state:
         st.session_state["horizontal_adverts_df"] = adverts_to_dataframe(st.session_state[EMAIL_DATA_KEY].horizontal_adverts)
+    if "family_notices_df" not in st.session_state:
+        st.session_state["family_notices_df"] = family_notices_to_dataframe(st.session_state[EMAIL_DATA_KEY].family_notices)
     
-    # Ensure dataframes always have the correct columns
+    # Ensure dataframes always have the correct columns only if they're completely empty or malformed
     # Vertical adverts keep the old structure (dynamic rows)
     vertical_required_columns = ['order', 'url', 'image_url']
-    if st.session_state["vertical_adverts_df"].empty or not all(col in st.session_state["vertical_adverts_df"].columns for col in vertical_required_columns):
+    if (st.session_state["vertical_adverts_df"].empty or 
+        not all(col in st.session_state["vertical_adverts_df"].columns for col in vertical_required_columns)):
         # Create old-style vertical adverts dataframe
         columns = ['order', 'url', 'image_url']
         df = pd.DataFrame(columns=columns)
@@ -300,7 +365,8 @@ with col1:
     
     # Horizontal adverts use new structure (fixed 7 rows with position descriptions)
     horizontal_required_columns = ['position', 'url', 'image_url', 'order']
-    if st.session_state["horizontal_adverts_df"].empty or not all(col in st.session_state["horizontal_adverts_df"].columns for col in horizontal_required_columns):
+    if (st.session_state["horizontal_adverts_df"].empty or 
+        not all(col in st.session_state["horizontal_adverts_df"].columns for col in horizontal_required_columns)):
         st.session_state["horizontal_adverts_df"] = adverts_to_dataframe([])
 
     # advert tables
@@ -311,6 +377,7 @@ with col1:
         num_rows="dynamic",
         width='stretch',
         hide_index=True,
+        on_change=update_vertical_adverts
     )
     
     st.subheader("Horizontal Adverts (Leave URL and Image URL blank to skip a position)")
@@ -320,6 +387,7 @@ with col1:
         num_rows="fixed",  # Fixed rows, no adding/deleting
         width='stretch',
         hide_index=True,
+        on_change=update_horizontal_adverts,
         column_config={
             "position": st.column_config.TextColumn(
                 "Position",
@@ -357,7 +425,7 @@ with col1:
                     # Check if it's the new format (has 'position' column) or old format
                     if 'position' in hdf.columns:
                         st.session_state[EMAIL_DATA_KEY].horizontal_adverts = df_to_adverts(hdf)
-                        st.session_state["horizontal_adverts_df"] = hdf.reset_index(drop=True)
+                        st.session_state["horizontal_adverts_df"] = hdf.copy()
                     else:
                         # Old format - convert to new format
                         old_adverts = vertical_df_to_adverts(hdf)  # Use old parser
@@ -372,7 +440,7 @@ with col1:
                 try:
                     vdf = pd.read_csv(VA_CACHE_PATH)
                     st.session_state[EMAIL_DATA_KEY].vertical_adverts = vertical_df_to_adverts(vdf)
-                    st.session_state["vertical_adverts_df"] = vdf.reset_index(drop=True)
+                    st.session_state["vertical_adverts_df"] = vdf.copy()
                 except Exception as e:
                     st.error(f"Couldn't load vertical adverts cache: {e}")
             else:
@@ -408,15 +476,57 @@ with col1:
             email_data.horizontal_adverts = st.session_state[EMAIL_DATA_KEY].horizontal_adverts
             
             st.session_state[EMAIL_DATA_KEY] = email_data
+            # Update family notices dataframe with fetched data
+            st.session_state["family_notices_df"] = family_notices_to_dataframe(email_data.family_notices)
             # Don't reset advert dataframes - keep the existing ones
             st.rerun()
 
     # edit story dataframes
+    st.markdown("#### News Stories")
     news_df = st.data_editor(stories_to_dataframe(st.session_state[EMAIL_DATA_KEY].news_stories), key="news_stories", hide_index=True, num_rows='dynamic')
+    
+    st.markdown("#### Business Stories")
     business_df = st.data_editor(stories_to_dataframe(st.session_state[EMAIL_DATA_KEY].business_stories), key="business_stories", hide_index=True, num_rows='dynamic')
+    
+    st.markdown("#### Sports Stories")
     sports_df = st.data_editor(stories_to_dataframe(st.session_state[EMAIL_DATA_KEY].sport_stories), key="sports_stories", hide_index=True, num_rows='dynamic')
+    
+    st.markdown("#### Community Stories")
     community_df = st.data_editor(stories_to_dataframe(st.session_state[EMAIL_DATA_KEY].community_stories), key="community_stories", hide_index=True, num_rows='dynamic')
+    
+    st.markdown("#### Podcast Stories")
     podcast_df = st.data_editor(stories_to_dataframe(st.session_state[EMAIL_DATA_KEY].podcast_stories), key="podcast_stories", hide_index=True, num_rows='dynamic')
+
+    st.markdown("#### Family Notices")
+    family_notices_df = st.data_editor(
+        st.session_state["family_notices_df"],
+        key="family_notices",
+        num_rows="dynamic",
+        width='stretch',
+        hide_index=True,
+        column_config={
+            "name": st.column_config.TextColumn(
+                "Name",
+                help="Full name of the deceased",
+                width="medium"
+            ),
+            "url": st.column_config.TextColumn(
+                "URL",
+                help="Link to the full family notice",
+                width="medium"
+            ),
+            "funeral_director": st.column_config.TextColumn(
+                "Funeral Director",
+                help="Name of the funeral director handling arrangements",
+                width="medium"
+            ),
+            "additional_text": st.column_config.TextColumn(
+                "Additional Text",
+                help="Any additional text or information",
+                width="large"
+            )
+        }
+    )
 
     # update email data state
     st.session_state[EMAIL_DATA_KEY].news_stories = df_to_stories(news_df)
@@ -424,6 +534,7 @@ with col1:
     st.session_state[EMAIL_DATA_KEY].sport_stories = df_to_stories(sports_df)
     st.session_state[EMAIL_DATA_KEY].community_stories = df_to_stories(community_df)
     st.session_state[EMAIL_DATA_KEY].podcast_stories = df_to_stories(podcast_df)
+    st.session_state[EMAIL_DATA_KEY].family_notices = df_to_family_notices(family_notices_df)
     st.session_state[EMAIL_DATA_KEY].top_image = TopImage(
         title=top_image_title,
         url = top_image_url,
@@ -431,14 +542,7 @@ with col1:
         link = top_image_link
     )
     
-    # Only update adverts data if the dataframes have actually changed
-    if not vertical_adverts_df.equals(st.session_state.get("vertical_adverts_df", pd.DataFrame())):
-        st.session_state[EMAIL_DATA_KEY].vertical_adverts = vertical_df_to_adverts(vertical_adverts_df)
-        st.session_state["vertical_adverts_df"] = vertical_adverts_df.reset_index(drop=True)
-    
-    if not horizontal_adverts_df.equals(st.session_state.get("horizontal_adverts_df", pd.DataFrame())):
-        st.session_state[EMAIL_DATA_KEY].horizontal_adverts = df_to_adverts(horizontal_adverts_df)
-        st.session_state["horizontal_adverts_df"] = horizontal_adverts_df.reset_index(drop=True)
+    # Adverts are now updated via callbacks, no need for manual comparison
 
     # Manual URL Input Section
     st.title("Add Stories Manually")
@@ -464,7 +568,7 @@ with col2:
 
     if len(st.session_state[EMAIL_DATA_KEY].news_stories) > 0:
         rendered_html = EmailBuilder.BE().render(st.session_state[EMAIL_DATA_KEY])
-        html(rendered_html, scrolling=True, height=2000)
+        html(rendered_html, scrolling=True, height=3000)
 
         if st.download_button("Save Email", rendered_html, file_name="email.html", mime="text/html"):
             st.success("Email saved successfully")
