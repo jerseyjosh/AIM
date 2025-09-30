@@ -6,6 +6,7 @@
     - Experimental js/html/fastapi setup moving from streamlit [1h 22/09/25]
     - Changed advert ordering logic, fixed news story rows not deleting, made family notices editable, upgraded server to speed up scraping [2h 29/09/25]
     - Added AIM Premium email to streamlit [2h 29/09/25]
+    - Fixed issues with BE Email, adverts in wrong place, adverts dataframe casting issues [1h 30/09/25]
 
 - PAID 22/09/25 [-2h paid monthly subscription]
     - Fixed JEP sports scraper inconsistent author byline tags for scraper [20min 04/09/25]

@@ -3764,6 +3764,17 @@
               </div>
               {% endif %} 
 
+              <!-- SEPARATOR -->
+              <div
+                style="
+                  mso-line-height-rule: exactly;
+                  line-height: 30px;
+                  font-size: 30px;
+                "
+              >
+                &nbsp;
+              </div>
+
               <!-- HORIZONTAL ADVERT -->
               {% if horizontal_adverts | length >= 6 %}
               <div
@@ -4719,7 +4730,6 @@
               </div>
               {% endif %} 
 
-
               <!-- SEPARATOR -->
               <div
                 style="
@@ -4730,6 +4740,79 @@
               >
                 &nbsp;
               </div>
+
+                            <!-- HORIZONTAL ADVERT -->
+              {% if horizontal_adverts | length >= 8 %}
+              <div
+                class="layout one-col fixed-width stack"
+                style="
+                  margin: 0 auto;
+                  max-width: 600px;
+                  min-width: 320px;
+                  width: 320px;
+                  width: calc(28000% - 167400px);
+                  overflow-wrap: break-word;
+                  word-wrap: break-word;
+                  word-break: break-word;
+                "
+              >
+                <div
+                  class="layout__inner"
+                  style="
+                    border-collapse: collapse;
+                    display: table;
+                    width: 100%;
+                    background-color: #ffffff;
+                  "
+                >
+                  <!--[if mso]><table align="center" cellpadding="0" cellspacing="0" role="presentation"><tr class="layout-fixed-width" style="background-color: #ffffff;"><td style="width: 600px" class="w560"><![endif]-->
+                  <div
+                    class="column"
+                    style="
+                      text-align: left;
+                      color: #808285;
+                      font-size: 14px;
+                      line-height: 21px;
+                      font-family: Open Sans, sans-serif;
+                    "
+                  >
+                    <div
+                      style="
+                        font-size: 12px;
+                        font-style: normal;
+                        font-weight: normal;
+                        line-height: 19px;
+                      "
+                      align="center"
+                    >
+                      <a
+                        style="
+                          text-decoration: underline;
+                          transition: opacity 0.1s ease-in;
+                          color: #27313c;
+                        "
+                        href="{{ horizontal_adverts[7].url }}"
+                        ><img
+                          class="gnd-corner-image gnd-corner-image-center gnd-corner-image-top gnd-corner-image-bottom"
+                          style="
+                            border: 0;
+                            display: block;
+                            height: auto;
+                            width: 100%;
+                            max-width: 728px;
+                          "
+                          alt=""
+                          width="600"
+                          src="{{ horizontal_adverts[7].image_url }}"
+                      /></a>
+                    </div>
+                  </div>
+                  <!--[if mso]></td></tr></table><![endif]-->
+                </div>
+              </div>
+              {% endif %} 
+
+
 
               <!-- STATIC UNTIL END -->
               <div

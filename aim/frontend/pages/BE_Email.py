@@ -101,34 +101,122 @@ def stories_to_dataframe(stories: list[NewsStory]) -> pd.DataFrame:
 
 def df_to_stories(df: pd.DataFrame) -> list[NewsStory]:
     stories = []
+    
+    # Validate input is a DataFrame
+    if not isinstance(df, pd.DataFrame):
+        logger.warning(f"df_to_stories received {type(df)} instead of DataFrame")
+        return stories
+        
+    if len(df) == 0:
+        return stories
+        
+    df = df.copy()
     if 'order' not in df.columns:
         df['order'] = 0
+    
+    # Ensure all required columns exist
+    required_columns = ['headline', 'date', 'author', 'text', 'url', 'image_url']
+    for col in required_columns:
+        if col not in df.columns:
+            logger.warning(f"Missing column '{col}' in DataFrame, adding with empty values")
+            df[col] = ""
+    
     for _, row in df.sort_values('order').iterrows():
         stories.append(NewsStory(
             order=row.get("order", 0),
-            headline=row["headline"],
-            date=row["date"],
-            author=row["author"],
-            text=row["text"],
-            url=row["url"],
-            image_url=row["image_url"],
+            headline=row.get("headline", ""),
+            date=row.get("date", ""),
+            author=row.get("author", ""),
+            text=row.get("text", ""),
+            url=row.get("url", ""),
+            image_url=row.get("image_url", ""),
         ))
     return stories
 
 def update_horizontal_adverts():
     """Callback function to update horizontal adverts when data editor changes"""
     if "horizontal_adverts" in st.session_state:
-        st.session_state[EMAIL_DATA_KEY].horizontal_adverts = df_to_adverts(st.session_state["horizontal_adverts"])
+        data = st.session_state["horizontal_adverts"]
+        if isinstance(data, pd.DataFrame):
+            st.session_state[EMAIL_DATA_KEY].horizontal_adverts = df_to_adverts(data)
+            st.session_state["horizontal_adverts_df"] = data.copy()
 
 def update_vertical_adverts():
     """Callback function to update vertical adverts when data editor changes"""
     if "vertical_adverts" in st.session_state:
-        st.session_state[EMAIL_DATA_KEY].vertical_adverts = vertical_df_to_adverts(st.session_state["vertical_adverts"])
+        data = st.session_state["vertical_adverts"]
+        if isinstance(data, pd.DataFrame):
+            st.session_state[EMAIL_DATA_KEY].vertical_adverts = vertical_df_to_adverts(data)
+            st.session_state["vertical_adverts_df"] = data.copy()
 
 def update_family_notices():
     """Callback function to update family notices when data editor changes"""
     # Don't use the callback parameter, instead sync after the data editor
     pass
+
+def update_news_stories():
+    """Callback function to update news stories when data editor changes"""
+    if "news_stories" in st.session_state:
+        data = st.session_state["news_stories"]
+        if isinstance(data, pd.DataFrame):
+            st.session_state[EMAIL_DATA_KEY].news_stories = df_to_stories(data)
+            st.session_state["news_stories_df"] = data.copy()
+
+def update_business_stories():
+    """Callback function to update business stories when data editor changes"""
+    if "business_stories" in st.session_state:
+        data = st.session_state["business_stories"]
+        if isinstance(data, pd.DataFrame):
+            st.session_state[EMAIL_DATA_KEY].business_stories = df_to_stories(data)
+            st.session_state["business_stories_df"] = data.copy()
+
+def update_sports_stories():
+    """Callback function to update sports stories when data editor changes"""
+    if "sports_stories" in st.session_state:
+        data = st.session_state["sports_stories"]
+        if isinstance(data, pd.DataFrame):
+            st.session_state[EMAIL_DATA_KEY].sport_stories = df_to_stories(data)
+            st.session_state["sports_stories_df"] = data.copy()
+
+def update_community_stories():
+    """Callback function to update community stories when data editor changes"""
+    if "community_stories" in st.session_state:
+        data = st.session_state["community_stories"]
+        if isinstance(data, pd.DataFrame):
+            st.session_state[EMAIL_DATA_KEY].community_stories = df_to_stories(data)
+            st.session_state["community_stories_df"] = data.copy()
+
+def update_podcast_stories():
+    """Callback function to update podcast stories when data editor changes"""
+    if "podcast_stories" in st.session_state:
+        data = st.session_state["podcast_stories"]
+        if isinstance(data, pd.DataFrame):
+            st.session_state[EMAIL_DATA_KEY].podcast_stories = df_to_stories(data)
+            st.session_state["podcast_stories_df"] = data.copy()
+
+def update_business_stories():
+    """Callback function to update business stories when data editor changes"""
+    if "business_stories" in st.session_state:
+        data = st.session_state["business_stories"]
+        if isinstance(data, pd.DataFrame):
+            st.session_state[EMAIL_DATA_KEY].business_stories = df_to_stories(data)
+            st.session_state["business_stories_df"] = data.copy()
+
+def update_sports_stories():
+    """Callback function to update sports stories when data editor changes"""
+    if "sports_stories" in st.session_state:
+        data = st.session_state["sports_stories"]
+        if isinstance(data, pd.DataFrame):
+            st.session_state[EMAIL_DATA_KEY].sport_stories = df_to_stories(data)
+            st.session_state["sports_stories_df"] = data.copy()
+
+def update_community_stories():
+    """Callback function to update community stories when data editor changes"""
+    if "community_stories" in st.session_state:
+        data = st.session_state["community_stories"]
+        if isinstance(data, pd.DataFrame):
+            st.session_state[EMAIL_DATA_KEY].community_stories = df_to_stories(data)
+            st.session_state["community_stories_df"] = data.copy()
 
 def vertical_adverts_to_dataframe(adverts: list[Advert]) -> pd.DataFrame:
     # Old-style structure for vertical adverts (dynamic rows)
@@ -155,6 +243,12 @@ def vertical_adverts_to_dataframe(adverts: list[Advert]) -> pd.DataFrame:
 def vertical_df_to_adverts(df: pd.DataFrame) -> list[Advert]:
     # Old-style processing for vertical adverts
     adverts = []
+    
+    # Validate input is a DataFrame
+    if not isinstance(df, pd.DataFrame):
+        logger.warning(f"vertical_df_to_adverts received {type(df)} instead of DataFrame")
+        return adverts
+        
     if len(df) == 0:
         return adverts
     
@@ -176,15 +270,17 @@ def vertical_df_to_adverts(df: pd.DataFrame) -> list[Advert]:
     return adverts
 
 def adverts_to_dataframe(adverts: list[Advert]) -> pd.DataFrame:
-    # Define the 7 horizontal advert positions and their descriptions to match the template
+    # Define the 8 horizontal advert positions and their descriptions to match the template
+    # Order: weather, headline, news, sports, community, business, podcast, family notices
     position_descriptions = [
         "After Weather",
         "After Headline Story", 
         "After News Stories",
+        "After Sports Stories",
+        "After Community Stories", 
         "After Business Stories",
-        "After Sports Stories", 
-        "After Community Stories",
-        "After Podcast Stories"
+        "After Podcast Stories",
+        "After Family Notices"
     ]
     
     # Create base structure with all positions
@@ -207,10 +303,16 @@ def adverts_to_dataframe(adverts: list[Advert]) -> pd.DataFrame:
 
 def df_to_adverts(df: pd.DataFrame) -> list[Advert]:
     adverts = []
+    
+    # Validate input is a DataFrame
+    if not isinstance(df, pd.DataFrame):
+        logger.warning(f"df_to_adverts received {type(df)} instead of DataFrame")
+        return adverts
+        
     if len(df) == 0:
         return adverts
     
-    # Process each row in order (should be 7 rows for the 7 positions)
+    # Process each row in order (should be 8 rows for the 8 positions)
     for _, row in df.iterrows():
         # Create advert even if empty - empty ones won't render in template
         url = str(row.get('url', '')) if not pd.isna(row.get('url', '')) else ''
@@ -223,11 +325,11 @@ def df_to_adverts(df: pd.DataFrame) -> list[Advert]:
             order=order
         ))
     
-    # Ensure we always have exactly 7 adverts (pad if needed)
-    while len(adverts) < 7:
+    # Ensure we always have exactly 8 adverts (pad if needed)
+    while len(adverts) < 8:
         adverts.append(Advert(url="", image_url="", order=len(adverts) + 1))
     
-    return adverts[:7]  # Limit to 7
+    return adverts[:8]  # Limit to 8
 
 def family_notices_to_dataframe(notices: list[FamilyNotice]) -> pd.DataFrame:
     """Convert family notices to editable dataframe"""
@@ -251,6 +353,7 @@ def df_to_family_notices(df: pd.DataFrame) -> list[FamilyNotice]:
     
     # Handle case where df might not be a DataFrame
     if not isinstance(df, pd.DataFrame):
+        logger.warning(f"df_to_family_notices received {type(df)} instead of DataFrame")
         return notices
         
     if len(df) == 0:
@@ -352,6 +455,18 @@ with col1:
     if "family_notices_df" not in st.session_state:
         st.session_state["family_notices_df"] = family_notices_to_dataframe(st.session_state[EMAIL_DATA_KEY].family_notices)
     
+    # Initialize story dataframes for persistent state
+    if "news_stories_df" not in st.session_state:
+        st.session_state["news_stories_df"] = stories_to_dataframe(st.session_state[EMAIL_DATA_KEY].news_stories)
+    if "business_stories_df" not in st.session_state:
+        st.session_state["business_stories_df"] = stories_to_dataframe(st.session_state[EMAIL_DATA_KEY].business_stories)
+    if "sports_stories_df" not in st.session_state:
+        st.session_state["sports_stories_df"] = stories_to_dataframe(st.session_state[EMAIL_DATA_KEY].sport_stories)
+    if "community_stories_df" not in st.session_state:
+        st.session_state["community_stories_df"] = stories_to_dataframe(st.session_state[EMAIL_DATA_KEY].community_stories)
+    if "podcast_stories_df" not in st.session_state:
+        st.session_state["podcast_stories_df"] = stories_to_dataframe(st.session_state[EMAIL_DATA_KEY].podcast_stories)
+    
     # Ensure dataframes always have the correct columns only if they're completely empty or malformed
     # Vertical adverts keep the old structure (dynamic rows)
     vertical_required_columns = ['order', 'url', 'image_url']
@@ -380,7 +495,7 @@ with col1:
         on_change=update_vertical_adverts
     )
     
-    st.subheader("Horizontal Adverts (Leave URL and Image URL blank to skip a position)")
+    st.subheader("Horizontal Adverts")
     horizontal_adverts_df = st.data_editor(
         st.session_state["horizontal_adverts_df"],
         key="horizontal_adverts",
@@ -393,7 +508,6 @@ with col1:
                 "Position",
                 help="Where this advert will appear in the email",
                 disabled=True,  # Make read-only
-                width="large"
             ),
             "url": st.column_config.TextColumn(
                 "URL",
@@ -408,13 +522,48 @@ with col1:
             "order": None  # Hide the order column
         }
     )
+    
+    # Explicit synchronization: Update session state from current dataframe values
+    # This ensures the HTML rendering reflects any changes made in the data editors
+    
+    # Handle horizontal adverts (convert dict to DataFrame if needed)
+    if isinstance(horizontal_adverts_df, pd.DataFrame):
+        st.session_state[EMAIL_DATA_KEY].horizontal_adverts = df_to_adverts(horizontal_adverts_df)
+    elif isinstance(horizontal_adverts_df, dict):
+        try:
+            df = pd.DataFrame(horizontal_adverts_df)
+            st.session_state[EMAIL_DATA_KEY].horizontal_adverts = df_to_adverts(df)
+            logger.debug("Converted horizontal_adverts_df dict to DataFrame for sync")
+        except Exception as e:
+            logger.error(f"Failed to convert horizontal_adverts_df dict to DataFrame: {e}")
+    
+    # Handle vertical adverts (convert dict to DataFrame if needed)
+    if isinstance(vertical_adverts_df, pd.DataFrame):
+        st.session_state[EMAIL_DATA_KEY].vertical_adverts = vertical_df_to_adverts(vertical_adverts_df)
+    elif isinstance(vertical_adverts_df, dict):
+        try:
+            df = pd.DataFrame(vertical_adverts_df)
+            st.session_state[EMAIL_DATA_KEY].vertical_adverts = vertical_df_to_adverts(df)
+            logger.debug("Converted vertical_adverts_df dict to DataFrame for sync")
+        except Exception as e:
+            logger.error(f"Failed to convert vertical_adverts_df dict to DataFrame: {e}")
 
     subcol1, subcol2, subcol3 = st.columns(3)
     with subcol1:
         if st.button("Save Adverts"):
-            vertical_adverts_df.to_csv(VA_CACHE_PATH, index=False)
-            horizontal_adverts_df.to_csv(HA_CACHE_PATH, index=False)
-            st.success("Saved Adverts Cache")
+            try:
+                # Validate that we have DataFrames before saving
+                if not isinstance(vertical_adverts_df, pd.DataFrame):
+                    st.error(f"Cannot save vertical adverts: not a DataFrame (type: {type(vertical_adverts_df)})")
+                elif not isinstance(horizontal_adverts_df, pd.DataFrame):
+                    st.error(f"Cannot save horizontal adverts: not a DataFrame (type: {type(horizontal_adverts_df)})")
+                else:
+                    vertical_adverts_df.to_csv(VA_CACHE_PATH, index=False)
+                    horizontal_adverts_df.to_csv(HA_CACHE_PATH, index=False)
+                    st.success("Saved Adverts Cache")
+            except Exception as e:
+                st.error(f"Failed to save adverts cache: {e}")
+                logger.error(f"Failed to save adverts cache: {e}")
 
     with subcol2:
         if st.button("Load Adverts"):
@@ -422,27 +571,40 @@ with col1:
                 print("FOUND HA CACHE")
                 try:
                     hdf = pd.read_csv(HA_CACHE_PATH)
-                    # Check if it's the new format (has 'position' column) or old format
-                    if 'position' in hdf.columns:
-                        st.session_state[EMAIL_DATA_KEY].horizontal_adverts = df_to_adverts(hdf)
-                        st.session_state["horizontal_adverts_df"] = hdf.copy()
+                    # Validate that we loaded a DataFrame
+                    if not isinstance(hdf, pd.DataFrame):
+                        st.error(f"Horizontal adverts cache loaded as {type(hdf)}, expected DataFrame")
                     else:
-                        # Old format - convert to new format
-                        old_adverts = vertical_df_to_adverts(hdf)  # Use old parser
-                        st.session_state[EMAIL_DATA_KEY].horizontal_adverts = old_adverts
-                        st.session_state["horizontal_adverts_df"] = adverts_to_dataframe(old_adverts)
+                        # Check if it's the new format (has 'position' column) or old format
+                        if 'position' in hdf.columns:
+                            # New format: ensure we have all 7 positions with correct descriptions
+                            loaded_adverts = df_to_adverts(hdf)
+                            # Create a properly formatted dataframe with all positions
+                            st.session_state["horizontal_adverts_df"] = adverts_to_dataframe(loaded_adverts)
+                            st.session_state[EMAIL_DATA_KEY].horizontal_adverts = loaded_adverts
+                        else:
+                            # Old format - convert to new format
+                            old_adverts = vertical_df_to_adverts(hdf)  # Use old parser
+                            st.session_state[EMAIL_DATA_KEY].horizontal_adverts = old_adverts
+                            st.session_state["horizontal_adverts_df"] = adverts_to_dataframe(old_adverts)
                 except Exception as e:
                     st.error(f"Couldn't load horizontal adverts cache: {e}")
+                    logger.error(f"Failed to load horizontal adverts cache: {e}")
             else:
                 st.error("No horizontal adverts cache found")
             if os.path.exists(VA_CACHE_PATH):
                 print("FOUND VA CACHE")
                 try:
                     vdf = pd.read_csv(VA_CACHE_PATH)
-                    st.session_state[EMAIL_DATA_KEY].vertical_adverts = vertical_df_to_adverts(vdf)
-                    st.session_state["vertical_adverts_df"] = vdf.copy()
+                    # Validate that we loaded a DataFrame
+                    if not isinstance(vdf, pd.DataFrame):
+                        st.error(f"Vertical adverts cache loaded as {type(vdf)}, expected DataFrame")
+                    else:
+                        st.session_state[EMAIL_DATA_KEY].vertical_adverts = vertical_df_to_adverts(vdf)
+                        st.session_state["vertical_adverts_df"] = vdf.copy()
                 except Exception as e:
                     st.error(f"Couldn't load vertical adverts cache: {e}")
+                    logger.error(f"Failed to load vertical adverts cache: {e}")
             else:
                 st.error("No vertical adverts cache found")
             st.rerun()
@@ -476,26 +638,31 @@ with col1:
             email_data.horizontal_adverts = st.session_state[EMAIL_DATA_KEY].horizontal_adverts
             
             st.session_state[EMAIL_DATA_KEY] = email_data
-            # Update family notices dataframe with fetched data
+            # Update all dataframes with fetched data
             st.session_state["family_notices_df"] = family_notices_to_dataframe(email_data.family_notices)
+            st.session_state["news_stories_df"] = stories_to_dataframe(email_data.news_stories)
+            st.session_state["business_stories_df"] = stories_to_dataframe(email_data.business_stories)
+            st.session_state["sports_stories_df"] = stories_to_dataframe(email_data.sport_stories)
+            st.session_state["community_stories_df"] = stories_to_dataframe(email_data.community_stories)
+            st.session_state["podcast_stories_df"] = stories_to_dataframe(email_data.podcast_stories)
             # Don't reset advert dataframes - keep the existing ones
             st.rerun()
 
     # edit story dataframes
     st.markdown("#### News Stories")
-    news_df = st.data_editor(stories_to_dataframe(st.session_state[EMAIL_DATA_KEY].news_stories), key="news_stories", hide_index=True, num_rows='dynamic')
+    news_df = st.data_editor(st.session_state["news_stories_df"], key="news_stories", hide_index=True, num_rows='dynamic', on_change=update_news_stories)
     
     st.markdown("#### Business Stories")
-    business_df = st.data_editor(stories_to_dataframe(st.session_state[EMAIL_DATA_KEY].business_stories), key="business_stories", hide_index=True, num_rows='dynamic')
+    business_df = st.data_editor(st.session_state["business_stories_df"], key="business_stories", hide_index=True, num_rows='dynamic', on_change=update_business_stories)
     
     st.markdown("#### Sports Stories")
-    sports_df = st.data_editor(stories_to_dataframe(st.session_state[EMAIL_DATA_KEY].sport_stories), key="sports_stories", hide_index=True, num_rows='dynamic')
+    sports_df = st.data_editor(st.session_state["sports_stories_df"], key="sports_stories", hide_index=True, num_rows='dynamic', on_change=update_sports_stories)
     
     st.markdown("#### Community Stories")
-    community_df = st.data_editor(stories_to_dataframe(st.session_state[EMAIL_DATA_KEY].community_stories), key="community_stories", hide_index=True, num_rows='dynamic')
+    community_df = st.data_editor(st.session_state["community_stories_df"], key="community_stories", hide_index=True, num_rows='dynamic', on_change=update_community_stories)
     
     st.markdown("#### Podcast Stories")
-    podcast_df = st.data_editor(stories_to_dataframe(st.session_state[EMAIL_DATA_KEY].podcast_stories), key="podcast_stories", hide_index=True, num_rows='dynamic')
+    podcast_df = st.data_editor(st.session_state["podcast_stories_df"], key="podcast_stories", hide_index=True, num_rows='dynamic', on_change=update_podcast_stories)
 
     st.markdown("#### Family Notices")
     family_notices_df = st.data_editor(
@@ -527,14 +694,31 @@ with col1:
             )
         }
     )
+    
+    # Explicit synchronization for story dataframes
+    # This ensures story changes are reflected immediately in the email data
+    story_dfs = [
+        ("news_stories", news_df),
+        ("business_stories", business_df), 
+        ("sport_stories", sports_df),
+        ("community_stories", community_df),
+        ("podcast_stories", podcast_df)
+    ]
+    
+    for attr_name, df in story_dfs:
+        if isinstance(df, pd.DataFrame):
+            setattr(st.session_state[EMAIL_DATA_KEY], attr_name, df_to_stories(df))
 
-    # update email data state
-    st.session_state[EMAIL_DATA_KEY].news_stories = df_to_stories(news_df)
-    st.session_state[EMAIL_DATA_KEY].business_stories = df_to_stories(business_df)
-    st.session_state[EMAIL_DATA_KEY].sport_stories = df_to_stories(sports_df)
-    st.session_state[EMAIL_DATA_KEY].community_stories = df_to_stories(community_df)
-    st.session_state[EMAIL_DATA_KEY].podcast_stories = df_to_stories(podcast_df)
+    # update email data state (stories handled by explicit sync above)
     st.session_state[EMAIL_DATA_KEY].family_notices = df_to_family_notices(family_notices_df)
+    
+    # Update persistent dataframes to maintain state
+    st.session_state["news_stories_df"] = news_df.copy() if isinstance(news_df, pd.DataFrame) else news_df
+    st.session_state["business_stories_df"] = business_df.copy() if isinstance(business_df, pd.DataFrame) else business_df
+    st.session_state["sports_stories_df"] = sports_df.copy() if isinstance(sports_df, pd.DataFrame) else sports_df
+    st.session_state["community_stories_df"] = community_df.copy() if isinstance(community_df, pd.DataFrame) else community_df
+    st.session_state["podcast_stories_df"] = podcast_df.copy() if isinstance(podcast_df, pd.DataFrame) else podcast_df
+    
     st.session_state[EMAIL_DATA_KEY].top_image = TopImage(
         title=top_image_title,
         url = top_image_url,
@@ -555,10 +739,19 @@ with col1:
             new_stories: list[NewsStory] = asyncio.run(manually_scrape_urls(urls))
             # Get current stories and add new ones
             current_stories = getattr(st.session_state[EMAIL_DATA_KEY], story_type)
-            new_stories = current_stories + new_stories
+            combined_stories = current_stories + new_stories
             # update email data
-            setattr(st.session_state[EMAIL_DATA_KEY], story_type, new_stories)
-            st.success(f"Added {len(stories)} stories to {story_type}")
+            setattr(st.session_state[EMAIL_DATA_KEY], story_type, combined_stories)
+            
+            # Also update the persistent dataframes that the data editors use
+            dataframe_key = f"{story_type}_df"
+            if story_type == "sport_stories":
+                dataframe_key = "sports_stories_df"  # Handle the naming inconsistency
+            
+            # Update the persistent dataframe
+            st.session_state[dataframe_key] = stories_to_dataframe(combined_stories)
+            
+            st.success(f"Added {len(new_stories)} new stories to {story_type}")
             st.rerun()
 
 # ---------------------------
