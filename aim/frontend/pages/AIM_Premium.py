@@ -3,7 +3,7 @@ import pandas as pd
 import asyncio
 import logging
 import os
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, fields
 from datetime import datetime, timedelta
 from streamlit.components.v1 import html
 
@@ -67,17 +67,15 @@ if EMAIL_DATA_KEY not in st.session_state:
 def stories_to_dataframe(stories: list[NewsStory]) -> pd.DataFrame:
     """Convert stories to editable dataframe"""
     if not stories:
-        return pd.DataFrame(columns=['order', 'headline', 'url', 'date', 'author'])
+        # Create empty dataframe with NewsStory fields
+        columns = [field.name for field in fields(NewsStory)]
+        return pd.DataFrame(columns=columns)
     
+    # Convert stories to list of dictionaries using dataclass fields
     data = []
-    for s in stories:
-        data.append({
-            'order': s.order,
-            'headline': s.headline,
-            'url': s.url,
-            'date': s.date,
-            'author': s.author
-        })
+    for story in stories:
+        story_dict = {field.name: getattr(story, field.name) for field in fields(story)}
+        data.append(story_dict)
     
     df = pd.DataFrame(data)
     if 'order' in df.columns:
@@ -91,25 +89,36 @@ def df_to_stories(df: pd.DataFrame) -> list[NewsStory]:
         df['order'] = range(len(df))
     
     for _, row in df.sort_values('order').iterrows():
-        # Find the original story to preserve all fields
-        original_story = next(
-            (s for s in st.session_state[EMAIL_DATA_KEY].news_stories if s.url == row['url']), 
-            None
-        )
-        if original_story:
-            # Update order from dataframe
-            story = NewsStory(
-                headline=original_story.headline,
-                text=original_story.text,
-                date=original_story.date,
-                author=original_story.author,
-                url=original_story.url,
-                image_url=original_story.image_url,
-                order=int(row['order'])
-            )
-            stories.append(story)
+        # Create story using all available fields from the dataframe
+        story_kwargs = {}
+        for field_info in fields(NewsStory):
+            field_name = field_info.name
+            if field_name in row.index:
+                # Use value from dataframe
+                story_kwargs[field_name] = row[field_name]
+            else:
+                # Use default value if field not in dataframe
+                if field_info.default != field_info.default_factory:
+                    story_kwargs[field_name] = field_info.default
+                elif field_info.default_factory != field_info.default_factory:
+                    story_kwargs[field_name] = field_info.default_factory()
+                else:
+                    # Fallback to reasonable defaults for NewsStory fields
+                    if field_name == 'order':
+                        story_kwargs[field_name] = 0
+                    else:
+                        story_kwargs[field_name] = ""
+        
+        stories.append(NewsStory(**story_kwargs))
     
     return stories
+
+def update_stories():
+    """Callback function to update stories when data editor changes"""
+    if "stories_editor" in st.session_state:
+        data = st.session_state["stories_editor"]
+        if isinstance(data, pd.DataFrame):
+            st.session_state[EMAIL_DATA_KEY].news_stories = df_to_stories(data)
 
 async def get_email_data(num_stories: int, foreword_author: ForewordAuthor, foreword_text: str, foreword_title: str, cryptic_clue: str, title: str) -> AIMPremiumEmailData:
     """Fetch all data for email asynchronously"""
@@ -220,6 +229,7 @@ with col1:
             key="stories_editor",
             hide_index=True,
             num_rows='dynamic',
+            on_change=update_stories,
             column_config={
                 "order": st.column_config.NumberColumn(
                     "Order",
@@ -232,6 +242,11 @@ with col1:
                 "headline": st.column_config.TextColumn(
                     "Headline",
                     help="Story headline",
+                    width="large"
+                ),
+                "text": st.column_config.TextColumn(
+                    "Text",
+                    help="Story text/content",
                     width="large"
                 ),
                 "url": st.column_config.LinkColumn(
