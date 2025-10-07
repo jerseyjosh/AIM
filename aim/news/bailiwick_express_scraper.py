@@ -239,7 +239,7 @@ if __name__ == "__main__":
 
     async def main():
         scraper = BEScraper()
-        cover = await scraper.get_connect_cover()
+        cover = await scraper.get_jsy_connect_cover()
         breakpoint()
 
     asyncio.run(main())

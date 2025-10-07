@@ -399,7 +399,7 @@ async def get_email_data(
         "sport_stories": news_scraper.get_n_stories_for_region("jsy_sport", num_sports),
         "community_stories": news_scraper.get_n_stories_for_region("jsy_community", num_community),
         "podcast_stories": news_scraper.get_n_stories_for_region("jsy_podcasts", num_podcast),
-        "connect_cover_image": news_scraper.get_jsy_connect_cover(),
+        # "connect_cover_image": news_scraper.get_jsy_connect_cover(),
         "weather": weather_scraper.get_to_email(),
         "family_notices": deaths_scraper.get_notices(deaths_start, deaths_end)
     }
@@ -446,6 +446,7 @@ with col1:
     top_image_title = st.text_input("Top Image Title", key="top_image_title")
     top_image_author = st.text_input("Top Image Author", key="top_image_author")
     top_image_link = st.text_input("Top Image Link (Leave Blank if None)", key="top_image_link")
+    connect_cover_image = st.text_input("Connect Cover Image URL", key="connect_cover_image")
 
     # Initialize dataframe keys in session state if they don't exist
     if "vertical_adverts_df" not in st.session_state:
@@ -725,6 +726,9 @@ with col1:
         author = top_image_author,
         link = top_image_link
     )
+    
+    # Set connect cover image from manual input
+    st.session_state[EMAIL_DATA_KEY].connect_cover_image = connect_cover_image
     
     # Adverts are now updated via callbacks, no need for manual comparison
 
